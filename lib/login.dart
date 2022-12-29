@@ -4,6 +4,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:medicineapp2/dashboard.dart';
+import 'package:medicineapp2/resetpassword.dart';
 import 'package:medicineapp2/signup.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'const.dart';
@@ -19,6 +20,12 @@ class _loginState extends State<login> {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   final navigatorKey = GlobalKey<NavigatorState>();
+
+  Color color = Color(0xffececef);
+  Color textcolor = Color(0xff273238);
+  Color buttoncolor = Color(0xffececef);
+  Color buttontextcolor = Color(0xff273238);
+
   @override
   void dispose() {
     emailcontroller.dispose();
@@ -39,8 +46,11 @@ class _loginState extends State<login> {
               color: Colors.white,
               size: 200,
             ));
-          }
-          if (snapshot.hasData) {
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text("Something went wrong"),
+            );
+          } else if (snapshot.hasData) {
             return dashboard();
           } else {
             return Scaffold(
@@ -185,7 +195,10 @@ class _loginState extends State<login> {
                                     alignment: Alignment.centerRight,
                                     child: ButtonTheme(
                                         child: MaterialButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Get.to(() => resetpassword(),
+                                            transition: Transition.rightToLeft);
+                                      },
                                       elevation: 0,
                                       hoverElevation: 0,
                                       focusElevation: 0,
@@ -308,9 +321,19 @@ class _loginState extends State<login> {
           email: emailcontroller.text.trim(),
           password: passwordcontroller.text.trim());
     } on FirebaseAuthException catch (e) {
-      if (e.code == "firebase_auth/email-already-in-use") {
-        print("error -> $e");
-      } else if (e.code == "weak-password") {}
+      print(e.code);
+      var othersnackbar = SnackBar(
+        content: Text("${e.code}"),
+        backgroundColor: textcolor,
+        shape: OutlineInputBorder(borderRadius: BorderRadius.circular(1)),
+        duration: Duration(milliseconds: 2000),
+        behavior: SnackBarBehavior.floating,
+      );
+      setState(() {
+        ScaffoldMessenger.of(context).showSnackBar(othersnackbar);
+      });
+      Navigator.of(context).pop();
+      return;
     }
     Navigator.of(context).pop();
   }

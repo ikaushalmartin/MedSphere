@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/dashboard.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:medicineapp2/verifyemail.dart';
 import 'const.dart';
 
 class signup extends StatefulWidget {
@@ -29,13 +30,26 @@ class _signupState extends State<signup> {
   final secondnamecontroller = TextEditingController();
   final phonecontroller = TextEditingController();
   final addresscontroller = TextEditingController();
+
+  @override
+  void dispose() {
+    emailcontroller.dispose();
+    passwordcontroller.dispose();
+    verifypasswordcontroller.dispose();
+    firstnamecontroller.dispose();
+    secondnamecontroller.dispose();
+    phonecontroller.dispose();
+    addresscontroller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return dashboard();
+            return verifyemail();
           } else {
             return Scaffold(
                 backgroundColor: Color(0xff2c64e3),
@@ -97,7 +111,7 @@ class _signupState extends State<signup> {
                           physics: BouncingScrollPhysics(),
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height / 1.1,
+                            height: MediaQuery.of(context).size.height / 1.02,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
@@ -161,6 +175,13 @@ class _signupState extends State<signup> {
                                                         EdgeInsets.only(
                                                             left: 20),
                                                     hintText: "First Name"),
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
+                                            validator: (firstname) =>
+                                                firstname != null &&
+                                                        firstname.length! < 1
+                                                    ? 'First name cannot be empty'
+                                                    : null,
                                           ),
                                         ),
                                         Container(
@@ -173,7 +194,7 @@ class _signupState extends State<signup> {
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                           ),
-                                          child: TextField(
+                                          child: TextFormField(
                                             onChanged: (value) {},
                                             controller: secondnamecontroller,
                                             keyboardType: TextInputType.name,
@@ -185,6 +206,13 @@ class _signupState extends State<signup> {
                                                         EdgeInsets.only(
                                                             left: 20),
                                                     hintText: "Last Name"),
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
+                                            validator: (lastname) => lastname !=
+                                                        null &&
+                                                    lastname.length! < 1
+                                                ? 'Last name cannot be empty'
+                                                : null,
                                           ),
                                         ),
                                       ],
@@ -404,12 +432,20 @@ class _signupState extends State<signup> {
                                         child: MaterialButton(
                                       onPressed: () {
                                         if (!_isAcceptTermsAndConditions) {
+                                          var checksnackbar = SnackBar(
+                                            content: const Text(
+                                                "You haven't agreed with our terms and conditions!"),
+                                            backgroundColor: textcolor,
+                                            shape: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(1)),
+                                            duration:
+                                                Duration(milliseconds: 2000),
+                                            behavior: SnackBarBehavior.floating,
+                                          );
                                           setState(() {
                                             ScaffoldMessenger.of(context)
-                                                .showSnackBar(SnackBar(
-                                              content: Text(
-                                                  "You haven't agreed with our terms and conditions"),
-                                            ));
+                                                .showSnackBar(checksnackbar);
                                           });
                                         } else {
                                           signup();
@@ -454,7 +490,17 @@ class _signupState extends State<signup> {
 
     if (passwordcontroller.text.trim() !=
         verifypasswordcontroller.text.trim()) {
-      print(passwordcontroller);
+      var vpasswordsnackbar = SnackBar(
+        content: const Text("Passwords are not same!"),
+        backgroundColor: textcolor,
+        shape: OutlineInputBorder(borderRadius: BorderRadius.circular(1)),
+        duration: Duration(milliseconds: 2000),
+        behavior: SnackBarBehavior.floating,
+      );
+      setState(() {
+        ScaffoldMessenger.of(context).showSnackBar(vpasswordsnackbar);
+      });
+      //Navigator.of(context).pop();
       return;
     }
 
@@ -471,7 +517,47 @@ class _signupState extends State<signup> {
           email: emailcontroller.text.trim(),
           password: passwordcontroller.text.trim());
     } on FirebaseAuthException catch (e) {
-      print(e);
+      if (e.code == "email-already-in-use") {
+        var emailsnackbar = SnackBar(
+          content: const Text("Email already in use!"),
+          backgroundColor: textcolor,
+          shape: OutlineInputBorder(borderRadius: BorderRadius.circular(1)),
+          duration: Duration(milliseconds: 2000),
+          behavior: SnackBarBehavior.floating,
+        );
+        setState(() {
+          ScaffoldMessenger.of(context).showSnackBar(emailsnackbar);
+        });
+        Navigator.of(context).pop();
+        return;
+      } else if (e.code == "weak-password") {
+        var passwordsnackbar = SnackBar(
+          content: const Text("Weak password! Use strong password"),
+          backgroundColor: textcolor,
+          shape: OutlineInputBorder(borderRadius: BorderRadius.circular(1)),
+          duration: Duration(milliseconds: 2000),
+          behavior: SnackBarBehavior.floating,
+        );
+        setState(() {
+          ScaffoldMessenger.of(context).showSnackBar(passwordsnackbar);
+        });
+        Navigator.of(context).pop();
+        return;
+      } else {
+        print(e.code);
+        var othersnackbar = SnackBar(
+          content: Text("${e.code}"),
+          backgroundColor: textcolor,
+          shape: OutlineInputBorder(borderRadius: BorderRadius.circular(1)),
+          duration: Duration(milliseconds: 2000),
+          behavior: SnackBarBehavior.floating,
+        );
+        setState(() {
+          ScaffoldMessenger.of(context).showSnackBar(othersnackbar);
+        });
+        Navigator.of(context).pop();
+        return;
+      }
     }
     Navigator.of(context).pop();
   }
