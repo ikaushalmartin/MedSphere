@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:responsive_framework/utils/scroll_behavior.dart';
 
 import '../dashboard.dart';
 import 'bottom_option.dart';
@@ -16,6 +18,19 @@ class _onboardingState extends State<onboarding> {
   int _activitepage = 0;
   @override
   Widget build(BuildContext context) {
+    (context, child) => ResponsiveWrapper.builder(
+          BouncingScrollWrapper.builder(context, child!),
+          maxWidth: 1200,
+          minWidth: 450,
+          defaultScale: true,
+          breakpoints: [
+            const ResponsiveBreakpoint.resize(450, name: MOBILE),
+            const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+            const ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+            const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+            const ResponsiveBreakpoint.autoScale(2460, name: "4K"),
+          ],
+        );
     _pages = [
       Container(
         child: Column(

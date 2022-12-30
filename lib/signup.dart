@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
@@ -516,6 +517,12 @@ class _signupState extends State<signup> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailcontroller.text.trim(),
           password: passwordcontroller.text.trim());
+      adduserdata(
+          firstnamecontroller.text.trim(),
+          secondnamecontroller.text.trim(),
+          emailcontroller.text.trim(),
+          phonecontroller.text.trim(),
+          addresscontroller.text.trim());
     } on FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
         var emailsnackbar = SnackBar(
@@ -560,5 +567,16 @@ class _signupState extends State<signup> {
       }
     }
     Navigator.of(context).pop();
+  }
+
+  Future adduserdata(String firstname, String lastname, String email,
+      String phone, String address) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'first name': firstname,
+      'last name': lastname,
+      'email': email,
+      'phone': phone,
+      'address': address,
+    });
   }
 }

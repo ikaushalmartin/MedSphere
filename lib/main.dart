@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:medicineapp2/dashboard.dart';
 import 'onboarding/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
