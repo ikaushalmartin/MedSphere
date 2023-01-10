@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:responsive_framework/utils/scroll_behavior.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:medicineapp2/popularcategories_model.dart';
+
+import 'dashboard.dart';
 
 class dashboardcenter extends StatefulWidget {
   const dashboardcenter({Key? key}) : super(key: key);
@@ -12,15 +14,9 @@ class dashboardcenter extends StatefulWidget {
 class _dashboardcenterState extends State<dashboardcenter> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        // height: MediaQuery.of(context).size.height / 1.451,
-        //  width: MediaQuery.of(context).size.width,
-        //color: Colors.black54,
-        child: ListView(
-          children: [],
-        ),
-      ),
-    );
+    Color textcolor = Color(0xff273238);
+    Color grey = Color(0xffececef);
+
+    return Container();
   }
 }

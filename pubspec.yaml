@@ -45,6 +45,7 @@ dependencies:
   email_validator: '^2.1.16'
   awesome_snackbar_content: ^0.1.0
   responsive_framework: ^0.2.0
+  firebase_storage: ^11.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

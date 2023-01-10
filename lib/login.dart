@@ -177,7 +177,7 @@ class _loginState extends State<login> {
                                       color: Color(0xffececef),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    width: 360,
+                                    width: MediaQuery.of(context).size.width,
                                     child: TextField(
                                       onChanged: (value) {},
                                       controller: passwordcontroller,

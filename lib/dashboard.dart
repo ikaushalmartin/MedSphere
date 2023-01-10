@@ -1,10 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/dashboardcenter.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:medicineapp2/medicine.dart';
+import 'package:medicineapp2/popularcategories_model.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:unicons/unicons.dart';
 import 'const.dart';
+import 'labtest.dart';
+import 'orderbyprescription.dart';
 
 class dashboard extends StatefulWidget {
   const dashboard({Key? key}) : super(key: key);
@@ -17,7 +24,34 @@ class _dashboardState extends State<dashboard> {
   Color bluecolor = Color(0xff2c64e3);
   Color textcolor = Color(0xff273238);
   Color grey = Color(0xffececef);
+  Color prescription = Color(0xff8353AA);
+  Color noprescription = Color(0xffE091C9);
+  Color shopbycategory = Color(0xffEEF1FF);
+  Color popularservicecolor = Color(0xffE0E5D7);
+  Color everyday_essential = Color(0xffB9E0FF);
+  Color ngos = Color(0xff8D9EFF);
   final user = FirebaseAuth.instance.currentUser!;
+  List<Item> popular_categories = [];
+  List<Item> shop_by_category = [];
+  List<Item> shop_by_concern = [];
+  List files = [];
+  List shop_by_category_list = [];
+  List shop_by_concern_list = [];
+  List deals_of_the_day_image_list = [];
+  List starting_tiles_image_list = [];
+
+  late var everyday_essential_image_url;
+  void initState() {
+    // TODO: implement initState
+    // super.initState();
+    starting_tiles();
+    fetch_popular_categories();
+    loadImages();
+    shop_by_category_images();
+    deals_of_the_day_image();
+    shop_by_concern_images();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,7 +164,451 @@ class _dashboardState extends State<dashboard> {
                   ),
                 ),
               ),
-              dashboardcenter(),
+              Expanded(
+                child: Container(
+                    // height: MediaQuery.of(context).size.height / 1.451,
+                    //  width: MediaQuery.of(context).size.width,
+                    // color: Colors.white,
+                    child: ListView(
+                  physics: BouncingScrollPhysics(),
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 60,
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60,
+                          bottom: MediaQuery.of(context).size.height / 80,
+                        ),
+                        child: SizedBox(
+                            height: MediaQuery.of(context).size.height / 5.5,
+                            width: MediaQuery.of(context).size.width,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: starting_tiles_image_list.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 8.0, right: 10),
+                                    child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1.2,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: NetworkImage(
+                                                    "${starting_tiles_image_list[index]}")))),
+                                  );
+                                })),
+                      ),
+                    ), //starting tiles
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.white,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).size.height / 60,
+                                left: MediaQuery.of(context).size.height / 60,
+                                right: MediaQuery.of(context).size.height / 200,
+                                bottom: MediaQuery.of(context).size.height / 60,
+                              ),
+                              child: Text(
+                                "Popular Services",
+                                style: TextStyle(
+                                  fontFamily: 'semibold',
+                                  fontSize: 20,
+                                  color: textcolor,
+                                ),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  //top:MediaQuery.of(context).size.height / 50,
+                                  left: MediaQuery.of(context).size.height / 60,
+                                  right:
+                                      MediaQuery.of(context).size.height / 200),
+                              child: SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 6.5,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: BouncingScrollPhysics(),
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: files.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              4,
+                                          margin: const EdgeInsets.all(6.0),
+                                          decoration: BoxDecoration(
+                                              color: shopbycategory,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: MaterialButton(
+                                            onPressed: () {
+                                              if (index == 0) {
+                                                Get.to(() => medicine(),
+                                                    transition:
+                                                        Transition.rightToLeft);
+                                              } else if (index == 1) {
+                                                Get.to(() => labtest(),
+                                                    transition:
+                                                        Transition.rightToLeft);
+                                              }
+                                            },
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Image.network("${files[index]}",
+                                                    scale: 10),
+                                                SizedBox(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      35,
+                                                ),
+                                                Text(
+                                                  "${popular_categories[index].name}",
+                                                  style: TextStyle(
+                                                    fontFamily: 'medium',
+                                                    fontSize: 14,
+                                                    color: textcolor,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      }))),
+                        ],
+                      ),
+                    ), //popular services
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 60,
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60,
+                          bottom: MediaQuery.of(context).size.height / 60,
+                        ),
+                        child: Column(
+                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height / 7,
+                              decoration: BoxDecoration(
+                                color: prescription,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: orderbyprescription(),
+                            ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 60),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height / 7,
+                              decoration: BoxDecoration(
+                                color: noprescription,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: noorderbyprescription(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ), //prescription
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 60,
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60,
+                          bottom: MediaQuery.of(context).size.height / 80,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Shop By Category ",
+                              style: TextStyle(
+                                fontFamily: 'semibold',
+                                fontSize: 20,
+                                color: textcolor,
+                              ),
+                            ),
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                    ),
+                                    shrinkWrap: true,
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: shop_by_category_list.length,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                            color: shopbycategory,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Image.network(
+                                                "${shop_by_category_list[index]}",
+                                                scale: 10),
+                                            SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  35,
+                                            ),
+                                            Text(
+                                              "${shop_by_category[index].name}",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontFamily: 'medium',
+                                                fontSize: 14,
+                                                color: textcolor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    })),
+                          ],
+                        ),
+                      ),
+                    ), //Shop By Category
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 60,
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60,
+                          bottom: MediaQuery.of(context).size.height / 80,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Deals of the day",
+                              style: TextStyle(
+                                fontFamily: 'semibold',
+                                fontSize: 20,
+                                color: textcolor,
+                              ),
+                            ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 5.5,
+                                width: MediaQuery.of(context).size.width,
+                                child: ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount:
+                                        deals_of_the_day_image_list.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, right: 10),
+                                        child: Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                1.2,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                image: DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image: NetworkImage(
+                                                        "${deals_of_the_day_image_list[index]}")))),
+                                      );
+                                    })),
+                          ],
+                        ),
+                      ),
+                    ), //deal of the day
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 60,
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60,
+                          bottom: MediaQuery.of(context).size.height / 60,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2.2,
+                              height: MediaQuery.of(context).size.height / 8,
+                              decoration: BoxDecoration(
+                                color: everyday_essential,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Everyday\nEssentials",
+                                      style: TextStyle(
+                                        fontFamily: 'semibold',
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Image.asset(
+                                      "images/mh2.png",
+                                      scale: 10,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2.2,
+                              height: MediaQuery.of(context).size.height / 8,
+                              decoration: BoxDecoration(
+                                color: ngos,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Our NGO's\nCollabs",
+                                      style: TextStyle(
+                                        fontFamily: 'semibold',
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Image.asset(
+                                      "images/ngo.png",
+                                      scale: 10,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ), //essentials and ngos
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 60,
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60,
+                          bottom: MediaQuery.of(context).size.height / 80,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Shop By Concern",
+                              style: TextStyle(
+                                fontFamily: 'semibold',
+                                fontSize: 20,
+                                color: textcolor,
+                              ),
+                            ),
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                    ),
+                                    shrinkWrap: true,
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: shop_by_concern_list.length,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                            color: shopbycategory,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Image.network(
+                                                "${shop_by_concern_list[index]}",
+                                                scale: 10),
+                                            SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  35,
+                                            ),
+                                            Text(
+                                              "${shop_by_concern[index].name}",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontFamily: 'medium',
+                                                fontSize: 14,
+                                                color: textcolor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    })),
+                          ],
+                        ),
+                      ),
+                    ), //shop by consern
+                  ],
+                )),
+              ),
               Container(
                 height: MediaQuery.of(context).size.height / 13,
                 decoration: BoxDecoration(
@@ -178,5 +656,140 @@ class _dashboardState extends State<dashboard> {
             ],
           ),
         ));
+  }
+
+  navigationfunction(index) {
+    if (index == 0) {
+      Get.to(() => medicine(), transition: Transition.rightToLeft);
+    }
+  }
+
+  fetch_popular_categories() async {
+    var popular_categories =
+        await FirebaseFirestore.instance.collection('popular categories').get();
+    map_fetch_popular_categories(popular_categories);
+
+    var shop_by_category =
+        await FirebaseFirestore.instance.collection('shop by category').get();
+    map_fetch_shop_by_category(shop_by_category);
+
+    var shop_by_concern =
+        await FirebaseFirestore.instance.collection('shop by concern').get();
+    map_fetch_shop_by_concern(shop_by_concern);
+  }
+
+  map_fetch_popular_categories(QuerySnapshot<Map<String, dynamic>> data) {
+    var _popular_categories_data =
+        data.docs.map((item) => Item(id: item.id, name: item['Name'])).toList();
+
+    setState(() {
+      popular_categories = _popular_categories_data;
+    });
+  }
+
+  map_fetch_shop_by_category(QuerySnapshot<Map<String, dynamic>> data) {
+    var _shop_by_category_data =
+        data.docs.map((item) => Item(id: item.id, name: item['Name'])).toList();
+
+    setState(() {
+      shop_by_category = _shop_by_category_data;
+    });
+  }
+
+  map_fetch_shop_by_concern(QuerySnapshot<Map<String, dynamic>> data) {
+    var _shop_by_concern_data =
+        data.docs.map((item) => Item(id: item.id, name: item['Name'])).toList();
+
+    setState(() {
+      shop_by_concern = _shop_by_concern_data;
+    });
+  }
+
+  Future loadImages() async {
+    ListResult result =
+        await FirebaseStorage.instance.ref().child("/popularcategories").list();
+    List<Reference> allFiles = result.items;
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      files.add(fileUrl);
+    });
+    setState(() {
+      files;
+    });
+    return files;
+  }
+
+  Future shop_by_category_images() async {
+    ListResult result =
+        await FirebaseStorage.instance.ref().child("/shop by category").list();
+    List<Reference> allFiles = result.items;
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      shop_by_category_list.add(fileUrl);
+    });
+    setState(() {
+      shop_by_category_list;
+    });
+    return shop_by_category_list;
+  }
+
+  Future shop_by_concern_images() async {
+    ListResult result =
+        await FirebaseStorage.instance.ref().child("/shop by concern").list();
+    List<Reference> allFiles = result.items;
+
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      shop_by_concern_list.add(fileUrl);
+    });
+
+    setState(() {
+      shop_by_concern_list;
+    });
+
+    return shop_by_concern_list;
+  }
+
+  Future deals_of_the_day_image() async {
+    ListResult result =
+        await FirebaseStorage.instance.ref().child("/deals of the day").list();
+    List<Reference> allFiles = result.items;
+
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      deals_of_the_day_image_list.add(fileUrl);
+    });
+
+    setState(() {
+      deals_of_the_day_image_list;
+    });
+
+    return deals_of_the_day_image_list;
+  }
+
+  Future starting_tiles() async {
+    ListResult result =
+        await FirebaseStorage.instance.ref().child("/starting_tiles").list();
+    List<Reference> allFiles = result.items;
+
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      starting_tiles_image_list.add(fileUrl);
+    });
+
+    setState(() {
+      starting_tiles_image_list;
+    });
+    Navigator.of(context).pop();
+    return starting_tiles_image_list;
   }
 }
