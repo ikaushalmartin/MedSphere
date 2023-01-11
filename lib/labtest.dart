@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:medicineapp2/popular_category_model.dart';
 import 'package:medicineapp2/popularcategories_model.dart';
 
 import 'const.dart';
@@ -18,9 +19,12 @@ class _labtestState extends State<labtest> {
   List tabtest_discount = [];
   List labtestbyhealthconcern_images = [];
   List<Item> labtestbyhealthconcern_labes = [];
+  List<Price> packages = [];
+  List packages_images = [];
 
   Color bluecolor = Color(0xff2c64e3);
   Color textcolor = Color(0xff273238);
+  Color cuttextcolor = Color(0xff575F75);
   Color grey = Color(0xffececef);
   Color prescription = Color(0xff8353AA);
   Color noprescription = Color(0xffE091C9);
@@ -35,6 +39,7 @@ class _labtestState extends State<labtest> {
 
     fetch_labtestbyhealthconcern_labes();
     healthbyconcern_images();
+    popular_packages_images();
     labtest_discounts();
   }
 
@@ -273,6 +278,131 @@ class _labtestState extends State<labtest> {
                                           ),
                                         );
                                       }))),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.white,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).size.height / 60,
+                                left: MediaQuery.of(context).size.height / 60,
+                                right: MediaQuery.of(context).size.height / 60,
+                                bottom: MediaQuery.of(context).size.height / 80,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Popular Health Packages",
+                                    style: TextStyle(
+                                      fontFamily: 'semibold',
+                                      fontSize: 20,
+                                      color: textcolor,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: GridView.builder(
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                          ),
+                                          shrinkWrap: true,
+                                          physics: BouncingScrollPhysics(),
+                                          scrollDirection: Axis.vertical,
+                                          itemCount: packages_images.length,
+                                          itemBuilder: (context, index) {
+                                            return Container(
+                                              margin: const EdgeInsets.all(5.0),
+                                              decoration: BoxDecoration(
+                                                  color: shopbycategory,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Image.network(
+                                                      "${packages_images[index]}",
+                                                      scale: 8),
+                                                  SizedBox(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            30,
+                                                  ),
+                                                  Text(
+                                                    "${packages[index].name}",
+                                                    // textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                      fontFamily: 'medium',
+                                                      fontSize: 17,
+                                                      color: textcolor,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "${packages[index].info}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: 'regular',
+                                                      fontSize: 14,
+                                                      color: textcolor,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            100,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        "₹${packages[index].price}",
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                          fontFamily: 'medium',
+                                                          fontSize: 18,
+                                                          color: textcolor,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width /
+                                                            20,
+                                                      ),
+                                                      Text(
+                                                        "₹${packages[index].cutprice}",
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .lineThrough,
+                                                          fontFamily: 'medium',
+                                                          fontSize: 18,
+                                                          color: cuttextcolor,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          })),
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -289,6 +419,10 @@ class _labtestState extends State<labtest> {
         .collection('labtest_by_concern_label')
         .get();
     map_labtestbyhealthconcern_labes(labtestbyhealthconcern_labes);
+
+    var _packages_name =
+        await FirebaseFirestore.instance.collection('packages_name').get();
+    map_packages_name(_packages_name);
   }
 
   map_labtestbyhealthconcern_labes(QuerySnapshot<Map<String, dynamic>> data) {
@@ -297,6 +431,22 @@ class _labtestState extends State<labtest> {
 
     setState(() {
       labtestbyhealthconcern_labes = labtestbyhealthconcern_labes_data;
+    });
+  }
+
+  map_packages_name(QuerySnapshot<Map<String, dynamic>> data) {
+    var pack_name = data.docs
+        .map((item) => Price(
+              id: item.id,
+              cutprice: item['Cutprice'],
+              info: item['Info'],
+              name: item['Name'],
+              price: item['Price'],
+            ))
+        .toList();
+
+    setState(() {
+      packages = pack_name;
     });
   }
 
@@ -323,7 +473,7 @@ class _labtestState extends State<labtest> {
     setState(() {
       tabtest_discount;
     });
-    Navigator.of(context).pop();
+
     return tabtest_discount;
   }
 
@@ -334,16 +484,6 @@ class _labtestState extends State<labtest> {
         .list();
     List<Reference> allFiles = result.items;
 
-    showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) => Center(
-              child: LoadingAnimationWidget.waveDots(
-                color: Color(0xff273238),
-                size: 80,
-              ),
-            ));
-
     await Future.forEach<Reference>(allFiles, (file) async {
       String fileUrl = await file.getDownloadURL();
       labtestbyhealthconcern_images.add(fileUrl);
@@ -352,7 +492,24 @@ class _labtestState extends State<labtest> {
     setState(() {
       labtestbyhealthconcern_images;
     });
-    Navigator.of(context).pop();
+
     return labtestbyhealthconcern_images;
+  }
+
+  Future popular_packages_images() async {
+    ListResult result =
+        await FirebaseStorage.instance.ref().child("/packages").list();
+    List<Reference> allFiles = result.items;
+
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      packages_images.add(fileUrl);
+    });
+
+    setState(() {
+      packages_images;
+    });
+    Navigator.of(context).pop();
+    return packages_images;
   }
 }

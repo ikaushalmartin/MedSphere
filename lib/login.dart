@@ -321,7 +321,7 @@ class _loginState extends State<login> {
           email: emailcontroller.text.trim(),
           password: passwordcontroller.text.trim());
     } on FirebaseAuthException catch (e) {
-      print(e.code);
+      print("---->${e.code}");
       var othersnackbar = SnackBar(
         content: Text("${e.code}"),
         backgroundColor: textcolor,
