@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/dashboardcenter.dart';
 import 'package:medicineapp2/medicine.dart';
+import 'package:medicineapp2/popular_discounts.dart';
 import 'package:medicineapp2/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:medicineapp2/rental.dart';
@@ -179,13 +180,13 @@ class _dashboardState extends State<dashboard> {
                       color: Colors.white,
                       child: Padding(
                         padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height / 60,
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 60,
-                          bottom: MediaQuery.of(context).size.height / 80,
+                          top: MediaQuery.of(context).size.height / 90,
+                          // left: MediaQuery.of(context).size.height / 60,
+                          //right: MediaQuery.of(context).size.height / 90,
+                          bottom: MediaQuery.of(context).size.height / 110,
                         ),
                         child: SizedBox(
-                            height: MediaQuery.of(context).size.height / 5.5,
+                            height: MediaQuery.of(context).size.height / 5,
                             width: MediaQuery.of(context).size.width,
                             child: ListView.builder(
                                 shrinkWrap: true,
@@ -193,21 +194,30 @@ class _dashboardState extends State<dashboard> {
                                 scrollDirection: Axis.horizontal,
                                 itemCount: starting_tiles_image_list.length,
                                 itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 8.0, right: 10),
-                                    child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                1.2,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: NetworkImage(
-                                                    "${starting_tiles_image_list[index]}")))),
+                                  return Theme(
+                                    data: ThemeData(
+                                      splashColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                    ),
+                                    child: MaterialButton(
+                                      onPressed: () {
+                                        Get.to(() => populardiscounts(),
+                                            transition: Transition.rightToLeft);
+                                      },
+                                      child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              1.16,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: NetworkImage(
+                                                      "${starting_tiles_image_list[index]}")))),
+                                    ),
                                   );
                                 })),
                       ),
