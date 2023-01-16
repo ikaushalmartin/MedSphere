@@ -30,7 +30,6 @@ class _doctorState extends State<doctor> {
   Widget build(BuildContext context) {
     Color bluecolor = Color(0xff2c64e3);
     Color textcolor = Color(0xff273238);
-
     Color prescription = Color(0xff8353AA);
     Color noprescription = Color(0xffE091C9);
     Color buttontextcolor = Color(0xff273238);

@@ -8,6 +8,7 @@ import 'package:medicineapp2/dashboardcenter.dart';
 import 'package:medicineapp2/medicine.dart';
 import 'package:medicineapp2/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:medicineapp2/rental.dart';
 import 'package:unicons/unicons.dart';
 import 'const.dart';
 import 'doctor.dart';
@@ -271,6 +272,10 @@ class _dashboardState extends State<dashboard> {
                                                         Transition.rightToLeft);
                                               } else if (index == 2) {
                                                 Get.to(() => doctor(),
+                                                    transition:
+                                                        Transition.rightToLeft);
+                                              } else if (index == 4) {
+                                                Get.to(() => rental(),
                                                     transition:
                                                         Transition.rightToLeft);
                                               }
