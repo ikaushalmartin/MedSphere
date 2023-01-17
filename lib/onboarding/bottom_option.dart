@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../login.dart';
+import '../Auth/login.dart';
 
 class bottomoption extends StatelessWidget {
   const bottomoption({required this.totalpages, required this.activepages});

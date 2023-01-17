@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'const.dart';
+import '../const.dart';
 
 class resetpassword extends StatefulWidget {
   const resetpassword({Key? key}) : super(key: key);

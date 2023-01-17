@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import 'Medicine/medicine.dart';
 
 class orderbyprescription extends StatelessWidget {
   Color textcolor = Colors.white;
@@ -47,7 +51,9 @@ class orderbyprescription extends StatelessWidget {
           ButtonTheme(
             child: Center(
               child: MaterialButton(
-                onPressed: () async {},
+                onPressed: () {
+                  Get.to(() => medicine(), transition: Transition.rightToLeft);
+                },
                 elevation: 0,
                 hoverElevation: 0,
                 focusElevation: 0,
@@ -152,10 +158,10 @@ class orderbyprescription_medicinepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color textcolor = Color(0xfff2daff);
+    Color textcolor = Color(0xffdae1ff);
     Color buttontextcolor = Color(0xff273238);
-    Color upload_prescription_button_bg = Color(0xfff2daff);
-    Color upload_prescription_button_text = Color(0xff2e004e);
+    Color upload_prescription_button_bg = Color(0xffdae1ff);
+    Color upload_prescription_button_text = Color(0xff001849);
 
     return Padding(
       padding: const EdgeInsets.all(11.0),
@@ -208,7 +214,7 @@ class orderbyprescription_medicinepage extends StatelessWidget {
                 ButtonTheme(
                   child: Center(
                     child: MaterialButton(
-                      onPressed: () async {},
+                      onPressed: () {},
                       elevation: 0,
                       hoverElevation: 0,
                       focusElevation: 0,
@@ -295,9 +301,10 @@ class callus_to_place_order extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color textcolor = Color(0xff58124b);
-    Color buttontextcolor = Color(0xff58124b);
-    Color buttonbg = Color(0xffffd7ef);
+    Color textcolor = Color(0xffffdadb);
+    Color buttontextcolor = Color(0xff40000e);
+    Color buttonbg = Color(0xffffdadb);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -349,7 +356,7 @@ class callus_to_place_order extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 child: Text(
-                  "Upload",
+                  "Call",
                   style: TextStyle(
                       color: buttontextcolor,
                       fontFamily: 'semibold',

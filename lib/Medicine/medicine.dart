@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'const.dart';
-import 'orderbyprescription.dart';
+import '../const.dart';
+import '../orderbyprescription.dart';
 
 class medicine extends StatefulWidget {
   const medicine({Key? key}) : super(key: key);
@@ -12,35 +12,31 @@ class medicine extends StatefulWidget {
 }
 
 class _medicineState extends State<medicine> {
-  Color bluecolor = Color(0xff2c64e3);
-  Color textcolor = Color(0xff2e004e);
   Color grey = Color(0xffececef);
-  Color prescription = Color(0xff8353AA);
-  Color noprescription = Color(0xffE091C9);
-  Color prescription_bg = Color(0xffF2DAFF);
-  Color nopres_bg = Color(0xffffd7ef);
-  Color nopres = Color(0xffffade6);
+
+  Color prescription_bg = Color(0xffdae1ff);
+
+  Color heading_bluecolor = Color(0xff001849);
+  Color textcolor = Color(0xff001849);
+  Color textcolor_white = Colors.white;
+  Color bluecolor = Color(0xff6588E6);
+  Color redcolor = Color(0xffE46473);
+  Color yellowcolor = Color(0xffF9BF80);
+  Color background = Color(0xffF4F3FB);
+  Color light_red = Color(0xffdae1ff);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xffF8F8FC),
+        backgroundColor: background,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 3,
-                      offset: Offset(0, 5), // changes position of shadow
-                    ),
-                  ],
+                  color: background,
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(
@@ -68,7 +64,7 @@ class _medicineState extends State<medicine> {
                               style: TextStyle(
                                 fontFamily: 'semibold',
                                 fontSize: 24,
-                                color: bluecolor,
+                                color: textcolor,
                               ),
                             ),
                           ),
@@ -94,13 +90,13 @@ class _medicineState extends State<medicine> {
                             Container(
                               width: MediaQuery.of(context).size.width / 1.35,
                               decoration: BoxDecoration(
-                                color: Color(0xffececef),
+                                color: light_red,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextField(
                                 onChanged: (value) {},
                                 keyboardType: TextInputType.emailAddress,
-                                style: TextStyle(color: Color(0xff01bdf3)),
+                                style: TextStyle(color: textcolor),
                                 textAlign: TextAlign.left,
                                 decoration: kTextFieldDecoration.copyWith(
                                     contentPadding: EdgeInsets.only(left: 20),
@@ -110,7 +106,7 @@ class _medicineState extends State<medicine> {
                             Container(
                                 width: MediaQuery.of(context).size.width / 6,
                                 decoration: BoxDecoration(
-                                  color: Color(0xffececef),
+                                  color: light_red,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Theme(
@@ -143,7 +139,7 @@ class _medicineState extends State<medicine> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: background,
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 60,
@@ -172,7 +168,7 @@ class _medicineState extends State<medicine> {
                                     height: MediaQuery.of(context).size.height /
                                         4.8,
                                     decoration: BoxDecoration(
-                                      color: prescription,
+                                      color: bluecolor,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: orderbyprescription_medicinepage(),
@@ -261,7 +257,7 @@ class _medicineState extends State<medicine> {
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height / 7,
                               decoration: BoxDecoration(
-                                color: nopres,
+                                color: redcolor,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: callus_to_place_order(),

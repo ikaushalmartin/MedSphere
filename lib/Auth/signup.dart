@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/dashboard.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:medicineapp2/verifyemail.dart';
-import 'const.dart';
+import 'package:medicineapp2/Auth/verifyemail.dart';
+import '../const.dart';
 
 class signup extends StatefulWidget {
   const signup({Key? key}) : super(key: key);

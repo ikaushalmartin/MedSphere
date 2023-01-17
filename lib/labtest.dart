@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:medicineapp2/popular_category_model.dart';
-import 'package:medicineapp2/popularcategories_model.dart';
+import 'package:medicineapp2/Models/price_model.dart';
+import 'package:medicineapp2/Models/popularcategories_model.dart';
 
 import 'const.dart';
 
@@ -22,16 +22,18 @@ class _labtestState extends State<labtest> {
   List<Price> packages = [];
   List packages_images = [];
 
-  Color bluecolor = Color(0xff2c64e3);
-  Color textcolor = Color(0xff273238);
-  Color cuttextcolor = Color(0xff575F75);
+  Color cuttextcolor = Color(0xff2b1700);
   Color grey = Color(0xffececef);
-  Color prescription = Color(0xff8353AA);
-  Color noprescription = Color(0xffE091C9);
-  Color prescription_bg = Color(0xffF2DAFF);
-  Color nopres_bg = Color(0xffffd7ef);
-  Color nopres = Color(0xffffade6);
-  Color shopbycategory = Color(0xffEEF1FF);
+
+  Color heading_bluecolor_bg = Color(0xff001849);
+  Color textcolor = Color(0xff001849);
+  Color textcolor_white = Color(0xff001849);
+  Color bluecolor = Color(0xff6588E6);
+  Color bluecolor_bg = Color(0xffDAE1FF);
+  Color redcolor = Color(0xffE46473);
+  Color yellowcolor = Color(0xffF9BF80);
+  Color background = Color(0xffF4F3FB);
+  Color light_red = Color(0xffdae1ff);
 
   @override
   void initState() {
@@ -47,22 +49,14 @@ class _labtestState extends State<labtest> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xffF8F8FC),
+        backgroundColor: background,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 3,
-                      offset: Offset(0, 5), // changes position of shadow
-                    ),
-                  ],
+                  color: background,
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(
@@ -90,7 +84,7 @@ class _labtestState extends State<labtest> {
                               style: TextStyle(
                                 fontFamily: 'semibold',
                                 fontSize: 24,
-                                color: bluecolor,
+                                color: textcolor,
                               ),
                             ),
                           ),
@@ -116,13 +110,13 @@ class _labtestState extends State<labtest> {
                             Container(
                               width: MediaQuery.of(context).size.width / 1.35,
                               decoration: BoxDecoration(
-                                color: Color(0xffececef),
+                                color: light_red,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextField(
                                 onChanged: (value) {},
                                 keyboardType: TextInputType.emailAddress,
-                                style: TextStyle(color: Color(0xff01bdf3)),
+                                style: TextStyle(color: textcolor),
                                 textAlign: TextAlign.left,
                                 decoration: kTextFieldDecoration.copyWith(
                                     contentPadding: EdgeInsets.only(left: 20),
@@ -132,7 +126,7 @@ class _labtestState extends State<labtest> {
                             Container(
                                 width: MediaQuery.of(context).size.width / 6,
                                 decoration: BoxDecoration(
-                                  color: Color(0xffececef),
+                                  color: light_red,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Theme(
@@ -159,13 +153,13 @@ class _labtestState extends State<labtest> {
                 child: Container(
                     // height: MediaQuery.of(context).size.height / 1.451,
                     //  width: MediaQuery.of(context).size.width,
-                    // color: Colors.white,
+                    // color: background,
                     child: ListView(
                   physics: BouncingScrollPhysics(),
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: background,
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 60,
@@ -190,7 +184,7 @@ class _labtestState extends State<labtest> {
                                             MediaQuery.of(context).size.width /
                                                 1.2,
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: background,
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                             image: DecorationImage(
@@ -203,7 +197,7 @@ class _labtestState extends State<labtest> {
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: background,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -247,7 +241,7 @@ class _labtestState extends State<labtest> {
                                               4,
                                           margin: const EdgeInsets.all(6.0),
                                           decoration: BoxDecoration(
-                                              color: shopbycategory,
+                                              color: bluecolor_bg,
                                               borderRadius:
                                                   BorderRadius.circular(10)),
                                           child: MaterialButton(
@@ -270,7 +264,7 @@ class _labtestState extends State<labtest> {
                                                   style: TextStyle(
                                                     fontFamily: 'medium',
                                                     fontSize: 14,
-                                                    color: textcolor,
+                                                    color: textcolor_white,
                                                   ),
                                                 ),
                                               ],
@@ -280,7 +274,7 @@ class _labtestState extends State<labtest> {
                                       }))),
                           Container(
                             width: MediaQuery.of(context).size.width,
-                            color: Colors.white,
+                            color: background,
                             child: Padding(
                               padding: EdgeInsets.only(
                                 top: MediaQuery.of(context).size.height / 60,
@@ -315,7 +309,7 @@ class _labtestState extends State<labtest> {
                                             return Container(
                                               margin: const EdgeInsets.all(5.0),
                                               decoration: BoxDecoration(
-                                                  color: shopbycategory,
+                                                  color: bluecolor_bg,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
@@ -339,7 +333,7 @@ class _labtestState extends State<labtest> {
                                                     style: TextStyle(
                                                       fontFamily: 'medium',
                                                       fontSize: 17,
-                                                      color: textcolor,
+                                                      color: textcolor_white,
                                                     ),
                                                   ),
                                                   Text(
@@ -348,7 +342,7 @@ class _labtestState extends State<labtest> {
                                                     style: TextStyle(
                                                       fontFamily: 'regular',
                                                       fontSize: 14,
-                                                      color: textcolor,
+                                                      color: textcolor_white,
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -370,7 +364,8 @@ class _labtestState extends State<labtest> {
                                                         style: TextStyle(
                                                           fontFamily: 'medium',
                                                           fontSize: 18,
-                                                          color: textcolor,
+                                                          color:
+                                                              textcolor_white,
                                                         ),
                                                       ),
                                                       SizedBox(

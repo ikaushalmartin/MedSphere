@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'const.dart';
-import 'doctor_model.dart';
+import 'Models/doctor_model.dart';
 import 'orderbyprescription.dart';
 
 class doctor extends StatefulWidget {
@@ -28,30 +28,20 @@ class _doctorState extends State<doctor> {
 
   @override
   Widget build(BuildContext context) {
-    Color bluecolor = Color(0xff2c64e3);
-    Color textcolor = Color(0xff273238);
-    Color prescription = Color(0xff8353AA);
-    Color noprescription = Color(0xffE091C9);
-    Color buttontextcolor = Color(0xff273238);
+    Color textcolor = Color(0xff001849);
+    Color bluecolor_bg = Color(0xffDAE1FF);
+    Color background = Color(0xffF4F3FB);
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xffF8F8FC),
+        backgroundColor: background,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 3,
-                      offset: Offset(0, 5), // changes position of shadow
-                    ),
-                  ],
+                  color: background,
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(
@@ -79,7 +69,7 @@ class _doctorState extends State<doctor> {
                               style: TextStyle(
                                 fontFamily: 'semibold',
                                 fontSize: 24,
-                                color: bluecolor,
+                                color: textcolor,
                               ),
                             ),
                           ),
@@ -105,13 +95,13 @@ class _doctorState extends State<doctor> {
                             Container(
                               width: MediaQuery.of(context).size.width / 1.35,
                               decoration: BoxDecoration(
-                                color: Color(0xffececef),
+                                color: bluecolor_bg,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextField(
                                 onChanged: (value) {},
                                 keyboardType: TextInputType.emailAddress,
-                                style: TextStyle(color: Color(0xff01bdf3)),
+                                style: TextStyle(color: textcolor),
                                 textAlign: TextAlign.left,
                                 decoration: kTextFieldDecoration.copyWith(
                                     contentPadding: EdgeInsets.only(left: 20),
@@ -121,7 +111,7 @@ class _doctorState extends State<doctor> {
                             Container(
                                 width: MediaQuery.of(context).size.width / 6,
                                 decoration: BoxDecoration(
-                                  color: Color(0xffececef),
+                                  color: bluecolor_bg,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Theme(
@@ -154,7 +144,7 @@ class _doctorState extends State<doctor> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: background,
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 60,
@@ -179,7 +169,7 @@ class _doctorState extends State<doctor> {
                                             MediaQuery.of(context).size.width /
                                                 1.07,
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: background,
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                             image: DecorationImage(
@@ -192,7 +182,7 @@ class _doctorState extends State<doctor> {
                     ),
                     Padding(
                         padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height / 60,
+                          top: MediaQuery.of(context).size.height / 50,
                           left: MediaQuery.of(context).size.height / 60,
                           right: MediaQuery.of(context).size.height / 200,
                           bottom: MediaQuery.of(context).size.height / 60,
@@ -208,7 +198,7 @@ class _doctorState extends State<doctor> {
                     Container(
                       child: Padding(
                         padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height / 60,
+                          // top: MediaQuery.of(context).size.height / 80,
                           left: MediaQuery.of(context).size.height / 60,
                           right: MediaQuery.of(context).size.height / 60,
                           bottom: MediaQuery.of(context).size.height / 80,
@@ -224,83 +214,67 @@ class _doctorState extends State<doctor> {
                               itemBuilder: (context, index) {
                                 return Container(
                                   width: MediaQuery.of(context).size.width,
-                                  color: Colors.white,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                      top: MediaQuery.of(context).size.height /
-                                          60,
-                                      left: MediaQuery.of(context).size.height /
-                                          60,
-                                      right:
-                                          MediaQuery.of(context).size.height /
-                                              60,
-                                      bottom:
-                                          MediaQuery.of(context).size.height /
-                                              60,
-                                    ),
-                                    child: Column(
-                                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              7,
-                                          decoration: BoxDecoration(
-                                            color: prescription,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "${doctor_deatils_list[index].name}",
-                                                      textAlign: TextAlign.left,
-                                                      style: TextStyle(
-                                                        fontFamily: 'semibold',
-                                                        fontSize: 19,
-                                                        color: textcolor,
-                                                      ),
+                                  color: background,
+                                  child: Column(
+                                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                8,
+                                        decoration: BoxDecoration(
+                                          color: bluecolor_bg,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "${doctor_deatils_list[index].name}",
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontFamily: 'semibold',
+                                                      fontSize: 19,
+                                                      color: textcolor,
                                                     ),
-                                                    SizedBox(
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height /
-                                                              350,
+                                                  ),
+                                                  SizedBox(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            350,
+                                                  ),
+                                                  Text(
+                                                    "${doctor_deatils_list[index].hospital}",
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontFamily: 'regular',
+                                                      fontSize: 16,
+                                                      color: textcolor,
                                                     ),
-                                                    Text(
-                                                      "${doctor_deatils_list[index].hospital}",
-                                                      textAlign: TextAlign.left,
-                                                      style: TextStyle(
-                                                        fontFamily: 'regular',
-                                                        fontSize: 16,
-                                                        color: textcolor,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 );
                               }),

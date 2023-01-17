@@ -5,12 +5,13 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/dashboardcenter.dart';
-import 'package:medicineapp2/medicine.dart';
+import 'package:medicineapp2/Medicine/medicine.dart';
 import 'package:medicineapp2/popular_discounts.dart';
-import 'package:medicineapp2/popularcategories_model.dart';
+import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:medicineapp2/rental.dart';
 import 'package:unicons/unicons.dart';
+import 'Medicine/medicine_forbutton.dart';
 import 'const.dart';
 import 'doctor.dart';
 import 'labtest.dart';
@@ -24,15 +25,17 @@ class dashboard extends StatefulWidget {
 }
 
 class _dashboardState extends State<dashboard> {
-  Color bluecolor = Color(0xff2c64e3);
-  Color textcolor = Color(0xff273238);
-  Color grey = Color(0xffececef);
-  Color prescription = Color(0xff8353AA);
-  Color noprescription = Color(0xffE091C9);
-  Color shopbycategory = Color(0xffEEF1FF);
-  Color popularservicecolor = Color(0xffE0E5D7);
-  Color everyday_essential = Color(0xffB9E0FF);
-  Color ngos = Color(0xff8D9EFF);
+  Color heading_bluecolor_bg = Color(0xff001849);
+  Color textcolor = Color(0xff001849);
+  Color textcolor_white = Color(0xff001849);
+  Color bluecolor = Color(0xff6588E6);
+  Color bluecolor_bg = Color(0xffDAE1FF);
+
+  Color redcolor = Color(0xffE46473);
+  Color yellowcolor = Color(0xffF9BF80);
+  Color background = Color(0xffF4F3FB);
+  Color light_red = Color(0xffdae1ff);
+
   final user = FirebaseAuth.instance.currentUser!;
   List<Item> popular_categories = [];
   List<Item> shop_by_category = [];
@@ -59,22 +62,14 @@ class _dashboardState extends State<dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xffF8F8FC),
+        backgroundColor: background,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 3,
-                      offset: Offset(0, 5), // changes position of shadow
-                    ),
-                  ],
+                  color: background,
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(
@@ -102,7 +97,7 @@ class _dashboardState extends State<dashboard> {
                               style: TextStyle(
                                 fontFamily: 'bold',
                                 fontSize: 24,
-                                color: bluecolor,
+                                color: heading_bluecolor_bg,
                               ),
                             ),
                           ),
@@ -128,13 +123,13 @@ class _dashboardState extends State<dashboard> {
                             Container(
                               width: MediaQuery.of(context).size.width / 1.35,
                               decoration: BoxDecoration(
-                                color: Color(0xffececef),
+                                color: light_red,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextField(
                                 onChanged: (value) {},
                                 keyboardType: TextInputType.emailAddress,
-                                style: TextStyle(color: Color(0xff01bdf3)),
+                                style: TextStyle(color: textcolor),
                                 textAlign: TextAlign.left,
                                 decoration: kTextFieldDecoration.copyWith(
                                     contentPadding: EdgeInsets.only(left: 20),
@@ -144,7 +139,7 @@ class _dashboardState extends State<dashboard> {
                             Container(
                                 width: MediaQuery.of(context).size.width / 6,
                                 decoration: BoxDecoration(
-                                  color: Color(0xffececef),
+                                  color: light_red,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Theme(
@@ -177,7 +172,7 @@ class _dashboardState extends State<dashboard> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: background,
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 90,
@@ -224,7 +219,7 @@ class _dashboardState extends State<dashboard> {
                     ), //starting tiles
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: background,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -267,13 +262,14 @@ class _dashboardState extends State<dashboard> {
                                               4,
                                           margin: const EdgeInsets.all(6.0),
                                           decoration: BoxDecoration(
-                                              color: shopbycategory,
+                                              color: bluecolor_bg,
                                               borderRadius:
                                                   BorderRadius.circular(10)),
                                           child: MaterialButton(
                                             onPressed: () {
                                               if (index == 0) {
-                                                Get.to(() => medicine(),
+                                                Get.to(
+                                                    () => medicineforbutton(),
                                                     transition:
                                                         Transition.rightToLeft);
                                               } else if (index == 1) {
@@ -307,7 +303,7 @@ class _dashboardState extends State<dashboard> {
                                                   style: TextStyle(
                                                     fontFamily: 'medium',
                                                     fontSize: 14,
-                                                    color: textcolor,
+                                                    color: textcolor_white,
                                                   ),
                                                 ),
                                               ],
@@ -320,7 +316,7 @@ class _dashboardState extends State<dashboard> {
                     ), //popular services
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: background,
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 60,
@@ -335,7 +331,7 @@ class _dashboardState extends State<dashboard> {
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height / 7,
                               decoration: BoxDecoration(
-                                color: prescription,
+                                color: bluecolor,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: orderbyprescription(),
@@ -347,7 +343,7 @@ class _dashboardState extends State<dashboard> {
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height / 7,
                               decoration: BoxDecoration(
-                                color: noprescription,
+                                color: redcolor,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: noorderbyprescription(),
@@ -358,7 +354,7 @@ class _dashboardState extends State<dashboard> {
                     ), //prescription
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: background,
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 60,
@@ -393,7 +389,7 @@ class _dashboardState extends State<dashboard> {
                                       return Container(
                                         margin: const EdgeInsets.all(8.0),
                                         decoration: BoxDecoration(
-                                            color: shopbycategory,
+                                            color: bluecolor_bg,
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         child: Column(
@@ -415,7 +411,7 @@ class _dashboardState extends State<dashboard> {
                                               style: TextStyle(
                                                 fontFamily: 'medium',
                                                 fontSize: 14,
-                                                color: textcolor,
+                                                color: textcolor_white,
                                               ),
                                             ),
                                           ],
@@ -428,7 +424,7 @@ class _dashboardState extends State<dashboard> {
                     ), //Shop By Category
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: background,
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 60,
@@ -483,7 +479,7 @@ class _dashboardState extends State<dashboard> {
                     ), //deal of the day
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: background,
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 60,
@@ -498,7 +494,7 @@ class _dashboardState extends State<dashboard> {
                               width: MediaQuery.of(context).size.width / 2.2,
                               height: MediaQuery.of(context).size.height / 8,
                               decoration: BoxDecoration(
-                                color: everyday_essential,
+                                color: bluecolor,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Padding(
@@ -527,7 +523,7 @@ class _dashboardState extends State<dashboard> {
                               width: MediaQuery.of(context).size.width / 2.2,
                               height: MediaQuery.of(context).size.height / 8,
                               decoration: BoxDecoration(
-                                color: ngos,
+                                color: redcolor,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Padding(
@@ -558,7 +554,7 @@ class _dashboardState extends State<dashboard> {
                     ), //essentials and ngos
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: background,
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 60,
@@ -593,7 +589,7 @@ class _dashboardState extends State<dashboard> {
                                       return Container(
                                         margin: const EdgeInsets.all(8.0),
                                         decoration: BoxDecoration(
-                                            color: shopbycategory,
+                                            color: bluecolor_bg,
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         child: Column(
@@ -615,7 +611,7 @@ class _dashboardState extends State<dashboard> {
                                               style: TextStyle(
                                                 fontFamily: 'medium',
                                                 fontSize: 14,
-                                                color: textcolor,
+                                                color: textcolor_white,
                                               ),
                                             ),
                                           ],
@@ -630,17 +626,9 @@ class _dashboardState extends State<dashboard> {
                 )),
               ),
               Container(
-                height: MediaQuery.of(context).size.height / 13,
+                height: MediaQuery.of(context).size.height / 15,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 3,
-                      offset: Offset(0, -5), // changes position of shadow
-                    ),
-                  ],
+                  color: background,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -4,10 +4,10 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:medicineapp2/dashboard.dart';
-import 'package:medicineapp2/resetpassword.dart';
-import 'package:medicineapp2/signup.dart';
+import 'package:medicineapp2/Auth/resetpassword.dart';
+import 'package:medicineapp2/Auth/signup.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'const.dart';
+import '../const.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);

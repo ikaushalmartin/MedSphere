@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:medicineapp2/dashboard.dart';
 
-import 'const.dart';
+import '../const.dart';
 
 class verifyemail extends StatefulWidget {
   const verifyemail({Key? key}) : super(key: key);

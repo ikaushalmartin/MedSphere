@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:medicineapp2/popularcategories_model.dart';
+import 'package:medicineapp2/Models/popularcategories_model.dart';
 
 import 'dashboard.dart';
 
