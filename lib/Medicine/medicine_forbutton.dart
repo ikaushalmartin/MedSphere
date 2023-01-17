@@ -243,6 +243,42 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                                             top_deals_deatils_list[
                                                                     index]
                                                                 .name,
+                                                        precaution_and_warning:
+                                                            top_deals_deatils_list[
+                                                                    index]
+                                                                .precaution_and_warning,
+                                                        sideeffect:
+                                                            top_deals_deatils_list[
+                                                                    index]
+                                                                .sideeffect,
+                                                        doses:
+                                                            top_deals_deatils_list[
+                                                                    index]
+                                                                .doses,
+                                                        uses:
+                                                            top_deals_deatils_list[
+                                                                    index]
+                                                                .uses,
+                                                        medicaldiscription:
+                                                            top_deals_deatils_list[
+                                                                    index]
+                                                                .medicaldiscription,
+                                                        company:
+                                                            top_deals_deatils_list[
+                                                                    index]
+                                                                .company,
+                                                        quantity:
+                                                            top_deals_deatils_list[
+                                                                    index]
+                                                                .quantity,
+                                                        cuttopdeals:
+                                                            top_deals_deatils_list[
+                                                                    index]
+                                                                .cuttopdeals,
+                                                        price:
+                                                            top_deals_deatils_list[
+                                                                    index]
+                                                                .price,
                                                       ),
                                                   transition:
                                                       Transition.rightToLeft);
@@ -352,11 +388,17 @@ class _medicineforbuttonState extends State<medicineforbutton> {
   map_top_deals(QuerySnapshot<Map<String, dynamic>> data) {
     var topdeal_name = data.docs
         .map((item) => topdeals(
-              id: item.id,
-              cuttopdeals: item['Cutprice'],
-              name: item['Name'],
-              price: item['Price'],
-            ))
+            id: item.id,
+            cuttopdeals: item['Cutprice'],
+            name: item['Name'],
+            price: item['Price'],
+            quantity: item['Quantity'],
+            company: item['Company'],
+            medicaldiscription: item['Medical_Discription'],
+            uses: item['Uses'],
+            doses: item['Doses'],
+            sideeffect: item['Side_Effect'],
+            precaution_and_warning: item['Precaution_and_warning']))
         .toList();
 
     setState(() {

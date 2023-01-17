@@ -6,15 +6,32 @@ import 'package:get/get_core/src/get_main.dart';
 class product_common_screen extends StatefulWidget {
   String heading;
   String image_url;
-
+  String cuttopdeals;
   String name;
+  String price;
+  String quantity;
+  String company;
+  String medicaldiscription;
+  String uses;
+  String doses;
+  String sideeffect;
+  String precaution_and_warning;
 
-  product_common_screen(
-      {Key? key,
-      required this.heading,
-      required this.image_url,
-      required this.name})
-      : super(key: key);
+  product_common_screen({
+    Key? key,
+    required this.heading,
+    required this.image_url,
+    required this.name,
+    required this.precaution_and_warning,
+    required this.sideeffect,
+    required this.doses,
+    required this.uses,
+    required this.medicaldiscription,
+    required this.company,
+    required this.quantity,
+    required this.cuttopdeals,
+    required this.price,
+  }) : super(key: key);
 
   @override
   State<product_common_screen> createState() => _product_common_screenState();
@@ -127,6 +144,15 @@ class _product_common_screenState extends State<product_common_screen> {
                           color: textcolor,
                         ),
                       ),
+                      Text("${widget.quantity}"),
+                      Text("${widget.company}"),
+                      Text("${widget.price}"),
+                      Text("${widget.cuttopdeals}"),
+                      Text("${widget.medicaldiscription}"),
+                      Text("${widget.doses}"),
+                      Text("${widget.uses}"),
+                      Text("${widget.precaution_and_warning}"),
+                      Text("${widget.sideeffect}"),
                     ],
                   ),
                 ),
