@@ -2,11 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/Models/price_model.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 
+import 'Medicine/medicine.dart';
 import 'const.dart';
+import 'orderbyprescription.dart';
 
 class labtest extends StatefulWidget {
   const labtest({Key? key}) : super(key: key);
@@ -195,210 +200,262 @@ class _labtestState extends State<labtest> {
                                 })),
                       ),
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: background,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                              padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 60,
-                                left: MediaQuery.of(context).size.height / 60,
-                                right: MediaQuery.of(context).size.height / 200,
-                                bottom: MediaQuery.of(context).size.height / 60,
-                              ),
-                              child: Text(
-                                "Lab Test By Health Concern",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 20,
-                                  color: textcolor,
-                                ),
-                              )),
-                          Padding(
-                              padding: EdgeInsets.only(
-                                  //top:MediaQuery.of(context).size.height / 50,
-                                  left: MediaQuery.of(context).size.height / 60,
-                                  right:
-                                      MediaQuery.of(context).size.height / 200),
-                              child: SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 6.5,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: ListView.builder(
-                                      shrinkWrap: true,
-                                      physics: BouncingScrollPhysics(),
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount:
-                                          labtestbyhealthconcern_images.length,
-                                      itemBuilder: (context, index) {
-                                        return Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              4,
-                                          margin: const EdgeInsets.all(6.0),
-                                          decoration: BoxDecoration(
-                                              color: bluecolor_bg,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: MaterialButton(
-                                            onPressed: () {},
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Image.network(
-                                                    "${labtestbyhealthconcern_images[index]}",
-                                                    scale: 10),
-                                                SizedBox(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      35,
-                                                ),
-                                                Text(
-                                                  "${labtestbyhealthconcern_labes[index].name}",
-                                                  style: TextStyle(
-                                                    fontFamily: 'medium',
-                                                    fontSize: 14,
-                                                    color: textcolor_white,
-                                                  ),
-                                                ),
-                                              ],
+                    Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 60,
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 200,
+                          bottom: MediaQuery.of(context).size.height / 60,
+                        ),
+                        child: Text(
+                          "Lab Test By Health Concern",
+                          style: TextStyle(
+                            fontFamily: 'semibold',
+                            fontSize: 20,
+                            color: textcolor,
+                          ),
+                        )),
+                    Padding(
+                        padding: EdgeInsets.only(
+                            //top:MediaQuery.of(context).size.height / 50,
+                            left: MediaQuery.of(context).size.height / 60,
+                            right: MediaQuery.of(context).size.height / 200),
+                        child: SizedBox(
+                            height: MediaQuery.of(context).size.height / 6.5,
+                            width: MediaQuery.of(context).size.width,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: labtestbyhealthconcern_images.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 4,
+                                    margin: const EdgeInsets.all(6.0),
+                                    decoration: BoxDecoration(
+                                        color: bluecolor_bg,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: MaterialButton(
+                                      onPressed: () {},
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.network(
+                                              "${labtestbyhealthconcern_images[index]}",
+                                              scale: 10),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                35,
+                                          ),
+                                          Text(
+                                            "${labtestbyhealthconcern_labes[index].name}",
+                                            style: TextStyle(
+                                              fontFamily: 'medium',
+                                              fontSize: 14,
+                                              color: textcolor_white,
                                             ),
                                           ),
-                                        );
-                                      }))),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            color: background,
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 60,
-                                left: MediaQuery.of(context).size.height / 60,
-                                right: MediaQuery.of(context).size.height / 60,
-                                bottom: MediaQuery.of(context).size.height / 80,
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }))),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).size.height / 60,
+                          top: MediaQuery.of(context).size.height / 60,
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => medicine(),
+                                  transition: Transition.rightToLeft);
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 2.2,
+                              height: MediaQuery.of(context).size.height / 8,
+                              decoration: BoxDecoration(
+                                color: bluecolor,
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              child: Padding(
+                                padding: const EdgeInsets.all(7.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Upload\nPrescription",
+                                      style: TextStyle(
+                                        fontFamily: 'semibold',
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Image.asset(
+                                      "images/prescription.png",
+                                      scale: 10,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 2.2,
+                            height: MediaQuery.of(context).size.height / 8,
+                            decoration: BoxDecoration(
+                              color: redcolor,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Popular Health Packages",
+                                    "Call Us\nTo Book",
                                     style: TextStyle(
                                       fontFamily: 'semibold',
-                                      fontSize: 20,
-                                      color: textcolor,
+                                      fontSize: 18,
+                                      color: Colors.white,
                                     ),
                                   ),
-                                  SizedBox(
-                                      width: MediaQuery.of(context).size.width,
-                                      child: GridView.builder(
-                                          gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 2,
-                                          ),
-                                          shrinkWrap: true,
-                                          physics: BouncingScrollPhysics(),
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: packages_images.length,
-                                          itemBuilder: (context, index) {
-                                            return Container(
-                                              margin: const EdgeInsets.all(5.0),
-                                              decoration: BoxDecoration(
-                                                  color: bluecolor_bg,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Image.network(
-                                                      "${packages_images[index]}",
-                                                      scale: 8),
-                                                  SizedBox(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width /
-                                                            30,
-                                                  ),
-                                                  Text(
-                                                    "${packages[index].name}",
-                                                    // textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                      fontFamily: 'medium',
-                                                      fontSize: 17,
-                                                      color: textcolor_white,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "${packages[index].info}",
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      fontFamily: 'regular',
-                                                      fontSize: 14,
-                                                      color: textcolor_white,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height /
-                                                            100,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        "₹${packages[index].price}",
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                          fontFamily: 'medium',
-                                                          fontSize: 18,
-                                                          color:
-                                                              textcolor_white,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            20,
-                                                      ),
-                                                      Text(
-                                                        "₹${packages[index].cutprice}",
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .lineThrough,
-                                                          fontFamily: 'medium',
-                                                          fontSize: 18,
-                                                          color: cuttextcolor,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          })),
+                                  Image.asset(
+                                    "images/com.png",
+                                    scale: 10,
+                                  )
                                 ],
                               ),
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: background,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 60,
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60,
+                          bottom: MediaQuery.of(context).size.height / 80,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Popular Health Packages",
+                              style: TextStyle(
+                                fontFamily: 'semibold',
+                                fontSize: 20,
+                                color: textcolor,
+                              ),
+                            ),
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                    ),
+                                    shrinkWrap: true,
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: packages_images.length,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(5.0),
+                                        decoration: BoxDecoration(
+                                            color: bluecolor_bg,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Image.network(
+                                                "${packages_images[index]}",
+                                                scale: 8),
+                                            SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  30,
+                                            ),
+                                            Text(
+                                              "${packages[index].name}",
+                                              // textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontFamily: 'medium',
+                                                fontSize: 17,
+                                                color: textcolor_white,
+                                              ),
+                                            ),
+                                            Text(
+                                              "${packages[index].info}",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontFamily: 'regular',
+                                                fontSize: 14,
+                                                color: textcolor_white,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  100,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "₹${packages[index].price}",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontFamily: 'medium',
+                                                    fontSize: 18,
+                                                    color: textcolor_white,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      20,
+                                                ),
+                                                Text(
+                                                  "₹${packages[index].cutprice}",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    decoration: TextDecoration
+                                                        .lineThrough,
+                                                    fontFamily: 'medium',
+                                                    fontSize: 18,
+                                                    color: cuttextcolor,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    })),
+                          ],
+                        ),
                       ),
                     ),
                   ],

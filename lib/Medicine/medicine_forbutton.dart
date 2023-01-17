@@ -3,12 +3,16 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../Models/topdeals_model.dart';
 import '../const.dart';
 
 import '../orderbyprescription.dart';
+import '../product_commonscreen/Common Screen.dart';
 
 class medicineforbutton extends StatefulWidget {
   const medicineforbutton({Key? key}) : super(key: key);
@@ -227,7 +231,22 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                               borderRadius:
                                                   BorderRadius.circular(10)),
                                           child: MaterialButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Get.to(
+                                                  () => product_common_screen(
+                                                        heading:
+                                                            "Medicine Detail",
+                                                        image_url:
+                                                            top_images_list_images[
+                                                                index],
+                                                        name:
+                                                            top_deals_deatils_list[
+                                                                    index]
+                                                                .name,
+                                                      ),
+                                                  transition:
+                                                      Transition.rightToLeft);
+                                            },
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
