@@ -39,7 +39,7 @@ class product_common_screen extends StatefulWidget {
 
 class _product_common_screenState extends State<product_common_screen> {
   Color cuttextcolor = Color(0xff2b1700);
-  Color grey = Color(0xffececef);
+  Color grey = Color(0xffd1d1d6);
 
   Color heading_bluecolor_bg = Color(0xff001849);
   Color textcolor = Color(0xff001849);
@@ -136,23 +136,305 @@ class _product_common_screenState extends State<product_common_screen> {
                         ),
                       ),
                       Divider(color: bluecolor),
-                      Text(
-                        "${widget.name}",
-                        style: TextStyle(
-                          fontFamily: 'medium',
-                          fontSize: 18,
-                          color: textcolor,
-                        ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 150,
                       ),
-                      Text("${widget.quantity}"),
-                      Text("${widget.company}"),
-                      Text("${widget.price}"),
-                      Text("${widget.cuttopdeals}"),
-                      Text("${widget.medicaldiscription}"),
-                      Text("${widget.doses}"),
-                      Text("${widget.uses}"),
-                      Text("${widget.precaution_and_warning}"),
-                      Text("${widget.sideeffect}"),
+                      Container(
+                        //  height: MediaQuery.of(context).size.height / 4.5,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            color: bluecolor_bg,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${widget.name}",
+                                style: TextStyle(
+                                  fontFamily: 'semibold',
+                                  fontSize: 20,
+                                  color: textcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 200,
+                              ), //name
+                              Text(
+                                "${widget.quantity},",
+                                style: TextStyle(
+                                  fontFamily: 'bold',
+                                  fontSize: 11,
+                                  color: bluecolor,
+                                ),
+                              ), //quantity
+                              Text("${widget.company}",
+                                  style: TextStyle(
+                                    fontFamily: 'semibold',
+                                    fontSize: 14,
+                                    color: bluecolor,
+                                  )),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 120,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "MRP ₹ ${widget.price}",
+                                    style: TextStyle(
+                                      fontFamily: 'medium',
+                                      fontSize: 16,
+                                      color: textcolor,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width / 18,
+                                  ),
+                                  Text(
+                                    "₹ ${widget.cuttopdeals}",
+                                    style: TextStyle(
+                                      decoration: TextDecoration.lineThrough,
+                                      fontFamily: 'medium',
+                                      fontSize: 16,
+                                      color: cuttextcolor,
+                                    ),
+                                  ),
+                                ],
+                              ), //price
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 100,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 2.5,
+                                    height:
+                                        MediaQuery.of(context).size.height / 18,
+                                    decoration: BoxDecoration(
+                                      color: redcolor,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "Buy Now",
+                                            style: TextStyle(
+                                              fontFamily: 'semibold',
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width /
+                                          2.5,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              18,
+                                      decoration: BoxDecoration(
+                                        color: bluecolor,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(7.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Add To Cart",
+                                              style: TextStyle(
+                                                fontFamily: 'semibold',
+                                                fontSize: 18,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ), //buyandadd to cart
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 40,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            color: bluecolor_bg,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Medical Discription",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 18,
+                                  color: textcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 250,
+                              ),
+                              Text(
+                                "${widget.medicaldiscription}",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 13,
+                                  color: bluecolor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ), //medicical disription
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 120,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            color: bluecolor_bg,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Dose",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 18,
+                                  color: textcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 300,
+                              ),
+                              Text(
+                                "${widget.doses}",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 13,
+                                  color: bluecolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 50,
+                              ),
+                              Text(
+                                "Uses",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 18,
+                                  color: textcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 300,
+                              ),
+                              Text(
+                                "${widget.uses}",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 13,
+                                  color: bluecolor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ), //dose
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 120,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            color: bluecolor_bg,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Precautions And Warning",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 18,
+                                  color: textcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 300,
+                              ),
+                              Text(
+                                "${widget.precaution_and_warning}",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 13,
+                                  color: bluecolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 50,
+                              ),
+                              Text(
+                                "Side Effects",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 18,
+                                  color: textcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 300,
+                              ),
+                              Text(
+                                "${widget.sideeffect}",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 13,
+                                  color: bluecolor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ), //Precautions And Warning
                     ],
                   ),
                 ),
