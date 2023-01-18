@@ -30,19 +30,19 @@ class orderbyprescription extends StatelessWidget {
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: 'semibold',
-                  fontSize: 19,
+                  fontSize: 16,
                   color: textcolor,
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 350,
+                height: MediaQuery.of(context).size.height / 300,
               ),
               Text(
                 "Order via prescription",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: 'regular',
-                  fontSize: 16,
+                  fontSize: 14,
                   color: textcolor,
                 ),
               ),
@@ -105,19 +105,19 @@ class noorderbyprescription extends StatelessWidget {
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: 'semibold',
-                  fontSize: 19,
+                  fontSize: 16,
                   color: textcolor,
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 350,
+                height: MediaQuery.of(context).size.height / 300,
               ),
               Text(
                 "Order after verifying",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: 'regular',
-                  fontSize: 16,
+                  fontSize: 14,
                   color: textcolor,
                 ),
               ),
@@ -220,7 +220,7 @@ class orderbyprescription_medicinepage extends StatelessWidget {
                       focusElevation: 0,
                       highlightElevation: 0,
                       height: MediaQuery.of(context).size.height / 18,
-                      minWidth: MediaQuery.of(context).size.height / 6,
+                      minWidth: MediaQuery.of(context).size.height / 8,
                       color: upload_prescription_button_bg,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)),
@@ -238,7 +238,7 @@ class orderbyprescription_medicinepage extends StatelessWidget {
                             "Camera",
                             style: TextStyle(
                               fontFamily: 'medium',
-                              fontSize: 18,
+                              fontSize: 16,
                               color: upload_prescription_button_text,
                             ),
                           )
@@ -259,7 +259,7 @@ class orderbyprescription_medicinepage extends StatelessWidget {
                       focusElevation: 0,
                       highlightElevation: 0,
                       height: MediaQuery.of(context).size.height / 18,
-                      minWidth: MediaQuery.of(context).size.height / 6,
+                      minWidth: MediaQuery.of(context).size.height / 8,
                       color: upload_prescription_button_bg,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)),
@@ -277,7 +277,7 @@ class orderbyprescription_medicinepage extends StatelessWidget {
                             "Gallery",
                             style: TextStyle(
                               fontFamily: 'medium',
-                              fontSize: 18,
+                              fontSize: 16,
                               color: upload_prescription_button_text,
                             ),
                           )

@@ -256,9 +256,10 @@ class _labtestState extends State<labtest> {
                                             "${labtestbyhealthconcern_labes[index].name}",
                                             style: TextStyle(
                                               fontFamily: 'medium',
-                                              fontSize: 14,
+                                              fontSize: 13,
                                               color: textcolor_white,
                                             ),
+                                            textAlign: TextAlign.center,
                                           ),
                                         ],
                                       ),
@@ -296,7 +297,7 @@ class _labtestState extends State<labtest> {
                                       "Upload\nPrescription",
                                       style: TextStyle(
                                         fontFamily: 'semibold',
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         color: Colors.white,
                                       ),
                                     ),
@@ -326,7 +327,7 @@ class _labtestState extends State<labtest> {
                                     "Call Us\nTo Book",
                                     style: TextStyle(
                                       fontFamily: 'semibold',
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       color: Colors.white,
                                     ),
                                   ),
@@ -387,7 +388,7 @@ class _labtestState extends State<labtest> {
                                           children: [
                                             Image.network(
                                                 "${packages_images[index]}",
-                                                scale: 8),
+                                                scale: 10),
                                             SizedBox(
                                               height: MediaQuery.of(context)
                                                       .size
@@ -399,7 +400,7 @@ class _labtestState extends State<labtest> {
                                               // textAlign: TextAlign.start,
                                               style: TextStyle(
                                                 fontFamily: 'medium',
-                                                fontSize: 17,
+                                                fontSize: 16,
                                                 color: textcolor_white,
                                               ),
                                             ),
@@ -408,7 +409,7 @@ class _labtestState extends State<labtest> {
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 fontFamily: 'regular',
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: textcolor_white,
                                               ),
                                             ),
@@ -427,7 +428,7 @@ class _labtestState extends State<labtest> {
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     fontFamily: 'medium',
-                                                    fontSize: 18,
+                                                    fontSize: 16,
                                                     color: textcolor_white,
                                                   ),
                                                 ),
@@ -444,7 +445,7 @@ class _labtestState extends State<labtest> {
                                                     decoration: TextDecoration
                                                         .lineThrough,
                                                     fontFamily: 'medium',
-                                                    fontSize: 18,
+                                                    fontSize: 16,
                                                     color: cuttextcolor,
                                                   ),
                                                 ),

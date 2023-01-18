@@ -402,7 +402,7 @@ class _signupState extends State<signup> {
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width /
-                                              1.3,
+                                              1.4,
                                           child: MaterialButton(
                                             onPressed: () {},
                                             elevation: 0,
@@ -418,7 +418,7 @@ class _signupState extends State<signup> {
                                               style: TextStyle(
                                                   color: Color(0xff273238),
                                                   fontFamily: 'light',
-                                                  fontSize: 13),
+                                                  fontSize: 12),
                                               textAlign: TextAlign.left,
                                             ),
                                           ),

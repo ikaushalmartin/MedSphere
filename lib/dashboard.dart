@@ -302,9 +302,10 @@ class _dashboardState extends State<dashboard> {
                                                   "${popular_categories[index].name}",
                                                   style: TextStyle(
                                                     fontFamily: 'medium',
-                                                    fontSize: 14,
+                                                    fontSize: 13,
                                                     color: textcolor_white,
                                                   ),
+                                                  textAlign: TextAlign.center,
                                                 ),
                                               ],
                                             ),
@@ -410,7 +411,7 @@ class _dashboardState extends State<dashboard> {
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 fontFamily: 'medium',
-                                                fontSize: 14,
+                                                fontSize: 13,
                                                 color: textcolor_white,
                                               ),
                                             ),
@@ -507,7 +508,7 @@ class _dashboardState extends State<dashboard> {
                                       "Everyday\nEssentials",
                                       style: TextStyle(
                                         fontFamily: 'semibold',
-                                        fontSize: 20,
+                                        fontSize: 18,
                                         color: Colors.white,
                                       ),
                                     ),
@@ -536,7 +537,7 @@ class _dashboardState extends State<dashboard> {
                                       "Our NGO's\nCollabs",
                                       style: TextStyle(
                                         fontFamily: 'semibold',
-                                        fontSize: 20,
+                                        fontSize: 18,
                                         color: Colors.white,
                                       ),
                                     ),
