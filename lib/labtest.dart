@@ -8,6 +8,7 @@ import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/Models/price_model.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
+import 'package:medicineapp2/product_commonscreen/packagesscreen_labtest.dart';
 
 import 'Medicine/medicine.dart';
 import 'const.dart';
@@ -238,7 +239,14 @@ class _labtestState extends State<labtest> {
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: MaterialButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Get.to(
+                                            () => packages_commonnscreen(
+                                                  heading:
+                                                      '${labtestbyhealthconcern_labes[index].name}',
+                                                ),
+                                            transition: Transition.rightToLeft);
+                                      },
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
