@@ -380,7 +380,7 @@ class _dashboardState extends State<dashboard> {
                                 child: GridView.builder(
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
+                                      crossAxisCount: 2,
                                     ),
                                     shrinkWrap: true,
                                     physics: BouncingScrollPhysics(),

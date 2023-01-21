@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../Models/labtest_package_detail.dart';
+import '../Models/price_model.dart';
 
 class packages_commonnscreen extends StatefulWidget {
   packages_commonnscreen({Key? key, required this.heading}) : super(key: key);
@@ -9,6 +13,7 @@ class packages_commonnscreen extends StatefulWidget {
 }
 
 class _packages_commonnscreenState extends State<packages_commonnscreen> {
+  List<labtest_packages> packages = [];
   @override
   Color cuttextcolor = Color(0xff2b1700);
   Color grey = Color(0xffd1d1d6);
@@ -22,6 +27,13 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
   Color background = Color(0xffF4F3FB);
   Color light_red = Color(0xffdae1ff);
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetch_labtestbyhealthconcern_labes(widget.heading);
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -29,6 +41,7 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 decoration: BoxDecoration(
@@ -91,28 +104,177 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                     bottom: MediaQuery.of(context).size.height / 60,
                     left: MediaQuery.of(context).size.height / 60,
                     right: MediaQuery.of(context).size.height / 60),
-                child: SizedBox(
-                  // height: MediaQuery.of(context).size.height / 1.24,
-                  width: MediaQuery.of(context).size.width,
-                  child: ListView(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    physics: BouncingScrollPhysics(),
-                    children: [
-                      Text(
-                        "${widget.heading}",
-                        style: TextStyle(
-                          fontFamily: 'semibold',
-                          fontSize: 20,
-                          color: textcolor,
-                        ),
-                      ),
-                    ],
+                child: Text(
+                  "Recommended Packages",
+                  style: TextStyle(
+                    fontFamily: 'semibold',
+                    fontSize: 20,
+                    color: textcolor,
                   ),
                 ),
-              )
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                color: background,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 60,
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 60,
+                    bottom: MediaQuery.of(context).size.height / 80,
+                  ),
+                  child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                          ),
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          itemCount: packages.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: const EdgeInsets.all(5.0),
+                              decoration: BoxDecoration(
+                                  color: bluecolor_bg,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "${packages[index].name}",
+                                    // textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      fontFamily: 'medium',
+                                      fontSize: 16,
+                                      color: textcolor_white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "${packages[index].info}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'regular',
+                                      fontSize: 12,
+                                      color: textcolor_white,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        100,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "₹${packages[index].price}",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontFamily: 'medium',
+                                          fontSize: 16,
+                                          color: textcolor_white,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                20,
+                                      ),
+                                      Text(
+                                        "₹${packages[index].cutprice}",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                          fontFamily: 'medium',
+                                          fontSize: 16,
+                                          color: cuttextcolor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    "${packages[index].sampletype}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'regular',
+                                      fontSize: 12,
+                                      color: textcolor_white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "${packages[index].fastingrequired}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'regular',
+                                      fontSize: 12,
+                                      color: textcolor_white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "${packages[index].tubetype}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'regular',
+                                      fontSize: 12,
+                                      color: textcolor_white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "${packages[index].packagesinclude}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'regular',
+                                      fontSize: 12,
+                                      color: textcolor_white,
+                                    ),
+                                  ),
+                                  /*Text(
+                                    "${packages[index].description}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'regular',
+                                      fontSize: 12,
+                                      color: textcolor_white,
+                                    ),
+                                  ),*/
+                                ],
+                              ),
+                            );
+                          })),
+                ),
+              ),
             ],
           ),
         ));
+  }
+
+  fetch_labtestbyhealthconcern_labes(String packagename) async {
+    var _packages_name = await FirebaseFirestore.instance
+        .collection('/labtest_by_concern_packages/$packagename/packages')
+        .get();
+    map_packages_name(_packages_name);
+  }
+
+  map_packages_name(QuerySnapshot<Map<String, dynamic>> data) {
+    var pack_name = data.docs
+        .map((item) => labtest_packages(
+            id: item.id,
+            cutprice: item['Cutprice'],
+            info: item['Info'],
+            name: item['Name'],
+            price: item['Price'],
+            sampletype: item['SampleType'],
+            fastingrequired: item['FastingRequired'],
+            tubetype: item['TubeType'],
+            packagesinclude: item['PackagesInclude'],
+            description: item['Description']))
+        .toList();
+
+    setState(() {
+      packages = pack_name;
+    });
   }
 }
