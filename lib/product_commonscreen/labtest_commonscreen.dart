@@ -2,7 +2,28 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class labtest_commonscreen extends StatefulWidget {
-  const labtest_commonscreen({Key? key}) : super(key: key);
+  labtest_commonscreen(
+      {Key? key,
+      required this.name,
+      required this.cutprice,
+      required this.info,
+      required this.price,
+      required this.sampletype,
+      required this.fastingrequired,
+      required this.tubetype,
+      required this.packagesinclude,
+      required this.description})
+      : super(key: key);
+
+  String cutprice;
+  String info;
+  String price;
+  String sampletype;
+  String fastingrequired;
+  String tubetype;
+  String packagesinclude;
+  String description;
+  String name;
 
   @override
   State<labtest_commonscreen> createState() => _labtest_commonscreenState();
@@ -56,7 +77,7 @@ class _labtest_commonscreenState extends State<labtest_commonscreen> {
                           Align(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              "${widget.heading}",
+                              "${widget.name}",
                               style: TextStyle(
                                 fontFamily: 'semibold',
                                 fontSize: 24,
@@ -98,313 +119,15 @@ class _labtest_commonscreenState extends State<labtest_commonscreen> {
                     scrollDirection: Axis.vertical,
                     physics: BouncingScrollPhysics(),
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          "${widget.image_url}",
-                          scale: 2,
-                        ),
-                      ),
-                      Divider(color: bluecolor),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 150,
-                      ),
-                      Container(
-                        //  height: MediaQuery.of(context).size.height / 4.5,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            color: bluecolor_bg,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "${widget.name}",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 20,
-                                  color: textcolor,
-                                ),
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 200,
-                              ), //name
-                              Text(
-                                "${widget.quantity},",
-                                style: TextStyle(
-                                  fontFamily: 'bold',
-                                  fontSize: 11,
-                                  color: bluecolor,
-                                ),
-                              ), //quantity
-                              Text("${widget.company}",
-                                  style: TextStyle(
-                                    fontFamily: 'semibold',
-                                    fontSize: 14,
-                                    color: bluecolor,
-                                  )),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 120,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "MRP ₹ ${widget.price}",
-                                    style: TextStyle(
-                                      fontFamily: 'medium',
-                                      fontSize: 16,
-                                      color: textcolor,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 18,
-                                  ),
-                                  Text(
-                                    "₹ ${widget.cuttopdeals}",
-                                    style: TextStyle(
-                                      decoration: TextDecoration.lineThrough,
-                                      fontFamily: 'medium',
-                                      fontSize: 16,
-                                      color: cuttextcolor,
-                                    ),
-                                  ),
-                                ],
-                              ), //price
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 100,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2.5,
-                                    height:
-                                        MediaQuery.of(context).size.height / 18,
-                                    decoration: BoxDecoration(
-                                      color: redcolor,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "Buy Now",
-                                            style: TextStyle(
-                                              fontFamily: 'semibold',
-                                              fontSize: 18,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          2.5,
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              18,
-                                      decoration: BoxDecoration(
-                                        color: bluecolor,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(7.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "Add To Cart",
-                                              style: TextStyle(
-                                                fontFamily: 'semibold',
-                                                fontSize: 18,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ), //buyandadd to cart
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 40,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            color: bluecolor_bg,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Medical Discription",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 18,
-                                  color: textcolor,
-                                ),
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 250,
-                              ),
-                              Text(
-                                "${widget.medicaldiscription}",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 13,
-                                  color: bluecolor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ), //medicical disription
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 120,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            color: bluecolor_bg,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Dose",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 18,
-                                  color: textcolor,
-                                ),
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 300,
-                              ),
-                              Text(
-                                "${widget.doses}",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 13,
-                                  color: bluecolor,
-                                ),
-                              ),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height / 50,
-                              ),
-                              Text(
-                                "Uses",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 18,
-                                  color: textcolor,
-                                ),
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 300,
-                              ),
-                              Text(
-                                "${widget.uses}",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 13,
-                                  color: bluecolor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ), //dose
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 120,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            color: bluecolor_bg,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Precautions And Warning",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 18,
-                                  color: textcolor,
-                                ),
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 300,
-                              ),
-                              Text(
-                                "${widget.precaution_and_warning}",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 13,
-                                  color: bluecolor,
-                                ),
-                              ),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height / 50,
-                              ),
-                              Text(
-                                "Side Effects",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 18,
-                                  color: textcolor,
-                                ),
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 300,
-                              ),
-                              Text(
-                                "${widget.sideeffect}",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 13,
-                                  color: bluecolor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ), //Precautions And Warning
+                      Text("${widget.price}"),
+                      Text("${widget.name}"),
+                      Text("${widget.cutprice}"),
+                      Text("${widget.packagesinclude}"),
+                      Text("${widget.tubetype}"),
+                      Text("${widget.info}"),
+                      Text("${widget.sampletype}"),
+                      Text("${widget.fastingrequired}"),
+                      Text("${widget.description}"),
                     ],
                   ),
                 ),

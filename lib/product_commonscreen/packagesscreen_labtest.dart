@@ -1,13 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../Models/labtest_package_detail.dart';
 import '../Models/price_model.dart';
+import 'labtest_commonscreen.dart';
 
 class packages_commonnscreen extends StatefulWidget {
-  packages_commonnscreen({Key? key, required this.heading}) : super(key: key);
+  packages_commonnscreen(
+      {Key? key, required this.heading, required this.packagetype})
+      : super(key: key);
   String heading;
+  String packagetype;
   @override
   State<packages_commonnscreen> createState() => _packages_commonnscreenState();
 }
@@ -31,7 +36,12 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    fetch_labtestbyhealthconcern_labes(widget.heading);
+
+    if (widget.packagetype == 'popular') {
+      fetch_labtestbyhealthconcern_labes(widget.heading);
+    } else if (widget.packagetype == 'health') {
+      fetch_popular_data(widget.heading);
+    }
   }
 
   Widget build(BuildContext context) {
@@ -135,112 +145,100 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                           scrollDirection: Axis.vertical,
                           itemCount: packages.length,
                           itemBuilder: (context, index) {
-                            return Container(
-                              margin: const EdgeInsets.all(5.0),
-                              decoration: BoxDecoration(
-                                  color: bluecolor_bg,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "${packages[index].name}",
-                                    // textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      fontFamily: 'medium',
-                                      fontSize: 16,
-                                      color: textcolor_white,
-                                    ),
-                                  ),
-                                  Text(
-                                    "${packages[index].info}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'regular',
-                                      fontSize: 12,
-                                      color: textcolor_white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height /
-                                        100,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "₹${packages[index].price}",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: 'medium',
-                                          fontSize: 16,
-                                          color: textcolor_white,
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(
+                                    () => labtest_commonscreen(
+                                          name: packages[index].name,
+                                          cutprice: packages[index].cutprice,
+                                          info: packages[index].info,
+                                          price: packages[index].price,
+                                          sampletype:
+                                              packages[index].sampletype,
+                                          fastingrequired:
+                                              packages[index].fastingrequired,
+                                          tubetype: packages[index].tubetype,
+                                          packagesinclude:
+                                              packages[index].packagesinclude,
+                                          description:
+                                              packages[index].description,
                                         ),
+                                    transition: Transition.rightToLeft);
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.all(5.0),
+                                decoration: BoxDecoration(
+                                    color: bluecolor_bg,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "${packages[index].name}",
+                                      // textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 16,
+                                        color: textcolor_white,
                                       ),
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                20,
+                                    ),
+                                    Text(
+                                      "${packages[index].info}",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontFamily: 'regular',
+                                        fontSize: 12,
+                                        color: textcolor_white,
                                       ),
-                                      Text(
-                                        "₹${packages[index].cutprice}",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                          fontFamily: 'medium',
-                                          fontSize: 16,
-                                          color: cuttextcolor,
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              100,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "₹${packages[index].price}",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontFamily: 'medium',
+                                            fontSize: 16,
+                                            color: textcolor_white,
+                                          ),
                                         ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              20,
+                                        ),
+                                        Text(
+                                          "₹${packages[index].cutprice}",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                            fontFamily: 'medium',
+                                            fontSize: 16,
+                                            color: cuttextcolor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    /*Text(
+                                      "${packages[index].description}",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontFamily: 'regular',
+                                        fontSize: 12,
+                                        color: textcolor_white,
                                       ),
-                                    ],
-                                  ),
-                                  Text(
-                                    "${packages[index].sampletype}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'regular',
-                                      fontSize: 12,
-                                      color: textcolor_white,
-                                    ),
-                                  ),
-                                  Text(
-                                    "${packages[index].fastingrequired}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'regular',
-                                      fontSize: 12,
-                                      color: textcolor_white,
-                                    ),
-                                  ),
-                                  Text(
-                                    "${packages[index].tubetype}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'regular',
-                                      fontSize: 12,
-                                      color: textcolor_white,
-                                    ),
-                                  ),
-                                  Text(
-                                    "${packages[index].packagesinclude}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'regular',
-                                      fontSize: 12,
-                                      color: textcolor_white,
-                                    ),
-                                  ),
-                                  /*Text(
-                                    "${packages[index].description}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'regular',
-                                      fontSize: 12,
-                                      color: textcolor_white,
-                                    ),
-                                  ),*/
-                                ],
+                                    ),*/
+                                  ],
+                                ),
                               ),
                             );
                           })),
@@ -252,6 +250,13 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
   }
 
   fetch_labtestbyhealthconcern_labes(String packagename) async {
+    var _packages_name = await FirebaseFirestore.instance
+        .collection('/labtest_by_concern_packages/$packagename/packages')
+        .get();
+    map_packages_name(_packages_name);
+  }
+
+  fetch_popular_data(String packagename) async {
     var _packages_name = await FirebaseFirestore.instance
         .collection('/labtest_by_concern_packages/$packagename/packages')
         .get();

@@ -244,6 +244,7 @@ class _labtestState extends State<labtest> {
                                             () => packages_commonnscreen(
                                                   heading:
                                                       '${labtestbyhealthconcern_labes[index].name}',
+                                                  packagetype: 'concern',
                                                 ),
                                             transition: Transition.rightToLeft);
                                       },
@@ -384,82 +385,94 @@ class _labtestState extends State<labtest> {
                                     scrollDirection: Axis.vertical,
                                     itemCount: packages_images.length,
                                     itemBuilder: (context, index) {
-                                      return Container(
-                                        margin: const EdgeInsets.all(5.0),
-                                        decoration: BoxDecoration(
-                                            color: bluecolor_bg,
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Image.network(
-                                                "${packages_images[index]}",
-                                                scale: 10),
-                                            SizedBox(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  30,
-                                            ),
-                                            Text(
-                                              "${packages[index].name}",
-                                              // textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                fontFamily: 'medium',
-                                                fontSize: 16,
-                                                color: textcolor_white,
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Get.to(
+                                              () => packages_commonnscreen(
+                                                  heading:
+                                                      '${packages[index].name}',
+                                                  packagetype: 'popular'),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                        child: Container(
+                                          margin: const EdgeInsets.all(5.0),
+                                          decoration: BoxDecoration(
+                                              color: bluecolor_bg,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Image.network(
+                                                  "${packages_images[index]}",
+                                                  scale: 10),
+                                              SizedBox(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    30,
                                               ),
-                                            ),
-                                            Text(
-                                              "${packages[index].info}",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontFamily: 'regular',
-                                                fontSize: 12,
-                                                color: textcolor_white,
+                                              Text(
+                                                "${packages[index].name}",
+                                                // textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                  fontFamily: 'medium',
+                                                  fontSize: 16,
+                                                  color: textcolor_white,
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  100,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "₹${packages[index].price}",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    fontFamily: 'medium',
-                                                    fontSize: 16,
-                                                    color: textcolor_white,
+                                              Text(
+                                                "${packages[index].info}",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontFamily: 'regular',
+                                                  fontSize: 12,
+                                                  color: textcolor_white,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    100,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    "₹${packages[index].price}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: 'medium',
+                                                      fontSize: 16,
+                                                      color: textcolor_white,
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      20,
-                                                ),
-                                                Text(
-                                                  "₹${packages[index].cutprice}",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    decoration: TextDecoration
-                                                        .lineThrough,
-                                                    fontFamily: 'medium',
-                                                    fontSize: 16,
-                                                    color: cuttextcolor,
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            20,
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                                  Text(
+                                                    "₹${packages[index].cutprice}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      decoration: TextDecoration
+                                                          .lineThrough,
+                                                      fontFamily: 'medium',
+                                                      fontSize: 16,
+                                                      color: cuttextcolor,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       );
                                     })),

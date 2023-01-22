@@ -15,6 +15,7 @@ class doctor extends StatefulWidget {
 
 class _doctorState extends State<doctor> {
   List top_images_list = [];
+  List doctors_image_list = [];
   List<doc> doctor_deatils_list = [];
 
   @override
@@ -23,6 +24,7 @@ class _doctorState extends State<doctor> {
     super.initState();
 
     top_images();
+    doctors_image();
     fetch_popular_categories();
   }
 
@@ -204,13 +206,13 @@ class _doctorState extends State<doctor> {
                           bottom: MediaQuery.of(context).size.height / 80,
                         ),
                         child: SizedBox(
-                          height: MediaQuery.of(context).size.height / 5.5,
+                          // height: MediaQuery.of(context).size.height / 5.5,
                           width: MediaQuery.of(context).size.width,
                           child: ListView.builder(
                               shrinkWrap: true,
                               physics: BouncingScrollPhysics(),
                               scrollDirection: Axis.vertical,
-                              itemCount: doctor_deatils_list.length,
+                              itemCount: doctors_image_list.length,
                               itemBuilder: (context, index) {
                                 return Container(
                                   width: MediaQuery.of(context).size.width,
@@ -237,6 +239,12 @@ class _doctorState extends State<doctor> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
+                                              CircleAvatar(
+                                                radius: 40,
+                                                foregroundImage: NetworkImage(
+                                                  "${doctors_image_list[index]}",
+                                                ),
+                                              ),
                                               Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
@@ -274,6 +282,11 @@ class _doctorState extends State<doctor> {
                                           ),
                                         ),
                                       ),
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                80,
+                                      )
                                     ],
                                   ),
                                 );
@@ -333,7 +346,24 @@ class _doctorState extends State<doctor> {
     setState(() {
       top_images_list;
     });
-    Navigator.of(context).pop();
+
     return top_images_list;
+  }
+
+  Future doctors_image() async {
+    ListResult result =
+        await FirebaseStorage.instance.ref().child("/doctors_images").list();
+    List<Reference> allFiles = result.items;
+
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      doctors_image_list.add(fileUrl);
+    });
+
+    setState(() {
+      doctors_image_list;
+    });
+    Navigator.of(context).pop();
+    return doctors_image_list;
   }
 }
