@@ -249,7 +249,7 @@ class _doctorState extends State<doctor> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.end,
                                                 children: [
                                                   Text(
                                                     "${doctor_deatils_list[index].name}",

@@ -8,11 +8,9 @@ import '../Models/price_model.dart';
 import 'labtest_commonscreen.dart';
 
 class packages_commonnscreen extends StatefulWidget {
-  packages_commonnscreen(
-      {Key? key, required this.heading, required this.packagetype})
-      : super(key: key);
+  packages_commonnscreen({Key? key, required this.heading}) : super(key: key);
   String heading;
-  String packagetype;
+
   @override
   State<packages_commonnscreen> createState() => _packages_commonnscreenState();
 }
@@ -37,11 +35,7 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
     // TODO: implement initState
     super.initState();
 
-    if (widget.packagetype == 'popular') {
-      fetch_labtestbyhealthconcern_labes(widget.heading);
-    } else if (widget.packagetype == 'health') {
-      fetch_popular_data(widget.heading);
-    }
+    fetch_labtestbyhealthconcern_labes(widget.heading);
   }
 
   Widget build(BuildContext context) {

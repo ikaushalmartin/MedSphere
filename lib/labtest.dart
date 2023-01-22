@@ -242,10 +242,8 @@ class _labtestState extends State<labtest> {
                                       onPressed: () {
                                         Get.to(
                                             () => packages_commonnscreen(
-                                                  heading:
-                                                      '${labtestbyhealthconcern_labes[index].name}',
-                                                  packagetype: 'concern',
-                                                ),
+                                                heading:
+                                                    '${labtestbyhealthconcern_labes[index].name}'),
                                             transition: Transition.rightToLeft);
                                       },
                                       child: Column(
@@ -390,8 +388,7 @@ class _labtestState extends State<labtest> {
                                           Get.to(
                                               () => packages_commonnscreen(
                                                   heading:
-                                                      '${packages[index].name}',
-                                                  packagetype: 'popular'),
+                                                      '${packages[index].name}'),
                                               transition:
                                                   Transition.rightToLeft);
                                         },

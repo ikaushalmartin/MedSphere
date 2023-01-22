@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:medicineapp2/dashboard.dart';
 
 import 'Medicine/medicine.dart';
 
@@ -300,6 +302,10 @@ class callus_to_place_order extends StatelessWidget {
   const callus_to_place_order({Key? key}) : super(key: key);
 
   @override
+  void makecall_med() async {
+    await FlutterPhoneDirectCaller.callNumber('$emergenncy_number');
+  }
+
   Widget build(BuildContext context) {
     Color textcolor = Color(0xffffdadb);
     Color buttontextcolor = Color(0xff40000e);
@@ -345,7 +351,9 @@ class callus_to_place_order extends StatelessWidget {
           ButtonTheme(
             child: Center(
               child: MaterialButton(
-                onPressed: () async {},
+                onPressed: () async {
+                  makecall_med();
+                },
                 elevation: 0,
                 hoverElevation: 0,
                 focusElevation: 0,

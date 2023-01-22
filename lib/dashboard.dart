@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/dashboardcenter.dart';
 import 'package:medicineapp2/Medicine/medicine.dart';
+import 'package:medicineapp2/homecare.dart';
 import 'package:medicineapp2/popular_discounts.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -16,6 +18,8 @@ import 'const.dart';
 import 'doctor.dart';
 import 'labtest.dart';
 import 'orderbyprescription.dart';
+
+var emergenncy_number;
 
 class dashboard extends StatefulWidget {
   const dashboard({Key? key}) : super(key: key);
@@ -45,6 +49,7 @@ class _dashboardState extends State<dashboard> {
   List shop_by_concern_list = [];
   List deals_of_the_day_image_list = [];
   List starting_tiles_image_list = [];
+  List<Item> emergency = [];
 
   late var everyday_essential_image_url;
   void initState() {
@@ -56,6 +61,10 @@ class _dashboardState extends State<dashboard> {
     shop_by_category_images();
     deals_of_the_day_image();
     shop_by_concern_images();
+  }
+
+  void makecall() async {
+    await FlutterPhoneDirectCaller.callNumber('${emergency[0].name}');
   }
 
   @override
@@ -280,8 +289,14 @@ class _dashboardState extends State<dashboard> {
                                                 Get.to(() => doctor(),
                                                     transition:
                                                         Transition.rightToLeft);
+                                              } else if (index == 3) {
+                                                makecall();
                                               } else if (index == 4) {
                                                 Get.to(() => rental(),
+                                                    transition:
+                                                        Transition.rightToLeft);
+                                              } else if (index == 5) {
+                                                Get.to(() => homecare(),
                                                     transition:
                                                         Transition.rightToLeft);
                                               }
@@ -685,6 +700,10 @@ class _dashboardState extends State<dashboard> {
     var shop_by_concern =
         await FirebaseFirestore.instance.collection('shop by concern').get();
     map_fetch_shop_by_concern(shop_by_concern);
+
+    var emergency =
+        await FirebaseFirestore.instance.collection('emergency number').get();
+    map_emergency(emergency);
   }
 
   map_fetch_popular_categories(QuerySnapshot<Map<String, dynamic>> data) {
@@ -694,6 +713,19 @@ class _dashboardState extends State<dashboard> {
     setState(() {
       popular_categories = _popular_categories_data;
     });
+  }
+
+  map_emergency(QuerySnapshot<Map<String, dynamic>> data) {
+    print('----------------------------------------');
+    var _emergency_number_data = data.docs
+        .map((item) => Item(id: item.id, name: item['number']))
+        .toList();
+
+    setState(() {
+      emergency = _emergency_number_data;
+      emergenncy_number = emergency[0].name;
+    });
+    print(emergency[0].name);
   }
 
   map_fetch_shop_by_category(QuerySnapshot<Map<String, dynamic>> data) {
