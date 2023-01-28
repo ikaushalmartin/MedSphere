@@ -102,7 +102,7 @@ class _product_common_screenState extends State<product_common_screen> {
                             ),
                             child: IconButton(
                               onPressed: () {
-                                Get.to(() => const cart(),
+                                Get.to(() => cart(),
                                     transition: Transition.rightToLeft);
                               },
                               icon: Icon(Icons.shopping_cart_outlined),
