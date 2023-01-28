@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'const.dart';
@@ -27,10 +29,14 @@ class _rentalState extends State<rental> {
   }
 
   @override
-  Color textcolor = Color(0xff001849);
   Color bluecolor_bg = Color(0xffDAE1FF);
-  Color background = Color(0xffF4F3FB);
 
+  Color textcolor = Color(0xD9181818);
+  Color textcolor_light = Color(0x99181818);
+  Color bluecolor = Color(0xff5093FE);
+  Color background = Color(0xffD9D9D9);
+  Color white = Color(0xffffffff);
+  Color search_bg = Color(0x1A000000);
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -42,113 +48,117 @@ class _rentalState extends State<rental> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: background,
+                  color: white,
                 ),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 50,
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 200),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              FirebaseAuth.instance.signOut();
-                            },
-                            child: CircleAvatar(
-                              child: Image.asset("images/1.png"),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "Rentals",
-                              style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 24,
-                                color: textcolor,
-                              ),
-                            ),
-                          ),
-                          Theme(
-                            data: ThemeData(
-                              splashColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                            ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.shopping_cart_outlined),
-                              color: textcolor,
-                            ),
-                          )
-                        ],
-                      ), //toprow
-                      SizedBox(height: MediaQuery.of(context).size.height / 80),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: white,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            //   top: MediaQuery.of(context).size.height / 80,
+                            left: MediaQuery.of(context).size.height / 60,
+                            right: MediaQuery.of(context).size.height / 200),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 1.35,
-                              decoration: BoxDecoration(
-                                color: bluecolor_bg,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: TextField(
-                                onChanged: (value) {},
-                                keyboardType: TextInputType.emailAddress,
-                                style: TextStyle(color: Color(0xff01bdf3)),
-                                textAlign: TextAlign.left,
-                                decoration: kTextFieldDecoration.copyWith(
-                                    contentPadding: EdgeInsets.only(left: 20),
-                                    hintText: "Search"),
+                            GestureDetector(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Icon(
+                                Icons.arrow_back_ios_new_outlined,
+                                color: textcolor,
                               ),
                             ),
-                            Container(
-                                width: MediaQuery.of(context).size.width / 6,
-                                decoration: BoxDecoration(
-                                  color: bluecolor_bg,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Theme(
-                                  data: ThemeData(
-                                    splashColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                  ),
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.search),
-                                    color: textcolor,
-                                  ),
-                                ))
+                            Theme(
+                              data: ThemeData(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                              ),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.shopping_cart_outlined),
+                                color: textcolor,
+                              ),
+                            )
                           ],
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height / 70),
-                      //searchbar
-                    ],
-                  ),
+                    ), //toprow
+                    SizedBox(height: MediaQuery.of(context).size.height / 80),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1.35,
+                            decoration: BoxDecoration(
+                              color: search_bg,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: TextField(
+                              onChanged: (value) {},
+                              keyboardType: TextInputType.emailAddress,
+                              style: TextStyle(color: textcolor),
+                              textAlign: TextAlign.left,
+                              decoration: kTextFieldDecoration.copyWith(
+                                  contentPadding: EdgeInsets.only(left: 20),
+                                  hintText: "Search"),
+                            ),
+                          ),
+                          Container(
+                              width: MediaQuery.of(context).size.width / 6,
+                              decoration: BoxDecoration(
+                                color: search_bg,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Theme(
+                                data: ThemeData(
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.search),
+                                  color: textcolor,
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height / 70),
+                    //searchbar
+                  ],
                 ),
               ),
-              Padding(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 50,
-                    left: MediaQuery.of(context).size.height / 60,
-                    right: MediaQuery.of(context).size.height / 200,
-                  ),
-                  child: Text(
-                    "Available Rentals",
-                    style: TextStyle(
-                      fontFamily: 'semibold',
-                      fontSize: 20,
-                      color: textcolor,
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 150,
+              ),
+              Container(
+                color: white,
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 50,
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 200,
                     ),
-                  )),
+                    child: Text(
+                      "Available Rentals",
+                      style: TextStyle(
+                        fontFamily: 'semibold',
+                        fontSize: 20,
+                        color: textcolor,
+                      ),
+                    )),
+              ),
               Expanded(
                 child: Container(
                   child: SizedBox(
@@ -162,10 +172,10 @@ class _rentalState extends State<rental> {
                         itemBuilder: (context, index) {
                           return Container(
                             width: MediaQuery.of(context).size.width,
-                            color: background,
+                            color: white,
                             child: Padding(
                               padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 60,
+                                //top: MediaQuery.of(context).size.height / 60,
                                 left: MediaQuery.of(context).size.height / 60,
                                 right: MediaQuery.of(context).size.height / 60,
                                 bottom: MediaQuery.of(context).size.height / 60,
@@ -173,12 +183,18 @@ class _rentalState extends State<rental> {
                               child: Column(
                                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        150,
+                                  ),
+                                  Divider(
+                                    color: background,
+                                    thickness: 2,
+                                  ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
-                                    height:
-                                        MediaQuery.of(context).size.height / 8,
                                     decoration: BoxDecoration(
-                                      color: bluecolor_bg,
+                                      color: white,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Padding(
@@ -189,11 +205,15 @@ class _rentalState extends State<rental> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
+                                          Image.network(
+                                            rental_machine_image[index],
+                                            scale: 7,
+                                          ),
                                           Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.end,
                                             children: [
                                               Text(
                                                 "${rental_machine_info[index].name}",
@@ -214,16 +234,12 @@ class _rentalState extends State<rental> {
                                                 "${rental_machine_info[index].hospital}",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  fontFamily: 'regular',
+                                                  fontFamily: 'medium',
                                                   fontSize: 16,
-                                                  color: textcolor,
+                                                  color: textcolor_light,
                                                 ),
                                               ),
                                             ],
-                                          ),
-                                          Image.network(
-                                            rental_machine_image[index],
-                                            scale: 7,
                                           ),
                                         ],
                                       ),

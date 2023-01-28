@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'const.dart';
@@ -30,272 +32,292 @@ class _doctorState extends State<doctor> {
 
   @override
   Widget build(BuildContext context) {
-    Color textcolor = Color(0xff001849);
-    Color bluecolor_bg = Color(0xffDAE1FF);
-    Color background = Color(0xffF4F3FB);
+    Color textcolor = Color(0xD9181818);
+    Color textcolor_light = Color(0x99181818);
+
+    Color background = Color(0xffD9D9D9);
+    Color white = Color(0xffffffff);
+    Color search_bg = Color(0x1A000000);
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: background,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: background,
+                  color: white,
                 ),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 50,
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 200),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              FirebaseAuth.instance.signOut();
-                            },
-                            child: CircleAvatar(
-                              child: Image.asset("images/1.png"),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "Doctor",
-                              style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 24,
-                                color: textcolor,
-                              ),
-                            ),
-                          ),
-                          Theme(
-                            data: ThemeData(
-                              splashColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                            ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.shopping_cart_outlined),
-                              color: textcolor,
-                            ),
-                          )
-                        ],
-                      ), //toprow
-                      SizedBox(height: MediaQuery.of(context).size.height / 80),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: white,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            //   top: MediaQuery.of(context).size.height / 80,
+                            left: MediaQuery.of(context).size.height / 60,
+                            right: MediaQuery.of(context).size.height / 200),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 1.35,
-                              decoration: BoxDecoration(
-                                color: bluecolor_bg,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: TextField(
-                                onChanged: (value) {},
-                                keyboardType: TextInputType.emailAddress,
-                                style: TextStyle(color: textcolor),
-                                textAlign: TextAlign.left,
-                                decoration: kTextFieldDecoration.copyWith(
-                                    contentPadding: EdgeInsets.only(left: 20),
-                                    hintText: "Search"),
+                            GestureDetector(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Icon(
+                                Icons.arrow_back_ios_new_outlined,
+                                color: textcolor,
                               ),
                             ),
-                            Container(
-                                width: MediaQuery.of(context).size.width / 6,
-                                decoration: BoxDecoration(
-                                  color: bluecolor_bg,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Theme(
-                                  data: ThemeData(
-                                    splashColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                  ),
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.search),
-                                    color: textcolor,
-                                  ),
-                                ))
+                            Theme(
+                              data: ThemeData(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                              ),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.shopping_cart_outlined),
+                                color: textcolor,
+                              ),
+                            )
                           ],
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height / 70),
-                      //searchbar
-                    ],
-                  ),
+                    ), //toprow
+                    SizedBox(height: MediaQuery.of(context).size.height / 80),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1.35,
+                            decoration: BoxDecoration(
+                              color: search_bg,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: TextField(
+                              onChanged: (value) {},
+                              keyboardType: TextInputType.emailAddress,
+                              style: TextStyle(color: textcolor),
+                              textAlign: TextAlign.left,
+                              decoration: kTextFieldDecoration.copyWith(
+                                  contentPadding: EdgeInsets.only(left: 20),
+                                  hintText: "Search"),
+                            ),
+                          ),
+                          Container(
+                              width: MediaQuery.of(context).size.width / 6,
+                              decoration: BoxDecoration(
+                                color: search_bg,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Theme(
+                                data: ThemeData(
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.search),
+                                  color: textcolor,
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height / 70),
+                    //searchbar
+                  ],
                 ),
               ),
               Expanded(
                 child: Container(
                     // height: MediaQuery.of(context).size.height / 1.451,
                     //  width: MediaQuery.of(context).size.width,
-                    // color: Colors.white,
+                    color: background,
                     child: ListView(
-                  physics: BouncingScrollPhysics(),
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: background,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height / 60,
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 60,
-                          bottom: MediaQuery.of(context).size.height / 80,
+                      physics: BouncingScrollPhysics(),
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 150,
                         ),
-                        child: SizedBox(
-                            height: MediaQuery.of(context).size.height / 5.5,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: BouncingScrollPhysics(),
-                                scrollDirection: Axis.horizontal,
-                                itemCount: top_images_list.length,
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 8.0, right: 10),
-                                    child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                1.07,
-                                        decoration: BoxDecoration(
-                                            color: background,
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: NetworkImage(
-                                                    "${top_images_list[index]}")))),
-                                  );
-                                })),
-                      ),
-                    ),
-                    Padding(
-                        padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height / 50,
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 200,
-                          bottom: MediaQuery.of(context).size.height / 60,
-                        ),
-                        child: Text(
-                          "Popular Doctors",
-                          style: TextStyle(
-                            fontFamily: 'semibold',
-                            fontSize: 20,
-                            color: textcolor,
-                          ),
-                        )),
-                    Container(
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          // top: MediaQuery.of(context).size.height / 80,
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 60,
-                          bottom: MediaQuery.of(context).size.height / 80,
-                        ),
-                        child: SizedBox(
-                          // height: MediaQuery.of(context).size.height / 5.5,
+                        Container(
                           width: MediaQuery.of(context).size.width,
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: BouncingScrollPhysics(),
-                              scrollDirection: Axis.vertical,
-                              itemCount: doctors_image_list.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  color: background,
-                                  child: Column(
-                                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height:
-                                            MediaQuery.of(context).size.height /
+                          color: white,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height / 60,
+                              left: MediaQuery.of(context).size.height / 60,
+                              right: MediaQuery.of(context).size.height / 60,
+                              bottom: MediaQuery.of(context).size.height / 80,
+                            ),
+                            child: SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 5.5,
+                                width: MediaQuery.of(context).size.width,
+                                child: ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: top_images_list.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, right: 10),
+                                        child: Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                1.07,
+                                            decoration: BoxDecoration(
+                                                color: white,
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                image: DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image: NetworkImage(
+                                                        "${top_images_list[index]}")))),
+                                      );
+                                    })),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 150,
+                        ),
+                        Container(
+                          color: white,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).size.height / 60,
+                                left: MediaQuery.of(context).size.height / 60,
+                                //right: MediaQuery.of(context).size.height / 200,
+                                bottom: MediaQuery.of(context).size.height / 60,
+                              ),
+                              child: Text(
+                                "Popular Doctors",
+                                style: TextStyle(
+                                  fontFamily: 'semibold',
+                                  fontSize: 20,
+                                  color: textcolor,
+                                ),
+                              )),
+                        ),
+                        Container(
+                          color: white,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              // top: MediaQuery.of(context).size.height / 80,
+                              left: MediaQuery.of(context).size.height / 60,
+                              right: MediaQuery.of(context).size.height / 60,
+                              bottom: MediaQuery.of(context).size.height / 80,
+                            ),
+                            child: SizedBox(
+                              // height: MediaQuery.of(context).size.height / 5.5,
+                              width: MediaQuery.of(context).size.width,
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: BouncingScrollPhysics(),
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: doctors_image_list.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      color: white,
+                                      child: Column(
+                                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Divider(
+                                            color: background,
+                                            thickness: 2,
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
                                                 8,
-                                        decoration: BoxDecoration(
-                                          color: bluecolor_bg,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              CircleAvatar(
-                                                radius: 40,
-                                                foregroundImage: NetworkImage(
-                                                  "${doctors_image_list[index]}",
-                                                ),
-                                              ),
-                                              Column(
+                                            decoration: BoxDecoration(
+                                              color: white,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
+                                                    CrossAxisAlignment.center,
                                                 children: [
-                                                  Text(
-                                                    "${doctor_deatils_list[index].name}",
-                                                    textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                      fontFamily: 'semibold',
-                                                      fontSize: 19,
-                                                      color: textcolor,
+                                                  CircleAvatar(
+                                                    radius: 40,
+                                                    foregroundImage:
+                                                        NetworkImage(
+                                                      "${doctors_image_list[index]}",
                                                     ),
                                                   ),
-                                                  SizedBox(
-                                                    height:
-                                                        MediaQuery.of(context)
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
+                                                    children: [
+                                                      Text(
+                                                        "${doctor_deatils_list[index].name}",
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: TextStyle(
+                                                          fontFamily:
+                                                              'semibold',
+                                                          fontSize: 19,
+                                                          color: textcolor,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: MediaQuery.of(
+                                                                    context)
                                                                 .size
                                                                 .height /
                                                             350,
-                                                  ),
-                                                  Text(
-                                                    "${doctor_deatils_list[index].hospital}",
-                                                    textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                      fontFamily: 'regular',
-                                                      fontSize: 16,
-                                                      color: textcolor,
-                                                    ),
+                                                      ),
+                                                      Text(
+                                                        "${doctor_deatils_list[index].hospital}",
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: TextStyle(
+                                                          fontFamily: 'medium',
+                                                          fontSize: 16,
+                                                          color:
+                                                              textcolor_light,
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ],
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
+                                        ],
                                       ),
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                80,
-                                      )
-                                    ],
-                                  ),
-                                );
-                              }),
-                        ),
-                      ),
-                    )
-                  ],
-                )),
+                                    );
+                                  }),
+                            ),
+                          ),
+                        )
+                      ],
+                    )),
               ),
             ],
           ),

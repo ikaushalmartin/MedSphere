@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:readmore/readmore.dart';
 
 class labtest_commonscreen extends StatefulWidget {
   labtest_commonscreen(
@@ -30,17 +33,12 @@ class labtest_commonscreen extends StatefulWidget {
 }
 
 class _labtest_commonscreenState extends State<labtest_commonscreen> {
-  Color cuttextcolor = Color(0xff2b1700);
-  Color grey = Color(0xffd1d1d6);
-  Color heading_bluecolor_bg = Color(0xff001849);
-  Color textcolor = Color(0xff001849);
-  Color textcolor_white = Color(0xff001849);
-  Color bluecolor = Color(0xff6588E6);
-  Color bluecolor_bg = Color(0xffDAE1FF);
-  Color redcolor = Color(0xffE46473);
-  Color yellowcolor = Color(0xffF9BF80);
-  Color background = Color(0xffF4F3FB);
-  Color light_red = Color(0xffdae1ff);
+  Color textcolor = Color(0xD9181818);
+  Color textcolor_light = Color(0x99181818);
+  Color bluecolor = Color(0xff5093FE);
+  Color white = Color(0xffffffff);
+
+  Color background = Color(0xffD9D9D9);
 
   @override
   Widget build(BuildContext context) {
@@ -53,81 +51,396 @@ class _labtest_commonscreenState extends State<labtest_commonscreen> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: background,
+                  color: white,
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 50,
+                      //   top: MediaQuery.of(context).size.height / 80,
                       left: MediaQuery.of(context).size.height / 60,
                       right: MediaQuery.of(context).size.height / 200),
-                  child: Column(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              FirebaseAuth.instance.signOut();
-                            },
-                            child: CircleAvatar(
-                              child: Image.asset("images/1.png"),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "${widget.name}",
-                              style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 24,
-                                color: textcolor,
-                              ),
-                            ),
-                          ),
-                          Theme(
-                            data: ThemeData(
-                              splashColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                            ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.shopping_cart_outlined),
-                              color: textcolor,
-                            ),
-                          )
-                        ],
-                      ), //toprow
-
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height / 100),
-                      //searchbar
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios_new_outlined,
+                          color: textcolor,
+                        ),
+                      ),
+                      Theme(
+                        data: ThemeData(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.shopping_cart_outlined),
+                          color: textcolor,
+                        ),
+                      )
                     ],
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).size.height / 60,
-                    left: MediaQuery.of(context).size.height / 60,
-                    right: MediaQuery.of(context).size.height / 60),
+              Container(
+                color: background,
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height / 1.24,
+                  height: MediaQuery.of(context).size.height / 1.175,
                   width: MediaQuery.of(context).size.width,
                   child: ListView(
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     physics: BouncingScrollPhysics(),
                     children: [
-                      Text("${widget.price}"),
-                      Text("${widget.name}"),
-                      Text("${widget.cutprice}"),
-                      Text("${widget.packagesinclude}"),
-                      Text("${widget.tubetype}"),
-                      Text("${widget.info}"),
-                      Text("${widget.sampletype}"),
-                      Text("${widget.fastingrequired}"),
-                      Text("${widget.description}"),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 150,
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).size.height / 60,
+                            bottom: MediaQuery.of(context).size.height / 60,
+                            left: MediaQuery.of(context).size.height / 20,
+                            right: MediaQuery.of(context).size.height / 20),
+                        color: white,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${widget.name}",
+                              style: TextStyle(
+                                fontFamily: 'semibold',
+                                fontSize: 20,
+                                color: textcolor,
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 100,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.5,
+                              child: Text(
+                                "${widget.packagesinclude}...",
+                                style: TextStyle(
+                                  fontFamily: 'regular',
+                                  fontSize: 13,
+                                  color: textcolor_light,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 70,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "₹${widget.cutprice}",
+                                          style: TextStyle(
+                                            fontFamily: 'semibold',
+                                            fontSize: 16,
+                                            color: textcolor,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              40,
+                                        ),
+                                        Text(
+                                          "₹${widget.price}",
+                                          style: TextStyle(
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                            fontFamily: 'medium',
+                                            fontSize: 14,
+                                            color: textcolor_light,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              9,
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      "Inclusive all taxes",
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 14,
+                                        color: textcolor_light,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  //  height: 50.0,
+                                  child: MaterialButton(
+                                    onPressed: () {},
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(80.0)),
+                                    padding: EdgeInsets.all(0.0),
+                                    child: Ink(
+                                      decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Color(0xff07DAEB),
+                                              Color(0xff5093FE)
+                                            ],
+                                            begin: Alignment.centerLeft,
+                                            end: Alignment.centerRight,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(30.0)),
+                                      child: Container(
+                                        constraints: BoxConstraints(
+                                            maxWidth: 130.0, minHeight: 35.0),
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Book Test",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: "medium"),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 150,
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).size.height / 60,
+                            bottom: MediaQuery.of(context).size.height / 60,
+                            left: MediaQuery.of(context).size.height / 60,
+                            right: MediaQuery.of(context).size.height / 60),
+                        color: white,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.circle,
+                                  size: 8,
+                                  color: bluecolor,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 70,
+                                ),
+                                Text(
+                                  "Sample Type :",
+                                  style: TextStyle(
+                                    fontFamily: 'medium',
+                                    fontSize: 16,
+                                    color: textcolor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 15,
+                                ),
+                                Text(
+                                  "${widget.sampletype}",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: textcolor_light,
+                                      fontFamily: "medium"),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 100,
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.circle,
+                                  size: 8,
+                                  color: bluecolor,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 70,
+                                ),
+                                Text(
+                                  "Fasting Required :",
+                                  style: TextStyle(
+                                    fontFamily: 'medium',
+                                    fontSize: 16,
+                                    color: textcolor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 15,
+                                ),
+                                Text("${widget.fastingrequired}",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color: textcolor_light,
+                                        fontFamily: "medium"))
+                              ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 100,
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.circle,
+                                  size: 8,
+                                  color: bluecolor,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 70,
+                                ),
+                                Text(
+                                  "Tube Type :",
+                                  style: TextStyle(
+                                    fontFamily: 'medium',
+                                    fontSize: 16,
+                                    color: textcolor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 15,
+                                ),
+                                Text("${widget.tubetype}",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color: textcolor_light,
+                                        fontFamily: "medium"))
+                              ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 100,
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.circle,
+                                      size: 8,
+                                      color: bluecolor,
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width /
+                                          70,
+                                    ),
+                                    Text(
+                                      "Test Includes :",
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 16,
+                                        color: textcolor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 15,
+                                ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.9,
+                                  child: ReadMoreText(
+                                    "${widget.packagesinclude} ",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color: textcolor_light,
+                                        fontFamily: "medium"),
+                                    trimLines: 2,
+                                    colorClickableText: bluecolor,
+                                    trimMode: TrimMode.Line,
+                                    trimCollapsedText: 'Show more',
+                                    trimExpandedText: 'Show less',
+                                    moreStyle: TextStyle(
+                                        fontSize: 14,
+                                        color: bluecolor,
+                                        fontFamily: "medium"),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 100,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.circle,
+                                      size: 8,
+                                      color: bluecolor,
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width /
+                                          70,
+                                    ),
+                                    Text(
+                                      "Description :",
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 16,
+                                        color: textcolor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 120,
+                                ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: ReadMoreText(
+                                    "${widget.description} ",
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        color: textcolor_light,
+                                        fontFamily: "regular"),
+                                    trimLines: 4,
+                                    colorClickableText: bluecolor,
+                                    trimMode: TrimMode.Line,
+                                    trimCollapsedText: 'Show more',
+                                    trimExpandedText: 'Show less',
+                                    moreStyle: TextStyle(
+                                        fontSize: 13,
+                                        color: bluecolor,
+                                        fontFamily: "regular"),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 150,
+                      ),
                     ],
                   ),
                 ),

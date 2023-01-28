@@ -318,7 +318,7 @@ class callus_to_place_order extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
-            "images/call2.png",
+            "images/call.png",
             scale: 8,
           ),
           Column(
