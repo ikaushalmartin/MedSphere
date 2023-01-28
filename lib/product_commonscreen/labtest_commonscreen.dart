@@ -179,7 +179,7 @@ class _labtest_commonscreenState extends State<labtest_commonscreen> {
                                       "Inclusive all taxes",
                                       style: TextStyle(
                                         fontFamily: 'medium',
-                                        fontSize: 14,
+                                        fontSize: 12,
                                         color: textcolor_light,
                                       ),
                                     ),

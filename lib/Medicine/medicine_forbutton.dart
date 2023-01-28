@@ -25,17 +25,13 @@ class _medicineforbuttonState extends State<medicineforbutton> {
   List top_images_list_images = [];
   List<topdeals> top_deals_deatils_list = [];
 
-  Color heading_bluecolor = Color(0xff001849);
-  Color textcolor = Color(0xff001849);
-  Color textcolor_white = Colors.white;
   Color bluecolor = Color(0xff6588E6);
-  Color redcolor = Color(0xffE46473);
-  Color yellowcolor = Color(0xffF9BF80);
-  Color background = Color(0xffF4F3FB);
-  Color light_red = Color(0xffdae1ff);
   Color bluecolor_bg = Color(0xffDAE1FF);
-  Color cuttextcolor = Color(0xff2b1700);
-
+  Color textcolor = Color(0xD9181818);
+  Color textcolor_light = Color(0x99181818);
+  Color background = Color(0xffD9D9D9);
+  Color white = Color(0xffffffff);
+  Color search_bg = Color(0x1A000000);
   @override
   void initState() {
     // TODO: implement initState
@@ -55,97 +51,105 @@ class _medicineforbuttonState extends State<medicineforbutton> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: background,
+                  color: white,
                 ),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 50,
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 200),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              FirebaseAuth.instance.signOut();
-                            },
-                            child: CircleAvatar(
-                              child: Image.asset("images/1.png"),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "Medicines",
-                              style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 24,
-                                color: heading_bluecolor,
-                              ),
-                            ),
-                          ),
-                          Theme(
-                            data: ThemeData(
-                              splashColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                            ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.shopping_cart_outlined),
-                              color: textcolor,
-                            ),
-                          )
-                        ],
-                      ), //toprow
-                      SizedBox(height: MediaQuery.of(context).size.height / 80),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: white,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            //   top: MediaQuery.of(context).size.height / 80,
+                            left: MediaQuery.of(context).size.height / 60,
+                            right: MediaQuery.of(context).size.height / 200),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 1.35,
-                              decoration: BoxDecoration(
-                                color: light_red,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: TextField(
-                                onChanged: (value) {},
-                                keyboardType: TextInputType.emailAddress,
-                                style: TextStyle(color: textcolor),
-                                textAlign: TextAlign.left,
-                                decoration: kTextFieldDecoration.copyWith(
-                                    contentPadding: EdgeInsets.only(left: 20),
-                                    hintText: "Search"),
+                            GestureDetector(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Icon(
+                                Icons.arrow_back_ios_new_outlined,
+                                color: textcolor,
                               ),
                             ),
-                            Container(
-                                width: MediaQuery.of(context).size.width / 6,
-                                decoration: BoxDecoration(
-                                  color: light_red,
-                                  borderRadius: BorderRadius.circular(10),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                "Medicine",
+                                style: TextStyle(
+                                  fontFamily: 'semibold',
+                                  fontSize: 24,
+                                  color: textcolor,
                                 ),
-                                child: Theme(
-                                  data: ThemeData(
-                                    splashColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                  ),
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.search),
-                                    color: textcolor,
-                                  ),
-                                ))
+                              ),
+                            ),
+                            Theme(
+                              data: ThemeData(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                              ),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.shopping_cart_outlined),
+                                color: textcolor,
+                              ),
+                            )
                           ],
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height / 70),
-                      //searchbar
-                    ],
-                  ),
+                    ), //toprow
+                    SizedBox(height: MediaQuery.of(context).size.height / 200),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1.35,
+                            decoration: BoxDecoration(
+                              color: search_bg,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: TextField(
+                              onChanged: (value) {},
+                              keyboardType: TextInputType.emailAddress,
+                              style: TextStyle(color: textcolor),
+                              textAlign: TextAlign.left,
+                              decoration: kTextFieldDecoration.copyWith(
+                                  contentPadding: EdgeInsets.only(left: 20),
+                                  hintText: "Search"),
+                            ),
+                          ),
+                          Container(
+                              width: MediaQuery.of(context).size.width / 6,
+                              decoration: BoxDecoration(
+                                color: search_bg,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Theme(
+                                data: ThemeData(
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.search),
+                                  color: textcolor,
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height / 70),
+                    //searchbar
+                  ],
                 ),
               ),
               Expanded(
@@ -156,9 +160,12 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                     child: ListView(
                   physics: BouncingScrollPhysics(),
                   children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 150,
+                    ),
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: background,
+                      color: white,
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 60,
@@ -182,9 +189,12 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 150,
+                    ),
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: background,
+                      color: white,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -220,76 +230,80 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                       scrollDirection: Axis.horizontal,
                                       itemCount: top_images_list_images.length,
                                       itemBuilder: (context, index) {
-                                        return Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              2,
-                                          margin: const EdgeInsets.all(6.0),
-                                          decoration: BoxDecoration(
-                                              color: bluecolor_bg,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: MaterialButton(
-                                            onPressed: () {
-                                              Get.to(
-                                                  () => product_common_screen(
-                                                        heading:
-                                                            "Medicine Detail",
-                                                        image_url:
-                                                            top_images_list_images[
-                                                                index],
-                                                        name:
-                                                            top_deals_deatils_list[
-                                                                    index]
-                                                                .name,
-                                                        precaution_and_warning:
-                                                            top_deals_deatils_list[
-                                                                    index]
-                                                                .precaution_and_warning,
-                                                        sideeffect:
-                                                            top_deals_deatils_list[
-                                                                    index]
-                                                                .sideeffect,
-                                                        doses:
-                                                            top_deals_deatils_list[
-                                                                    index]
-                                                                .doses,
-                                                        uses:
-                                                            top_deals_deatils_list[
-                                                                    index]
-                                                                .uses,
-                                                        medicaldiscription:
-                                                            top_deals_deatils_list[
-                                                                    index]
-                                                                .medicaldiscription,
-                                                        company:
-                                                            top_deals_deatils_list[
-                                                                    index]
-                                                                .company,
-                                                        quantity:
-                                                            top_deals_deatils_list[
-                                                                    index]
-                                                                .quantity,
-                                                        cuttopdeals:
-                                                            top_deals_deatils_list[
-                                                                    index]
-                                                                .cuttopdeals,
-                                                        price:
-                                                            top_deals_deatils_list[
-                                                                    index]
-                                                                .price,
-                                                      ),
-                                                  transition:
-                                                      Transition.rightToLeft);
-                                            },
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                ClipRRect(
+                                        return GestureDetector(
+                                          onTap: () {
+                                            Get.to(
+                                                () => product_common_screen(
+                                                      heading:
+                                                          "Medicine Detail",
+                                                      image_url:
+                                                          top_images_list_images[
+                                                              index],
+                                                      name:
+                                                          top_deals_deatils_list[
+                                                                  index]
+                                                              .name,
+                                                      precaution_and_warning:
+                                                          top_deals_deatils_list[
+                                                                  index]
+                                                              .precaution_and_warning,
+                                                      sideeffect:
+                                                          top_deals_deatils_list[
+                                                                  index]
+                                                              .sideeffect,
+                                                      doses:
+                                                          top_deals_deatils_list[
+                                                                  index]
+                                                              .doses,
+                                                      uses:
+                                                          top_deals_deatils_list[
+                                                                  index]
+                                                              .uses,
+                                                      medicaldiscription:
+                                                          top_deals_deatils_list[
+                                                                  index]
+                                                              .medicaldiscription,
+                                                      company:
+                                                          top_deals_deatils_list[
+                                                                  index]
+                                                              .company,
+                                                      quantity:
+                                                          top_deals_deatils_list[
+                                                                  index]
+                                                              .quantity,
+                                                      cuttopdeals:
+                                                          top_deals_deatils_list[
+                                                                  index]
+                                                              .cuttopdeals,
+                                                      price:
+                                                          top_deals_deatils_list[
+                                                                  index]
+                                                              .price,
+                                                    ),
+                                                transition:
+                                                    Transition.rightToLeft);
+                                          },
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    3,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    3,
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: textcolor_light,
+                                                      width:
+                                                          1.1, //                   <--- border width here
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                child: ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10.0),
@@ -297,65 +311,62 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                                       "${top_images_list_images[index]}",
                                                       scale: 5),
                                                 ),
-                                                SizedBox(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      30,
+                                              ),
+                                              SizedBox(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    100,
+                                              ),
+                                              Text(
+                                                "${top_deals_deatils_list[index].name}",
+                                                style: TextStyle(
+                                                  fontFamily: 'medium',
+                                                  fontSize: 15,
+                                                  color: textcolor,
                                                 ),
-                                                Text(
-                                                  "${top_deals_deatils_list[index].name}",
-                                                  style: TextStyle(
-                                                    fontFamily: 'medium',
-                                                    fontSize: 15,
-                                                    color: textcolor,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              SizedBox(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    250,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    "₹${top_deals_deatils_list[index].price}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: 'medium',
+                                                      fontSize: 16,
+                                                      color: textcolor,
+                                                    ),
                                                   ),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                                SizedBox(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      100,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      "₹${top_deals_deatils_list[index].price}",
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                        fontFamily: 'medium',
-                                                        fontSize: 16,
-                                                        color: textcolor,
-                                                      ),
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            20,
+                                                  ),
+                                                  Text(
+                                                    "₹${top_deals_deatils_list[index].cuttopdeals}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      decoration: TextDecoration
+                                                          .lineThrough,
+                                                      fontFamily: 'medium',
+                                                      fontSize: 16,
+                                                      color: textcolor_light,
                                                     ),
-                                                    SizedBox(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width /
-                                                              20,
-                                                    ),
-                                                    Text(
-                                                      "₹${top_deals_deatils_list[index].cuttopdeals}",
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                        decoration:
-                                                            TextDecoration
-                                                                .lineThrough,
-                                                        fontFamily: 'medium',
-                                                        fontSize: 16,
-                                                        color: cuttextcolor,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
                                           ),
                                         );
                                       }))),
