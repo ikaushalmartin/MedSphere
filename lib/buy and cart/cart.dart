@@ -38,7 +38,8 @@ class _cartState extends State<cart> {
   Color doc_colour_button_2 = Color(0x80181818);
   List<cartmodel> cartdata = [];
   List<Item> deliveryandminval_list = [];
-  List quantity = [];
+
+  int selected_quantity = 1;
   double totalmrp = 0;
   double discountedprice = 0;
   double deliverycharges = 0;
@@ -350,9 +351,15 @@ class _cartState extends State<cart> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
-                                              Icon(
-                                                Icons.delete_outline_outlined,
-                                                color: textcolor_light,
+                                              GestureDetector(
+                                                onTap: () {
+                                                  deleteDocument(
+                                                      cartdata[index].id);
+                                                },
+                                                child: Icon(
+                                                  Icons.delete_outline_outlined,
+                                                  color: textcolor_light,
+                                                ),
                                               ),
                                               SizedBox(
                                                 height: MediaQuery.of(context)
@@ -361,8 +368,8 @@ class _cartState extends State<cart> {
                                                     100,
                                               ),
                                               Container(
-                                                width: 40,
-                                                height: 30,
+                                                width: 100,
+                                                height: 25,
                                                 decoration: BoxDecoration(
                                                     color: search_bg,
                                                     borderRadius:
@@ -371,50 +378,74 @@ class _cartState extends State<cart> {
                                                     border: Border.all(
                                                         color: textcolor_light2,
                                                         width: 1.1)),
-                                                child: TextField(
-                                                    onChanged: (value) {},
-                                                    keyboardType:
-                                                        TextInputType.number,
-                                                    inputFormatters: <
-                                                        TextInputFormatter>[
-                                                      FilteringTextInputFormatter
-                                                          .digitsOnly,
-                                                      LengthLimitingTextInputFormatter(
-                                                          2)
-                                                    ],
+                                                child: MaterialButton(
+                                                  onPressed: () {
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return AlertDialog(
+                                                          title: Text(
+                                                            'Quantity',
+                                                            style: TextStyle(
+                                                                color:
+                                                                    textcolor,
+                                                                fontFamily:
+                                                                    "medium"),
+                                                          ),
+                                                          content: Container(
+                                                            height: 500,
+                                                            width: 1,
+                                                            child: ListView
+                                                                .builder(
+                                                              physics:
+                                                                  const BouncingScrollPhysics(),
+                                                              shrinkWrap: true,
+                                                              itemCount: 30,
+                                                              itemBuilder:
+                                                                  (BuildContext
+                                                                          context,
+                                                                      int x) {
+                                                                return ListTile(
+                                                                  title:
+                                                                      GestureDetector(
+                                                                    onTap: () {
+                                                                      selected_quantity =
+                                                                          x + 1;
+                                                                      updateDocument(
+                                                                          cartdata[index]
+                                                                              .id);
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width,
+                                                                      height:
+                                                                          50,
+                                                                      child: Text(
+                                                                          '${x + 1}'),
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Text(
+                                                    'Qty - ${cartdata[index].quantity}',
                                                     style: TextStyle(
-                                                        color: textcolor),
-                                                    textAlign: TextAlign.center,
-                                                    decoration: InputDecoration(
-                                                      hintText: 'Qty',
-                                                      hintStyle: TextStyle(
-                                                          color: Color(
-                                                              0x80181818)),
-                                                      contentPadding:
-                                                          EdgeInsets.all(5),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                            color: Color(
-                                                                0x33000000),
-                                                            width: 1),
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    20.0)),
-                                                      ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                            color: Color(
-                                                                0x33000000),
-                                                            width: 0.2),
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    20.0)),
-                                                      ),
-                                                    )),
+                                                        color: textcolor,
+                                                        fontFamily: "medium"),
+                                                  ),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -624,6 +655,49 @@ class _cartState extends State<cart> {
         ));
   }
 
+  void updateDocument(String documentId) async {
+    showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    await FirebaseFirestore.instance
+        .collection('medicine_cart')
+        .doc(uid)
+        .collection("cartitems")
+        .doc(documentId)
+        .update({
+      "quantity": selected_quantity,
+    });
+    fetch_cart_data();
+    fetch_discount_and_minimumvalue();
+    Navigator.of(context).pop();
+  }
+
+  void deleteDocument(String documentId) async {
+    showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    await FirebaseFirestore.instance
+        .collection('medicine_cart')
+        .doc(uid)
+        .collection("cartitems")
+        .doc(documentId)
+        .delete();
+
+    fetch_cart_data();
+    fetch_discount_and_minimumvalue();
+    Navigator.of(context).pop();
+  }
+
   fetch_cart_data() async {
     var _cart_data = await FirebaseFirestore.instance
         .collection('medicine_cart')
@@ -641,13 +715,14 @@ class _cartState extends State<cart> {
             url: item['imageurl'],
             company: item['company'],
             productname: item['productname'],
-            price: item['price']))
+            price: item['price'],
+            quantity: item['quantity']))
         .toList();
 
     setState(() {
       cartdata = cart_item;
     });
-
+    calculateamount();
     return cartdata;
   }
 
@@ -665,17 +740,25 @@ class _cartState extends State<cart> {
     setState(() {
       deliveryandminval_list = deliveryandminval;
     });
-    calculateamount();
+    deliverycharges_updation();
     return deliveryandminval_list;
   }
 
   calculateamount() async {
+    totalmrp = 0;
+    discountedprice = 0;
+
     for (int i = 0; i < cartdata.length; i++) {
-      totalmrp = totalmrp + double.parse(cartdata[i].cutprice);
-      discountedprice = discountedprice + double.parse(cartdata[i].price);
+      totalmrp = totalmrp +
+          (double.parse(cartdata[i].cutprice) * cartdata[i].quantity);
+      discountedprice = discountedprice +
+          (double.parse(cartdata[i].price) * cartdata[i].quantity);
     }
 
     print("-------------------------${deliveryandminval_list[1].name}");
+  }
+
+  deliverycharges_updation() {
     if (discountedprice >= double.parse(deliveryandminval_list[1].name)) {
       deliverycharges = 0;
     } else {

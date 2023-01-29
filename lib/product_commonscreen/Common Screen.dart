@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -51,9 +52,11 @@ class _product_common_screenState extends State<product_common_screen> {
   Color bluecolor_bg = Color(0xffDAE1FF);
   Color textcolor = Color(0xD9181818);
   Color textcolor_light = Color(0x99181818);
+  Color textcolor_light2 = Color(0x4D181818);
   Color background = Color(0xffD9D9D9);
   Color white = Color(0xffffffff);
   Color search_bg = Color(0x1A000000);
+  int quantity = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,85 +157,173 @@ class _product_common_screenState extends State<product_common_screen> {
                         color: white,
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(
-                                "${widget.name}",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 20,
-                                  color: textcolor,
-                                ),
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 450,
-                              ), //name
-                              Text(
-                                "${widget.quantity},",
-                                style: TextStyle(
-                                  fontFamily: 'bold',
-                                  fontSize: 11,
-                                  color: textcolor_light,
-                                ),
-                              ), //quantity
-                              Text("${widget.company}",
-                                  style: TextStyle(
-                                    fontFamily: 'semibold',
-                                    fontSize: 14,
-                                    color: bluecolor,
-                                  )),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 120,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  Text(
+                                    "${widget.name}",
+                                    style: TextStyle(
+                                      fontFamily: 'semibold',
+                                      fontSize: 20,
+                                      color: textcolor,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        450,
+                                  ), //name
+                                  Text(
+                                    "${widget.quantity},",
+                                    style: TextStyle(
+                                      fontFamily: 'bold',
+                                      fontSize: 11,
+                                      color: textcolor_light,
+                                    ),
+                                  ), //quantity
+                                  Text("${widget.company}",
+                                      style: TextStyle(
+                                        fontFamily: 'semibold',
+                                        fontSize: 14,
+                                        color: bluecolor,
+                                      )),
+                                  SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height / 50,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Row(
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "MRP ₹${widget.price}",
-                                            style: TextStyle(
-                                              fontFamily: 'medium',
-                                              fontSize: 16,
-                                              color: textcolor,
-                                            ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "MRP ₹${widget.price}",
+                                                style: TextStyle(
+                                                  fontFamily: 'medium',
+                                                  fontSize: 16,
+                                                  color: textcolor,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    30,
+                                              ),
+                                              Text(
+                                                "₹${widget.cuttopdeals}",
+                                                style: TextStyle(
+                                                  decoration: TextDecoration
+                                                      .lineThrough,
+                                                  fontFamily: 'medium',
+                                                  fontSize: 16,
+                                                  color: textcolor_light,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                           SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                30,
+                                            height: 1,
                                           ),
                                           Text(
-                                            "₹${widget.cuttopdeals}",
+                                            "Inclusive all taxes",
                                             style: TextStyle(
-                                              decoration:
-                                                  TextDecoration.lineThrough,
                                               fontFamily: 'medium',
-                                              fontSize: 16,
+                                              fontSize: 12,
                                               color: textcolor_light,
                                             ),
                                           ),
                                         ],
                                       ),
-                                      Text(
-                                        "Inclusive all taxes",
-                                        style: TextStyle(
-                                          fontFamily: 'medium',
-                                          fontSize: 12,
-                                          color: textcolor_light,
-                                        ),
-                                      ),
                                     ],
+                                  ), //price
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    width: 130,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                        color: search_bg,
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: textcolor_light2,
+                                            width: 1.1)),
+                                    child: MaterialButton(
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                'Quantity',
+                                                style: TextStyle(
+                                                    color: textcolor,
+                                                    fontFamily: "medium"),
+                                              ),
+                                              content: Container(
+                                                height: 500,
+                                                width: 1,
+                                                child: ListView.builder(
+                                                  physics:
+                                                      const BouncingScrollPhysics(),
+                                                  shrinkWrap: true,
+                                                  itemCount: 30,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int x) {
+                                                    return ListTile(
+                                                      title: GestureDetector(
+                                                        onTap: () {
+                                                          quantity = x + 1;
+
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                          setState(() {
+                                                            quantity;
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                          width: MediaQuery.of(
+                                                                  context)
+                                                              .size
+                                                              .width,
+                                                          height: 50,
+                                                          child:
+                                                              Text('${x + 1}'),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: Text(
+                                        'Qty - $quantity',
+                                        style: TextStyle(
+                                            color: textcolor,
+                                            fontFamily: "medium"),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        300,
                                   ),
                                   Container(
                                     //  height: 50.0,
@@ -272,7 +363,7 @@ class _product_common_screenState extends State<product_common_screen> {
                                     ),
                                   ),
                                 ],
-                              ), //price
+                              ),
                             ],
                           ),
                         ),
@@ -470,7 +561,8 @@ class _product_common_screenState extends State<product_common_screen> {
       'company': company,
       'price': price,
       'productname': productname,
-      'imageurl': widget.image_url
+      'imageurl': widget.image_url,
+      'quantity': quantity
     });
     Navigator.of(context).pop();
     var vpasswordsnackbar = SnackBar(
