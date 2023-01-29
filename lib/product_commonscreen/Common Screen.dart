@@ -9,6 +9,8 @@ import 'package:medicineapp2/const.dart';
 import 'package:medicineapp2/main.dart';
 import 'package:readmore/readmore.dart';
 
+import '../Models/cart_model.dart';
+import '../Models/popularcategories_model.dart';
 import '../buy and cart/cart.dart';
 
 class product_common_screen extends StatefulWidget {
@@ -57,6 +59,15 @@ class _product_common_screenState extends State<product_common_screen> {
   Color white = Color(0xffffffff);
   Color search_bg = Color(0x1A000000);
   int quantity = 1;
+  List<cartmodel> deliveryandminval_list_for_check = [];
+  bool enable = true;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetch_cart_data_for_check();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -329,8 +340,27 @@ class _product_common_screenState extends State<product_common_screen> {
                                     //  height: 50.0,
                                     child: MaterialButton(
                                       onPressed: () {
-                                        addtocart(widget.name, widget.price,
-                                            widget.company);
+                                        fetch_cart_data_for_check();
+                                        if (enable == true) {
+                                          addtocart(widget.name, widget.price,
+                                              widget.company);
+                                        } else {
+                                          var checksnackbar = SnackBar(
+                                            content: const Text(
+                                                "Item Already Added!"),
+                                            backgroundColor: textcolor,
+                                            shape: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(1)),
+                                            duration:
+                                                Duration(milliseconds: 2000),
+                                            behavior: SnackBarBehavior.floating,
+                                          );
+                                          setState(() {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(checksnackbar);
+                                          });
+                                        }
                                       },
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -574,6 +604,52 @@ class _product_common_screenState extends State<product_common_screen> {
     );
     setState(() {
       ScaffoldMessenger.of(context).showSnackBar(vpasswordsnackbar);
+    });
+  }
+
+  fetch_cart_data_for_check() async {
+    var _cart_data = await FirebaseFirestore.instance
+        .collection('medicine_cart')
+        .doc(uid)
+        .collection("cartitems")
+        .get();
+    map_cart_dataforcheck(_cart_data);
+  }
+
+  map_cart_dataforcheck(QuerySnapshot<Map<String, dynamic>> data) {
+    var cart_item = data.docs
+        .map((item) => cartmodel(
+            id: item.id,
+            cutprice: item['cutprice'],
+            url: item['imageurl'],
+            company: item['company'],
+            productname: item['productname'],
+            price: item['price'],
+            quantity: item['quantity']))
+        .toList();
+
+    setState(() {
+      deliveryandminval_list_for_check = cart_item;
+    });
+    checkButton();
+    return deliveryandminval_list_for_check;
+  }
+
+  void checkButton() {
+    for (int i = 0; i < deliveryandminval_list_for_check.length; i++) {
+      print(
+          '${widget.company}---------------${deliveryandminval_list_for_check[i].company}');
+      if (widget.name == deliveryandminval_list_for_check[i].productname &&
+          widget.company == deliveryandminval_list_for_check[i].company) {
+        enable = false;
+        break;
+      } else {
+        enable = true;
+      }
+    }
+
+    setState(() {
+      enable;
     });
   }
 }
