@@ -6,6 +6,8 @@ import 'onboarding/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+var uid;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -27,6 +29,9 @@ class _MyAppState extends State<MyApp> {
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
+                uid = snapshot.data?.uid;
+                print(
+                    "--------------------->>>>>>>>>>>>>>>>>${snapshot.data?.uid}");
                 return dashboard();
               } else {
                 return onboarding();

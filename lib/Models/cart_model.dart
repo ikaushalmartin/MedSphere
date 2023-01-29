@@ -7,12 +7,13 @@ String cartmodelToJson(cartmodel data) => json.encode(data.toJson());
 class cartmodel {
   cartmodel({
     required this.id,
+    required this.cutprice,
     required this.url,
     required this.company,
     required this.productname,
     required this.price,
   });
-
+  String cutprice;
   String id;
   String url;
   String company;
@@ -21,6 +22,7 @@ class cartmodel {
 
   factory cartmodel.fromJson(Map<String, dynamic> json) => cartmodel(
         id: json["id"],
+        cutprice: json["cutprice"],
         url: json["url"],
         company: json["company"],
         productname: json["productname"],
@@ -29,6 +31,7 @@ class cartmodel {
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "cutprice": cutprice,
         "url": url,
         "company": company,
         "productname": productname,

@@ -5,11 +5,13 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/const.dart';
+import 'package:medicineapp2/main.dart';
 import 'package:readmore/readmore.dart';
 
 import '../buy and cart/cart.dart';
 
 class product_common_screen extends StatefulWidget {
+  // String id;
   String heading;
   String image_url;
   String cuttopdeals;
@@ -25,6 +27,7 @@ class product_common_screen extends StatefulWidget {
 
   product_common_screen({
     Key? key,
+    //  required this.id,
     required this.heading,
     required this.image_url,
     required this.name,
@@ -458,7 +461,12 @@ class _product_common_screenState extends State<product_common_screen> {
                 size: 80,
               ),
             ));
-    await FirebaseFirestore.instance.collection('medicine_cart').add({
+    await FirebaseFirestore.instance
+        .collection('medicine_cart')
+        .doc(uid)
+        .collection("cartitems")
+        .add({
+      'cutprice': widget.cuttopdeals,
       'company': company,
       'price': price,
       'productname': productname,
