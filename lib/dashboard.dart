@@ -14,6 +14,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:medicineapp2/rental.dart';
 import 'package:unicons/unicons.dart';
 import 'Medicine/medicine_forbutton.dart';
+import 'buy and cart/cart.dart';
 import 'const.dart';
 import 'doctor.dart';
 import 'labtest.dart';
@@ -115,7 +116,10 @@ class _dashboardState extends State<dashboard> {
                               highlightColor: Colors.transparent,
                             ),
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => cart(),
+                                    transition: Transition.rightToLeft);
+                              },
                               icon: Icon(Icons.shopping_cart_outlined),
                               color: textcolor,
                             ),

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import 'buy and cart/cart.dart';
 import 'const.dart';
 import 'Models/doctor_model.dart';
 
@@ -80,7 +81,10 @@ class _rentalState extends State<rental> {
                                 highlightColor: Colors.transparent,
                               ),
                               child: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(() => cart(),
+                                      transition: Transition.rightToLeft);
+                                },
                                 icon: Icon(Icons.shopping_cart_outlined),
                                 color: textcolor,
                               ),

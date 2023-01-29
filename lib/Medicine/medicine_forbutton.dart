@@ -9,6 +9,7 @@ import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../Models/topdeals_model.dart';
+import '../buy and cart/cart.dart';
 import '../const.dart';
 
 import '../orderbyprescription.dart';
@@ -94,7 +95,10 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                 highlightColor: Colors.transparent,
                               ),
                               child: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(() => cart(),
+                                      transition: Transition.rightToLeft);
+                                },
                                 icon: Icon(Icons.shopping_cart_outlined),
                                 color: textcolor,
                               ),

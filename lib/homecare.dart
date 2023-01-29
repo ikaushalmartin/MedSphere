@@ -2,9 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'Models/doctor_model.dart';
+import 'buy and cart/cart.dart';
 import 'const.dart';
 
 class homecare extends StatefulWidget {
@@ -80,7 +84,10 @@ class _homecareState extends State<homecare> {
                               highlightColor: Colors.transparent,
                             ),
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => cart(),
+                                    transition: Transition.rightToLeft);
+                              },
                               icon: Icon(Icons.shopping_cart_outlined),
                               color: textcolor,
                             ),

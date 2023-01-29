@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:readmore/readmore.dart';
 
+import '../buy and cart/cart.dart';
+
 class labtest_commonscreen extends StatefulWidget {
   labtest_commonscreen(
       {Key? key,
@@ -76,7 +78,10 @@ class _labtest_commonscreenState extends State<labtest_commonscreen> {
                           highlightColor: Colors.transparent,
                         ),
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => cart(),
+                                transition: Transition.rightToLeft);
+                          },
                           icon: Icon(Icons.shopping_cart_outlined),
                           color: textcolor,
                         ),
