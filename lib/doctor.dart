@@ -86,20 +86,7 @@ class _doctorState extends State<doctor> {
                                 ),
                               ),
                             ),
-                            Theme(
-                              data: ThemeData(
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                              ),
-                              child: IconButton(
-                                onPressed: () {
-                                  Get.to(() => cart(),
-                                      transition: Transition.rightToLeft);
-                                },
-                                icon: Icon(Icons.shopping_cart_outlined),
-                                color: textcolor,
-                              ),
-                            )
+                            Text("")
                           ],
                         ),
                       ),
