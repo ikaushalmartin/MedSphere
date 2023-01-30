@@ -280,11 +280,13 @@ class _rentalState extends State<rental> {
   map_rental_details(QuerySnapshot<Map<String, dynamic>> data) {
     var _doctor_deatils_list = data.docs
         .map((item) => doc(
-              id: item.id,
-              hospital: item['Company'],
-              name: item['Name'],
-              specialist: item['Use'],
-            ))
+            id: item.id,
+            hospital: item['Company'],
+            name: item['Name'],
+            specialist: item['Use'],
+            bio: item['Bio'],
+            experience: item['Experience'],
+            workinghours: item['Workinghours']))
         .toList();
 
     setState(() {

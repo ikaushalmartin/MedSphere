@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:medicineapp2/product_commonscreen/doctorCommonscreen.dart';
 
 import 'buy and cart/cart.dart';
 import 'const.dart';
@@ -72,6 +73,17 @@ class _doctorState extends State<doctor> {
                               child: Icon(
                                 Icons.arrow_back_ios_new_outlined,
                                 color: textcolor,
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                "Doctors",
+                                style: TextStyle(
+                                  fontFamily: 'semibold',
+                                  fontSize: 24,
+                                  color: textcolor,
+                                ),
                               ),
                             ),
                             Theme(
@@ -231,89 +243,120 @@ class _doctorState extends State<doctor> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: doctors_image_list.length,
                                   itemBuilder: (context, index) {
-                                    return Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      color: white,
-                                      child: Column(
-                                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Divider(
-                                            color: background,
-                                            thickness: 2,
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                8,
-                                            decoration: BoxDecoration(
-                                              color: white,
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Get.to(
+                                            () => doctorcommonscreen(
+                                                  name:
+                                                      doctor_deatils_list[index]
+                                                          .name,
+                                                  bio:
+                                                      doctor_deatils_list[index]
+                                                          .bio,
+                                                  workinghours:
+                                                      doctor_deatils_list[index]
+                                                          .workinghours,
+                                                  experience:
+                                                      doctor_deatils_list[index]
+                                                          .experience,
+                                                  specialist:
+                                                      doctor_deatils_list[index]
+                                                          .specialist,
+                                                  hospital:
+                                                      doctor_deatils_list[index]
+                                                          .hospital,
+                                                  imageurl:
+                                                      doctors_image_list[index],
+                                                ),
+                                            transition: Transition.rightToLeft);
+                                      },
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        color: white,
+                                        child: Column(
+                                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Divider(
+                                              color: background,
+                                              thickness: 2,
                                             ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  CircleAvatar(
-                                                    radius: 40,
-                                                    foregroundImage:
-                                                        NetworkImage(
-                                                      "${doctors_image_list[index]}",
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  8,
+                                              decoration: BoxDecoration(
+                                                color: white,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    CircleAvatar(
+                                                      radius: 40,
+                                                      foregroundImage:
+                                                          NetworkImage(
+                                                        "${doctors_image_list[index]}",
+                                                      ),
                                                     ),
-                                                  ),
-                                                  Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Text(
-                                                        "${doctor_deatils_list[index].name}",
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                          fontFamily:
-                                                              'semibold',
-                                                          fontSize: 19,
-                                                          color: textcolor,
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
+                                                      children: [
+                                                        Text(
+                                                          "${doctor_deatils_list[index].name}",
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'semibold',
+                                                            fontSize: 19,
+                                                            color: textcolor,
+                                                          ),
                                                         ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height /
-                                                            350,
-                                                      ),
-                                                      Text(
-                                                        "${doctor_deatils_list[index].hospital}",
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                          fontFamily: 'medium',
-                                                          fontSize: 16,
-                                                          color:
-                                                              textcolor_light,
+                                                        SizedBox(
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height /
+                                                              350,
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                                        Text(
+                                                          "${doctor_deatils_list[index].specialist}",
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'medium',
+                                                            fontSize: 16,
+                                                            color:
+                                                                textcolor_light,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     );
                                   }),
@@ -347,11 +390,13 @@ class _doctorState extends State<doctor> {
     print("in");
     var _doctor_deatils_list = data.docs
         .map((item) => doc(
-              id: item.id,
-              hospital: item['Hospital'],
-              name: item['Name'],
-              specialist: item['Specialist'],
-            ))
+            id: item.id,
+            hospital: item['Hospital'],
+            name: item['Name'],
+            specialist: item['Specialist'],
+            bio: item['Bio'],
+            workinghours: item['Workinghours'],
+            experience: item['Experience']))
         .toList();
 
     setState(() {
