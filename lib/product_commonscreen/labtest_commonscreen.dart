@@ -1,14 +1,23 @@
+import 'dart:core';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:readmore/readmore.dart';
 
+import '../Models/lab_cart_model.dart';
+import '../Models/popularcategories_model.dart';
 import '../buy and cart/cart.dart';
+import '../buy and cart/lab_cart.dart';
+import '../main.dart';
 
 class labtest_commonscreen extends StatefulWidget {
   labtest_commonscreen(
       {Key? key,
+      required this.heading,
       required this.name,
       required this.cutprice,
       required this.info,
@@ -20,6 +29,7 @@ class labtest_commonscreen extends StatefulWidget {
       required this.description})
       : super(key: key);
 
+  String heading;
   String cutprice;
   String info;
   String price;
@@ -39,8 +49,18 @@ class _labtest_commonscreenState extends State<labtest_commonscreen> {
   Color textcolor_light = Color(0x99181818);
   Color bluecolor = Color(0xff5093FE);
   Color white = Color(0xffffffff);
-
+  bool enable = true;
   Color background = Color(0xffD9D9D9);
+  List<lab_cartmodel> deliveryandminval_list_for_checkforlab = [];
+
+  int quantity = 1;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetch_cart_data_for_checklab();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +99,7 @@ class _labtest_commonscreenState extends State<labtest_commonscreen> {
                         ),
                         child: IconButton(
                           onPressed: () {
-                            Get.to(() => cart(),
+                            Get.to(() => lab_cart(),
                                 transition: Transition.rightToLeft);
                           },
                           icon: Icon(Icons.shopping_cart_outlined),
@@ -193,7 +213,42 @@ class _labtest_commonscreenState extends State<labtest_commonscreen> {
                                 Container(
                                   //  height: 50.0,
                                   child: MaterialButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      print("enablie------->$enable");
+                                      fetch_cart_data_for_checklab();
+                                      if (deliveryandminval_list_for_checkforlab
+                                          .isEmpty) {
+                                        enable = true;
+                                      }
+                                      setState(() {
+                                        enable;
+                                      });
+
+                                      if (enable == true) {
+                                        addtocart(
+                                          widget.heading,
+                                          widget.name,
+                                          widget.cutprice,
+                                          widget.price,
+                                        );
+                                      } else {
+                                        var checksnackbar = SnackBar(
+                                          content:
+                                              const Text("Item Already Added!"),
+                                          backgroundColor: textcolor,
+                                          shape: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(1)),
+                                          duration:
+                                              Duration(milliseconds: 2000),
+                                          behavior: SnackBarBehavior.floating,
+                                        );
+                                        setState(() {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(checksnackbar);
+                                        });
+                                      }
+                                    },
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(80.0)),
@@ -453,5 +508,84 @@ class _labtest_commonscreenState extends State<labtest_commonscreen> {
             ],
           ),
         ));
+  }
+
+  Future addtocart(
+      String heading, String productname, String price, String cutprice) async {
+    showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    await FirebaseFirestore.instance
+        .collection('lab_cart')
+        .doc(uid)
+        .collection("lab_cartitems")
+        .add({
+      'package': heading,
+      'name': productname,
+      'price': price,
+      'cutprice': cutprice,
+      'quantity': quantity
+    });
+    Navigator.of(context).pop();
+    var vpasswordsnackbar = SnackBar(
+      content: const Text("Item Added To Cart!"),
+      backgroundColor: textcolor,
+      shape: OutlineInputBorder(borderRadius: BorderRadius.circular(1)),
+      duration: Duration(milliseconds: 2000),
+      behavior: SnackBarBehavior.floating,
+    );
+    setState(() {
+      ScaffoldMessenger.of(context).showSnackBar(vpasswordsnackbar);
+    });
+  }
+
+  fetch_cart_data_for_checklab() async {
+    var _cart_data = await FirebaseFirestore.instance
+        .collection('lab_cart')
+        .doc(uid)
+        .collection("lab_cartitems")
+        .get();
+    map_cart_dataforchecklab(_cart_data);
+  }
+
+  map_cart_dataforchecklab(QuerySnapshot<Map<String, dynamic>> data) {
+    var cart_item = data.docs
+        .map((item) => lab_cartmodel(
+            id: item.id,
+            cutprice: item['cutprice'],
+            packages: item['package'],
+            name: item['name'],
+            price: item['price'],
+            quantity: item['quantity']))
+        .toList();
+    setState(() {
+      deliveryandminval_list_for_checkforlab = cart_item;
+    });
+    checkButtonlab();
+    return deliveryandminval_list_for_checkforlab;
+  }
+
+  void checkButtonlab() {
+    for (int i = 0; i < deliveryandminval_list_for_checkforlab.length; i++) {
+      print(
+          '${widget.name}---------------${deliveryandminval_list_for_checkforlab[i].name}');
+      if (widget.heading ==
+              deliveryandminval_list_for_checkforlab[i].packages &&
+          widget.name == deliveryandminval_list_for_checkforlab[i].name) {
+        enable = false;
+        break;
+      } else {
+        enable = true;
+      }
+    }
+
+    setState(() {
+      enable;
+    });
   }
 }

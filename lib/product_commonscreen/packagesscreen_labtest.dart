@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../Models/labtest_package_detail.dart';
 import '../Models/price_model.dart';
 import '../buy and cart/cart.dart';
+import '../buy and cart/lab_cart.dart';
 import 'labtest_commonscreen.dart';
 
 class packages_commonnscreen extends StatefulWidget {
@@ -89,7 +90,7 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                             ),
                             child: IconButton(
                               onPressed: () {
-                                Get.to(() => cart(),
+                                Get.to(() => lab_cart(),
                                     transition: Transition.rightToLeft);
                               },
                               icon: Icon(Icons.shopping_cart_outlined),
@@ -147,6 +148,7 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                               onTap: () {
                                 Get.to(
                                     () => labtest_commonscreen(
+                                          heading: widget.heading,
                                           name: packages[index].name,
                                           cutprice: packages[index].cutprice,
                                           info: packages[index].info,

@@ -14,14 +14,16 @@ import '../Models/popularcategories_model.dart';
 import '../const.dart';
 import '../main.dart';
 
-class cart extends StatefulWidget {
-  const cart({Key? key}) : super(key: key);
+List<lab_cartmodel> lab_cartdata = [];
+
+class lab_cart extends StatefulWidget {
+  const lab_cart({Key? key}) : super(key: key);
 
   @override
-  State<cart> createState() => _cartState();
+  State<lab_cart> createState() => _lab_cartState();
 }
 
-class _cartState extends State<cart> {
+class _lab_cartState extends State<lab_cart> {
   Color bluecolor = Color(0xff5093FE);
   Color bluecolor_bg = Color(0xffDAE1FF);
   Color textcolor = Color(0xD9181818);
@@ -37,21 +39,20 @@ class _cartState extends State<cart> {
   Color lab_colour_button_2 = Color(0x80181818);
   Color doc_colour_button_1 = Color(0xffBDC4C9);
   Color doc_colour_button_2 = Color(0x80181818);
-  List<cartmodel> cartdata = [];
-  List<Item> deliveryandminval_list = [];
+
+  List<Item> _deliveryandminval_list = [];
   int selected_tab = 1;
   int selected_quantity = 1;
   double totalmrp = 0;
   double discountedprice = 0;
   double deliverycharges = 0;
   double totalamount = 0;
-  Timer? timer2;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    fetch_cart_data();
-    fetch_discount_and_minimumvalue();
+    fetch_lab_cart_data();
+    fetch_discount_and_minimumvalueforlab();
   }
 
   @override
@@ -90,7 +91,7 @@ class _cartState extends State<cart> {
                           Align(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              "Cart",
+                              "Lab Cart",
                               style: TextStyle(
                                 fontFamily: 'semibold',
                                 fontSize: 24,
@@ -138,7 +139,7 @@ class _cartState extends State<cart> {
                               shrinkWrap: true,
                               physics: BouncingScrollPhysics(),
                               scrollDirection: Axis.vertical,
-                              itemCount: cartdata.length,
+                              itemCount: lab_cartdata.length,
                               itemBuilder: (context, index) {
                                 return Padding(
                                   padding: EdgeInsets.only(
@@ -162,15 +163,6 @@ class _cartState extends State<cart> {
                                         children: [
                                           Row(
                                             children: [
-                                              Image.network(
-                                                "${cartdata[index].url}",
-                                                scale: 8,
-                                              ),
-                                              SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      20),
                                               Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
@@ -178,7 +170,17 @@ class _cartState extends State<cart> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    "${cartdata[index].productname}",
+                                                    "${lab_cartdata[index].packages}",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        color: textcolor,
+                                                        fontFamily: "semibold"),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 12,
+                                                  ),
+                                                  Text(
+                                                    "${lab_cartdata[index].name}",
                                                     style: TextStyle(
                                                         fontSize: 16,
                                                         color: textcolor,
@@ -193,7 +195,7 @@ class _cartState extends State<cart> {
                                                             .spaceBetween,
                                                     children: [
                                                       Text(
-                                                        "MRP ₹${cartdata[index].price}    ",
+                                                        "MRP ₹${lab_cartdata[index].price}    ",
                                                         style: TextStyle(
                                                             fontSize: 14,
                                                             color: textcolor,
@@ -201,7 +203,7 @@ class _cartState extends State<cart> {
                                                                 "medium"),
                                                       ),
                                                       Text(
-                                                        "₹${cartdata[index].cutprice}",
+                                                        "₹${lab_cartdata[index].cutprice}",
                                                         style: TextStyle(
                                                             fontSize: 14,
                                                             decoration:
@@ -225,8 +227,8 @@ class _cartState extends State<cart> {
                                               GestureDetector(
                                                 onTap: () {
                                                   deleteDocument(
-                                                      cartdata[index].id);
-                                                  deliverycharges_updation();
+                                                      lab_cartdata[index].id);
+                                                  deliverycharges_updationforlab();
                                                 },
                                                 child: Icon(
                                                   Icons.delete_outline_outlined,
@@ -240,7 +242,7 @@ class _cartState extends State<cart> {
                                                     100,
                                               ),
                                               Container(
-                                                width: 100,
+                                                width: 130,
                                                 height: 25,
                                                 decoration: BoxDecoration(
                                                     color: search_bg,
@@ -258,7 +260,7 @@ class _cartState extends State<cart> {
                                                           context) {
                                                         return AlertDialog(
                                                           title: Text(
-                                                            'Quantity',
+                                                            'Patients',
                                                             style: TextStyle(
                                                                 color:
                                                                     textcolor,
@@ -266,14 +268,14 @@ class _cartState extends State<cart> {
                                                                     "medium"),
                                                           ),
                                                           content: Container(
-                                                            height: 500,
+                                                            height: 350,
                                                             width: 1,
                                                             child: ListView
                                                                 .builder(
                                                               physics:
                                                                   const BouncingScrollPhysics(),
                                                               shrinkWrap: true,
-                                                              itemCount: 30,
+                                                              itemCount: 6,
                                                               itemBuilder:
                                                                   (BuildContext
                                                                           context,
@@ -285,7 +287,7 @@ class _cartState extends State<cart> {
                                                                       selected_quantity =
                                                                           x + 1;
                                                                       updateDocument(
-                                                                          cartdata[index]
+                                                                          lab_cartdata[index]
                                                                               .id);
 
                                                                       Navigator.of(
@@ -313,7 +315,7 @@ class _cartState extends State<cart> {
                                                     );
                                                   },
                                                   child: Text(
-                                                    'Qty - ${cartdata[index].quantity}',
+                                                    'Patients - ${lab_cartdata[index].quantity}',
                                                     style: TextStyle(
                                                         color: textcolor,
                                                         fontFamily: "medium"),
@@ -471,7 +473,7 @@ class _cartState extends State<cart> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Delivery Charges :",
+                                    "Addition Charges :",
                                     style: TextStyle(
                                       fontFamily: 'medium',
                                       fontSize: 14,
@@ -600,17 +602,26 @@ class _cartState extends State<cart> {
               ),
             ));
     await FirebaseFirestore.instance
-        .collection('medicine_cart')
+        .collection('lab_cart')
         .doc(uid)
-        .collection("cartitems")
+        .collection("lab_cartitems")
         .doc(documentId)
         .update({
       "quantity": selected_quantity,
     });
 
-    fetch_cart_data();
-    fetch_discount_and_minimumvalue();
+    fetch_lab_cart_data();
+    fetch_discount_and_minimumvalueforlab();
     Navigator.of(context).pop();
+  }
+
+  void fetch_lab_cart_data() async {
+    var _cart_data = await FirebaseFirestore.instance
+        .collection('lab_cart')
+        .doc(uid)
+        .collection("lab_cartitems")
+        .get();
+    map_lab_cart_data(_cart_data);
   }
 
   void deleteDocument(String documentId) async {
@@ -623,82 +634,72 @@ class _cartState extends State<cart> {
               ),
             ));
     await FirebaseFirestore.instance
-        .collection('medicine_cart')
+        .collection('lab_cart')
         .doc(uid)
-        .collection("cartitems")
+        .collection("lab_cartitems")
         .doc(documentId)
         .delete();
 
-    fetch_cart_data();
-    fetch_discount_and_minimumvalue();
+    fetch_lab_cart_data();
+    fetch_discount_and_minimumvalueforlab();
     Navigator.of(context).pop();
   }
 
-  fetch_cart_data() async {
-    var _cart_data = await FirebaseFirestore.instance
-        .collection('medicine_cart')
-        .doc(uid)
-        .collection("cartitems")
-        .get();
-    map_cart_data(_cart_data);
-  }
-
-  map_cart_data(QuerySnapshot<Map<String, dynamic>> data) {
+  map_lab_cart_data(QuerySnapshot<Map<String, dynamic>> data) {
     var cart_item = data.docs
-        .map((item) => cartmodel(
+        .map((item) => lab_cartmodel(
             id: item.id,
             cutprice: item['cutprice'],
-            url: item['imageurl'],
-            company: item['company'],
-            productname: item['productname'],
+            packages: item['package'],
+            name: item['name'],
             price: item['price'],
             quantity: item['quantity']))
         .toList();
 
     setState(() {
-      cartdata = cart_item;
+      lab_cartdata = cart_item;
     });
-    calculateamount();
-    return cartdata;
+    calculateamountforlab();
+    return lab_cartdata;
   }
 
-  fetch_discount_and_minimumvalue() async {
+  fetch_discount_and_minimumvalueforlab() async {
     var _map_deli_min = await FirebaseFirestore.instance
         .collection('deliverycharges and minimum value')
         .get();
-    map_deliverychargesandminimumvalue(_map_deli_min);
+    map_deliverychargesandminimumvalueforlab(_map_deli_min);
   }
 
-  map_deliverychargesandminimumvalue(QuerySnapshot<Map<String, dynamic>> data) {
+  map_deliverychargesandminimumvalueforlab(
+      QuerySnapshot<Map<String, dynamic>> data) {
     var deliveryandminval = data.docs
         .map((item) => Item(id: item.id, name: item['amount']))
         .toList();
     setState(() {
-      deliveryandminval_list = deliveryandminval;
+      _deliveryandminval_list = deliveryandminval;
     });
-    deliverycharges_updation();
-    return deliveryandminval_list;
+    deliverycharges_updationforlab();
+    return _deliveryandminval_list;
   }
 
-  calculateamount() async {
+  calculateamountforlab() async {
     totalmrp = 0;
     discountedprice = 0;
 
-    for (int i = 0; i < cartdata.length; i++) {
+    for (int i = 0; i < lab_cartdata.length; i++) {
       totalmrp = totalmrp +
-          (double.parse(cartdata[i].cutprice) * cartdata[i].quantity);
+          (double.parse(lab_cartdata[i].cutprice) * lab_cartdata[i].quantity);
       discountedprice = discountedprice +
-          (double.parse(cartdata[i].price) * cartdata[i].quantity);
+          (double.parse(lab_cartdata[i].price) * lab_cartdata[i].quantity);
     }
-    deliverycharges_updation();
-    print("-------------------------${deliveryandminval_list[1].name}");
+    deliverycharges_updationforlab();
   }
 
-  deliverycharges_updation() {
-    if (discountedprice >= double.parse(deliveryandminval_list[3].name)) {
+  deliverycharges_updationforlab() {
+    if (discountedprice >= double.parse(_deliveryandminval_list[2].name)) {
       deliverycharges = 0;
     } else {
-      deliverycharges = double.parse(deliveryandminval_list[0].name);
+      deliverycharges = double.parse(_deliveryandminval_list[1].name);
     }
     setState(() {
       deliverycharges;

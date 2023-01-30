@@ -60,6 +60,7 @@ class _product_common_screenState extends State<product_common_screen> {
   Color search_bg = Color(0x1A000000);
   int quantity = 1;
   List<cartmodel> deliveryandminval_list_for_check = [];
+
   bool enable = true;
   @override
   void initState() {
@@ -341,6 +342,14 @@ class _product_common_screenState extends State<product_common_screen> {
                                     child: MaterialButton(
                                       onPressed: () {
                                         fetch_cart_data_for_check();
+                                        if (deliveryandminval_list_for_check
+                                            .isEmpty) {
+                                          enable = true;
+                                        }
+                                        setState(() {
+                                          enable;
+                                        });
+
                                         if (enable == true) {
                                           addtocart(widget.name, widget.price,
                                               widget.company);

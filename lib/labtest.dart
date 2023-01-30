@@ -12,6 +12,7 @@ import 'package:medicineapp2/product_commonscreen/packagesscreen_labtest.dart';
 
 import 'Medicine/medicine.dart';
 import 'buy and cart/cart.dart';
+import 'buy and cart/lab_cart.dart';
 import 'const.dart';
 import 'orderbyprescription.dart';
 
@@ -102,7 +103,7 @@ class _labtestState extends State<labtest> {
                             ),
                             child: IconButton(
                               onPressed: () {
-                                Get.to(() => cart(),
+                                Get.to(() => lab_cart(),
                                     transition: Transition.rightToLeft);
                               },
                               icon: Icon(Icons.shopping_cart_outlined),
