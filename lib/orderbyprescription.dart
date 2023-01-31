@@ -7,22 +7,18 @@ import 'package:medicineapp2/dashboard.dart';
 import 'Medicine/medicine.dart';
 
 class orderbyprescription extends StatelessWidget {
-  Color textcolor = Colors.white;
+  Color textcolor = Color(0xff1D1D1F);
 
-  Color buttontextcolor = Color(0xff273238);
+  Color buttontextcolor = Colors.white;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(15.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            "images/prescription.png",
-            scale: 8,
-          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,8 +27,8 @@ class orderbyprescription extends StatelessWidget {
                 "Upload Prescription",
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  fontFamily: 'semibold',
-                  fontSize: 16,
+                  fontFamily: 'bold',
+                  fontSize: 22,
                   color: textcolor,
                 ),
               ),
@@ -43,8 +39,8 @@ class orderbyprescription extends StatelessWidget {
                 "Order via prescription",
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  fontFamily: 'regular',
-                  fontSize: 14,
+                  fontFamily: 'semibold',
+                  fontSize: 16,
                   color: textcolor,
                 ),
               ),
@@ -62,7 +58,7 @@ class orderbyprescription extends StatelessWidget {
                 highlightElevation: 0,
                 height: MediaQuery.of(context).size.height / 20,
                 minWidth: MediaQuery.of(context).size.height / 9,
-                color: Colors.white,
+                color: Color(0xff007AFE),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 child: Text(

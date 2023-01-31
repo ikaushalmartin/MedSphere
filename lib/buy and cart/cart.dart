@@ -13,6 +13,7 @@ import '../Models/lab_cart_model.dart';
 import '../Models/popularcategories_model.dart';
 import '../const.dart';
 import '../main.dart';
+import '../product_commonscreen/add_delivery_address.dart';
 
 class cart extends StatefulWidget {
   const cart({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _cartState extends State<cart> {
   Color textcolor = Color(0xD9181818);
   Color textcolor_light = Color(0x99181818);
   Color textcolor_light2 = Color(0x4D181818);
-  Color background = Color(0xffD9D9D9);
+  Color background = Color(0xffF2F1F6);
   Color white = Color(0xffffffff);
   Color search_bg = Color(0x1A000000);
 
@@ -182,6 +183,13 @@ class _cartState extends State<cart> {
                                                     style: TextStyle(
                                                         fontSize: 16,
                                                         color: textcolor,
+                                                        fontFamily: "medium"),
+                                                  ),
+                                                  Text(
+                                                    "${cartdata[index].company}",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: textcolor_light,
                                                         fontFamily: "medium"),
                                                   ),
                                                   SizedBox(
@@ -554,6 +562,8 @@ class _cartState extends State<cart> {
                               doc_colour_button_1 = Color(0xffBDC4C9);
                               doc_colour_button_2 = Color(0x80181818);
                             });
+                            Get.to(() => adddeliveryaddress(),
+                                transition: Transition.rightToLeft);
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
