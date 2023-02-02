@@ -7,6 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../Models/topdeals_model.dart';
+import '../product_commonscreen/Common Screen.dart';
 
 class essential_items_items_screen extends StatefulWidget {
   String headding;
@@ -145,7 +146,51 @@ class _essential_items_items_screenState
                                   itemCount: essential_items_images.length,
                                   itemBuilder: (context, index) {
                                     return GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        Get.to(
+                                            () => product_common_screen(
+                                                  heading: "Product Detail",
+                                                  image_url:
+                                                      essential_items_images[
+                                                          index],
+                                                  name: essential_items_list[
+                                                          index]
+                                                      .name,
+                                                  precaution_and_warning:
+                                                      essential_items_list[
+                                                              index]
+                                                          .precaution_and_warning,
+                                                  sideeffect:
+                                                      essential_items_list[
+                                                              index]
+                                                          .sideeffect,
+                                                  doses: essential_items_list[
+                                                          index]
+                                                      .doses,
+                                                  uses: essential_items_list[
+                                                          index]
+                                                      .uses,
+                                                  medicaldiscription:
+                                                      essential_items_list[
+                                                              index]
+                                                          .medicaldiscription,
+                                                  company: essential_items_list[
+                                                          index]
+                                                      .company,
+                                                  quantity:
+                                                      essential_items_list[
+                                                              index]
+                                                          .quantity,
+                                                  cuttopdeals:
+                                                      essential_items_list[
+                                                              index]
+                                                          .cuttopdeals,
+                                                  price: essential_items_list[
+                                                          index]
+                                                      .price,
+                                                ),
+                                            transition: Transition.rightToLeft);
+                                      },
                                       child: Container(
                                         width:
                                             MediaQuery.of(context).size.width,
