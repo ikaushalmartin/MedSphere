@@ -1,12 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../Models/topdeals_model.dart';
 
 class essential_items_items_screen extends StatefulWidget {
-  const essential_items_items_screen({Key? key}) : super(key: key);
+  String headding;
+  essential_items_items_screen({Key? key, required this.headding})
+      : super(key: key);
 
   @override
   State<essential_items_items_screen> createState() =>
@@ -25,6 +30,15 @@ class _essential_items_items_screenState
 
   List essential_items_images = [];
   List<topdeals> essential_items_list = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetch_essential_items();
+    essesntial_categories_images();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +78,7 @@ class _essential_items_items_screenState
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                "Doctors",
+                                "${widget.headding}",
                                 style: TextStyle(
                                   fontFamily: 'semibold',
                                   fontSize: 24,
@@ -128,7 +142,7 @@ class _essential_items_items_screenState
                                   shrinkWrap: true,
                                   physics: BouncingScrollPhysics(),
                                   scrollDirection: Axis.vertical,
-                                  itemCount: essential_items_list.length,
+                                  itemCount: essential_items_images.length,
                                   itemBuilder: (context, index) {
                                     return GestureDetector(
                                       onTap: () {},
@@ -170,7 +184,7 @@ class _essential_items_items_screenState
                                                       radius: 40,
                                                       foregroundImage:
                                                           NetworkImage(
-                                                        "${essential_items_list[index]}",
+                                                        "${essential_items_images[index]}",
                                                       ),
                                                     ),
                                                     Column(
@@ -231,5 +245,64 @@ class _essential_items_items_screenState
             ],
           ),
         ));
+  }
+
+  fetch_essential_items() async {
+    var _essential_data = await FirebaseFirestore.instance
+        .collection('everyday_essentials')
+        .doc(widget.headding)
+        .collection("items")
+        .get();
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    map_cart_dataforchecklab(_essential_data);
+  }
+
+  map_cart_dataforchecklab(QuerySnapshot<Map<String, dynamic>> data) {
+    var cart_item = data.docs
+        .map((item) => topdeals(
+            id: item.id,
+            cuttopdeals: item['Cutprice'],
+            name: item['Name'],
+            price: item['Price'],
+            quantity: item['Quantity'],
+            company: item['Company'],
+            medicaldiscription: item['Medical_Discription'],
+            uses: item['Uses'],
+            doses: item['Doses'],
+            sideeffect: item['Side_Effect'],
+            precaution_and_warning: item['Precaution_and_warning']))
+        .toList();
+    setState(() {
+      essential_items_list = cart_item;
+    });
+
+    return essential_items_list;
+  }
+
+  Future essesntial_categories_images() async {
+    ListResult result = await FirebaseStorage.instance
+        .ref()
+        .child("/everyday_essential/${widget.headding}")
+        .list();
+    List<Reference> allFiles = result.items;
+
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      essential_items_images.add(fileUrl);
+    });
+
+    setState(() {
+      essential_items_images;
+    });
+    Navigator.of(context).pop();
+    return essential_items_images;
   }
 }

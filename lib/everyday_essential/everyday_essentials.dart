@@ -143,7 +143,12 @@ class _everyday_essentialsState extends State<everyday_essentials> {
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
-                                    Get.to(() => essential_items_items_screen(),
+                                    Get.to(
+                                        () => essential_items_items_screen(
+                                            headding:
+                                                everyday_essential_category_name[
+                                                        index]
+                                                    .name),
                                         transition: Transition.rightToLeft);
                                   },
                                   child: Column(
