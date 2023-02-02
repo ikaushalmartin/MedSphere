@@ -19,6 +19,7 @@ import 'buy and cart/cart.dart';
 import 'const.dart';
 import 'doctor.dart';
 import 'labtest.dart';
+import 'ngocollabs.dart';
 import 'orderbyprescription.dart';
 
 var emergenncy_number;
@@ -56,12 +57,12 @@ class _dashboardState extends State<dashboard> {
   void initState() {
     // TODO: implement initState
     // super.initState();
+
     starting_tiles();
     fetch_popular_categories();
     loadImages();
     shop_by_category_images();
     deals_of_the_day_image();
-    shop_by_concern_images();
   }
 
   void makecall() async {
@@ -570,19 +571,26 @@ class _dashboardState extends State<dashboard> {
                                   itemBuilder: (context, index) {
                                     return Padding(
                                       padding: const EdgeInsets.only(right: 10),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              1.2,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              image: DecorationImage(
-                                                  fit: BoxFit.cover,
-                                                  image: NetworkImage(
-                                                      "${deals_of_the_day_image_list[index]}")))),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Get.to(() => populardiscounts(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                        child: Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                1.2,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                image: DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image: NetworkImage(
+                                                        "${deals_of_the_day_image_list[index]}")))),
+                                      ),
                                     );
                                   })),
                         ],
@@ -637,38 +645,45 @@ class _dashboardState extends State<dashboard> {
                             ),
                           ),
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 2.2,
-                          height: MediaQuery.of(context).size.height / 8,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: white,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 40,
-                                spreadRadius: 3,
-                                color: Color(0xffD2D1D5),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Our NGO's\nCollabs",
-                                  style: TextStyle(
-                                    fontFamily: 'semibold',
-                                    fontSize: 18,
-                                    color: Color(0xffFF2D55),
-                                  ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => ngocollabs(),
+                                transition: Transition.rightToLeft);
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 2.2,
+                            height: MediaQuery.of(context).size.height / 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: white,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 40,
+                                  spreadRadius: 3,
+                                  color: Color(0xffD2D1D5),
                                 ),
-                                Image.asset(
-                                  "images/ngo.png",
-                                  scale: 10,
-                                )
                               ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Our NGO's\nCollabs",
+                                    style: TextStyle(
+                                      fontFamily: 'semibold',
+                                      fontSize: 18,
+                                      color: Color(0xffFF2D55),
+                                    ),
+                                  ),
+                                  Image.asset(
+                                    "images/ngo.png",
+                                    scale: 10,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -729,16 +744,9 @@ class _dashboardState extends State<dashboard> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
-                                          child: FittedBox(
-                                            child: Image.network(
-                                                "${shop_by_concern_list[index]}",
-                                                scale: 7),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
+                                        Image.network(
+                                            "${shop_by_concern_list[index]}",
+                                            scale: 7),
                                         SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
@@ -935,7 +943,7 @@ class _dashboardState extends State<dashboard> {
     setState(() {
       deals_of_the_day_image_list;
     });
-
+    shop_by_concern_images();
     return deals_of_the_day_image_list;
   }
 

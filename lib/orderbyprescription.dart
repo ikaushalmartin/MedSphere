@@ -156,10 +156,10 @@ class orderbyprescription_medicinepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color textcolor = Color(0xffdae1ff);
-    Color buttontextcolor = Color(0xff273238);
-    Color upload_prescription_button_bg = Color(0xffdae1ff);
-    Color upload_prescription_button_text = Color(0xff001849);
+    Color textcolor = Color(0xff1D1D1F);
+
+    Color upload_prescription_button_bg = Color(0xffE6EFFE);
+    Color upload_prescription_button_text = Color(0xff007AFF);
 
     return Padding(
       padding: const EdgeInsets.all(11.0),
@@ -177,7 +177,7 @@ class orderbyprescription_medicinepage extends StatelessWidget {
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontFamily: 'semibold',
-                      fontSize: 19,
+                      fontSize: 21,
                       color: textcolor,
                     ),
                   ),
@@ -235,8 +235,8 @@ class orderbyprescription_medicinepage extends StatelessWidget {
                           Text(
                             "Camera",
                             style: TextStyle(
-                              fontFamily: 'medium',
-                              fontSize: 16,
+                              fontFamily: 'semibold',
+                              fontSize: 18,
                               color: upload_prescription_button_text,
                             ),
                           )
@@ -274,8 +274,8 @@ class orderbyprescription_medicinepage extends StatelessWidget {
                           Text(
                             "Gallery",
                             style: TextStyle(
-                              fontFamily: 'medium',
-                              fontSize: 16,
+                              fontFamily: 'semibold',
+                              fontSize: 18,
                               color: upload_prescription_button_text,
                             ),
                           )

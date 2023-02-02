@@ -7,10 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/product_commonscreen/doctorCommonscreen.dart';
 
-import 'buy and cart/cart.dart';
-import 'const.dart';
 import 'Models/doctor_model.dart';
-import 'orderbyprescription.dart';
 
 class doctor extends StatefulWidget {
   @override
@@ -91,50 +88,7 @@ class _doctorState extends State<doctor> {
                         ),
                       ),
                     ), //toprow
-                    SizedBox(height: MediaQuery.of(context).size.height / 80),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 60),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width / 1.35,
-                            decoration: BoxDecoration(
-                              color: search_bg,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextField(
-                              onChanged: (value) {},
-                              keyboardType: TextInputType.emailAddress,
-                              style: TextStyle(color: textcolor),
-                              textAlign: TextAlign.left,
-                              decoration: kTextFieldDecoration.copyWith(
-                                  contentPadding: EdgeInsets.only(left: 20),
-                                  hintText: "Search"),
-                            ),
-                          ),
-                          Container(
-                              width: MediaQuery.of(context).size.width / 6,
-                              decoration: BoxDecoration(
-                                color: search_bg,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Theme(
-                                data: ThemeData(
-                                  splashColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                ),
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.search),
-                                  color: textcolor,
-                                ),
-                              ))
-                        ],
-                      ),
-                    ),
+
                     SizedBox(height: MediaQuery.of(context).size.height / 70),
                     //searchbar
                   ],
