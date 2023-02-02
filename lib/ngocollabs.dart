@@ -93,12 +93,7 @@ class _ngocollabsState extends State<ngocollabs> {
                     right: MediaQuery.of(context).size.height / 60),
                 child: SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                childAspectRatio: 2.65 / 3,
-                                //  mainAxisSpacing: 20,
-                                crossAxisCount: 1),
+                    child: ListView.builder(
                         shrinkWrap: true,
                         physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.vertical,
@@ -133,7 +128,9 @@ class _ngocollabsState extends State<ngocollabs> {
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(
-                                      //   top: MediaQuery.of(context).size.height / 80,
+                                      bottom:
+                                          MediaQuery.of(context).size.height /
+                                              80,
                                       left: MediaQuery.of(context).size.height /
                                           60,
                                       right:

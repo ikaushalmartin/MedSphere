@@ -18,6 +18,7 @@ import 'Medicine/medicine_forbutton.dart';
 import 'buy and cart/cart.dart';
 import 'const.dart';
 import 'doctor.dart';
+import 'everyday_essential/everyday_essentials.dart';
 import 'labtest.dart';
 import 'ngocollabs.dart';
 import 'orderbyprescription.dart';
@@ -610,38 +611,45 @@ class _dashboardState extends State<dashboard> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width / 2.2,
-                          height: MediaQuery.of(context).size.height / 8,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: white,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 40,
-                                spreadRadius: 3,
-                                color: Color(0xffD2D1D5),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Everyday\nEssentials",
-                                  style: TextStyle(
-                                    fontFamily: 'semibold',
-                                    fontSize: 18,
-                                    color: Color(0xff3635A3),
-                                  ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => everyday_essentials(),
+                                transition: Transition.rightToLeft);
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 2.2,
+                            height: MediaQuery.of(context).size.height / 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: white,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 40,
+                                  spreadRadius: 3,
+                                  color: Color(0xffD2D1D5),
                                 ),
-                                Image.asset(
-                                  "images/mh2.png",
-                                  scale: 10,
-                                )
                               ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Everyday\nEssentials",
+                                    style: TextStyle(
+                                      fontFamily: 'semibold',
+                                      fontSize: 18,
+                                      color: Color(0xff3635A3),
+                                    ),
+                                  ),
+                                  Image.asset(
+                                    "images/mh2.png",
+                                    scale: 10,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
