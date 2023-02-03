@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:medicineapp2/const.dart';
 import 'package:medicineapp2/product_commonscreen/Common%20Screen.dart';
 
 import 'Models/topdeals_model.dart';
@@ -25,6 +26,7 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
   Color background = Color(0xffD9D9D9);
   Color white = Color(0xffffffff);
   Color search_bg = Color(0x1A000000);
+  Color bluecolor = Color(0xff007AFF);
 
   List category_item_images = [];
   List<topdeals> category_item_list = [];
@@ -109,7 +111,6 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
                           height: MediaQuery.of(context).size.height / 150,
                         ),
                         Container(
-                          color: white,
                           child: Padding(
                               padding: EdgeInsets.only(
                                 top: MediaQuery.of(context).size.height / 60,
@@ -121,16 +122,15 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
                                 "All ${widget.heading3} Products",
                                 style: TextStyle(
                                   fontFamily: 'semibold',
-                                  fontSize: 20,
+                                  fontSize: 21,
                                   color: textcolor,
                                 ),
                               )),
                         ),
                         Container(
-                          color: white,
                           child: Padding(
                             padding: EdgeInsets.only(
-                              // top: MediaQuery.of(context).size.height / 80,
+                              top: MediaQuery.of(context).size.height / 60,
                               left: MediaQuery.of(context).size.height / 60,
                               right: MediaQuery.of(context).size.height / 60,
                               bottom: MediaQuery.of(context).size.height / 80,
@@ -141,7 +141,9 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
                               child: GridView.builder(
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
+                                    childAspectRatio: 2 / 3,
+                                    mainAxisSpacing: 20,
+                                    crossAxisCount: 2,
                                   ),
                                   shrinkWrap: true,
                                   physics: BouncingScrollPhysics(),
@@ -189,84 +191,104 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
                                                 ),
                                             transition: Transition.rightToLeft);
                                       },
-                                      child: Container(
-                                        color: white,
-                                        child: Column(
-                                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  2,
-                                              decoration: BoxDecoration(
-                                                color: white,
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    CircleAvatar(
-                                                      radius: 40,
-                                                      foregroundImage:
-                                                          NetworkImage(
-                                                        "${category_item_images[index]}",
-                                                      ),
-                                                    ),
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .end,
-                                                      children: [
-                                                        Text(
-                                                          "${category_item_list[index].name}",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'semibold',
-                                                            fontSize: 19,
-                                                            color: textcolor,
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height /
-                                                              350,
-                                                        ),
-                                                        Text(
-                                                          "${category_item_list[index].price}",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'medium',
-                                                            fontSize: 16,
-                                                            color:
-                                                                textcolor_light,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
+                                      child: Column(
+                                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  blurRadius: 40,
+                                                  spreadRadius: 3,
+                                                  color: Color(0xffD2D1D5),
                                                 ),
+                                              ],
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  CircleAvatar(
+                                                    radius: 40,
+                                                    foregroundImage:
+                                                        NetworkImage(
+                                                      "${category_item_images[index]}",
+                                                    ),
+                                                  ),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
+                                                    children: [
+                                                      Text(
+                                                        "${category_item_list[index].name}",
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                          fontFamily:
+                                                              'semibold',
+                                                          fontSize: 16,
+                                                          color: textcolor,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height /
+                                                            350,
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            "₹${category_item_list[index].price}",
+                                                            textAlign:
+                                                                TextAlign.left,
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  'medium',
+                                                              fontSize: 16,
+                                                              color: bluecolor,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            "₹${category_item_list[index].cuttopdeals}",
+                                                            textAlign:
+                                                                TextAlign.left,
+                                                            style: TextStyle(
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .lineThrough,
+                                                              fontFamily:
+                                                                  'medium',
+                                                              fontSize: 16,
+                                                              color:
+                                                                  textcolor_light,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     );
                                   }),
