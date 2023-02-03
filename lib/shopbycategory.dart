@@ -29,12 +29,14 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
   List category_item_images = [];
   List<topdeals> category_item_list = [];
 
+  get heading => widget.heading3;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    fetch_category_items();
     category_images();
+    fetch_category_items();
   }
 
   @override
@@ -136,7 +138,11 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
                             child: SizedBox(
                               // height: MediaQuery.of(context).size.height / 5.5,
                               width: MediaQuery.of(context).size.width,
-                              child: ListView.builder(
+                              child: GridView.builder(
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                  ),
                                   shrinkWrap: true,
                                   physics: BouncingScrollPhysics(),
                                   scrollDirection: Axis.vertical,
@@ -184,24 +190,15 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
                                             transition: Transition.rightToLeft);
                                       },
                                       child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
                                         color: white,
                                         child: Column(
                                           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Divider(
-                                              color: background,
-                                              thickness: 2,
-                                            ),
                                             Container(
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
                                               height: MediaQuery.of(context)
                                                       .size
                                                       .height /
-                                                  8,
+                                                  2,
                                               decoration: BoxDecoration(
                                                 color: white,
                                                 borderRadius:
@@ -210,7 +207,7 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
-                                                child: Row(
+                                                child: Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
@@ -326,10 +323,10 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
   }
 
   Future category_images() async {
-    String a = widget.heading3;
+    print(heading);
     ListResult result = await FirebaseStorage.instance
         .ref()
-        .child("/shop by category/$a")
+        .child("/shop by category/$heading")
         .list();
     List<Reference> allFiles = result.items;
 

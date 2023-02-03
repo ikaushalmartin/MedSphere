@@ -5,7 +5,6 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-
 import 'package:medicineapp2/Medicine/medicine.dart';
 import 'package:medicineapp2/homecare.dart';
 import 'package:medicineapp2/popular_discounts.dart';
@@ -460,7 +459,7 @@ class _dashboardState extends State<dashboard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Shop By Category ",
+                            "Shop By Category",
                             style: TextStyle(
                               fontFamily: 'semibold',
                               fontSize: 21,
