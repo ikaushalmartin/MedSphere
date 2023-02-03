@@ -5,15 +5,15 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:medicineapp2/dashboardcenter.dart';
+
 import 'package:medicineapp2/Medicine/medicine.dart';
 import 'package:medicineapp2/homecare.dart';
 import 'package:medicineapp2/popular_discounts.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:medicineapp2/rental.dart';
+import 'package:medicineapp2/shopbycategory.dart';
 import 'package:unicons/unicons.dart';
-import 'Medicine/medicine_forbutton.dart';
 import 'Medicine/medicine_forbutton.dart';
 import 'buy and cart/cart.dart';
 import 'const.dart';
@@ -482,41 +482,51 @@ class _dashboardState extends State<dashboard> {
                                   scrollDirection: Axis.horizontal,
                                   itemCount: shop_by_category_list.length,
                                   itemBuilder: (context, index) {
-                                    return Column(
-                                      children: [
-                                        SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              20,
-                                        ),
-                                        ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
-                                          child: Image.network(
-                                            "${shop_by_category_list[index]}",
-                                            scale: 8,
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Get.to(
+                                            () => shop_by_category_items(
+                                                heading3:
+                                                    shop_by_category[index]
+                                                        .name),
+                                            transition: Transition.rightToLeft);
+                                      },
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                20,
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              50,
-                                        ),
-                                        Container(
-                                          height: 32,
-                                          child: Text(
-                                            "${shop_by_category[index].name}",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontFamily: 'medium',
-                                              fontSize: 15,
-                                              color: textcolor,
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10)),
+                                            child: Image.network(
+                                              "${shop_by_category_list[index]}",
+                                              scale: 8,
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                50,
+                                          ),
+                                          Container(
+                                            height: 32,
+                                            child: Text(
+                                              "${shop_by_category[index].name}",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontFamily: 'medium',
+                                                fontSize: 15,
+                                                color: textcolor,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     );
                                   })),
                         ],
