@@ -227,13 +227,12 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                               )),
                           Padding(
                               padding: EdgeInsets.only(
-                                  //top:MediaQuery.of(context).size.height / 50,
-                                  left: MediaQuery.of(context).size.height / 60,
-                                  right:
-                                      MediaQuery.of(context).size.height / 200),
+                                //top:MediaQuery.of(context).size.height / 50,
+                                left: MediaQuery.of(context).size.height / 60,
+                              ),
                               child: SizedBox(
                                   height:
-                                      MediaQuery.of(context).size.height / 4,
+                                      MediaQuery.of(context).size.height / 3.5,
                                   width: MediaQuery.of(context).size.width,
                                   child: ListView.builder(
                                       shrinkWrap: true,
@@ -300,7 +299,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                                 width: MediaQuery.of(context)
                                                         .size
                                                         .width /
-                                                    3,
+                                                    2,
                                                 height: MediaQuery.of(context)
                                                         .size
                                                         .width /
@@ -320,20 +319,26 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                                         .width /
                                                     100,
                                               ),
-                                              Text(
-                                                "${top_deals_deatils_list[index].name}",
-                                                style: TextStyle(
-                                                  fontFamily: 'medium',
-                                                  fontSize: 15,
-                                                  color: textcolor,
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2.5,
+                                                child: Text(
+                                                  "${top_deals_deatils_list[index].name}",
+                                                  style: TextStyle(
+                                                    fontFamily: 'medium',
+                                                    fontSize: 15,
+                                                    color: textcolor,
+                                                  ),
+                                                  textAlign: TextAlign.center,
                                                 ),
-                                                textAlign: TextAlign.center,
                                               ),
                                               SizedBox(
                                                 height: MediaQuery.of(context)
                                                         .size
                                                         .height /
-                                                    250,
+                                                    150,
                                               ),
                                               Row(
                                                 mainAxisAlignment:

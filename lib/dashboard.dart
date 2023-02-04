@@ -36,8 +36,6 @@ class _dashboardState extends State<dashboard> {
   Color heading_bluecolor_bg = Color(0xD9181818);
   Color textcolor = Color(0xff1D1D1F);
   Color textcolor_white = Color(0xff949494);
-  Color textcolor_light = Color(0x4D181818);
-  Color bluecolor_bg = Color(0x1A000000);
   Color white = Color(0xffffffff);
   Color redcolor = Color(0xffE46473);
   Color yellowcolor = Color(0xffF9BF80);
