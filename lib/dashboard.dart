@@ -11,6 +11,7 @@ import 'package:medicineapp2/popular_discounts.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:medicineapp2/rental.dart';
+import 'package:medicineapp2/shopby_concern.dart';
 import 'package:medicineapp2/shopbycategory.dart';
 import 'package:unicons/unicons.dart';
 import 'Medicine/medicine_forbutton.dart';
@@ -757,29 +758,40 @@ class _dashboardState extends State<dashboard> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: shop_by_concern_list.length,
                                   itemBuilder: (context, index) {
-                                    return Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.network(
-                                            "${shop_by_concern_list[index]}",
-                                            scale: 7),
-                                        SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              35,
-                                        ),
-                                        Text(
-                                          "${shop_by_concern[index].name}",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'medium',
-                                            fontSize: 14,
-                                            color: textcolor,
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Get.to(
+                                            () => shopbyconcern(
+                                                  heading3:
+                                                      shop_by_concern[index]
+                                                          .name,
+                                                ),
+                                            transition: Transition.rightToLeft);
+                                      },
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.network(
+                                              "${shop_by_concern_list[index]}",
+                                              scale: 7),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                35,
                                           ),
-                                        ),
-                                      ],
+                                          Text(
+                                            "${shop_by_concern[index].name}",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontFamily: 'medium',
+                                              fontSize: 14,
+                                              color: textcolor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     );
                                   })),
                         ],
