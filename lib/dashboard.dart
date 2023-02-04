@@ -33,7 +33,6 @@ class dashboard extends StatefulWidget {
 }
 
 class _dashboardState extends State<dashboard> {
-  Color heading_bluecolor_bg = Color(0xD9181818);
   Color textcolor = Color(0xff1D1D1F);
   Color textcolor_white = Color(0xff949494);
   Color white = Color(0xffffffff);
@@ -81,7 +80,6 @@ class _dashboardState extends State<dashboard> {
                 color: white,
                 child: Padding(
                   padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 100,
                       left: MediaQuery.of(context).size.height / 60,
                       right: MediaQuery.of(context).size.height / 200),
                   child: Column(
@@ -105,7 +103,7 @@ class _dashboardState extends State<dashboard> {
                               style: TextStyle(
                                 fontFamily: 'bold',
                                 fontSize: 24,
-                                color: heading_bluecolor_bg,
+                                color: textcolor,
                               ),
                             ),
                           ),

@@ -20,17 +20,14 @@ class packages_commonnscreen extends StatefulWidget {
 class _packages_commonnscreenState extends State<packages_commonnscreen> {
   List<labtest_packages> packages = [];
   @override
-  Color cuttextcolor = Color(0xff2b1700);
-  Color grey = Color(0xffd1d1d6);
-  Color heading_bluecolor_bg = Color(0xff001849);
-  Color textcolor = Color(0xff001849);
-  Color textcolor_white = Color(0xff001849);
-  Color bluecolor = Color(0xff6588E6);
-  Color bluecolor_bg = Color(0xffDAE1FF);
-  Color redcolor = Color(0xffE46473);
-  Color yellowcolor = Color(0xffF9BF80);
-  Color background = Color(0xffF4F3FB);
   Color light_red = Color(0xffdae1ff);
+  Color white = Color(0xffffffff);
+  Color textcolor = Color(0xff1D1D1F);
+  Color textcolor_white = Color(0xff949494);
+  Color bluecolor = Color(0xff007AFF);
+  Color bluecolor_bg = Color(0xffDAE1FF);
+  Color redcolor = Color(0xffFE2D54);
+  Color background = Color(0xffF2F1F6);
 
   @override
   void initState() {
@@ -55,7 +52,6 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 50,
                       left: MediaQuery.of(context).size.height / 60,
                       right: MediaQuery.of(context).size.height / 200),
                   child: Column(
@@ -66,10 +62,11 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              FirebaseAuth.instance.signOut();
+                              Get.back();
                             },
-                            child: CircleAvatar(
-                              child: Image.asset("images/1.png"),
+                            child: Icon(
+                              Icons.arrow_back_ios_new_outlined,
+                              color: textcolor,
                             ),
                           ),
                           Align(
@@ -117,20 +114,21 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                   "Recommended Packages",
                   style: TextStyle(
                     fontFamily: 'semibold',
-                    fontSize: 20,
+                    fontSize: 21,
                     color: textcolor,
                   ),
                 ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 35,
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
                 color: background,
                 child: Padding(
                   padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 60,
                     left: MediaQuery.of(context).size.height / 60,
                     right: MediaQuery.of(context).size.height / 60,
-                    bottom: MediaQuery.of(context).size.height / 80,
                   ),
                   child: SizedBox(
                       width: MediaQuery.of(context).size.width,
@@ -166,20 +164,29 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                                     transition: Transition.rightToLeft);
                               },
                               child: Container(
-                                margin: const EdgeInsets.all(5.0),
+                                margin: const EdgeInsets.all(10.0),
                                 decoration: BoxDecoration(
-                                    color: bluecolor_bg,
-                                    borderRadius: BorderRadius.circular(10)),
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 40,
+                                      spreadRadius: 3,
+                                      color: Color(0xffD2D1D5),
+                                    ),
+                                  ],
+                                ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
                                       "${packages[index].name}",
-                                      // textAlign: TextAlign.start,
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontFamily: 'medium',
-                                        fontSize: 16,
-                                        color: textcolor_white,
+                                        fontSize: 18,
+                                        color: textcolor,
                                       ),
                                     ),
                                     Text(
@@ -187,14 +194,14 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontFamily: 'regular',
-                                        fontSize: 12,
-                                        color: textcolor_white,
+                                        fontSize: 13,
+                                        color: bluecolor,
                                       ),
                                     ),
                                     SizedBox(
                                       height:
                                           MediaQuery.of(context).size.height /
-                                              100,
+                                              80,
                                     ),
                                     Row(
                                       mainAxisAlignment:
@@ -205,15 +212,15 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontFamily: 'medium',
-                                            fontSize: 16,
-                                            color: textcolor_white,
+                                            fontSize: 17,
+                                            color: textcolor,
                                           ),
                                         ),
                                         SizedBox(
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width /
-                                              20,
+                                              25,
                                         ),
                                         Text(
                                           "₹${packages[index].cutprice}",
@@ -222,8 +229,8 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                                             decoration:
                                                 TextDecoration.lineThrough,
                                             fontFamily: 'medium',
-                                            fontSize: 16,
-                                            color: cuttextcolor,
+                                            fontSize: 17,
+                                            color: textcolor_white,
                                           ),
                                         ),
                                       ],

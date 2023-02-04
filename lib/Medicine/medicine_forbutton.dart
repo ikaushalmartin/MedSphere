@@ -118,7 +118,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                           Container(
                             width: MediaQuery.of(context).size.width / 1.35,
                             decoration: BoxDecoration(
-                              color: search_bg,
+                              color: background,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: TextField(
@@ -134,7 +134,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                           Container(
                               width: MediaQuery.of(context).size.width / 6,
                               decoration: BoxDecoration(
-                                color: search_bg,
+                                color: background,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Theme(

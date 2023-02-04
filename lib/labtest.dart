@@ -30,18 +30,14 @@ class _labtestState extends State<labtest> {
   List<Price> packages = [];
   List packages_images = [];
 
-  Color cuttextcolor = Color(0xff2b1700);
-  Color grey = Color(0xffececef);
+  Color white = Color(0xffffffff);
 
-  Color heading_bluecolor_bg = Color(0xff001849);
-  Color textcolor = Color(0xff001849);
-  Color textcolor_white = Color(0xff001849);
-  Color bluecolor = Color(0xff6588E6);
+  Color textcolor = Color(0xff1D1D1F);
+  Color textcolor_white = Color(0xff949494);
+  Color bluecolor = Color(0xff007AFF);
   Color bluecolor_bg = Color(0xffDAE1FF);
-  Color redcolor = Color(0xffE46473);
-  Color yellowcolor = Color(0xffF9BF80);
-  Color background = Color(0xffF4F3FB);
-  Color light_red = Color(0xffdae1ff);
+  Color redcolor = Color(0xffFE2D54);
+  Color background = Color(0xffF2F1F6);
 
   @override
   void initState() {
@@ -64,11 +60,10 @@ class _labtestState extends State<labtest> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: background,
+                  color: white,
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 50,
                       left: MediaQuery.of(context).size.height / 60,
                       right: MediaQuery.of(context).size.height / 200),
                   child: Column(
@@ -79,10 +74,11 @@ class _labtestState extends State<labtest> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              FirebaseAuth.instance.signOut();
+                              Get.back();
                             },
-                            child: CircleAvatar(
-                              child: Image.asset("images/1.png"),
+                            child: Icon(
+                              Icons.arrow_back_ios_new_outlined,
+                              color: textcolor,
                             ),
                           ),
                           Align(
@@ -121,7 +117,7 @@ class _labtestState extends State<labtest> {
                             Container(
                               width: MediaQuery.of(context).size.width / 1.35,
                               decoration: BoxDecoration(
-                                color: light_red,
+                                color: background,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextField(
@@ -137,7 +133,7 @@ class _labtestState extends State<labtest> {
                             Container(
                                 width: MediaQuery.of(context).size.width / 6,
                                 decoration: BoxDecoration(
-                                  color: light_red,
+                                  color: background,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Theme(
@@ -170,13 +166,13 @@ class _labtestState extends State<labtest> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: background,
+                      color: white,
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height / 60,
                           left: MediaQuery.of(context).size.height / 60,
                           right: MediaQuery.of(context).size.height / 60,
-                          bottom: MediaQuery.of(context).size.height / 80,
+                          bottom: MediaQuery.of(context).size.height / 60,
                         ),
                         child: SizedBox(
                             height: MediaQuery.of(context).size.height / 5.5,
@@ -206,78 +202,103 @@ class _labtestState extends State<labtest> {
                                 })),
                       ),
                     ),
-                    Padding(
-                        padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height / 60,
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 200,
-                          bottom: MediaQuery.of(context).size.height / 60,
-                        ),
-                        child: Text(
-                          "Lab Test By Health Concern",
-                          style: TextStyle(
-                            fontFamily: 'semibold',
-                            fontSize: 20,
-                            color: textcolor,
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: white,
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0.0, 0.0001),
+                            blurRadius: 0.0001,
+                            spreadRadius: 0.0003,
+                            color: Color(0xffD2D1D5),
                           ),
-                        )),
-                    Padding(
-                        padding: EdgeInsets.only(
-                            //top:MediaQuery.of(context).size.height / 50,
-                            left: MediaQuery.of(context).size.height / 60,
-                            right: MediaQuery.of(context).size.height / 200),
-                        child: SizedBox(
-                            height: MediaQuery.of(context).size.height / 6.5,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: BouncingScrollPhysics(),
-                                scrollDirection: Axis.horizontal,
-                                itemCount: labtestbyhealthconcern_images.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 4,
-                                    margin: const EdgeInsets.all(6.0),
-                                    decoration: BoxDecoration(
-                                        color: bluecolor_bg,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: MaterialButton(
-                                      onPressed: () {
-                                        Get.to(
-                                            () => packages_commonnscreen(
-                                                heading:
-                                                    '${labtestbyhealthconcern_labes[index].name}'),
-                                            transition: Transition.rightToLeft);
-                                      },
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Image.network(
-                                              "${labtestbyhealthconcern_images[index]}",
-                                              scale: 10),
-                                          SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                35,
-                                          ),
-                                          Text(
-                                            "${labtestbyhealthconcern_labes[index].name}",
-                                            style: TextStyle(
-                                              fontFamily: 'medium',
-                                              fontSize: 13,
-                                              color: textcolor_white,
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).size.height / 60,
+                                left: MediaQuery.of(context).size.height / 60,
+                                right: MediaQuery.of(context).size.height / 200,
+                                bottom: MediaQuery.of(context).size.height / 60,
+                              ),
+                              child: Text(
+                                "Lab Test By Health Concern",
+                                style: TextStyle(
+                                  fontFamily: 'semibold',
+                                  fontSize: 21,
+                                  color: textcolor,
+                                ),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  //top:MediaQuery.of(context).size.height / 50,
+                                  left: MediaQuery.of(context).size.height / 60,
+                                  right:
+                                      MediaQuery.of(context).size.height / 200),
+                              child: SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 6.5,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: BouncingScrollPhysics(),
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount:
+                                          labtestbyhealthconcern_images.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              4,
+                                          margin: const EdgeInsets.all(6.0),
+                                          child: MaterialButton(
+                                            onPressed: () {
+                                              Get.to(
+                                                  () => packages_commonnscreen(
+                                                      heading:
+                                                          '${labtestbyhealthconcern_labes[index].name}'),
+                                                  transition:
+                                                      Transition.rightToLeft);
+                                            },
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Image.network(
+                                                    "${labtestbyhealthconcern_images[index]}",
+                                                    scale: 7),
+                                                SizedBox(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      35,
+                                                ),
+                                                Text(
+                                                  "${labtestbyhealthconcern_labes[index].name}",
+                                                  style: TextStyle(
+                                                    fontFamily: 'medium',
+                                                    fontSize: 14,
+                                                    color: textcolor,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ],
                                             ),
-                                            textAlign: TextAlign.center,
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                }))),
+                                        );
+                                      }))),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 35,
+                    ),
                     Padding(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).size.height / 60,
@@ -296,8 +317,15 @@ class _labtestState extends State<labtest> {
                               width: MediaQuery.of(context).size.width / 2.2,
                               height: MediaQuery.of(context).size.height / 8,
                               decoration: BoxDecoration(
-                                color: bluecolor,
                                 borderRadius: BorderRadius.circular(10),
+                                color: white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 40,
+                                    spreadRadius: 3,
+                                    color: Color(0xffD2D1D5),
+                                  ),
+                                ],
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(7.0),
@@ -309,8 +337,8 @@ class _labtestState extends State<labtest> {
                                       "Upload\nPrescription",
                                       style: TextStyle(
                                         fontFamily: 'semibold',
-                                        fontSize: 16,
-                                        color: Colors.white,
+                                        fontSize: 18,
+                                        color: bluecolor,
                                       ),
                                     ),
                                     Image.asset(
@@ -326,8 +354,15 @@ class _labtestState extends State<labtest> {
                             width: MediaQuery.of(context).size.width / 2.2,
                             height: MediaQuery.of(context).size.height / 8,
                             decoration: BoxDecoration(
-                              color: redcolor,
                               borderRadius: BorderRadius.circular(10),
+                              color: white,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 40,
+                                  spreadRadius: 3,
+                                  color: Color(0xffD2D1D5),
+                                ),
+                              ],
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -340,7 +375,7 @@ class _labtestState extends State<labtest> {
                                     style: TextStyle(
                                       fontFamily: 'semibold',
                                       fontSize: 16,
-                                      color: Colors.white,
+                                      color: redcolor,
                                     ),
                                   ),
                                   Image.asset(
