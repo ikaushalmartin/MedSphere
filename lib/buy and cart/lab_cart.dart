@@ -248,7 +248,7 @@ class _lab_cartState extends State<lab_cart> {
                                                   child: Icon(
                                                     Icons
                                                         .delete_outline_outlined,
-                                                    color: textcolor_white,
+                                                    color: redcolor,
                                                   ),
                                                 ),
                                                 SizedBox(

@@ -102,7 +102,7 @@ class _doctorState extends State<doctor> {
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             color: white,
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 offset: Offset(0.0, 0.0001),
                                 blurRadius: 0.0001,

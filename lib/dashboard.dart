@@ -96,7 +96,7 @@ class _dashboardState extends State<dashboard> {
                               child: Image.asset("images/1.png"),
                             ),
                           ),
-                          Align(
+                          /*Align(
                             alignment: Alignment.topLeft,
                             child: Text(
                               "APPNAME",
@@ -106,20 +106,38 @@ class _dashboardState extends State<dashboard> {
                                 color: textcolor,
                               ),
                             ),
-                          ),
-                          Theme(
-                            data: ThemeData(
-                              splashColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                Get.to(() => cart(),
-                                    transition: Transition.rightToLeft);
-                              },
-                              icon: Icon(Icons.shopping_cart_outlined),
-                              color: textcolor,
-                            ),
+                          ),*/
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Theme(
+                                data: ThemeData(
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {
+                                    makecall();
+                                  },
+                                  icon: Icon(Icons.emergency),
+                                  color: Colors.red,
+                                ),
+                              ),
+                              Theme(
+                                data: ThemeData(
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {
+                                    Get.to(() => cart(),
+                                        transition: Transition.rightToLeft);
+                                  },
+                                  icon: Icon(Icons.shopping_cart_outlined),
+                                  color: textcolor,
+                                ),
+                              ),
+                            ],
                           )
                         ],
                       ), //toprow
@@ -321,12 +339,10 @@ class _dashboardState extends State<dashboard> {
                                                         transition: Transition
                                                             .rightToLeft);
                                                   } else if (index == 3) {
-                                                    makecall();
-                                                  } else if (index == 4) {
                                                     Get.to(() => rental(),
                                                         transition: Transition
                                                             .rightToLeft);
-                                                  } else if (index == 5) {
+                                                  } else if (index == 4) {
                                                     Get.to(() => homecare(),
                                                         transition: Transition
                                                             .rightToLeft);
