@@ -264,7 +264,7 @@ class _product_common_screenState extends State<product_common_screen> {
                                             Row(
                                               children: [
                                                 Text(
-                                                  "MRP ₹${widget.price}",
+                                                  "₹${widget.price}",
                                                   style: TextStyle(
                                                     fontFamily: 'medium',
                                                     fontSize: 16,
@@ -278,7 +278,7 @@ class _product_common_screenState extends State<product_common_screen> {
                                                       30,
                                                 ),
                                                 Text(
-                                                  "₹${widget.cuttopdeals}",
+                                                  "MRP₹${widget.cuttopdeals}",
                                                   style: TextStyle(
                                                     decoration: TextDecoration
                                                         .lineThrough,

@@ -209,7 +209,7 @@ class _labtest_commonscreenState extends State<labtest_commonscreen> {
                                                 40,
                                           ),
                                           Text(
-                                            "₹${widget.price}",
+                                            "MRP₹${widget.price}",
                                             style: TextStyle(
                                               decoration:
                                                   TextDecoration.lineThrough,

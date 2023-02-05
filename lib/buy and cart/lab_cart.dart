@@ -210,7 +210,7 @@ class _lab_cartState extends State<lab_cart> {
                                                               .spaceBetween,
                                                       children: [
                                                         Text(
-                                                          "MRP ₹${lab_cartdata[index].price}    ",
+                                                          "₹${lab_cartdata[index].price}    ",
                                                           style: TextStyle(
                                                               fontSize: 14,
                                                               color: textcolor,
@@ -218,7 +218,7 @@ class _lab_cartState extends State<lab_cart> {
                                                                   "medium"),
                                                         ),
                                                         Text(
-                                                          "₹${lab_cartdata[index].cutprice}",
+                                                          "MRP₹${lab_cartdata[index].cutprice}",
                                                           style: TextStyle(
                                                               fontSize: 14,
                                                               decoration:

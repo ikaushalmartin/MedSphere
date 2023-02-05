@@ -361,7 +361,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                                             20,
                                                   ),
                                                   Text(
-                                                    "₹${top_deals_deatils_list[index].cuttopdeals}",
+                                                    "MRP₹${top_deals_deatils_list[index].cuttopdeals}",
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       decoration: TextDecoration
