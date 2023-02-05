@@ -13,11 +13,13 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:medicineapp2/rental.dart';
 import 'package:medicineapp2/shopby_concern.dart';
 import 'package:medicineapp2/shopbycategory.dart';
+import 'package:medicineapp2/surgical.dart';
 import 'package:unicons/unicons.dart';
 import 'Medicine/medicine_forbutton.dart';
 import 'buy and cart/cart.dart';
 import 'const.dart';
 import 'doctor.dart';
+import 'emergency_services.dart';
 import 'everyday_essential/everyday_essentials.dart';
 import 'labtest.dart';
 import 'ngocollabs.dart';
@@ -38,7 +40,7 @@ class _dashboardState extends State<dashboard> {
   Color white = Color(0xffffffff);
   Color redcolor = Color(0xffE46473);
   Color yellowcolor = Color(0xffF9BF80);
-  Color background = Color(0xffF2F1F6);
+  Color background = Color(0xffD9D9D9);
 
   final user = FirebaseAuth.instance.currentUser!;
   List<Item> popular_categories = [];
@@ -49,7 +51,6 @@ class _dashboardState extends State<dashboard> {
   List shop_by_concern_list = [];
   List deals_of_the_day_image_list = [];
   List starting_tiles_image_list = [];
-  List<Item> emergency = [];
 
   late var everyday_essential_image_url;
   void initState() {
@@ -61,10 +62,6 @@ class _dashboardState extends State<dashboard> {
     loadImages();
     shop_by_category_images();
     deals_of_the_day_image();
-  }
-
-  void makecall() async {
-    await FlutterPhoneDirectCaller.callNumber('${emergency[0].name}');
   }
 
   @override
@@ -117,7 +114,8 @@ class _dashboardState extends State<dashboard> {
                                 ),
                                 child: IconButton(
                                   onPressed: () {
-                                    makecall();
+                                    Get.to(() => const emergency_services(),
+                                        transition: Transition.rightToLeft);
                                   },
                                   icon: Icon(Icons.emergency),
                                   color: Colors.red,
@@ -331,7 +329,8 @@ class _dashboardState extends State<dashboard> {
                                                         transition: Transition
                                                             .rightToLeft);
                                                   } else if (index == 1) {
-                                                    Get.to(() => labtest(),
+                                                    Get.to(
+                                                        () => const labtest(),
                                                         transition: Transition
                                                             .rightToLeft);
                                                   } else if (index == 2) {
@@ -339,11 +338,17 @@ class _dashboardState extends State<dashboard> {
                                                         transition: Transition
                                                             .rightToLeft);
                                                   } else if (index == 3) {
-                                                    Get.to(() => rental(),
+                                                    Get.to(() => const rental(),
                                                         transition: Transition
                                                             .rightToLeft);
                                                   } else if (index == 4) {
-                                                    Get.to(() => homecare(),
+                                                    Get.to(
+                                                        () => const homecare(),
+                                                        transition: Transition
+                                                            .rightToLeft);
+                                                  } else if (index == 5) {
+                                                    Get.to(
+                                                        () => const surgical(),
                                                         transition: Transition
                                                             .rightToLeft);
                                                   }
@@ -871,10 +876,6 @@ class _dashboardState extends State<dashboard> {
     var shop_by_concern =
         await FirebaseFirestore.instance.collection('shop by concern').get();
     map_fetch_shop_by_concern(shop_by_concern);
-
-    var emergency =
-        await FirebaseFirestore.instance.collection('emergency number').get();
-    map_emergency(emergency);
   }
 
   map_fetch_popular_categories(QuerySnapshot<Map<String, dynamic>> data) {
@@ -884,19 +885,6 @@ class _dashboardState extends State<dashboard> {
     setState(() {
       popular_categories = _popular_categories_data;
     });
-  }
-
-  map_emergency(QuerySnapshot<Map<String, dynamic>> data) {
-    print('----------------------------------------');
-    var _emergency_number_data = data.docs
-        .map((item) => Item(id: item.id, name: item['number']))
-        .toList();
-
-    setState(() {
-      emergency = _emergency_number_data;
-      emergenncy_number = emergency[0].name;
-    });
-    print(emergency[0].name);
   }
 
   map_fetch_shop_by_category(QuerySnapshot<Map<String, dynamic>> data) {

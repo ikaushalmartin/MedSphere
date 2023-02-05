@@ -125,12 +125,15 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                             SizedBox(
                               height: MediaQuery.of(context).size.width / 80,
                             ),
-                            Text(
-                              "${widget.use}",
-                              style: TextStyle(
-                                fontFamily: 'medium',
-                                fontSize: 18,
-                                color: textcolor_light,
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.5,
+                              child: Text(
+                                "${widget.use}",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 18,
+                                  color: textcolor_light,
+                                ),
                               ),
                             ),
                             Text(
