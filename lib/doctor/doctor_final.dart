@@ -1,18 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import '../const.dart';
-import '../product_commonscreen/add_delivery_address.dart';
 
 class doctor_final extends StatefulWidget {
-  String doctorname, fees, workinghours;
+  String doctorname, fees, workinghours, hospitalname;
   doctor_final(
       {Key? key,
       required this.doctorname,
       required this.fees,
-      required this.workinghours})
+      required this.workinghours,
+      required this.hospitalname})
       : super(key: key);
 
   @override
@@ -31,10 +33,9 @@ class _doctor_finalState extends State<doctor_final> {
   Color medicine_colour_button_1 = Color(0xff07DAEB);
   Color medicine_colour_button_2 = Color(0xff5093FE);
 
-  final name = TextEditingController();
-  final phone = TextEditingController();
-  final pincode = TextEditingController();
-  final address = TextEditingController();
+  final patientname = TextEditingController();
+  final patientphone = TextEditingController();
+  final patientpincode = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -92,10 +93,10 @@ class _doctor_finalState extends State<doctor_final> {
                     ],
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height / 35),
+                SizedBox(height: MediaQuery.of(context).size.height / 135),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 6,
+                  height: MediaQuery.of(context).size.height / 5,
                   decoration: BoxDecoration(
                     color: white,
                   ),
@@ -124,7 +125,7 @@ class _doctor_finalState extends State<doctor_final> {
                             Text(
                               "Doctor Name  -  ",
                               style: TextStyle(
-                                fontFamily: 'medium',
+                                fontFamily: 'semibold',
                                 fontSize: 18,
                                 color: textcolor,
                               ),
@@ -132,9 +133,31 @@ class _doctor_finalState extends State<doctor_final> {
                             Text(
                               "${widget.doctorname}",
                               style: TextStyle(
-                                fontFamily: 'regular',
+                                fontFamily: 'medium',
+                                fontSize: 18,
+                                color: textcolor_light,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 520),
+                        Row(
+                          children: [
+                            Text(
+                              "Hospital  -  ",
+                              style: TextStyle(
+                                fontFamily: 'semibold',
                                 fontSize: 18,
                                 color: textcolor,
+                              ),
+                            ),
+                            Text(
+                              "${widget.hospitalname}",
+                              style: TextStyle(
+                                fontFamily: 'medium',
+                                fontSize: 18,
+                                color: textcolor_light,
                               ),
                             ),
                           ],
@@ -154,9 +177,9 @@ class _doctor_finalState extends State<doctor_final> {
                             Text(
                               "${widget.fees}",
                               style: TextStyle(
-                                fontFamily: 'regular',
+                                fontFamily: 'medium',
                                 fontSize: 18,
-                                color: textcolor,
+                                color: textcolor_light,
                               ),
                             ),
                           ],
@@ -176,9 +199,9 @@ class _doctor_finalState extends State<doctor_final> {
                             Text(
                               "${widget.workinghours}",
                               style: TextStyle(
-                                fontFamily: 'regular',
+                                fontFamily: 'medium',
                                 fontSize: 18,
-                                color: textcolor,
+                                color: textcolor_light,
                               ),
                             ),
                           ],
@@ -187,10 +210,10 @@ class _doctor_finalState extends State<doctor_final> {
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height / 35),
+                SizedBox(height: MediaQuery.of(context).size.height / 135),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 3,
+                  height: MediaQuery.of(context).size.height / 4,
                   decoration: BoxDecoration(
                     color: white,
                   ),
@@ -225,7 +248,7 @@ class _doctor_finalState extends State<doctor_final> {
                               ),
                               child: TextFormField(
                                 onChanged: (value) {},
-                                controller: name,
+                                controller: patientname,
                                 keyboardType: TextInputType.name,
                                 style: TextStyle(color: textcolor),
                                 textAlign: TextAlign.left,
@@ -248,7 +271,7 @@ class _doctor_finalState extends State<doctor_final> {
                               ),
                               child: TextFormField(
                                 onChanged: (value) {},
-                                controller: pincode,
+                                controller: patientpincode,
                                 keyboardType: TextInputType.phone,
                                 style: TextStyle(color: textcolor),
                                 textAlign: TextAlign.left,
@@ -275,7 +298,7 @@ class _doctor_finalState extends State<doctor_final> {
                           ),
                           child: TextFormField(
                             onChanged: (value) {},
-                            controller: phone,
+                            controller: patientphone,
                             keyboardType: TextInputType.phone,
                             style: TextStyle(color: textcolor),
                             textAlign: TextAlign.left,
@@ -290,32 +313,6 @@ class _doctor_finalState extends State<doctor_final> {
                                     : null,
                           ),
                         ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height / 80),
-                        Container(
-                          //width: MediaQuery.of(context).size.width / 2.4,
-                          decoration: BoxDecoration(
-                            color: background,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: TextFormField(
-                            onChanged: (value) {},
-                            controller: address,
-                            keyboardType: TextInputType.name,
-                            style: TextStyle(color: textcolor),
-                            textAlign: TextAlign.left,
-                            decoration: kTextFieldDecoration.copyWith(
-                                contentPadding: EdgeInsets.only(left: 20),
-                                hintText:
-                                    "House Number, Building and Locality"),
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (firstname) =>
-                                firstname != null && firstname.length! < 2
-                                    ? 'Address cannot be empty cannot be empty'
-                                    : null,
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -323,43 +320,100 @@ class _doctor_finalState extends State<doctor_final> {
               ],
             ),
             Container(
-                color: white,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 15,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width / 40),
-                  child: MaterialButton(
-                    onPressed: () {},
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              medicine_colour_button_1,
-                              medicine_colour_button_2
-                            ],
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
+              color: white,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 15,
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width / 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "${widget.doctorname}",
+                      style: TextStyle(
+                        fontFamily: 'medium',
+                        fontSize: 16,
+                        color: textcolor,
+                      ),
+                    ),
+                    Container(
+                      height: 38.0,
+                      child: MaterialButton(
+                        onPressed: () {
+                          book_doctor();
+                        },
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80.0)),
+                        child: Ink(
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  medicine_colour_button_1,
+                                  medicine_colour_button_2
+                                ],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              ),
+                              borderRadius: BorderRadius.circular(30.0)),
+                          child: Container(
+                            constraints: BoxConstraints(maxWidth: 150.0),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Book",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontFamily: "medium"),
+                            ),
                           ),
-                          borderRadius: BorderRadius.circular(30.0)),
-                      child: Container(
-                        constraints: BoxConstraints(maxWidth: 280.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Check Out",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white, fontFamily: "medium"),
                         ),
                       ),
                     ),
-                  ),
-                )),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
     );
+  }
+
+  Future book_doctor() async {
+    showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    await FirebaseFirestore.instance
+        .collection('/ORDERS')
+        .doc('Doctors_Consultancy')
+        .collection("oders")
+        .add({
+      'Doctor Name': widget.doctorname,
+      'Doctors Hospital': widget.hospitalname,
+      'Fees': widget.fees,
+      'Patient Name': patientname.text,
+      'pincode': patientpincode.text,
+      'phone': patientphone.text
+    });
+    Navigator.of(context).pop();
+    AwesomeDialog(
+      context: context,
+      animType: AnimType.scale,
+      headerAnimationLoop: false,
+      dialogType: DialogType.success,
+      title: 'Succes',
+      desc: 'Got Your Details!\nWill Get Back To You Soon!!',
+      btnOkOnPress: () {
+        debugPrint('OnClcik');
+      },
+      btnOkIcon: Icons.check_circle,
+    )..show();
   }
 }

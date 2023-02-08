@@ -272,11 +272,11 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                       child: MaterialButton(
                         onPressed: () {
                           Get.to(
-                              doctor_final(
-                                doctorname: widget.name,
-                                fees: widget.experience,
-                                workinghours: widget.workinghours,
-                              ),
+                              () => doctor_final(
+                                  doctorname: widget.name,
+                                  fees: widget.experience,
+                                  workinghours: widget.workinghours,
+                                  hospitalname: widget.hospital),
                               transition: Transition.rightToLeft);
                         },
                         shape: RoundedRectangleBorder(
