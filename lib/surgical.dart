@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/product_commonscreen/rental_commonscreen.dart';
 
-import 'Models/doctor_model.dart';
+import 'doctor/doctor_model.dart';
 import 'Models/surgical_model.dart';
 
 class surgical extends StatefulWidget {

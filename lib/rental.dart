@@ -9,7 +9,7 @@ import 'package:medicineapp2/product_commonscreen/rental_commonscreen.dart';
 
 import 'buy and cart/cart.dart';
 import 'const.dart';
-import 'Models/doctor_model.dart';
+import 'doctor/doctor_model.dart';
 
 class rental extends StatefulWidget {
   const rental({Key? key}) : super(key: key);

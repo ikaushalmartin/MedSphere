@@ -48,6 +48,7 @@ dependencies:
   firebase_storage: ^11.0.0
   flutter_phone_direct_caller: ^2.1.1
   readmore: ^2.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

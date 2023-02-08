@@ -18,7 +18,8 @@ import 'package:unicons/unicons.dart';
 import 'Medicine/medicine_forbutton.dart';
 import 'buy and cart/cart.dart';
 import 'const.dart';
-import 'doctor.dart';
+
+import 'doctor/doctor.dart';
 import 'emergency_services.dart';
 import 'everyday_essential/everyday_essentials.dart';
 import 'labtest.dart';

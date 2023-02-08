@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import '../Models/doctor_model.dart';
+import '../doctor/doctor_model.dart';
 import 'homecare_commonScreen.dart';
 
 class homecare_available_partner extends StatefulWidget {
@@ -246,13 +246,14 @@ class _homecare_available_partnerState
   map_availablepartners_details(QuerySnapshot<Map<String, dynamic>> data) {
     var _doctor_deatils_list = data.docs
         .map((item) => doc(
-            id: item.id,
-            hospital: item['priceperday'],
-            name: item['name'],
-            specialist: item['specialist'],
-            bio: item['bio'],
-            experience: item['experience'],
-            workinghours: item['availability']))
+              id: item.id,
+              hospital: item['priceperday'],
+              name: item['name'],
+              specialist: item['specialist'],
+              bio: item['bio'],
+              experience: item['experience'],
+              workinghours: item['availability'],
+            ))
         .toList();
 
     setState(() {

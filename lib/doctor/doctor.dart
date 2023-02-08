@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:medicineapp2/product_commonscreen/doctorCommonscreen.dart';
+import 'package:medicineapp2/doctor/doctorCommonscreen.dart';
 
-import 'Models/doctor_model.dart';
+import 'doctor_model.dart';
 
 class doctor extends StatefulWidget {
   @override
@@ -392,13 +392,14 @@ class _doctorState extends State<doctor> {
     print("in");
     var _doctor_deatils_list = data.docs
         .map((item) => doc(
-            id: item.id,
-            hospital: item['Hospital'],
-            name: item['Name'],
-            specialist: item['Specialist'],
-            bio: item['Bio'],
-            workinghours: item['Workinghours'],
-            experience: item['Experience']))
+              id: item.id,
+              hospital: item['Hospital'],
+              name: item['Name'],
+              specialist: item['Specialist'],
+              bio: item['Bio'],
+              workinghours: item['Workinghours'],
+              experience: item['Fees'],
+            ))
         .toList();
 
     setState(() {

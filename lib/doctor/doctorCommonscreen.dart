@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+
+import 'doctor_final.dart';
 
 class doctorcommonscreen extends StatefulWidget {
   String name, hospital, experience, specialist, workinghours, bio, imageurl;
@@ -161,7 +164,7 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Experience",
+                              "Fees",
                               style: TextStyle(
                                 fontFamily: 'semibold',
                                 fontSize: 18,
@@ -267,7 +270,15 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                     Container(
                       height: 38.0,
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(
+                              doctor_final(
+                                doctorname: widget.name,
+                                fees: widget.experience,
+                                workinghours: widget.workinghours,
+                              ),
+                              transition: Transition.rightToLeft);
+                        },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         child: Ink(
