@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:medicineapp2/product_commonscreen/rental_commonscreen.dart';
+import 'package:medicineapp2/rentals/rental_commonscreen.dart';
 
-import 'buy and cart/cart.dart';
-import 'const.dart';
-import 'doctor/doctor_model.dart';
+import '../buy and cart/cart.dart';
+import '../const.dart';
+import '../doctor/doctor_model.dart';
 
 class rental extends StatefulWidget {
   const rental({Key? key}) : super(key: key);
@@ -278,7 +278,7 @@ class _rentalState extends State<rental> {
             specialist: item['Use'],
             bio: item['Description'],
             experience: item['priceperday'],
-            workinghours: item['Availablefor_time']))
+            workinghours: item['application']))
         .toList();
 
     setState(() {

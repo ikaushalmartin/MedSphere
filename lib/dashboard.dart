@@ -10,7 +10,7 @@ import 'package:medicineapp2/homecare.dart';
 import 'package:medicineapp2/popular_discounts.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:medicineapp2/rental.dart';
+import 'package:medicineapp2/rentals/rental.dart';
 import 'package:medicineapp2/shopby_concern.dart';
 import 'package:medicineapp2/shopbycategory.dart';
 import 'package:medicineapp2/surgical.dart';

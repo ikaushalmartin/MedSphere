@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:medicineapp2/rentals/rental_final.dart';
 
 class rental_commonscreen extends StatefulWidget {
   String available_for_time,
@@ -192,7 +193,7 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              "Availability",
+                              "Usage/Application",
                               style: TextStyle(
                                 fontFamily: 'semibold',
                                 fontSize: 18,
@@ -274,7 +275,15 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                     Container(
                       height: 38.0,
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(
+                              () => rentalfinal(
+                                    name: widget.name,
+                                    company: widget.company,
+                                    priceperday: widget.priceperday,
+                                  ),
+                              transition: Transition.rightToLeft);
+                        },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         child: Ink(

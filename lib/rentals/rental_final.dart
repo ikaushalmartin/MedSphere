@@ -1,28 +1,24 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
+
 import '../const.dart';
 
-class doctor_final extends StatefulWidget {
-  String doctorname, fees, workinghours, hospitalname;
-  doctor_final(
+class rentalfinal extends StatefulWidget {
+  String name, company, priceperday;
+  rentalfinal(
       {Key? key,
-      required this.doctorname,
-      required this.fees,
-      required this.workinghours,
-      required this.hospitalname})
+      required this.name,
+      required this.company,
+      required this.priceperday})
       : super(key: key);
 
   @override
-  State<doctor_final> createState() => _doctor_finalState();
+  State<rentalfinal> createState() => _rentalfinalState();
 }
 
-class _doctor_finalState extends State<doctor_final> {
+class _rentalfinalState extends State<rentalfinal> {
   Color bluecolor = Color(0xff5093FE);
   Color bluecolor_bg = Color(0xffDAE1FF);
   Color textcolor = Color(0xD9181818);
@@ -37,7 +33,7 @@ class _doctor_finalState extends State<doctor_final> {
   final patientname = TextEditingController();
   final patientphone = TextEditingController();
   final patientpincode = TextEditingController();
-
+  int days = 1;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -112,7 +108,7 @@ class _doctor_finalState extends State<doctor_final> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Consultancy Details",
+                          "Product Details",
                           style: TextStyle(
                             fontFamily: 'semibold',
                             fontSize: 21,
@@ -124,7 +120,7 @@ class _doctor_finalState extends State<doctor_final> {
                         Row(
                           children: [
                             Text(
-                              "Doctor Name  -  ",
+                              "Product Name  -  ",
                               style: TextStyle(
                                 fontFamily: 'semibold',
                                 fontSize: 18,
@@ -132,7 +128,7 @@ class _doctor_finalState extends State<doctor_final> {
                               ),
                             ),
                             Text(
-                              "${widget.doctorname}",
+                              "${widget.name}",
                               style: TextStyle(
                                 fontFamily: 'medium',
                                 fontSize: 18,
@@ -146,7 +142,7 @@ class _doctor_finalState extends State<doctor_final> {
                         Row(
                           children: [
                             Text(
-                              "Hospital  -  ",
+                              "Company  -  ",
                               style: TextStyle(
                                 fontFamily: 'semibold',
                                 fontSize: 18,
@@ -154,7 +150,7 @@ class _doctor_finalState extends State<doctor_final> {
                               ),
                             ),
                             Text(
-                              "${widget.hospitalname}",
+                              "${widget.company}",
                               style: TextStyle(
                                 fontFamily: 'medium',
                                 fontSize: 18,
@@ -168,7 +164,7 @@ class _doctor_finalState extends State<doctor_final> {
                         Row(
                           children: [
                             Text(
-                              "Fees  -  ",
+                              "Price/Day  -  ",
                               style: TextStyle(
                                 fontFamily: 'semibold',
                                 fontSize: 18,
@@ -176,7 +172,7 @@ class _doctor_finalState extends State<doctor_final> {
                               ),
                             ),
                             Text(
-                              "${widget.fees}",
+                              "${widget.priceperday}",
                               style: TextStyle(
                                 fontFamily: 'medium',
                                 fontSize: 18,
@@ -185,28 +181,87 @@ class _doctor_finalState extends State<doctor_final> {
                             ),
                           ],
                         ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height / 520),
-                        Row(
-                          children: [
-                            Text(
-                              "Working Hours  -  ",
+                        /*Container(
+                          width: 130,
+                          height: 25,
+                          decoration: BoxDecoration(
+                              color: search_bg,
+                              borderRadius:
+                              BorderRadius.circular(
+                                  20),
+                              border: Border.all(
+                                  color:
+                                  textcolor_light,
+                                  width: 1.1)),
+                          child: MaterialButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext
+                                context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      'Patients',
+                                      style: TextStyle(
+                                          color:
+                                          textcolor,
+                                          fontFamily:
+                                          "medium"),
+                                    ),
+                                    content: Container(
+                                      height: 350,
+                                      width: 1,
+                                      child: ListView
+                                          .builder(
+                                        physics:
+                                        const BouncingScrollPhysics(),
+                                        shrinkWrap:
+                                        true,
+                                        itemCount: 6,
+                                        itemBuilder:
+                                            (BuildContext
+                                        context,
+                                            int x) {
+                                          return ListTile(
+                                            title:
+                                            GestureDetector(
+                                              onTap:
+                                                  () {
+                                                selected_quantity =
+                                                    x + 1;
+                                                updateDocument(
+                                                    lab_cartdata[index].id);
+
+                                                Navigator.of(context)
+                                                    .pop();
+                                              },
+                                              child:
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                height:
+                                                50,
+                                                child: Text(
+                                                    '${x + 1}'),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Text(
+                              'Patients - ${lab_cartdata[index].quantity}',
                               style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 18,
-                                color: textcolor,
-                              ),
+                                  color: textcolor,
+                                  fontFamily: "medium"),
                             ),
-                            Text(
-                              "${widget.workinghours}",
-                              style: TextStyle(
-                                fontFamily: 'medium',
-                                fontSize: 18,
-                                color: textcolor_light,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ),*/
                       ],
                     ),
                   ),
@@ -334,7 +389,7 @@ class _doctor_finalState extends State<doctor_final> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "${widget.doctorname}",
+                      "${widget.name}",
                       style: TextStyle(
                         fontFamily: 'medium',
                         fontSize: 16,
@@ -344,11 +399,7 @@ class _doctor_finalState extends State<doctor_final> {
                     Container(
                       height: 38.0,
                       child: MaterialButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            book_doctor();
-                          }
-                        },
+                        onPressed: () {},
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         child: Ink(
@@ -385,43 +436,5 @@ class _doctor_finalState extends State<doctor_final> {
         ),
       ),
     );
-  }
-
-  Future book_doctor() async {
-    showDialog(
-        context: context,
-        builder: (context) => Center(
-              child: LoadingAnimationWidget.waveDots(
-                color: Color(0xff273238),
-                size: 80,
-              ),
-            ));
-
-    await FirebaseFirestore.instance
-        .collection('/ORDERS')
-        .doc('Doctors_Consultancy')
-        .collection("oders")
-        .add({
-      'Doctor Name': widget.doctorname,
-      'Doctors Hospital': widget.hospitalname,
-      'Fees': widget.fees,
-      'Patient Name': patientname.text,
-      'pincode': patientpincode.text,
-      'phone': patientphone.text
-    });
-
-    Navigator.of(context).pop();
-    AwesomeDialog(
-      context: context,
-      animType: AnimType.scale,
-      headerAnimationLoop: false,
-      dialogType: DialogType.success,
-      title: 'Succes',
-      desc: 'Got Your Details!\nWill Get Back To You Soon!!',
-      btnOkOnPress: () {
-        debugPrint('OnClcik');
-      },
-      btnOkIcon: Icons.check_circle,
-    )..show();
   }
 }
