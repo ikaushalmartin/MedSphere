@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import 'homecare_final.dart';
+
 class homecare_commonscreen extends StatefulWidget {
   String available_for_time, bio, experience, name, specialist, priceperday;
   homecare_commonscreen(
@@ -260,7 +262,15 @@ class _homecare_commonscreenState extends State<homecare_commonscreen> {
                     Container(
                       height: 38.0,
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(
+                              () => homecare_final(
+                                    priceperday: widget.priceperday,
+                                    name: widget.name,
+                                    profession: widget.specialist,
+                                  ),
+                              transition: Transition.rightToLeft);
+                        },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         child: Ink(

@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/rentals/rental_commonscreen.dart';
+import 'package:medicineapp2/surgical/surgical_productscreen.dart';
 
-import 'doctor/doctor_model.dart';
-import 'Models/surgical_model.dart';
+import '../doctor/doctor_model.dart';
+import '../Models/surgical_model.dart';
 
 class surgical extends StatefulWidget {
   const surgical({Key? key}) : super(key: key);
@@ -139,7 +140,22 @@ class _surgicalState extends State<surgical> {
                         itemCount: surgical_image.length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(
+                                  () => surgical_productscreen(
+                                      imageurl: surgical_image[index],
+                                      category: surgical_info[index].category,
+                                      company: surgical_info[index].company,
+                                      cutprice: surgical_info[index].cutprice,
+                                      description:
+                                          surgical_info[index].description,
+                                      name: surgical_info[index].name,
+                                      price: surgical_info[index].price,
+                                      size: surgical_info[index].size,
+                                      sterile: surgical_info[index].sterile,
+                                      use: surgical_info[index].use),
+                                  transition: Transition.rightToLeft);
+                            },
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               color: white,

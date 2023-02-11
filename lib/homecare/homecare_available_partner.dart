@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../doctor/doctor_model.dart';
-import 'homecare_commonScreen.dart';
+import '../homecare/homecare_commonScreen.dart';
 
 class homecare_available_partner extends StatefulWidget {
   String servicename;

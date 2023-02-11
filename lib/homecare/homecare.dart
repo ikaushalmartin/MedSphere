@@ -6,12 +6,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:medicineapp2/product_commonscreen/homecare_available_partner.dart';
 
-import 'doctor/doctor_model.dart';
-import 'Models/popularcategories_model.dart';
-import 'buy and cart/cart.dart';
-import 'const.dart';
+import '../doctor/doctor_model.dart';
+import '../Models/popularcategories_model.dart';
+import '../buy and cart/cart.dart';
+import '../const.dart';
+import 'homecare_available_partner.dart';
 
 class homecare extends StatefulWidget {
   const homecare({Key? key}) : super(key: key);
