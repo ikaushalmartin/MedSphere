@@ -212,111 +212,120 @@ class _doctor_finalState extends State<doctor_final> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height / 135),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  // height: MediaQuery.of(context).size.height / 3.5,
-                  decoration: BoxDecoration(
-                    color: white,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 60,
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 60,
-                      bottom: MediaQuery.of(context).size.height / 60,
+                SingleChildScrollView(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    // height: MediaQuery.of(context).size.height / 3.5,
+                    decoration: BoxDecoration(
+                      color: white,
                     ),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Your Details",
-                            style: TextStyle(
-                              fontFamily: 'semibold',
-                              fontSize: 21,
-                              color: textcolor,
-                            ),
-                          ),
-                          SizedBox(
-                              height: MediaQuery.of(context).size.height / 65),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width / 2.2,
-                                decoration: BoxDecoration(
-                                  color: background,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: TextFormField(
-                                  controller: patientname,
-                                  keyboardType: TextInputType.name,
-                                  style: TextStyle(color: textcolor),
-                                  textAlign: TextAlign.left,
-                                  decoration: kTextFieldDecoration.copyWith(
-                                      contentPadding: EdgeInsets.only(left: 20),
-                                      hintText: "Name"),
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  validator: (firstname) =>
-                                      firstname != null && firstname.length! < 1
-                                          ? 'First name cannot be empty'
-                                          : null,
-                                ),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height / 60,
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
+                        bottom: MediaQuery.of(context).size.height / 60,
+                      ),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Your Details",
+                              style: TextStyle(
+                                fontFamily: 'semibold',
+                                fontSize: 21,
+                                color: textcolor,
                               ),
-                              Container(
-                                width: MediaQuery.of(context).size.width / 2.2,
-                                decoration: BoxDecoration(
-                                  color: background,
-                                  borderRadius: BorderRadius.circular(10),
+                            ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 65),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.2,
+                                  decoration: BoxDecoration(
+                                    color: background,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: TextFormField(
+                                    controller: patientname,
+                                    keyboardType: TextInputType.name,
+                                    style: TextStyle(color: textcolor),
+                                    textAlign: TextAlign.left,
+                                    decoration: kTextFieldDecoration.copyWith(
+                                        contentPadding:
+                                            EdgeInsets.only(left: 20),
+                                        hintText: "Name"),
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                    validator: (firstname) =>
+                                        firstname != null &&
+                                                firstname.length! < 1
+                                            ? 'First name cannot be empty'
+                                            : null,
+                                  ),
                                 ),
-                                child: TextFormField(
-                                  onChanged: (value) {},
-                                  controller: patientpincode,
-                                  keyboardType: TextInputType.phone,
-                                  style: TextStyle(color: textcolor),
-                                  textAlign: TextAlign.left,
-                                  decoration: kTextFieldDecoration.copyWith(
-                                      contentPadding: EdgeInsets.only(left: 20),
-                                      hintText: "Pincode"),
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  validator: (phone) =>
-                                      phone != null && phone.length < 6
-                                          ? 'Enter a valid pincode'
-                                          : null,
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.2,
+                                  decoration: BoxDecoration(
+                                    color: background,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: TextFormField(
+                                    onChanged: (value) {},
+                                    controller: patientpincode,
+                                    keyboardType: TextInputType.phone,
+                                    style: TextStyle(color: textcolor),
+                                    textAlign: TextAlign.left,
+                                    decoration: kTextFieldDecoration.copyWith(
+                                        contentPadding:
+                                            EdgeInsets.only(left: 20),
+                                        hintText: "Pincode"),
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                    validator: (phone) =>
+                                        phone != null && phone.length < 6
+                                            ? 'Enter a valid pincode'
+                                            : null,
+                                  ),
                                 ),
+                              ],
+                            ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 80),
+                            Container(
+                              //  width: MediaQuery.of(context).size.width / 2.4,
+                              decoration: BoxDecoration(
+                                color: background,
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                            ],
-                          ),
-                          SizedBox(
-                              height: MediaQuery.of(context).size.height / 80),
-                          Container(
-                            //  width: MediaQuery.of(context).size.width / 2.4,
-                            decoration: BoxDecoration(
-                              color: background,
-                              borderRadius: BorderRadius.circular(10),
+                              child: TextFormField(
+                                onChanged: (value) {},
+                                controller: patientphone,
+                                keyboardType: TextInputType.phone,
+                                style: TextStyle(color: textcolor),
+                                textAlign: TextAlign.left,
+                                decoration: kTextFieldDecoration.copyWith(
+                                    contentPadding: EdgeInsets.only(left: 20),
+                                    hintText: "Phone"),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (phone) =>
+                                    phone != null && phone.length < 10
+                                        ? 'Enter a valid phone number'
+                                        : null,
+                              ),
                             ),
-                            child: TextFormField(
-                              onChanged: (value) {},
-                              controller: patientphone,
-                              keyboardType: TextInputType.phone,
-                              style: TextStyle(color: textcolor),
-                              textAlign: TextAlign.left,
-                              decoration: kTextFieldDecoration.copyWith(
-                                  contentPadding: EdgeInsets.only(left: 20),
-                                  hintText: "Phone"),
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              validator: (phone) =>
-                                  phone != null && phone.length < 10
-                                      ? 'Enter a valid phone number'
-                                      : null,
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -416,7 +425,7 @@ class _doctor_finalState extends State<doctor_final> {
       animType: AnimType.scale,
       headerAnimationLoop: false,
       dialogType: DialogType.success,
-      title: 'Succes',
+      title: 'Success',
       desc: 'Got Your Details!\nWill Get Back To You Soon!!',
       btnOkOnPress: () {
         debugPrint('OnClcik');

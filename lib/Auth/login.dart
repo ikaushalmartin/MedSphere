@@ -35,7 +35,6 @@ class _loginState extends State<login> {
 
   @override
   Widget build(BuildContext context) {
-    navigatorKey:
     navigatorKey;
     return StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
