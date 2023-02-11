@@ -50,6 +50,7 @@ class surgical_model {
         "Sterlie": sterile,
         "Size": size,
         "Category": category,
-        "Description": description
+        "Description": description,
+        "Price": price,
       };
 }

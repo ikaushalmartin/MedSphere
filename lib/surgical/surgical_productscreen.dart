@@ -1,10 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:readmore/readmore.dart';
 
+import '../Models/cart_model.dart';
+import '../buy and cart/surgical_cart.dart';
 import '../const.dart';
+import '../main.dart';
 
 class surgical_productscreen extends StatefulWidget {
   String imageurl,
@@ -43,7 +48,19 @@ class _surgical_productscreenState extends State<surgical_productscreen> {
   Color background = Color(0xffD9D9D9);
   Color white = Color(0xffffffff);
   Color search_bg = Color(0x1A000000);
+
+  List<cartmodel> deliveryandminval_list_for_check = [];
+
+  bool enable = true;
   int quantity = 1;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetch_cart_data_for_check();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -93,7 +110,10 @@ class _surgical_productscreenState extends State<surgical_productscreen> {
                             highlightColor: Colors.transparent,
                           ),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(() => surgical_cart(),
+                                  transition: Transition.rightToLeft);
+                            },
                             icon: Icon(Icons.shopping_cart_outlined),
                             color: textcolor,
                           ),
@@ -348,7 +368,7 @@ class _surgical_productscreenState extends State<surgical_productscreen> {
                                     //  height: 50.0,
                                     child: MaterialButton(
                                       onPressed: () {
-                                        /*fetch_cart_data_for_check();
+                                        fetch_cart_data_for_check();
                                         if (deliveryandminval_list_for_check
                                             .isEmpty) {
                                           enable = true;
@@ -358,8 +378,7 @@ class _surgical_productscreenState extends State<surgical_productscreen> {
                                         });
 
                                         if (enable == true) {
-                                          addtocart(widget.name, widget.price,
-                                              widget.company);
+                                          addtocart();
                                         } else {
                                           var checksnackbar = SnackBar(
                                             content: const Text(
@@ -376,7 +395,7 @@ class _surgical_productscreenState extends State<surgical_productscreen> {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(checksnackbar);
                                           });
-                                        }*/
+                                        }
                                       },
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -642,5 +661,88 @@ class _surgical_productscreenState extends State<surgical_productscreen> {
         ),
       ),
     );
+  }
+
+  Future addtocart() async {
+    showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    await FirebaseFirestore.instance
+        .collection('CARTS')
+        .doc(uid)
+        .collection("Surgical Cart")
+        .add({
+      'Cutprice': widget.cutprice,
+      'Company': widget.company,
+      'Price': widget.price,
+      'Name': widget.name,
+      'Imageurl': widget.imageurl,
+      'Quantity': quantity,
+      'Use': widget.use,
+      "Sterlie": widget.sterile,
+      "Size": widget.size,
+    });
+    Navigator.of(context).pop();
+    var vpasswordsnackbar = SnackBar(
+      content: const Text("Item Added To Cart!"),
+      backgroundColor: textcolor,
+      shape: OutlineInputBorder(borderRadius: BorderRadius.circular(1)),
+      duration: Duration(milliseconds: 2000),
+      behavior: SnackBarBehavior.floating,
+    );
+    setState(() {
+      ScaffoldMessenger.of(context).showSnackBar(vpasswordsnackbar);
+    });
+  }
+
+  fetch_cart_data_for_check() async {
+    var _cart_data = await FirebaseFirestore.instance
+        .collection('CARTS')
+        .doc(uid)
+        .collection("Surgical Cart")
+        .get();
+    map_cart_dataforcheck(_cart_data);
+  }
+
+  map_cart_dataforcheck(QuerySnapshot<Map<String, dynamic>> data) {
+    var cart_item = data.docs
+        .map((item) => cartmodel(
+            id: item.id,
+            cutprice: item['Cutprice'],
+            url: item['Imageurl'],
+            company: item['Company'],
+            productname: item['Name'],
+            price: item['Price'],
+            quantity: item['Quantity']))
+        .toList();
+
+    setState(() {
+      deliveryandminval_list_for_check = cart_item;
+    });
+    checkButton();
+    return deliveryandminval_list_for_check;
+  }
+
+  void checkButton() {
+    for (int i = 0; i < deliveryandminval_list_for_check.length; i++) {
+      print(
+          '${widget.company}---------------${deliveryandminval_list_for_check[i].company}');
+      if (widget.name == deliveryandminval_list_for_check[i].productname &&
+          widget.company == deliveryandminval_list_for_check[i].company) {
+        enable = false;
+        break;
+      } else {
+        enable = true;
+      }
+    }
+
+    setState(() {
+      enable;
+    });
   }
 }
