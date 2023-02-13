@@ -8,13 +8,13 @@ import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/Models/price_model.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
-import 'package:medicineapp2/product_commonscreen/packagesscreen_labtest.dart';
+import 'package:medicineapp2/lab/packagesscreen_labtest.dart';
 
-import 'Medicine/medicine.dart';
-import 'buy and cart/cart.dart';
-import 'buy and cart/lab_cart.dart';
-import 'const.dart';
-import 'orderbyprescription.dart';
+import '../Medicine/medicine.dart';
+import '../buy and cart/cart.dart';
+import 'lab_cart.dart';
+import '../const.dart';
+import '../orderbyprescription.dart';
 
 class labtest extends StatefulWidget {
   const labtest({Key? key}) : super(key: key);

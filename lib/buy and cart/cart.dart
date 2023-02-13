@@ -8,12 +8,12 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/dashboard.dart';
 
+import '../Medicine/medicine_final.dart';
 import '../Models/cart_model.dart';
 import '../Models/lab_cart_model.dart';
 import '../Models/popularcategories_model.dart';
 import '../const.dart';
 import '../main.dart';
-import '../product_commonscreen/add_delivery_address.dart';
 
 class cart extends StatefulWidget {
   const cart({Key? key}) : super(key: key);
@@ -639,7 +639,13 @@ class _cartState extends State<cart> {
                         height: MediaQuery.of(context).size.height / 20,
                         child: MaterialButton(
                           onPressed: () {
-                            Get.to(() => adddeliveryaddress(),
+                            Get.to(
+                                () => medicine_final(
+                                      discount: discountpercentage,
+                                      cart_items: cartdata,
+                                      totalamount:
+                                          discountedprice + deliverycharges,
+                                    ),
                                 transition: Transition.rightToLeft);
                           },
                           shape: RoundedRectangleBorder(

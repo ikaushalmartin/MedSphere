@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../Models/labtest_package_detail.dart';
 import '../Models/price_model.dart';
 import '../buy and cart/cart.dart';
-import '../buy and cart/lab_cart.dart';
+import 'lab_cart.dart';
 import 'labtest_commonscreen.dart';
 
 class packages_commonnscreen extends StatefulWidget {

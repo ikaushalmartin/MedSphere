@@ -22,7 +22,7 @@ import 'const.dart';
 import 'doctor/doctor.dart';
 import 'emergency_services.dart';
 import 'everyday_essential/everyday_essentials.dart';
-import 'labtest.dart';
+import 'lab/labtest.dart';
 import 'ngocollabs.dart';
 import 'orderbyprescription.dart';
 

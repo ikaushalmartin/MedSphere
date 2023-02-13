@@ -11,7 +11,7 @@ import 'package:readmore/readmore.dart';
 import '../Models/lab_cart_model.dart';
 import '../Models/popularcategories_model.dart';
 import '../buy and cart/cart.dart';
-import '../buy and cart/lab_cart.dart';
+import 'lab_cart.dart';
 import '../main.dart';
 
 class labtest_commonscreen extends StatefulWidget {

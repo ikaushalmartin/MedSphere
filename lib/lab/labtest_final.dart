@@ -8,11 +8,11 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../const.dart';
 
-class surgical_final extends StatefulWidget {
+class labtest_final extends StatefulWidget {
   List cart_items;
   double totalamount;
   double discount;
-  surgical_final(
+  labtest_final(
       {Key? key,
       required this.cart_items,
       required this.totalamount,
@@ -20,10 +20,10 @@ class surgical_final extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<surgical_final> createState() => _surgical_finalState();
+  State<labtest_final> createState() => _labtest_finalState();
 }
 
-class _surgical_finalState extends State<surgical_final> {
+class _labtest_finalState extends State<labtest_final> {
   Color bluecolor = Color(0xff5093FE);
   Color bluecolor_bg = Color(0xffDAE1FF);
   Color textcolor = Color(0xD9181818);
@@ -139,17 +139,6 @@ class _surgical_finalState extends State<surgical_final> {
                                     MediaQuery.of(context).size.height / 80),
                             child: Row(
                               children: [
-                                CircleAvatar(
-                                  backgroundColor: white,
-                                  radius: 30,
-                                  child: Image.network(
-                                    "${widget.cart_items[index].url}",
-                                    scale: 8,
-                                  ),
-                                ),
-                                SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 20),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -158,7 +147,7 @@ class _surgical_finalState extends State<surgical_final> {
                                       width: MediaQuery.of(context).size.width /
                                           1.4,
                                       child: Text(
-                                        "${widget.cart_items[index].productname}",
+                                        "${widget.cart_items[index].name}",
                                         style: TextStyle(
                                             fontSize: 16,
                                             color: textcolor,
@@ -169,7 +158,7 @@ class _surgical_finalState extends State<surgical_final> {
                                       width: MediaQuery.of(context).size.width /
                                           1.4,
                                       child: Text(
-                                        "${widget.cart_items[index].company}",
+                                        "${widget.cart_items[index].packages}",
                                         style: TextStyle(
                                             fontSize: 14,
                                             color: bluecolor,
@@ -180,7 +169,7 @@ class _surgical_finalState extends State<surgical_final> {
                                       width: MediaQuery.of(context).size.width /
                                           1.4,
                                       child: Text(
-                                        "Quantity - ${widget.cart_items[index].quantity}",
+                                        "Patients - ${widget.cart_items[index].quantity}",
                                         style: TextStyle(
                                             fontSize: 14,
                                             color: textcolor,
@@ -391,7 +380,7 @@ class _surgical_finalState extends State<surgical_final> {
                         child: MaterialButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              book_surgicals();
+                              book_lab();
                             }
                           },
                           shape: RoundedRectangleBorder(
@@ -433,7 +422,7 @@ class _surgical_finalState extends State<surgical_final> {
     );
   }
 
-  Future book_surgicals() async {
+  Future book_lab() async {
     showDialog(
         context: context,
         builder: (context) => Center(
@@ -446,13 +435,13 @@ class _surgical_finalState extends State<surgical_final> {
     for (int i = 0; i < widget.cart_items.length; i++) {
       await FirebaseFirestore.instance
           .collection('/ORDERS')
-          .doc('Surgical_orders')
+          .doc('Lab_orders')
           .collection("oders")
           .add({
-        'Product Name - ${i + 1}': widget.cart_items[i].productname,
-        'Product Company - ${i + 1}': widget.cart_items[i].company,
-        'Product Price - ${i + 1}': widget.cart_items[i].price,
-        'Product Quantity - ${i + 1}': widget.cart_items[i].quantity,
+        'Package Name - ${i + 1}': widget.cart_items[i].packages,
+        'Test Name - ${i + 1}': widget.cart_items[i].name,
+        'Test Price - ${i + 1}': widget.cart_items[i].price,
+        'Patient - ${i + 1}': widget.cart_items[i].quantity,
         'Customer Name': patientname.text,
         'phone': patientphone.text,
         'pincode': patientpincode.text,

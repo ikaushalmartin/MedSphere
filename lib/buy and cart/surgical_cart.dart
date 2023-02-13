@@ -234,7 +234,7 @@ class _surgical_cartState extends State<surgical_cart> {
                                                               .spaceBetween,
                                                       children: [
                                                         Text(
-                                                          "MRP ₹${cartdata[index].price}    ",
+                                                          "₹${cartdata[index].price}    ",
                                                           style: TextStyle(
                                                               fontSize: 14,
                                                               color: textcolor,
@@ -242,7 +242,7 @@ class _surgical_cartState extends State<surgical_cart> {
                                                                   "medium"),
                                                         ),
                                                         Text(
-                                                          "₹${cartdata[index].cutprice}",
+                                                          "MRP₹${cartdata[index].cutprice}",
                                                           style: TextStyle(
                                                               fontSize: 14,
                                                               decoration:
@@ -558,7 +558,7 @@ class _surgical_cartState extends State<surgical_cart> {
                                       ),
                                     ),
                                     Text(
-                                      "%$discountpercentage",
+                                      "%${(discountpercentage).toStringAsFixed(2)}",
                                       style: TextStyle(
                                         fontFamily: 'medium',
                                         fontSize: 14,
@@ -650,6 +650,7 @@ class _surgical_cartState extends State<surgical_cart> {
                                       cart_items: cartdata,
                                       totalamount:
                                           (discountedprice + deliverycharges),
+                                      discount: discountpercentage,
                                     ),
                                 transition: Transition.rightToLeft);
                           },

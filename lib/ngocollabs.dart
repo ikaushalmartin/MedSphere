@@ -8,7 +8,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'Models/lab_cart_model.dart';
 import 'Models/popularcategories_model.dart';
-import 'buy and cart/lab_cart.dart';
+import 'lab/lab_cart.dart';
 
 class ngocollabs extends StatefulWidget {
   const ngocollabs({Key? key}) : super(key: key);

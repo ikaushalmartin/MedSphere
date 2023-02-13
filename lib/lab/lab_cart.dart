@@ -13,6 +13,7 @@ import '../Models/lab_cart_model.dart';
 import '../Models/popularcategories_model.dart';
 import '../const.dart';
 import '../main.dart';
+import 'labtest_final.dart';
 
 List<lab_cartmodel> lab_cartdata = [];
 
@@ -43,6 +44,7 @@ class _lab_cartState extends State<lab_cart> {
   double discountedprice = 0;
   double deliverycharges = 0;
   double totalamount = 0;
+  double discountpercentage = 0;
   @override
   void initState() {
     // TODO: implement initState
@@ -521,6 +523,28 @@ class _lab_cartState extends State<lab_cart> {
                                   height:
                                       MediaQuery.of(context).size.height / 60,
                                 ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Discount Percentage :",
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 14,
+                                        color: redcoloe,
+                                      ),
+                                    ),
+                                    Text(
+                                      "%${(discountpercentage).toStringAsFixed(2)}",
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 14,
+                                        color: redcoloe,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 Divider(
                                   color: textcolor,
                                   thickness: 0.2,
@@ -601,7 +625,16 @@ class _lab_cartState extends State<lab_cart> {
                       Container(
                         height: MediaQuery.of(context).size.height / 20,
                         child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(
+                                () => labtest_final(
+                                      cart_items: lab_cartdata,
+                                      totalamount:
+                                          (discountedprice + deliverycharges),
+                                      discount: discountpercentage,
+                                    ),
+                                transition: Transition.rightToLeft);
+                          },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
                           child: Ink(
@@ -739,7 +772,9 @@ class _lab_cartState extends State<lab_cart> {
     } else {
       deliverycharges = double.parse(_deliveryandminval_list[1].name);
     }
+    discountpercentage = (totalmrp - discountedprice) / totalmrp * 100;
     setState(() {
+      discountpercentage;
       deliverycharges;
     });
   }

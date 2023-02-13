@@ -8,22 +8,22 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../const.dart';
 
-class surgical_final extends StatefulWidget {
+class medicine_final extends StatefulWidget {
   List cart_items;
   double totalamount;
   double discount;
-  surgical_final(
+  medicine_final(
       {Key? key,
+      required this.discount,
       required this.cart_items,
-      required this.totalamount,
-      required this.discount})
+      required this.totalamount})
       : super(key: key);
 
   @override
-  State<surgical_final> createState() => _surgical_finalState();
+  State<medicine_final> createState() => _medicine_finalState();
 }
 
-class _surgical_finalState extends State<surgical_final> {
+class _medicine_finalState extends State<medicine_final> {
   Color bluecolor = Color(0xff5093FE);
   Color bluecolor_bg = Color(0xffDAE1FF);
   Color textcolor = Color(0xD9181818);
@@ -391,7 +391,7 @@ class _surgical_finalState extends State<surgical_final> {
                         child: MaterialButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              book_surgicals();
+                              book_medicine();
                             }
                           },
                           shape: RoundedRectangleBorder(
@@ -433,7 +433,7 @@ class _surgical_finalState extends State<surgical_final> {
     );
   }
 
-  Future book_surgicals() async {
+  Future book_medicine() async {
     showDialog(
         context: context,
         builder: (context) => Center(
@@ -446,7 +446,7 @@ class _surgical_finalState extends State<surgical_final> {
     for (int i = 0; i < widget.cart_items.length; i++) {
       await FirebaseFirestore.instance
           .collection('/ORDERS')
-          .doc('Surgical_orders')
+          .doc('Medicine Or Product')
           .collection("oders")
           .add({
         'Product Name - ${i + 1}': widget.cart_items[i].productname,
