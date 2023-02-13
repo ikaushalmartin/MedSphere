@@ -43,6 +43,7 @@ class _cartState extends State<cart> {
   double discountedprice = 0;
   double deliverycharges = 0;
   double totalamount = 0;
+  double discountpercentage = 0;
   Timer? timer2;
   @override
   void initState() {
@@ -499,7 +500,7 @@ class _cartState extends State<cart> {
                                       ),
                                     ),
                                     Text(
-                                      "₹$discountedprice",
+                                      "₹${discountedprice.toStringAsFixed(2)}",
                                       style: TextStyle(
                                         fontFamily: 'medium',
                                         fontSize: 14,
@@ -538,6 +539,28 @@ class _cartState extends State<cart> {
                                   height:
                                       MediaQuery.of(context).size.height / 60,
                                 ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Discount Percentage :",
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 14,
+                                        color: redcoloe,
+                                      ),
+                                    ),
+                                    Text(
+                                      "%${discountpercentage.toStringAsFixed(2)}",
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 14,
+                                        color: redcoloe,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 Divider(
                                   color: textcolor,
                                   thickness: 0.2,
@@ -555,7 +578,7 @@ class _cartState extends State<cart> {
                                       ),
                                     ),
                                     Text(
-                                      "₹${discountedprice + deliverycharges}",
+                                      "₹${(discountedprice + deliverycharges).toStringAsFixed(2)}",
                                       style: TextStyle(
                                         fontFamily: 'medium',
                                         fontSize: 14,
@@ -603,7 +626,7 @@ class _cartState extends State<cart> {
                             ),
                           ),
                           Text(
-                            "₹${discountedprice + deliverycharges}",
+                            "₹${(discountedprice + deliverycharges).toStringAsFixed(2)}",
                             style: TextStyle(
                               fontFamily: 'medium',
                               fontSize: 16,
@@ -757,7 +780,9 @@ class _cartState extends State<cart> {
     } else {
       deliverycharges = double.parse(deliveryandminval_list[0].name);
     }
+    discountpercentage = (totalmrp - discountedprice) / totalmrp * 100;
     setState(() {
+      discountpercentage;
       deliverycharges;
     });
   }

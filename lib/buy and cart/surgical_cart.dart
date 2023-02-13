@@ -10,6 +10,7 @@ import '../Models/popularcategories_model.dart';
 import '../const.dart';
 import '../dashboard.dart';
 import '../main.dart';
+import '../surgical/surgical_finalscreen.dart';
 
 class surgical_cart extends StatefulWidget {
   const surgical_cart({Key? key}) : super(key: key);
@@ -40,6 +41,7 @@ class _surgical_cartState extends State<surgical_cart> {
   double discountedprice = 0;
   double deliverycharges = 0;
   double totalamount = 0;
+  double discountpercentage = 0;
 
   @override
   void initState() {
@@ -543,9 +545,31 @@ class _surgical_cartState extends State<surgical_cart> {
                                   height:
                                       MediaQuery.of(context).size.height / 60,
                                 ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Discount Percentage :",
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 14,
+                                        color: redcoloe,
+                                      ),
+                                    ),
+                                    Text(
+                                      "%$discountpercentage",
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 14,
+                                        color: redcoloe,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 Divider(
                                   color: textcolor,
-                                  thickness: 0.2,
+                                  thickness: 0.5,
                                 ),
                                 Row(
                                   mainAxisAlignment:
@@ -620,7 +644,15 @@ class _surgical_cartState extends State<surgical_cart> {
                       Container(
                         height: MediaQuery.of(context).size.height / 20,
                         child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(
+                                () => surgical_final(
+                                      cart_items: cartdata,
+                                      totalamount:
+                                          (discountedprice + deliverycharges),
+                                    ),
+                                transition: Transition.rightToLeft);
+                          },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
                           child: Ink(
@@ -750,6 +782,7 @@ class _surgical_cartState extends State<surgical_cart> {
       discountedprice = discountedprice +
           (double.parse(cartdata[i].price) * cartdata[i].quantity);
     }
+
     deliverycharges_updation();
     print("-------------------------${deliveryandminval_list[1].name}");
   }
@@ -760,7 +793,10 @@ class _surgical_cartState extends State<surgical_cart> {
     } else {
       deliverycharges = double.parse(deliveryandminval_list[4].name);
     }
+    discountpercentage = (totalmrp - discountedprice) / totalmrp * 100;
+
     setState(() {
+      discountpercentage;
       deliverycharges;
     });
   }

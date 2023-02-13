@@ -1,10 +1,20 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+
+import '../const.dart';
 
 class surgical_final extends StatefulWidget {
-  const surgical_final({Key? key}) : super(key: key);
+  List cart_items;
+  double totalamount;
+
+  surgical_final(
+      {Key? key, required this.cart_items, required this.totalamount})
+      : super(key: key);
 
   @override
   State<surgical_final> createState() => _surgical_finalState();
@@ -97,132 +107,77 @@ class _surgical_finalState extends State<surgical_final> {
                         left: MediaQuery.of(context).size.height / 60,
                         right: MediaQuery.of(context).size.height / 60,
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Product Details",
-                            style: TextStyle(
-                              fontFamily: 'semibold',
-                              fontSize: 21,
-                              color: textcolor,
-                            ),
-                          ),
-                          SizedBox(
-                              height: MediaQuery.of(context).size.height / 80),
-                          Row(
-                            children: [
-                              Text(
-                                "Product Name  -  ",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 18,
-                                  color: textcolor,
-                                ),
-                              ),
-                              Text(
-                                "${widget.name}",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 18,
-                                  color: textcolor_light,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                              height: MediaQuery.of(context).size.height / 520),
-                          Row(
-                            children: [
-                              Text(
-                                "Company  -  ",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 18,
-                                  color: textcolor,
-                                ),
-                              ),
-                              Text(
-                                "${widget.company}",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 18,
-                                  color: textcolor_light,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                              height: MediaQuery.of(context).size.height / 80),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Container(
-                              width: 130,
-                              height: 25,
-                              decoration: BoxDecoration(
-                                  color: search_bg,
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(
-                                      color: textcolor_light, width: 1.1)),
-                              child: MaterialButton(
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: Text(
-                                          'Days',
-                                          style: TextStyle(
-                                              color: textcolor,
-                                              fontFamily: "medium"),
-                                        ),
-                                        content: Container(
-                                          height: 350,
-                                          width: 1,
-                                          child: ListView.builder(
-                                            physics:
-                                                const BouncingScrollPhysics(),
-                                            shrinkWrap: true,
-                                            itemCount: 29,
-                                            itemBuilder:
-                                                (BuildContext context, int x) {
-                                              return ListTile(
-                                                title: GestureDetector(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      days = x + 1;
-                                                    });
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    height: 50,
-                                                    child: Text('${x + 1}'),
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                                child: Text(
-                                  'Days - $days',
-                                  style: TextStyle(
-                                      color: textcolor, fontFamily: "medium"),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      child: Text(
+                        "Products",
+                        style: TextStyle(
+                          fontFamily: 'semibold',
+                          fontSize: 21,
+                          color: textcolor,
+                        ),
                       ),
                     ),
+                  ),
+                  Container(
+                    //  width: MediaQuery.of(context).size.width,
+                    color: white,
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        itemCount: widget.cart_items.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).size.height / 80,
+                                left: MediaQuery.of(context).size.height / 60,
+                                right: MediaQuery.of(context).size.height / 60,
+                                bottom:
+                                    MediaQuery.of(context).size.height / 80),
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: white,
+                                  radius: 30,
+                                  child: Image.network(
+                                    "${widget.cart_items[index].url}",
+                                    scale: 8,
+                                  ),
+                                ),
+                                SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width / 20),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width /
+                                          1.4,
+                                      child: Text(
+                                        "${widget.cart_items[index].productname}",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            color: textcolor,
+                                            fontFamily: "medium"),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width /
+                                          1.4,
+                                      child: Text(
+                                        "${widget.cart_items[index].company}",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: bluecolor,
+                                            fontFamily: "medium"),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 135),
                   Container(
@@ -341,89 +296,6 @@ class _surgical_finalState extends State<surgical_final> {
                       ),
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height / 135),
-                  Container(
-                    color: white,
-                    child: Padding(
-                        padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).size.height / 80,
-                            left: MediaQuery.of(context).size.height / 60,
-                            right: MediaQuery.of(context).size.height / 60,
-                            bottom: MediaQuery.of(context).size.height / 80),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Price/Day",
-                                  style: TextStyle(
-                                    fontFamily: 'medium',
-                                    fontSize: 14,
-                                    color: textcolor,
-                                  ),
-                                ),
-                                Text(
-                                  "₹${widget.priceperday}",
-                                  style: TextStyle(
-                                    fontFamily: 'medium',
-                                    fontSize: 14,
-                                    color: textcolor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height / 100,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Number Of Days",
-                                  style: TextStyle(
-                                    fontFamily: 'medium',
-                                    fontSize: 14,
-                                    color: textcolor,
-                                  ),
-                                ),
-                                Text(
-                                  "$days",
-                                  style: TextStyle(
-                                    fontFamily: 'medium',
-                                    fontSize: 14,
-                                    color: textcolor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height / 80,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Amount To Be Paid :",
-                                  style: TextStyle(
-                                    fontFamily: 'medium',
-                                    fontSize: 14,
-                                    color: textcolor,
-                                  ),
-                                ),
-                                Text(
-                                  "₹${int.parse(widget.priceperday) * days}",
-                                  style: TextStyle(
-                                    fontFamily: 'medium',
-                                    fontSize: 14,
-                                    color: textcolor,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        )),
-                  ),
                 ],
               ),
             ),
@@ -443,7 +315,7 @@ class _surgical_finalState extends State<surgical_final> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "${widget.name}",
+                            "Total Payable",
                             style: TextStyle(
                               fontFamily: 'medium',
                               fontSize: 16,
@@ -451,7 +323,7 @@ class _surgical_finalState extends State<surgical_final> {
                             ),
                           ),
                           Text(
-                            "₹${int.parse(widget.priceperday) * days}",
+                            "${widget.totalamount}",
                             style: TextStyle(
                               fontFamily: 'medium',
                               fontSize: 14,
@@ -465,7 +337,7 @@ class _surgical_finalState extends State<surgical_final> {
                         child: MaterialButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              book_rentals();
+                              book_surgicals();
                             }
                           },
                           shape: RoundedRectangleBorder(
@@ -485,7 +357,7 @@ class _surgical_finalState extends State<surgical_final> {
                               constraints: BoxConstraints(maxWidth: 150.0),
                               alignment: Alignment.center,
                               child: Text(
-                                "Book",
+                                "Order",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 16,
@@ -505,5 +377,47 @@ class _surgical_finalState extends State<surgical_final> {
         ),
       ),
     );
+  }
+
+  Future book_surgicals() async {
+    showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+
+    for (int i = 0; i < widget.cart_items.length; i++) {
+      await FirebaseFirestore.instance
+          .collection('/ORDERS')
+          .doc('Surgical_orders')
+          .collection("oders")
+          .add({
+        'Product Name - $i': widget.cart_items[i].productname,
+        'Product Company - $i': widget.cart_items[i].company,
+        'Product Price - $i': widget.cart_items[i].price,
+        'Product Quantity - $i': widget.cart_items[i].quantity,
+        'Customer Name': patientname.text,
+        'phone': patientphone.text,
+        'pincode': patientpincode.text,
+        'Total Amount': widget.totalamount
+      });
+    }
+
+    Navigator.of(context).pop();
+    AwesomeDialog(
+      context: context,
+      animType: AnimType.scale,
+      headerAnimationLoop: false,
+      dialogType: DialogType.success,
+      title: 'Success',
+      desc: 'Got Your Details!\nWill Get Back To You Soon!!',
+      btnOkOnPress: () {
+        debugPrint('OnClcik');
+      },
+      btnOkIcon: Icons.check_circle,
+    )..show();
   }
 }
