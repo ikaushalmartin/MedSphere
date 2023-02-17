@@ -1,24 +1,24 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:medicineapp2/rentals/rental_commonscreen.dart';
-import 'package:medicineapp2/surgical/surgical_productscreen.dart';
+import 'package:medicineapp2/product_commonscreen/Common%20Screen.dart';
 
-import '../buy and cart/surgical_cart.dart';
-import '../doctor/doctor_model.dart';
-import '../Models/surgical_model.dart';
+import '../Models/topdeals_model.dart';
+import '../buy and cart/cart.dart';
 
-class surgical extends StatefulWidget {
-  const surgical({Key? key}) : super(key: key);
+class discount_products extends StatefulWidget {
+  List<topdeals> productlist = [];
+  List item_image = [];
+  discount_products(
+      {Key? key, required this.productlist, required this.item_image})
+      : super(key: key);
 
   @override
-  State<surgical> createState() => _surgicalState();
+  State<discount_products> createState() => _discount_productsState();
 }
 
-class _surgicalState extends State<surgical> {
+class _discount_productsState extends State<discount_products> {
   Color bluecolor_bg = Color(0xffDAE1FF);
   Color textcolor = Color(0xD9181818);
   Color textcolor_light = Color(0x99181818);
@@ -26,17 +26,6 @@ class _surgicalState extends State<surgical> {
   Color background = Color(0xffD9D9D9);
   Color white = Color(0xffffffff);
   Color search_bg = Color(0x1A000000);
-
-  List surgical_image = [];
-  List<surgical_model> surgical_info = [];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    fetch_rentals_details();
-    top_images();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +68,7 @@ class _surgicalState extends State<surgical> {
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                "Surgical",
+                                "Rental",
                                 style: TextStyle(
                                   fontFamily: 'semibold',
                                   fontSize: 24,
@@ -94,7 +83,7 @@ class _surgicalState extends State<surgical> {
                               ),
                               child: IconButton(
                                 onPressed: () {
-                                  Get.to(() => surgical_cart(),
+                                  Get.to(() => cart(),
                                       transition: Transition.rightToLeft);
                                 },
                                 icon: Icon(Icons.shopping_cart_outlined),
@@ -124,7 +113,7 @@ class _surgicalState extends State<surgical> {
                       right: MediaQuery.of(context).size.height / 200,
                     ),
                     child: Text(
-                      "Available Surgicals",
+                      "Products",
                       style: TextStyle(
                         fontFamily: 'semibold',
                         fontSize: 20,
@@ -141,23 +130,33 @@ class _surgicalState extends State<surgical> {
                         shrinkWrap: true,
                         physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.vertical,
-                        itemCount: surgical_image.length,
+                        itemCount: widget.item_image.length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
                               Get.to(
-                                  () => surgical_productscreen(
-                                      imageurl: surgical_image[index],
-                                      category: surgical_info[index].category,
-                                      company: surgical_info[index].company,
-                                      cutprice: surgical_info[index].cutprice,
-                                      description:
-                                          surgical_info[index].description,
-                                      name: surgical_info[index].name,
-                                      price: surgical_info[index].price,
-                                      size: surgical_info[index].size,
-                                      sterile: surgical_info[index].sterile,
-                                      use: surgical_info[index].use),
+                                  () => product_common_screen(
+                                        heading: "Medicine Detail",
+                                        image_url: widget.item_image[index],
+                                        name: widget.productlist[index].name,
+                                        precaution_and_warning: widget
+                                            .productlist[index]
+                                            .precaution_and_warning,
+                                        sideeffect: widget
+                                            .productlist[index].sideeffect,
+                                        doses: widget.productlist[index].doses,
+                                        uses: widget.productlist[index].uses,
+                                        medicaldiscription: widget
+                                            .productlist[index]
+                                            .medicaldiscription,
+                                        company:
+                                            widget.productlist[index].company,
+                                        quantity:
+                                            widget.productlist[index].quantity,
+                                        cuttopdeals: widget
+                                            .productlist[index].cuttopdeals,
+                                        price: widget.productlist[index].price,
+                                      ),
                                   transition: Transition.rightToLeft);
                             },
                             child: Container(
@@ -199,8 +198,8 @@ class _surgicalState extends State<surgical> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Image.network(
-                                              surgical_image[index],
-                                              scale: 8,
+                                              widget.item_image[index],
+                                              scale: 7,
                                             ),
                                             Column(
                                               mainAxisAlignment:
@@ -208,19 +207,13 @@ class _surgicalState extends State<surgical> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.end,
                                               children: [
-                                                Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      1.5,
-                                                  child: Text(
-                                                    "${surgical_info[index].name}",
-                                                    textAlign: TextAlign.right,
-                                                    style: TextStyle(
-                                                      fontFamily: 'semibold',
-                                                      fontSize: 19,
-                                                      color: textcolor,
-                                                    ),
+                                                Text(
+                                                  "${widget.productlist[index].name}",
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'semibold',
+                                                    fontSize: 19,
+                                                    color: textcolor,
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -228,15 +221,6 @@ class _surgicalState extends State<surgical> {
                                                           .size
                                                           .height /
                                                       350,
-                                                ),
-                                                Text(
-                                                  "${surgical_info[index].company}",
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontFamily: 'medium',
-                                                    fontSize: 16,
-                                                    color: textcolor_light,
-                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -256,58 +240,5 @@ class _surgicalState extends State<surgical> {
             ],
           ),
         ));
-  }
-
-  fetch_rentals_details() async {
-    var doctor_details =
-        await FirebaseFirestore.instance.collection('/surgical_items').get();
-    showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) => Center(
-              child: LoadingAnimationWidget.waveDots(
-                color: Color(0xff273238),
-                size: 80,
-              ),
-            ));
-    map_rental_details(doctor_details);
-  }
-
-  map_rental_details(QuerySnapshot<Map<String, dynamic>> data) {
-    var _doctor_deatils_list = data.docs
-        .map((item) => surgical_model(
-              id: item.id,
-              name: item["name"],
-              price: item["price"],
-              cutprice: item["cutprice"],
-              use: item["use"],
-              company: item["company"],
-              sterile: item["sterile"],
-              size: item["size"],
-              category: item["category"],
-              description: item["description"],
-            ))
-        .toList();
-
-    setState(() {
-      surgical_info = _doctor_deatils_list;
-    });
-  }
-
-  Future top_images() async {
-    ListResult result =
-        await FirebaseStorage.instance.ref().child("/surgical_items").list();
-    List<Reference> allFiles = result.items;
-
-    await Future.forEach<Reference>(allFiles, (file) async {
-      String fileUrl = await file.getDownloadURL();
-      surgical_image.add(fileUrl);
-    });
-
-    setState(() {
-      surgical_image;
-    });
-    Navigator.of(context).pop();
-    return surgical_image;
   }
 }

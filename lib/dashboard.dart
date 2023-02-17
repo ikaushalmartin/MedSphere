@@ -7,7 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/Medicine/medicine.dart';
 import 'package:medicineapp2/homecare/homecare.dart';
-import 'package:medicineapp2/popular_discounts.dart';
+import 'package:medicineapp2/discounts/popular_discounts.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:medicineapp2/rentals/rental.dart';
@@ -17,11 +17,13 @@ import 'package:medicineapp2/surgical/surgical.dart';
 import 'package:unicons/unicons.dart';
 import 'Medicine/medicine_forbutton.dart';
 import 'buy and cart/cart.dart';
+import 'buy and cart/surgical_cart.dart';
 import 'const.dart';
 
 import 'doctor/doctor.dart';
 import 'emergency_services.dart';
 import 'everyday_essential/everyday_essentials.dart';
+import 'lab/lab_cart.dart';
 import 'lab/labtest.dart';
 import 'ngocollabs.dart';
 import 'orderbyprescription.dart';
@@ -129,8 +131,97 @@ class _dashboardState extends State<dashboard> {
                                 ),
                                 child: IconButton(
                                   onPressed: () {
-                                    Get.to(() => cart(),
-                                        transition: Transition.rightToLeft);
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                            "Carts",
+                                            style: TextStyle(
+                                              fontFamily: 'semibold',
+                                              fontSize: 21,
+                                              color: textcolor,
+                                            ),
+                                          ),
+                                          content: Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                4.5,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      250,
+                                                ),
+                                                MaterialButton(
+                                                    onPressed: () {
+                                                      Get.to(() => cart(),
+                                                          transition: Transition
+                                                              .rightToLeft);
+                                                    },
+                                                    child: Text(
+                                                      "Medicines And Products",
+                                                      style: TextStyle(
+                                                        fontFamily: 'medium',
+                                                        fontSize: 18,
+                                                        color: textcolor,
+                                                      ),
+                                                    )),
+                                                MaterialButton(
+                                                    onPressed: () {
+                                                      Get.to(() => lab_cart(),
+                                                          transition: Transition
+                                                              .rightToLeft);
+                                                    },
+                                                    child: Text(
+                                                      "Lab Test",
+                                                      style: TextStyle(
+                                                        fontFamily: 'medium',
+                                                        fontSize: 18,
+                                                        color: textcolor,
+                                                      ),
+                                                    )),
+                                                MaterialButton(
+                                                    onPressed: () {
+                                                      Get.to(
+                                                          () => surgical_cart(),
+                                                          transition: Transition
+                                                              .rightToLeft);
+                                                    },
+                                                    child: Text(
+                                                      "Surgical",
+                                                      style: TextStyle(
+                                                        fontFamily: 'medium',
+                                                        fontSize: 18,
+                                                        color: textcolor,
+                                                      ),
+                                                    )),
+                                              ],
+                                            ),
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              child: Text(
+                                                "Close",
+                                                style: TextStyle(
+                                                  fontFamily: 'semibold',
+                                                  fontSize: 18,
+                                                  color: redcolor,
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   },
                                   icon: Icon(Icons.shopping_cart_outlined),
                                   color: textcolor,

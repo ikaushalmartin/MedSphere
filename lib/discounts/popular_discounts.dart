@@ -1,10 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import 'const.dart';
-import 'dashboard.dart';
+import '../Models/topdeals_model.dart';
+import '../const.dart';
+import '../dashboard.dart';
+import 'discount_products.dart';
 
 class populardiscounts extends StatefulWidget {
   const populardiscounts({Key? key}) : super(key: key);
@@ -16,6 +22,11 @@ class populardiscounts extends StatefulWidget {
 class _populardiscountsState extends State<populardiscounts> {
   List popular_discount_images = [];
   List deals_of_the_day_image_list2 = [];
+  List<topdeals> top_deals_deatils_list = [];
+  List<topdeals> deal_ofthedayitems = [];
+  List item_images = [];
+  List dealoftheday_items = [];
+
   @override
   Color bluecolor = Color(0xff2c64e3);
   Color textcolor = Color(0xff1D1D1F);
@@ -140,17 +151,26 @@ class _populardiscountsState extends State<populardiscounts> {
                               itemBuilder: (context, index) {
                                 return Padding(
                                   padding: const EdgeInsets.only(right: 10),
-                                  child: Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          1.2,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: NetworkImage(
-                                                  "${deals_of_the_day_image_list2[index]}")))),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      deal_ofthedayitems.clear();
+                                      dealoftheday_items.clear();
+                                      fetch_deal_of_the_day(index + 1);
+                                      dealofthedayimages(index + 1);
+                                    },
+                                    child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1.2,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: NetworkImage(
+                                                    "${deals_of_the_day_image_list2[index]}")))),
+                                  ),
                                 );
                               })),
                     ],
@@ -200,11 +220,19 @@ class _populardiscountsState extends State<populardiscounts> {
                                 bottom:
                                     MediaQuery.of(context).size.height / 180,
                               ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10.0),
-                                child: Image.network(
-                                  popular_discount_images[index],
-                                  scale: 2,
+                              child: GestureDetector(
+                                onTap: () {
+                                  top_deals_deatils_list.clear();
+                                  item_images.clear();
+
+                                  fetch_topdeals(index + 1);
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  child: Image.network(
+                                    popular_discount_images[index],
+                                    scale: 2,
+                                  ),
                                 ),
                               ),
                             );
@@ -260,5 +288,132 @@ class _populardiscountsState extends State<populardiscounts> {
     });
     Navigator.of(context).pop();
     return popular_discount_images;
+  }
+
+  fetch_topdeals(int x) async {
+    var _packages_name = await FirebaseFirestore.instance
+        .collection('POPULAR_DISCOUNTS')
+        .doc('$x')
+        .collection('discount_items')
+        .get();
+    map_top_deals(_packages_name, x);
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+  }
+
+  map_top_deals(QuerySnapshot<Map<String, dynamic>> data, int x) {
+    var topdeal_name = data.docs
+        .map((item) => topdeals(
+            id: item.id,
+            cuttopdeals: item['Cutprice'],
+            name: item['Name'],
+            price: item['Price'],
+            quantity: item['Quantity'],
+            company: item['Company'],
+            medicaldiscription: item['Medical_Discription'],
+            uses: item['Uses'],
+            doses: item['Doses'],
+            sideeffect: item['Side_Effect'],
+            precaution_and_warning: item['Precaution_and_warning']))
+        .toList();
+
+    setState(() {
+      top_deals_deatils_list = topdeal_name;
+    });
+    popular_discount_product_images(x);
+  }
+
+  Future popular_discount_product_images(int x) async {
+    ListResult result = await FirebaseStorage.instance
+        .ref()
+        .child("/popular_discount/$x")
+        .list();
+    List<Reference> allFiles = result.items;
+
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      item_images.add(fileUrl);
+    });
+
+    setState(() {
+      item_images;
+    });
+    Navigator.of(context).pop();
+
+    Get.to(
+        () => discount_products(
+            productlist: top_deals_deatils_list, item_image: item_images),
+        transition: Transition.rightToLeft);
+    return item_images;
+  }
+
+  fetch_deal_of_the_day(int x) async {
+    var _packages_name = await FirebaseFirestore.instance
+        .collection('DEAL_OFTHE_DAY')
+        .doc('$x')
+        .collection('discount_items')
+        .get();
+    map_dealsoftheday(_packages_name, x);
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+  }
+
+  map_dealsoftheday(QuerySnapshot<Map<String, dynamic>> data, int x) {
+    var topdeal_name = data.docs
+        .map((item) => topdeals(
+            id: item.id,
+            cuttopdeals: item['Cutprice'],
+            name: item['Name'],
+            price: item['Price'],
+            quantity: item['Quantity'],
+            company: item['Company'],
+            medicaldiscription: item['Medical_Discription'],
+            uses: item['Uses'],
+            doses: item['Doses'],
+            sideeffect: item['Side_Effect'],
+            precaution_and_warning: item['Precaution_and_warning']))
+        .toList();
+
+    setState(() {
+      deal_ofthedayitems = topdeal_name;
+    });
+  }
+
+  Future dealofthedayimages(int x) async {
+    ListResult result = await FirebaseStorage.instance
+        .ref()
+        .child("/deals of the day/$x")
+        .list();
+    List<Reference> allFiles = result.items;
+
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      dealoftheday_items.add(fileUrl);
+    });
+
+    setState(() {
+      dealoftheday_items;
+    });
+    Navigator.of(context).pop();
+
+    Get.to(
+        () => discount_products(
+            productlist: deal_ofthedayitems, item_image: dealoftheday_items),
+        transition: Transition.rightToLeft);
+    return dealoftheday_items;
   }
 }

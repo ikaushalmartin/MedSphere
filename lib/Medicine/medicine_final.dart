@@ -377,7 +377,7 @@ class _medicine_finalState extends State<medicine_final> {
                             ),
                           ),
                           Text(
-                            "₹${widget.totalamount}",
+                            "₹${(widget.totalamount).toStringAsFixed(2)}",
                             style: TextStyle(
                               fontFamily: 'medium',
                               fontSize: 14,
