@@ -289,6 +289,10 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                                           top_deals_deatils_list[
                                                                   index]
                                                               .price,
+                                                      ingredients:
+                                                          top_deals_deatils_list[
+                                                                  index]
+                                                              .salts,
                                                     ),
                                                 transition:
                                                     Transition.rightToLeft);
@@ -416,7 +420,8 @@ class _medicineforbuttonState extends State<medicineforbutton> {
             uses: item['Uses'],
             doses: item['Doses'],
             sideeffect: item['Side_Effect'],
-            precaution_and_warning: item['Precaution_and_warning']))
+            precaution_and_warning: item['Precaution_and_warning'],
+            salts: item['Salts']))
         .toList();
 
     setState(() {

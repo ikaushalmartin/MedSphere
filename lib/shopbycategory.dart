@@ -188,6 +188,9 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
                                                   price:
                                                       category_item_list[index]
                                                           .price,
+                                                  ingredients:
+                                                      category_item_list[index]
+                                                          .salts,
                                                 ),
                                             transition: Transition.rightToLeft);
                                       },
@@ -334,7 +337,8 @@ class _shop_by_category_itemsState extends State<shop_by_category_items> {
             uses: item['Uses'],
             doses: item['Doses'],
             sideeffect: item['Side_Effect'],
-            precaution_and_warning: item['Precaution_and_warning']))
+            precaution_and_warning: item['Precaution_and_warning'],
+            salts: item['Salts']))
         .toList();
 
     setState(() {

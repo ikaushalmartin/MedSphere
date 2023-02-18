@@ -156,6 +156,8 @@ class _discount_productsState extends State<discount_products> {
                                         cuttopdeals: widget
                                             .productlist[index].cuttopdeals,
                                         price: widget.productlist[index].price,
+                                        ingredients:
+                                            widget.productlist[index].salts,
                                       ),
                                   transition: Transition.rightToLeft);
                             },

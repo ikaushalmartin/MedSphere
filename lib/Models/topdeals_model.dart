@@ -1,25 +1,27 @@
 import 'dart:convert';
+import 'dart:core';
 
 topdeals topdealsFromJson(String str) => topdeals.fromJson(json.decode(str));
 
 String topdealsToJson(topdeals data) => json.encode(data.toJson());
 
 class topdeals {
-  topdeals({
-    required this.id,
-    required this.cuttopdeals,
-    required this.name,
-    required this.price,
-    required this.quantity,
-    required this.company,
-    required this.medicaldiscription,
-    required this.sideeffect,
-    required this.uses,
-    required this.doses,
-    required this.precaution_and_warning,
-  });
+  topdeals(
+      {required this.id,
+      required this.cuttopdeals,
+      required this.name,
+      required this.price,
+      required this.quantity,
+      required this.company,
+      required this.medicaldiscription,
+      required this.sideeffect,
+      required this.uses,
+      required this.doses,
+      required this.precaution_and_warning,
+      required this.salts});
 
   String id;
+  String salts;
   String cuttopdeals;
   String name;
   String price;
@@ -30,6 +32,7 @@ class topdeals {
   String doses;
   String sideeffect;
   String precaution_and_warning;
+
   factory topdeals.fromJson(Map<String, dynamic> json) => topdeals(
       id: json["id"],
       cuttopdeals: json["cuttopdeals"],
@@ -41,7 +44,8 @@ class topdeals {
       uses: json["uses"],
       doses: json["doses"],
       sideeffect: json["sideeffect"],
-      precaution_and_warning: json["precaution_and_warning"]);
+      precaution_and_warning: json["precaution_and_warning"],
+      salts: json["salts"]);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -54,6 +58,7 @@ class topdeals {
         "Uses": uses,
         "Doses": doses,
         "Side_effect": sideeffect,
-        "Precaution_and_Warning": precaution_and_warning
+        "Precaution_and_Warning": precaution_and_warning,
+        "Salts": salts
       };
 }

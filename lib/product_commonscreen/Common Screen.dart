@@ -27,23 +27,25 @@ class product_common_screen extends StatefulWidget {
   String doses;
   String sideeffect;
   String precaution_and_warning;
+  String ingredients;
 
-  product_common_screen({
-    Key? key,
-    //  required this.id,
-    required this.heading,
-    required this.image_url,
-    required this.name,
-    required this.precaution_and_warning,
-    required this.sideeffect,
-    required this.doses,
-    required this.uses,
-    required this.medicaldiscription,
-    required this.company,
-    required this.quantity,
-    required this.cuttopdeals,
-    required this.price,
-  }) : super(key: key);
+  product_common_screen(
+      {Key? key,
+      //  required this.id,
+      required this.heading,
+      required this.image_url,
+      required this.name,
+      required this.precaution_and_warning,
+      required this.sideeffect,
+      required this.doses,
+      required this.uses,
+      required this.medicaldiscription,
+      required this.company,
+      required this.quantity,
+      required this.cuttopdeals,
+      required this.price,
+      required this.ingredients})
+      : super(key: key);
 
   @override
   State<product_common_screen> createState() => _product_common_screenState();
@@ -569,6 +571,81 @@ class _product_common_screenState extends State<product_common_screen> {
                                 ),
                                 Text(
                                   "${widget.doses}",
+                                  style: TextStyle(
+                                    fontFamily: 'medium',
+                                    fontSize: 13,
+                                    color: textcolor_light,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 50,
+                                ),
+                                Text(
+                                  "Uses",
+                                  style: TextStyle(
+                                    fontFamily: 'medium',
+                                    fontSize: 18,
+                                    color: textcolor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 300,
+                                ),
+                                Text(
+                                  "${widget.uses}",
+                                  style: TextStyle(
+                                    fontFamily: 'medium',
+                                    fontSize: 13,
+                                    color: textcolor_light,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ), //dose
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 35,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60,
+                        ),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: white,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 40,
+                                spreadRadius: 3,
+                                color: Color(0xffD2D1D5),
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Ingredients",
+                                  style: TextStyle(
+                                    fontFamily: 'medium',
+                                    fontSize: 18,
+                                    color: textcolor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 300,
+                                ),
+                                Text(
+                                  "${widget.ingredients}",
                                   style: TextStyle(
                                     fontFamily: 'medium',
                                     fontSize: 13,

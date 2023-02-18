@@ -188,6 +188,10 @@ class _essential_items_items_screenState
                                                   price: essential_items_list[
                                                           index]
                                                       .price,
+                                                  ingredients:
+                                                      essential_items_list[
+                                                              index]
+                                                          .salts,
                                                 ),
                                             transition: Transition.rightToLeft);
                                       },
@@ -323,7 +327,8 @@ class _essential_items_items_screenState
             uses: item['Uses'],
             doses: item['Doses'],
             sideeffect: item['Side_Effect'],
-            precaution_and_warning: item['Precaution_and_warning']))
+            precaution_and_warning: item['Precaution_and_warning'],
+            salts: item['Salts']))
         .toList();
     setState(() {
       essential_items_list = cart_item;
