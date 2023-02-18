@@ -10,6 +10,7 @@ import 'package:medicineapp2/homecare/homecare.dart';
 import 'package:medicineapp2/discounts/popular_discounts.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:medicineapp2/profile.dart';
 import 'package:medicineapp2/rentals/rental.dart';
 import 'package:medicineapp2/shopby_concern.dart';
 import 'package:medicineapp2/shopbycategory.dart';
@@ -89,24 +90,15 @@ class _dashboardState extends State<dashboard> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              FirebaseAuth.instance.signOut();
-                            },
-                            child: CircleAvatar(
-                              child: Image.asset("images/1.png"),
-                            ),
-                          ),
-                          /*Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "APPNAME",
-                              style: TextStyle(
-                                fontFamily: 'bold',
-                                fontSize: 24,
+                              onTap: () {
+                                Get.to(() => const profile(),
+                                    transition: Transition.rightToLeft);
+                                // FirebaseAuth.instance.signOut();
+                              },
+                              child: Icon(
+                                Icons.person_outline_outlined,
                                 color: textcolor,
-                              ),
-                            ),
-                          ),*/
+                              )),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [

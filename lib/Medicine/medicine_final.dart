@@ -7,6 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../const.dart';
+import '../main.dart';
 
 class medicine_final extends StatefulWidget {
   List cart_items;
@@ -457,6 +458,19 @@ class _medicine_finalState extends State<medicine_final> {
         'phone': patientphone.text,
         'pincode': patientpincode.text,
         'Total Amount': widget.totalamount
+      });
+
+      await FirebaseFirestore.instance
+          .collection('Order_Status')
+          .doc(uid)
+          .collection("oders")
+          .add({
+        "Cutprice": widget.cart_items[i].cutprice,
+        "Info": widget.cart_items[i].company,
+        "Name": widget.cart_items[i].productname,
+        "Price": widget.cart_items[i].price,
+        "Status": "Pending",
+        "Quantity": widget.cart_items[i].quantity
       });
     }
 
