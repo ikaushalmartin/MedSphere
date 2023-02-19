@@ -7,6 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../const.dart';
+import '../main.dart';
 
 class labtest_final extends StatefulWidget {
   List cart_items;
@@ -424,6 +425,8 @@ class _labtest_finalState extends State<labtest_final> {
           .collection('/ORDERS')
           .doc('Lab_orders')
           .collection("oders")
+          .doc("${DateTime.now()}")
+          .collection(uid)
           .add({
         'Package Name - ${i + 1}': widget.cart_items[i].packages,
         'Test Name - ${i + 1}': widget.cart_items[i].name,
@@ -433,6 +436,19 @@ class _labtest_finalState extends State<labtest_final> {
         'phone': patientphone.text,
         'pincode': patientpincode.text,
         'Total Amount': widget.totalamount
+      });
+
+      await FirebaseFirestore.instance
+          .collection('Order_Status')
+          .doc(uid)
+          .collection("oders")
+          .add({
+        "Cutprice": widget.cart_items[i].cutprice,
+        "Info": widget.cart_items[i].packages,
+        "Name": widget.cart_items[i].name,
+        "Price": widget.cart_items[i].price,
+        "Status": "Pending",
+        "Quantity": widget.cart_items[i].quantity
       });
     }
 

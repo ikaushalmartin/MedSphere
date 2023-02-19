@@ -449,6 +449,8 @@ class _medicine_finalState extends State<medicine_final> {
           .collection('/ORDERS')
           .doc('Medicine Or Product')
           .collection("oders")
+          .doc("${DateTime.now()}")
+          .collection(uid)
           .add({
         'Product Name - ${i + 1}': widget.cart_items[i].productname,
         'Product Company - ${i + 1}': widget.cart_items[i].company,

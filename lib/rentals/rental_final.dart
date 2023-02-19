@@ -7,6 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../const.dart';
+import '../main.dart';
 
 class rentalfinal extends StatefulWidget {
   String name, company, priceperday;
@@ -532,6 +533,8 @@ class _rentalfinalState extends State<rentalfinal> {
         .collection('/ORDERS')
         .doc('Rentals')
         .collection("oders")
+        .doc("${DateTime.now()}")
+        .collection(uid)
         .add({
       'Rental Name': widget.name,
       'Rental Company': widget.company,
@@ -541,6 +544,19 @@ class _rentalfinalState extends State<rentalfinal> {
       'Price/Day': widget.priceperday,
       'Number Of Days': days,
       'Total Amount': int.parse(widget.priceperday) * days
+    });
+
+    await FirebaseFirestore.instance
+        .collection('Order_Status')
+        .doc(uid)
+        .collection("oders")
+        .add({
+      "Cutprice": "NA",
+      "Info": widget.company,
+      "Name": widget.name,
+      "Price": (int.parse(widget.priceperday) * days).toString(),
+      "Status": "Pending",
+      "Quantity": days
     });
 
     Navigator.of(context).pop();

@@ -7,6 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import '../const.dart';
+import '../main.dart';
 
 class doctor_final extends StatefulWidget {
   String doctorname, fees, workinghours, hospitalname;
@@ -410,6 +411,8 @@ class _doctor_finalState extends State<doctor_final> {
         .collection('/ORDERS')
         .doc('Doctors_Consultancy')
         .collection("oders")
+        .doc("${DateTime.now()}")
+        .collection(uid)
         .add({
       'Doctor Name': widget.doctorname,
       'Doctors Hospital': widget.hospitalname,
@@ -417,6 +420,19 @@ class _doctor_finalState extends State<doctor_final> {
       'Patient Name': patientname.text,
       'pincode': patientpincode.text,
       'phone': patientphone.text
+    });
+
+    await FirebaseFirestore.instance
+        .collection('Order_Status')
+        .doc(uid)
+        .collection("oders")
+        .add({
+      "Cutprice": "NA",
+      "Info": widget.hospitalname,
+      "Name": widget.doctorname,
+      "Price": widget.fees,
+      "Status": "Pending",
+      "Quantity": 0
     });
 
     Navigator.of(context).pop();

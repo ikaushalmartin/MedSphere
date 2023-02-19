@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../const.dart';
+import '../main.dart';
 
 class homecare_final extends StatefulWidget {
   String name, profession, priceperday;
@@ -530,6 +531,8 @@ class _homecare_finalState extends State<homecare_final> {
         .collection('/ORDERS')
         .doc('Home Care')
         .collection("oders")
+        .doc("${DateTime.now()}")
+        .collection(uid)
         .add({
       'Rental Name': widget.name,
       'Rental Company': widget.profession,
@@ -539,6 +542,19 @@ class _homecare_finalState extends State<homecare_final> {
       'Price/Day': widget.priceperday,
       'Number Of Days': days,
       'Total Amount': int.parse(widget.priceperday) * days
+    });
+
+    await FirebaseFirestore.instance
+        .collection('Order_Status')
+        .doc(uid)
+        .collection("oders")
+        .add({
+      "Cutprice": "NA",
+      "Info": widget.profession,
+      "Name": widget.name,
+      "Price": widget.priceperday,
+      "Status": "Pending",
+      "Quantity": days
     });
 
     Navigator.of(context).pop();
