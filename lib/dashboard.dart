@@ -22,6 +22,7 @@ import 'buy and cart/surgical_cart.dart';
 import 'const.dart';
 
 import 'doctor/doctor.dart';
+import 'doctors_corner/mainscreen.dart';
 import 'emergency_services.dart';
 import 'everyday_essential/everyday_essentials.dart';
 import 'lab/lab_cart.dart';
@@ -433,6 +434,12 @@ class _dashboardState extends State<dashboard> {
                                                   } else if (index == 5) {
                                                     Get.to(
                                                         () => const surgical(),
+                                                        transition: Transition
+                                                            .rightToLeft);
+                                                  } else if (index == 6) {
+                                                    Get.to(
+                                                        () =>
+                                                            const mainscreen(),
                                                         transition: Transition
                                                             .rightToLeft);
                                                   }
