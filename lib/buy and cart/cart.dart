@@ -212,12 +212,20 @@ class _cartState extends State<cart> {
                                                                 "medium"),
                                                       ),
                                                     ),
-                                                    Text(
-                                                      "${cartdata[index].company}",
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: bluecolor,
-                                                          fontFamily: "medium"),
+                                                    Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width /
+                                                              3,
+                                                      child: Text(
+                                                        "${cartdata[index].company}",
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            color: bluecolor,
+                                                            fontFamily:
+                                                                "medium"),
+                                                      ),
                                                     ),
                                                     SizedBox(
                                                       height: 5,
