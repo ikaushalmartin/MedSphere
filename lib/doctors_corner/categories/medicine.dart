@@ -24,7 +24,6 @@ class _medicine_for_doctors_cornerState
     extends State<medicine_for_doctors_corner> {
   List top_images_list_images = [];
   List<topdeals> top_deals_deatils_list = [];
-
   Color bluecolor_bg = Color(0xffDAE1FF);
   Color textcolor = Color(0xD9181818);
   Color textcolor_light = Color(0x99181818);

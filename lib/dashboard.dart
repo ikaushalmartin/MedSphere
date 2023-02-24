@@ -187,7 +187,7 @@ class _dashboardState extends State<dashboard> {
                                                               .rightToLeft);
                                                     },
                                                     child: Text(
-                                                      "Surgical",
+                                                      "Surgicals And Instruments",
                                                       style: TextStyle(
                                                         fontFamily: 'medium',
                                                         fontSize: 18,
