@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import 'categories/injectable.dart';
 import 'categories/medicine.dart';
+import 'categories/surgicalInstruments.dart';
 import 'categories/surgicals.dart';
 
 class option_screen extends StatefulWidget {
@@ -291,7 +292,14 @@ class _option_screenState extends State<option_screen> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Get.to(
+                                () => surgical_instruments(
+                                      itemname: widget.itemname,
+                                      category: 'Surgical Instruments',
+                                    ),
+                                transition: Transition.rightToLeft);
+                          },
                           child: Container(
                             width: MediaQuery.of(context).size.width,
                             color: white,
