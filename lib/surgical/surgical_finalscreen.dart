@@ -1,12 +1,20 @@
+import 'dart:core';
+
+import 'dart:io';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../const.dart';
+
 import '../main.dart';
 
 class surgical_final extends StatefulWidget {
@@ -45,6 +53,61 @@ class _surgical_finalState extends State<surgical_final> {
   int days = 1;
 
   bool _isChecked = false;
+
+  var _selectedFile = null;
+
+  Widget getImageWidget() {
+    if (_selectedFile != null) {
+      return Image.file(
+        _selectedFile,
+        width: 250,
+        height: 250,
+        fit: BoxFit.cover,
+      );
+    } else {
+      return Image.asset(
+        "images/upload.png",
+        width: 250,
+        height: 250,
+        fit: BoxFit.cover,
+      );
+    }
+  }
+
+  getImage(ImageSource source) async {
+    XFile image = (await ImagePicker().pickImage(source: source)) as XFile;
+    if (image != null) {
+      CroppedFile? cropped = await ImageCropper().cropImage(
+        sourcePath: image.path,
+        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+        compressQuality: 100,
+        maxWidth: 700,
+        maxHeight: 700,
+        compressFormat: ImageCompressFormat.jpg,
+        uiSettings: [
+          AndroidUiSettings(
+              toolbarTitle: 'Cropper',
+              toolbarColor: Colors.deepOrange,
+              toolbarWidgetColor: Colors.white,
+              initAspectRatio: CropAspectRatioPreset.original,
+              lockAspectRatio: false),
+          IOSUiSettings(
+            title: 'Cropper',
+          ),
+          WebUiSettings(
+            context: context,
+          ),
+        ],
+      );
+
+      this.setState(() {
+        _selectedFile = File(cropped!.path);
+      });
+    } else {
+      this.setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -384,6 +447,7 @@ class _surgical_finalState extends State<surgical_final> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   "Are you Doctor?",
@@ -393,33 +457,81 @@ class _surgical_finalState extends State<surgical_final> {
                                     color: redcoloe,
                                   ),
                                 ),
-                                Row(
-                                  children: [
-                                    Checkbox(
-                                      value: _isChecked,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _isChecked = value!;
-                                          if (_isChecked == true) {
-                                            doctorbuttoncolor = bluecolor;
-                                          } else if (_isChecked == false) {
-                                            doctorbuttoncolor = textcolor;
-                                          }
-                                        });
-                                      },
-                                    ),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width /
-                                          50,
-                                    ),
-                                  ],
+                                Checkbox(
+                                  value: _isChecked,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _isChecked = value!;
+                                      if (_isChecked == true) {
+                                        doctorbuttoncolor = bluecolor;
+                                      } else if (_isChecked == false) {
+                                        doctorbuttoncolor = textcolor;
+                                      }
+                                      print(_selectedFile);
+                                    });
+                                  },
                                 ),
                               ],
                             ),
-                            MaterialButton(
-                              onPressed: () {},
-                              color: doctorbuttoncolor,
-                            )
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height / 1.5,
+                              decoration: BoxDecoration(
+                                color: Color(0xffB7C4CF),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(15),
+                                    topRight: Radius.circular(15)),
+                              ),
+                              child: Stack(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 50),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: <Widget>[
+                                        getImageWidget(),
+                                        SizedBox(
+                                          height: 40,
+                                        ),
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              10,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: <Widget>[
+                                            MaterialButton(
+                                                color: Color(0xff967E76),
+                                                child: Text(
+                                                  "Camera",
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                onPressed: () {
+                                                  getImage(ImageSource.camera);
+                                                }),
+                                            MaterialButton(
+                                                color: Color(0xff967E76),
+                                                child: Text(
+                                                  "Device",
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                onPressed: () {
+                                                  getImage(ImageSource.gallery);
+                                                }),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -463,7 +575,11 @@ class _surgical_finalState extends State<surgical_final> {
                         child: MaterialButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              book_surgicals();
+                              if (_isChecked == true) {
+                                uploadImageToFirebaseStorage();
+                              } else {
+                                book_surgicals();
+                              }
                             }
                           },
                           shape: RoundedRectangleBorder(
@@ -503,6 +619,26 @@ class _surgical_finalState extends State<surgical_final> {
     );
   }
 
+  Future<void> uploadImageToFirebaseStorage() async {
+    FirebaseStorage storage = FirebaseStorage.instance;
+
+    String fileName = uid.toString();
+    String uniqueFileName = DateTime.now().toString() + '_' + fileName;
+
+    // Create a reference to the storage location
+    Reference storageRef =
+        storage.ref().child('Doctors_Identity/$uniqueFileName');
+
+    // Upload the image to storage
+    TaskSnapshot uploadTask = await storageRef.putFile(_selectedFile);
+
+    // Get the download URL for the image
+    String imageUrl = await storageRef.getDownloadURL();
+
+    // Do something with the download URL, like store it in Cloud Firestore or display it in your app
+    book_surgicals_for_doctors(imageUrl);
+  }
+
   Future book_surgicals() async {
     showDialog(
         context: context,
@@ -528,7 +664,65 @@ class _surgical_finalState extends State<surgical_final> {
         'Customer Name': patientname.text,
         'phone': patientphone.text,
         'pincode': patientpincode.text,
-        'Total Amount': widget.totalamount
+        'Total Amount': widget.totalamount,
+      });
+
+      await FirebaseFirestore.instance
+          .collection('Order_Status')
+          .doc(uid)
+          .collection("oders")
+          .add({
+        "Cutprice": widget.cart_items[i].cutprice,
+        "Info": widget.cart_items[i].company,
+        "Name": widget.cart_items[i].productname,
+        "Price": widget.cart_items[i].price,
+        "Status": "Pending",
+        "Quantity": widget.cart_items[i].quantity
+      });
+    }
+
+    Navigator.of(context).pop();
+    AwesomeDialog(
+      context: context,
+      animType: AnimType.scale,
+      headerAnimationLoop: false,
+      dialogType: DialogType.success,
+      title: 'Success',
+      desc: 'Got Your Details!\nWill Get Back To You Soon!!',
+      btnOkOnPress: () {
+        debugPrint('OnClcik');
+      },
+      btnOkIcon: Icons.check_circle,
+    )..show();
+  }
+
+  Future book_surgicals_for_doctors(String imageurl) async {
+    showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+
+    for (int i = 0; i < widget.cart_items.length; i++) {
+      await FirebaseFirestore.instance
+          .collection('/ORDERS')
+          .doc('Surgical_orders')
+          .collection("oders")
+          .doc("${DateTime.now()}")
+          .collection(uid)
+          .add({
+        'Product Name - ${i + 1}': widget.cart_items[i].productname,
+        'Product Company - ${i + 1}': widget.cart_items[i].company,
+        'Product Price - ${i + 1}': widget.cart_items[i].price,
+        'Product Quantity - ${i + 1}': widget.cart_items[i].quantity,
+        'Customer Name': patientname.text,
+        'phone': patientphone.text,
+        'pincode': patientpincode.text,
+        'Total Amount': widget.totalamount,
+        'Identity': imageurl
       });
 
       await FirebaseFirestore.instance

@@ -50,6 +50,8 @@ dependencies:
   readmore: ^2.1.0
   awesome_dialog: ^3.0.2
   firebase_messaging: ^14.2.2
+  image_picker: ^0.8.5+3
+  image_cropper: ^3.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
