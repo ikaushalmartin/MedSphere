@@ -2,11 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:medicineapp2/dashboard.dart';
+import 'dart:core';
+
+import 'dart:io';
 
 import 'Medicine/medicine.dart';
 
-class orderbyprescription extends StatelessWidget {
+class orderbyprescription extends StatefulWidget {
+  @override
+  State<orderbyprescription> createState() => _orderbyprescriptionState();
+}
+
+class _orderbyprescriptionState extends State<orderbyprescription> {
   Color textcolor = Color(0xff1D1D1F);
 
   Color buttontextcolor = Colors.white;
@@ -151,8 +161,87 @@ class noorderbyprescription extends StatelessWidget {
   }
 }
 
-class orderbyprescription_medicinepage extends StatelessWidget {
+class orderbyprescription_medicinepage extends StatefulWidget {
   const orderbyprescription_medicinepage({Key? key}) : super(key: key);
+
+  @override
+  State<orderbyprescription_medicinepage> createState() =>
+      _orderbyprescription_medicinepageState();
+}
+
+class _orderbyprescription_medicinepageState
+    extends State<orderbyprescription_medicinepage> {
+  var _selectedFile = null;
+
+  Widget getImageWidget() {
+    if (_selectedFile != null) {
+      return GestureDetector(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Prescription'),
+                content: Image.file(
+                  _selectedFile,
+                  width: 500,
+                  height: 500,
+                  fit: BoxFit.cover,
+                ),
+              );
+            },
+          );
+        },
+        child: Image.file(
+          _selectedFile,
+          width: 60,
+          height: 60,
+          fit: BoxFit.cover,
+        ),
+      );
+    } else {
+      return Image.asset(
+        "images/prescription.png",
+        width: 60,
+        height: 60,
+        fit: BoxFit.cover,
+      );
+    }
+  }
+
+  getImage(ImageSource source) async {
+    XFile image = (await ImagePicker().pickImage(source: source)) as XFile;
+    if (image != null) {
+      CroppedFile? cropped = await ImageCropper().cropImage(
+        sourcePath: image.path,
+        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+        compressQuality: 100,
+        maxWidth: 700,
+        maxHeight: 700,
+        compressFormat: ImageCompressFormat.jpg,
+        uiSettings: [
+          AndroidUiSettings(
+              toolbarTitle: 'Cropper',
+              toolbarColor: Colors.deepOrange,
+              toolbarWidgetColor: Colors.white,
+              initAspectRatio: CropAspectRatioPreset.original,
+              lockAspectRatio: false),
+          IOSUiSettings(
+            title: 'Cropper',
+          ),
+          WebUiSettings(
+            context: context,
+          ),
+        ],
+      );
+
+      this.setState(() {
+        _selectedFile = File(cropped!.path);
+      });
+    } else {
+      this.setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -195,10 +284,7 @@ class orderbyprescription_medicinepage extends StatelessWidget {
                   ),
                 ],
               ),
-              Image.asset(
-                "images/prescription.png",
-                scale: 8,
-              ),
+              getImageWidget()
             ],
           ),
           SizedBox(
@@ -212,7 +298,9 @@ class orderbyprescription_medicinepage extends StatelessWidget {
                 ButtonTheme(
                   child: Center(
                     child: MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        getImage(ImageSource.camera);
+                      },
                       elevation: 0,
                       hoverElevation: 0,
                       focusElevation: 0,
@@ -251,7 +339,9 @@ class orderbyprescription_medicinepage extends StatelessWidget {
                 ButtonTheme(
                   child: Center(
                     child: MaterialButton(
-                      onPressed: () async {},
+                      onPressed: () {
+                        getImage(ImageSource.gallery);
+                      },
                       elevation: 0,
                       hoverElevation: 0,
                       focusElevation: 0,

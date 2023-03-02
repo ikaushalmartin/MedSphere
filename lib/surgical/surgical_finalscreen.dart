@@ -60,13 +60,13 @@ class _surgical_finalState extends State<surgical_final> {
     if (_selectedFile != null) {
       return Image.file(
         _selectedFile,
-        width: 250,
-        height: 250,
+        width: 150,
+        height: 150,
         fit: BoxFit.cover,
       );
     } else {
       return Image.asset(
-        "images/upload.png",
+        "images/Asset 10-50.jpg",
         width: 250,
         height: 250,
         fit: BoxFit.cover,
@@ -473,63 +473,70 @@ class _surgical_finalState extends State<surgical_final> {
                                 ),
                               ],
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height / 1.5,
-                              decoration: BoxDecoration(
-                                color: Color(0xffB7C4CF),
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(15)),
-                              ),
-                              child: Stack(
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 50),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: <Widget>[
-                                        getImageWidget(),
-                                        SizedBox(
-                                          height: 40,
-                                        ),
-                                        SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              10,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: <Widget>[
-                                            MaterialButton(
-                                                color: Color(0xff967E76),
-                                                child: Text(
-                                                  "Camera",
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                                onPressed: () {
-                                                  getImage(ImageSource.camera);
-                                                }),
-                                            MaterialButton(
-                                                color: Color(0xff967E76),
-                                                child: Text(
-                                                  "Device",
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                                onPressed: () {
-                                                  getImage(ImageSource.gallery);
-                                                }),
-                                          ],
-                                        )
-                                      ],
+                            Visibility(
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 2000),
+                                height: _isChecked
+                                    ? MediaQuery.of(context).size.height / 1
+                                    : 0,
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffB7C4CF),
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(15),
+                                      topRight: Radius.circular(15)),
+                                ),
+                                child: Stack(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 50),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          getImageWidget(),
+                                          SizedBox(
+                                            height: 40,
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                10,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              MaterialButton(
+                                                  color: Color(0xff967E76),
+                                                  child: Text(
+                                                    "Camera",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                  onPressed: () {
+                                                    getImage(
+                                                        ImageSource.camera);
+                                                  }),
+                                              MaterialButton(
+                                                  color: Color(0xff967E76),
+                                                  child: Text(
+                                                    "Device",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                  onPressed: () {
+                                                    getImage(
+                                                        ImageSource.gallery);
+                                                  }),
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -574,6 +581,14 @@ class _surgical_finalState extends State<surgical_final> {
                         height: 38.0,
                         child: MaterialButton(
                           onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) => Center(
+                                      child: LoadingAnimationWidget.waveDots(
+                                        color: Color(0xff273238),
+                                        size: 80,
+                                      ),
+                                    ));
                             if (_formKey.currentState!.validate()) {
                               if (_isChecked == true) {
                                 uploadImageToFirebaseStorage();
@@ -596,7 +611,8 @@ class _surgical_finalState extends State<surgical_final> {
                                 ),
                                 borderRadius: BorderRadius.circular(30.0)),
                             child: Container(
-                              constraints: BoxConstraints(maxWidth: 150.0),
+                              constraints:
+                                  const BoxConstraints(maxWidth: 150.0),
                               alignment: Alignment.center,
                               child: Text(
                                 "Order",
@@ -640,15 +656,6 @@ class _surgical_finalState extends State<surgical_final> {
   }
 
   Future book_surgicals() async {
-    showDialog(
-        context: context,
-        builder: (context) => Center(
-              child: LoadingAnimationWidget.waveDots(
-                color: Color(0xff273238),
-                size: 80,
-              ),
-            ));
-
     for (int i = 0; i < widget.cart_items.length; i++) {
       await FirebaseFirestore.instance
           .collection('/ORDERS')
@@ -697,15 +704,6 @@ class _surgical_finalState extends State<surgical_final> {
   }
 
   Future book_surgicals_for_doctors(String imageurl) async {
-    showDialog(
-        context: context,
-        builder: (context) => Center(
-              child: LoadingAnimationWidget.waveDots(
-                color: Color(0xff273238),
-                size: 80,
-              ),
-            ));
-
     for (int i = 0; i < widget.cart_items.length; i++) {
       await FirebaseFirestore.instance
           .collection('/ORDERS')
