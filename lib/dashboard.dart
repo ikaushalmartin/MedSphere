@@ -22,11 +22,13 @@ import 'buy and cart/surgical_cart.dart';
 import 'const.dart';
 
 import 'doctor/doctor.dart';
+import 'doctors_corner/image_upload.dart';
 import 'doctors_corner/mainscreen.dart';
 import 'emergency_services.dart';
 import 'everyday_essential/everyday_essentials.dart';
 import 'lab/lab_cart.dart';
 import 'lab/labtest.dart';
+import 'main.dart';
 import 'ngocollabs.dart';
 import 'orderbyprescription.dart';
 
@@ -46,17 +48,18 @@ class _dashboardState extends State<dashboard> {
   Color redcolor = Color(0xffE46473);
   Color yellowcolor = Color(0xffF9BF80);
   Color background = Color(0xffD9D9D9);
-
   final user = FirebaseAuth.instance.currentUser!;
   List<Item> popular_categories = [];
   List<Item> shop_by_category = [];
   List<Item> shop_by_concern = [];
+  List<Item> dr_check_data = [];
   List files = [];
   List shop_by_category_list = [];
   List shop_by_concern_list = [];
   List deals_of_the_day_image_list = [];
   List starting_tiles_image_list = [];
 
+  int doctor_checked = 0;
   late var everyday_essential_image_url;
   void initState() {
     // TODO: implement initState
@@ -437,11 +440,19 @@ class _dashboardState extends State<dashboard> {
                                                         transition: Transition
                                                             .rightToLeft);
                                                   } else if (index == 6) {
-                                                    Get.to(
-                                                        () =>
-                                                            const mainscreen(),
-                                                        transition: Transition
-                                                            .rightToLeft);
+                                                    if (doctor_checked == 0) {
+                                                      Get.to(
+                                                          () =>
+                                                              dr_image_upload(),
+                                                          transition: Transition
+                                                              .rightToLeft);
+                                                    } else {
+                                                      Get.to(
+                                                          () =>
+                                                              const mainscreen(),
+                                                          transition: Transition
+                                                              .rightToLeft);
+                                                    }
                                                   }
                                                 },
                                                 child: Padding(
@@ -967,6 +978,20 @@ class _dashboardState extends State<dashboard> {
     var shop_by_concern =
         await FirebaseFirestore.instance.collection('shop by concern').get();
     map_fetch_shop_by_concern(shop_by_concern);
+
+    getdocvalue();
+  }
+
+  getdocvalue() async {
+    var dr_data = await FirebaseFirestore.instance
+        .collection('Doctor_check')
+        .doc(uid)
+        .get();
+    print("<<<<<<<<<<<<<<<<<<<<<<<<<<${dr_data['Verified']}");
+    doctor_checked = dr_data['Verified'];
+    setState(() {
+      doctor_checked;
+    });
   }
 
   map_fetch_popular_categories(QuerySnapshot<Map<String, dynamic>> data) {
@@ -1080,6 +1105,7 @@ class _dashboardState extends State<dashboard> {
     setState(() {
       starting_tiles_image_list;
     });
+
     Navigator.of(context).pop();
     return starting_tiles_image_list;
   }
