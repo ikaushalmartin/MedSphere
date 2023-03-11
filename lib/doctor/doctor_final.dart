@@ -412,8 +412,7 @@ class _doctor_finalState extends State<doctor_final> {
         .doc('Doctors_Consultancy')
         .collection("oders")
         .doc("${DateTime.now()}")
-        .collection(uid)
-        .add({
+        .set({
       'Doctor Name': widget.doctorname,
       'Doctors Hospital': widget.hospitalname,
       'Fees': widget.fees,

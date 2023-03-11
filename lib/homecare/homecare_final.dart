@@ -532,8 +532,7 @@ class _homecare_finalState extends State<homecare_final> {
         .doc('Home Care')
         .collection("oders")
         .doc("${DateTime.now()}")
-        .collection(uid)
-        .add({
+        .set({
       'Rental Name': widget.name,
       'Rental Company': widget.profession,
       'Coustmer Name': patientname.text,

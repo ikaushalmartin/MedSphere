@@ -1,30 +1,26 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-
 import '../const.dart';
 import '../main.dart';
 
-class medicine_final extends StatefulWidget {
-  List cart_items;
-  double totalamount;
-  double discount;
-  medicine_final(
-      {Key? key,
-      required this.discount,
-      required this.cart_items,
-      required this.totalamount})
+class prescription_orderscreen extends StatefulWidget {
+  var selectedFile;
+  prescription_orderscreen({Key? key, required this.selectedFile})
       : super(key: key);
 
   @override
-  State<medicine_final> createState() => _medicine_finalState();
+  State<prescription_orderscreen> createState() =>
+      _prescription_orderscreenState();
 }
 
-class _medicine_finalState extends State<medicine_final> {
+class _prescription_orderscreenState extends State<prescription_orderscreen> {
   Color bluecolor = Color(0xff5093FE);
   Color bluecolor_bg = Color(0xffDAE1FF);
   Color textcolor = Color(0xD9181818);
@@ -40,8 +36,6 @@ class _medicine_finalState extends State<medicine_final> {
   final patientname = TextEditingController();
   final patientphone = TextEditingController();
   final patientpincode = TextEditingController();
-  int days = 1;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -113,7 +107,7 @@ class _medicine_finalState extends State<medicine_final> {
                         right: MediaQuery.of(context).size.height / 60,
                       ),
                       child: Text(
-                        "Products",
+                        "Prescription",
                         style: TextStyle(
                           fontFamily: 'semibold',
                           fontSize: 21,
@@ -122,118 +116,12 @@ class _medicine_finalState extends State<medicine_final> {
                       ),
                     ),
                   ),
-                  Container(
-                    //  width: MediaQuery.of(context).size.width,
-                    color: white,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemCount: widget.cart_items.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 80,
-                                left: MediaQuery.of(context).size.height / 60,
-                                right: MediaQuery.of(context).size.height / 60,
-                                bottom:
-                                    MediaQuery.of(context).size.height / 80),
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: white,
-                                  radius: 30,
-                                  child: Image.network(
-                                    "${widget.cart_items[index].url}",
-                                    scale: 8,
-                                  ),
-                                ),
-                                SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 20),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          1.4,
-                                      child: Text(
-                                        "${widget.cart_items[index].productname}",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: textcolor,
-                                            fontFamily: "medium"),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          1.4,
-                                      child: Text(
-                                        "${widget.cart_items[index].company}",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            color: bluecolor,
-                                            fontFamily: "medium"),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          1.4,
-                                      child: Text(
-                                        "Quantity - ${widget.cart_items[index].quantity}",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            color: textcolor,
-                                            fontFamily: "medium"),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
+                  Image.file(
+                    widget.selectedFile,
+                    height: 200,
+                    fit: BoxFit.scaleDown,
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 135),
-                  Container(
-                    color: white,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height / 40,
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 60,
-                          bottom: MediaQuery.of(context).size.height / 40),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Total Discount!",
-                            style: TextStyle(
-                              fontFamily: 'semibold',
-                              fontSize: 18,
-                              color: redcoloe,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "${(widget.discount).toStringAsFixed(2)}%",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 18,
-                                  color: redcoloe,
-                                ),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width / 50,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                   SizedBox(height: MediaQuery.of(context).size.height / 135),
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -363,67 +251,41 @@ class _medicine_finalState extends State<medicine_final> {
                 child: Padding(
                   padding: EdgeInsets.only(
                       left: MediaQuery.of(context).size.width / 40),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Total Payable",
+                  child: Container(
+                    height: 38.0,
+                    child: MaterialButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          uploadImageToFirebaseStorage();
+                        }
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                medicine_colour_button_1,
+                                medicine_colour_button_2
+                              ],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                            borderRadius: BorderRadius.circular(30.0)),
+                        child: Container(
+                          constraints: BoxConstraints(maxWidth: 150.0),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Order",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontFamily: 'medium',
-                              fontSize: 16,
-                              color: textcolor,
-                            ),
-                          ),
-                          Text(
-                            "₹${(widget.totalamount).toStringAsFixed(2)}",
-                            style: TextStyle(
-                              fontFamily: 'medium',
-                              fontSize: 14,
-                              color: textcolor,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        height: 38.0,
-                        child: MaterialButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              book_medicine();
-                            }
-                          },
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
-                          child: Ink(
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    medicine_colour_button_1,
-                                    medicine_colour_button_2
-                                  ],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                ),
-                                borderRadius: BorderRadius.circular(30.0)),
-                            child: Container(
-                              constraints: BoxConstraints(maxWidth: 150.0),
-                              alignment: Alignment.center,
-                              child: Text(
-                                "Order",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontFamily: "medium"),
-                              ),
-                            ),
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontFamily: "medium"),
                           ),
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -434,7 +296,7 @@ class _medicine_finalState extends State<medicine_final> {
     );
   }
 
-  Future book_medicine() async {
+  Future<void> uploadImageToFirebaseStorage() async {
     showDialog(
         context: context,
         builder: (context) => Center(
@@ -443,37 +305,53 @@ class _medicine_finalState extends State<medicine_final> {
                 size: 80,
               ),
             ));
+    FirebaseStorage storage = FirebaseStorage.instance;
+    final currentTime = DateTime.now();
+    final formatter = DateFormat('yyyyMMdd_HHmmss');
+    final imageName = formatter.format(currentTime);
+    String fileName = imageName.toString() + uid.toString();
+    String uniqueFileName = fileName;
 
-    for (int i = 0; i < widget.cart_items.length; i++) {
-      await FirebaseFirestore.instance
-          .collection('/ORDERS')
-          .doc('Medicine Or Product')
-          .collection("oders")
-          .doc("${DateTime.now()}")
-          .set({
-        'Product Name - ${i + 1}': widget.cart_items[i].productname,
-        'Product Company - ${i + 1}': widget.cart_items[i].company,
-        'Product Price - ${i + 1}': widget.cart_items[i].price,
-        'Product Quantity - ${i + 1}': widget.cart_items[i].quantity,
-        'Customer Name': patientname.text,
-        'phone': patientphone.text,
-        'pincode': patientpincode.text,
-        'Total Amount': widget.totalamount
-      });
+    // Create a reference to the storage location
+    Reference storageRef =
+        storage.ref().child('Doctors_Identity/$uniqueFileName');
 
-      await FirebaseFirestore.instance
-          .collection('Order_Status')
-          .doc(uid)
-          .collection("oders")
-          .add({
-        "Cutprice": widget.cart_items[i].cutprice,
-        "Info": widget.cart_items[i].company,
-        "Name": widget.cart_items[i].productname,
-        "Price": widget.cart_items[i].price,
-        "Status": "Pending",
-        "Quantity": widget.cart_items[i].quantity
-      });
-    }
+    // Upload the image to storage
+    TaskSnapshot uploadTask = await storageRef.putFile(widget.selectedFile);
+
+    // Get the download URL for the image
+    String imageUrl = await storageRef.getDownloadURL();
+
+    // Do something with the download URL, like store it in Cloud Firestore or display it in your app
+    print(imageUrl);
+    book_rentals(imageUrl);
+  }
+
+  Future book_rentals(String uniqueFileName) async {
+    await FirebaseFirestore.instance
+        .collection('/ORDERS')
+        .doc('prescription_orders')
+        .collection("orders")
+        .doc("${DateTime.now()}")
+        .set({
+      'Url': uniqueFileName,
+      'Coustmer Name': patientname.text,
+      'pincode': patientpincode.text,
+      'phone': patientphone.text,
+    });
+
+    await FirebaseFirestore.instance
+        .collection('Order_Status')
+        .doc(uid)
+        .collection("oders")
+        .add({
+      "Cutprice": "NA",
+      "Info": "NA",
+      "Name": "Prescription",
+      "Price": "NA",
+      "Status": "Pending",
+      "Quantity": 0
+    });
 
     Navigator.of(context).pop();
     AwesomeDialog(

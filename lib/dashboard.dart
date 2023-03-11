@@ -65,6 +65,7 @@ class _dashboardState extends State<dashboard> {
     // TODO: implement initState
     // super.initState();
 
+    fetch_number();
     starting_tiles();
     fetch_popular_categories();
     loadImages();
@@ -1107,6 +1108,34 @@ class _dashboardState extends State<dashboard> {
     });
 
     Navigator.of(context).pop();
+    pop_up();
     return starting_tiles_image_list;
+  }
+
+  fetch_number() async {
+    var number = await FirebaseFirestore.instance
+        .collection('/your_number')
+        .doc('/number')
+        .get();
+
+    emergenncy_number = number['number'];
+    setState(() {
+      emergenncy_number;
+    });
+  }
+
+  pop_up() async {
+    final FirebaseStorage storage = FirebaseStorage.instance;
+    final ref = storage.ref().child('/pop_up/images.jpg');
+    final String url = await ref.getDownloadURL();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Image.network(url),
+        );
+      },
+    );
   }
 }

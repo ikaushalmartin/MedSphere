@@ -1,7 +1,7 @@
 import 'dart:core';
-
+import 'package:intl/intl.dart';
 import 'dart:io';
-import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -186,6 +186,9 @@ class _dr_image_uploadState extends State<dr_image_upload> {
 
   Future<void> uploadImageToFirebaseStorage() async {
     FirebaseStorage storage = FirebaseStorage.instance;
+    final currentTime = DateTime.now();
+    final formatter = DateFormat('yyyyMMdd_HHmmss');
+    final imageName = formatter.format(currentTime);
 
     String fileName = uid.toString();
     String uniqueFileName = fileName;

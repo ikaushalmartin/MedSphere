@@ -10,6 +10,7 @@ import 'dart:core';
 import 'dart:io';
 
 import 'Medicine/medicine.dart';
+import 'buy and cart/prescription_orderScreen.dart';
 
 class orderbyprescription extends StatefulWidget {
   @override
@@ -172,7 +173,7 @@ class orderbyprescription_medicinepage extends StatefulWidget {
 class _orderbyprescription_medicinepageState
     extends State<orderbyprescription_medicinepage> {
   var _selectedFile = null;
-
+  bool _showWidget = false;
   Widget getImageWidget() {
     if (_selectedFile != null) {
       return GestureDetector(
@@ -184,9 +185,7 @@ class _orderbyprescription_medicinepageState
                 title: Text('Prescription'),
                 content: Image.file(
                   _selectedFile,
-                  width: 500,
-                  height: 500,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.scaleDown,
                 ),
               );
             },
@@ -237,6 +236,7 @@ class _orderbyprescription_medicinepageState
 
       this.setState(() {
         _selectedFile = File(cropped!.path);
+        _showWidget = true;
       });
     } else {
       this.setState(() {});
@@ -284,14 +284,14 @@ class _orderbyprescription_medicinepageState
                   ),
                 ],
               ),
-              getImageWidget()
+              getImageWidget(),
             ],
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height / 40,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+            padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -376,11 +376,58 @@ class _orderbyprescription_medicinepageState
                 ),
               ],
             ),
-          )
+          ),
+          AnimatedContainer(
+            duration: Duration(milliseconds: 600),
+            height: _showWidget ? 50.0 : 0.0,
+            child: _showWidget
+                ? ButtonTheme(
+                    child: Center(
+                      child: MaterialButton(
+                        onPressed: () {
+                          Get.to(
+                              () => prescription_orderscreen(
+                                    selectedFile: _selectedFile,
+                                  ),
+                              transition: Transition.rightToLeft);
+                        },
+                        elevation: 0,
+                        hoverElevation: 0,
+                        focusElevation: 0,
+                        highlightElevation: 0,
+                        height: MediaQuery.of(context).size.height / 18,
+                        minWidth: MediaQuery.of(context).size.height / 8,
+                        color: upload_prescription_button_bg,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              size: 25,
+                              color: upload_prescription_button_text,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.height / 80,
+                            ),
+                            Text(
+                              "Order",
+                              style: TextStyle(
+                                fontFamily: 'semibold',
+                                fontSize: 18,
+                                color: upload_prescription_button_text,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                : null,
+          ),
         ],
       ),
     );
-    ;
   }
 }
 

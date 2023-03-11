@@ -474,8 +474,7 @@ class _surgical_finalState extends State<surgical_final> {
           .doc('Surgical_orders')
           .collection("oders")
           .doc("${DateTime.now()}")
-          .collection(uid)
-          .add({
+          .set({
         'Product Name - ${i + 1}': widget.cart_items[i].productname,
         'Product Company - ${i + 1}': widget.cart_items[i].company,
         'Product Price - ${i + 1}': widget.cart_items[i].price,

@@ -154,7 +154,6 @@ class _medicineState extends State<medicine> {
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height / 2.2,
                               decoration: BoxDecoration(
                                 color: prescription_bg,
                                 borderRadius: BorderRadius.only(
@@ -167,13 +166,15 @@ class _medicineState extends State<medicine> {
                                 children: [
                                   Container(
                                     width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height /
-                                        4.8,
                                     decoration: BoxDecoration(
                                       color: bluecolor,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: orderbyprescription_medicinepage(),
+                                  ),
+                                  SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height / 40,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(11.0),

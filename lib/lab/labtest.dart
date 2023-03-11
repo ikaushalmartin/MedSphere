@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
@@ -12,6 +13,7 @@ import 'package:medicineapp2/lab/packagesscreen_labtest.dart';
 
 import '../Medicine/medicine.dart';
 import '../buy and cart/cart.dart';
+import '../dashboard.dart';
 import 'lab_cart.dart';
 import '../const.dart';
 import '../orderbyprescription.dart';
@@ -47,6 +49,10 @@ class _labtestState extends State<labtest> {
     healthbyconcern_images();
     //  popular_packages_images();
     labtest_discounts();
+  }
+
+  void makecall_med() async {
+    await FlutterPhoneDirectCaller.callNumber('$emergenncy_number');
   }
 
   @override
@@ -350,42 +356,47 @@ class _labtestState extends State<labtest> {
                               ),
                             ),
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 2.2,
-                            height: MediaQuery.of(context).size.height / 8,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: white,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 40,
-                                  spreadRadius: 3,
-                                  color: Color(0xffD2D1D5),
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Call Us\nTo Book",
-                                    style: TextStyle(
-                                      fontFamily: 'semibold',
-                                      fontSize: 16,
-                                      color: redcolor,
-                                    ),
+                          /* GestureDetector(
+                            onTap: () {
+                              makecall_med();
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 2.2,
+                              height: MediaQuery.of(context).size.height / 8,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 40,
+                                    spreadRadius: 3,
+                                    color: Color(0xffD2D1D5),
                                   ),
-                                  Image.asset(
-                                    "images/com.png",
-                                    scale: 10,
-                                  )
                                 ],
                               ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Call Us\nTo Book",
+                                      style: TextStyle(
+                                        fontFamily: 'semibold',
+                                        fontSize: 16,
+                                        color: redcolor,
+                                      ),
+                                    ),
+                                    Image.asset(
+                                      "images/com.png",
+                                      scale: 10,
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
+                          ),*/
                         ],
                       ),
                     ),

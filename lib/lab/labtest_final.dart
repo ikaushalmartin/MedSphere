@@ -426,8 +426,7 @@ class _labtest_finalState extends State<labtest_final> {
           .doc('Lab_orders')
           .collection("oders")
           .doc("${DateTime.now()}")
-          .collection(uid)
-          .add({
+          .set({
         'Package Name - ${i + 1}': widget.cart_items[i].packages,
         'Test Name - ${i + 1}': widget.cart_items[i].name,
         'Test Price - ${i + 1}': widget.cart_items[i].price,

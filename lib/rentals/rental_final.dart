@@ -534,8 +534,7 @@ class _rentalfinalState extends State<rentalfinal> {
         .doc('Rentals')
         .collection("oders")
         .doc("${DateTime.now()}")
-        .collection(uid)
-        .add({
+        .set({
       'Rental Name': widget.name,
       'Rental Company': widget.company,
       'Coustmer Name': patientname.text,
