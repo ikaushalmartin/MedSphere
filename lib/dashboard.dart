@@ -1,13 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/Medicine/medicine.dart';
-import 'package:medicineapp2/homecare/homecare.dart';
-import 'package:medicineapp2/discounts/popular_discounts.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:medicineapp2/profile.dart';
@@ -20,12 +17,14 @@ import 'Medicine/medicine_forbutton.dart';
 import 'buy and cart/cart.dart';
 import 'buy and cart/surgical_cart.dart';
 import 'const.dart';
-
+import 'dashboard_search.dart';
+import 'discounts/popular_discounts.dart';
 import 'doctor/doctor.dart';
 import 'doctors_corner/image_upload.dart';
 import 'doctors_corner/mainscreen.dart';
 import 'emergency_services.dart';
 import 'everyday_essential/everyday_essentials.dart';
+import 'homecare/homecare.dart';
 import 'lab/lab_cart.dart';
 import 'lab/labtest.dart';
 import 'main.dart';
@@ -72,6 +71,8 @@ class _dashboardState extends State<dashboard> {
     shop_by_category_images();
     deals_of_the_day_image();
   }
+
+  String searchitem = "";
 
   @override
   Widget build(BuildContext context) {
@@ -259,43 +260,26 @@ class _dashboardState extends State<dashboard> {
                             left: MediaQuery.of(context).size.height / 60,
                             right: MediaQuery.of(context).size.height / 60,
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width / 1.35,
-                                decoration: BoxDecoration(
-                                  color: background,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: TextField(
-                                  onChanged: (value) {},
-                                  keyboardType: TextInputType.emailAddress,
-                                  style: TextStyle(color: textcolor),
-                                  textAlign: TextAlign.left,
-                                  decoration: kTextFieldDecoration.copyWith(
-                                      contentPadding: EdgeInsets.only(left: 20),
-                                      hintText: "Search"),
-                                ),
-                              ),
-                              Container(
-                                  width: MediaQuery.of(context).size.width / 6,
-                                  decoration: BoxDecoration(
-                                    color: background,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Theme(
-                                    data: ThemeData(
-                                      splashColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                    ),
-                                    child: IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(Icons.search),
-                                      color: textcolor,
-                                    ),
-                                  ))
-                            ],
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              color: background,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: TextFormField(
+                              readOnly: true,
+                              onTap: () {
+                                Get.to(() => SearchScreen(),
+                                    transition: Transition.rightToLeft);
+                              },
+                              keyboardType: TextInputType.emailAddress,
+                              style: TextStyle(color: textcolor),
+                              textAlign: TextAlign.left,
+                              decoration: kTextFieldDecoration.copyWith(
+                                  prefixIcon: Icon(Icons.search),
+                                  contentPadding: EdgeInsets.only(left: 20),
+                                  hintText: "Search"),
+                            ),
                           ),
                         ),
                         SizedBox(
