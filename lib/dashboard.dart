@@ -29,6 +29,7 @@ import 'lab/lab_cart.dart';
 import 'lab/labtest.dart';
 import 'main.dart';
 import 'ngocollabs.dart';
+import 'notification_services.dart';
 import 'orderbyprescription.dart';
 
 var emergenncy_number;
@@ -60,10 +61,12 @@ class _dashboardState extends State<dashboard> {
 
   int doctor_checked = 0;
   late var everyday_essential_image_url;
+  NotificationService notificationservice = NotificationService();
+
   void initState() {
     // TODO: implement initState
     // super.initState();
-
+    notificationservice.requestNotificationPremission();
     fetch_number();
     starting_tiles();
     fetch_popular_categories();
