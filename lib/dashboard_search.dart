@@ -11,61 +11,58 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              TextFormField(
-                textCapitalization: TextCapitalization.sentences,
-                onChanged: (val) {
-                  setState(() {
-                    inputText = val;
-                    print(inputText);
-                  });
-                },
-              ),
-              Expanded(
-                child: Container(
-                  child: StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection("/Medicine and Products")
-                          .where("Name", isGreaterThanOrEqualTo: inputText)
-                          .where("Name", isLessThan: '${inputText}z')
-                          .snapshots(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<QuerySnapshot> snapshot) {
-                        if (snapshot.hasError) {
-                          return Center(
-                            child: Text("Something went wrong"),
-                          );
-                        }
+        child: Column(
+          children: [
+            TextFormField(
+              textCapitalization: TextCapitalization.sentences,
+              onChanged: (val) {
+                setState(() {
+                  inputText = val;
+                  print(inputText);
+                });
+              },
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 40,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 1.2,
+              width: MediaQuery.of(context).size.width,
+              child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("/Medicine_and_Products")
+                      .where("Name", isGreaterThanOrEqualTo: inputText)
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text("Something went wrong"),
+                      );
+                    }
 
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Center(
-                            child: Text("Loading"),
-                          );
-                        }
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: Text("Loading"),
+                      );
+                    }
 
-                        return ListView(
-                          children: snapshot.data!.docs
-                              .map((DocumentSnapshot document) {
-                            Map<String, dynamic> data =
-                                document.data() as Map<String, dynamic>;
-                            return Column(
-                              children: [
-                                Text(data['Name']),
-                                Text(data['Uses'])
-                              ],
-                            );
-                          }).toList(),
-                        );
-                      }),
-                ),
-              ),
-            ],
-          ),
+                    return ListView(
+                      children:
+                          snapshot.data!.docs.map((DocumentSnapshot document) {
+                        Map<String, dynamic> data =
+                            document.data() as Map<String, dynamic>;
+                        return Container(
+                            height: MediaQuery.of(context).size.height / 50,
+                            color: Color(0xffb27bbb),
+                            child: Text(data['Name']));
+                      }).toList(),
+                    );
+                  }),
+            ),
+          ],
         ),
       ),
     );
