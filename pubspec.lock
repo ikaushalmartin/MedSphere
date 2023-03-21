@@ -7,7 +7,7 @@ packages:
       name: _flutterfire_internals
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.13"
+    version: "1.0.18"
   app_settings:
     dependency: "direct main"
     description:
@@ -42,7 +42,7 @@ packages:
       name: awesome_snackbar_content
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0"
+    version: "0.1.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -70,21 +70,21 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.1"
+    version: "4.4.5"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.10.1"
+    version: "5.11.5"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.1"
+    version: "3.3.5"
   collection:
     dependency: transitive
     description:
@@ -161,28 +161,28 @@ packages:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.5"
+    version: "4.3.0"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.11.7"
+    version: "6.12.0"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.4"
+    version: "5.2.10"
   firebase_core:
     dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.0"
+    version: "2.8.0"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -196,49 +196,49 @@ packages:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.2.2"
   firebase_messaging:
     dependency: "direct main"
     description:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "14.2.2"
+    version: "14.3.0"
   firebase_messaging_platform_interface:
     dependency: transitive
     description:
       name: firebase_messaging_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.11"
+    version: "4.2.16"
   firebase_messaging_web:
     dependency: transitive
     description:
       name: firebase_messaging_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.12"
+    version: "3.2.17"
   firebase_storage:
     dependency: "direct main"
     description:
       name: firebase_storage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "11.0.10"
+    version: "11.0.16"
   firebase_storage_platform_interface:
     dependency: transitive
     description:
       name: firebase_storage_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.26"
+    version: "4.1.32"
   firebase_storage_web:
     dependency: transitive
     description:
       name: firebase_storage_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.19"
+    version: "3.3.25"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -272,6 +272,11 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.0.0"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_phone_direct_caller:
     dependency: "direct main"
     description:
@@ -285,7 +290,7 @@ packages:
       name: flutter_plugin_android_lifecycle
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.8"
+    version: "2.0.9"
   flutter_svg:
     dependency: transitive
     description:
@@ -358,28 +363,28 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.6+3"
+    version: "0.8.7"
   image_picker_android:
     dependency: transitive
     description:
       name: image_picker_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.5+7"
+    version: "0.8.6+5"
   image_picker_for_web:
     dependency: transitive
     description:
       name: image_picker_for_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.11"
+    version: "2.1.12"
   image_picker_ios:
     dependency: transitive
     description:
       name: image_picker_ios
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.6+9"
+    version: "0.8.7+1"
   image_picker_platform_interface:
     dependency: transitive
     description:
@@ -477,7 +482,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.3"
+    version: "2.1.4"
   process:
     dependency: transitive
     description:
@@ -580,7 +585,7 @@ packages:
       name: unicons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   vector_math:
     dependency: transitive
     description:
@@ -604,4 +609,4 @@ packages:
     version: "6.1.0"
 sdks:
   dart: ">=2.18.0 <3.0.0"
-  flutter: ">=3.0.1"
+  flutter: ">=3.3.0"

@@ -61,12 +61,8 @@ class _dashboardState extends State<dashboard> {
 
   int doctor_checked = 0;
   late var everyday_essential_image_url;
-  NotificationService notificationservice = NotificationService();
 
   void initState() {
-    // TODO: implement initState
-    // super.initState();
-    notificationservice.requestNotificationPremission();
     fetch_number();
     starting_tiles();
     fetch_popular_categories();
