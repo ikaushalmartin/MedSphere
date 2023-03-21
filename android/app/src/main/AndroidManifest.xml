@@ -29,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-       <activity
+        <activity
            android:name="com.yalantis.ucrop.UCropActivity"
            android:screenOrientation="portrait"
            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
@@ -41,7 +41,10 @@
             android:name="flutterEmbedding"
             android:value="2" />
        <meta-data
-           android:name="com.google.firebase.messaging.default_notification_channel_id"
-           android:value="default_notification_channel_id" />
+       android:name="com.google.firebase.messaging.default_notification_channel_id"
+       android:value="High Importance Notification" />
+       <meta-data
+           android:name="com.google.firebase.messaging.default_notification_channel_name"
+           android:value="high_channel" />
     </application>
 </manifest>

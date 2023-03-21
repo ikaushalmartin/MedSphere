@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medicineapp2/dashboard.dart';
 
-import 'notification_services.dart';
+import 'firebase_message_provider.dart';
 import 'onboarding/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -14,7 +14,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  runApp(MyApp());
+
+  runApp(GetMaterialApp(home: MyApp()));
 }
 
 @pragma('vm:entry-point')
@@ -30,32 +31,35 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  NotificationService notificationservice = NotificationService();
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    notificationservice.requestNotificationPremission();
-    notificationservice.firebaseInit();
-    notificationservice.getDeviceToken().then((value) {
-      print(value);
-    });
+    NotificationListenerProvider().getMessage(context);
+    print("dkfkdfkdjfdkfdfdfdfd");
+
+    getToken();
+  }
+
+  void getToken() async {
+    final token = await _firebaseMessaging.getToken();
+    print("dlllllllllllllllll $token");
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-        home: StreamBuilder<User?>(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                uid = snapshot.data?.uid;
-                print(
-                    "--------------------->>>>>>>>>>>>>>>>>${snapshot.data?.uid}");
-                return dashboard();
-              } else {
-                return onboarding();
-              }
-            }));
+    return StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            uid = snapshot.data?.uid;
+            print(
+                "--------------------->>>>>>>>>>>>>>>>>${snapshot.data?.uid}");
+            return dashboard();
+          } else {
+            return onboarding();
+          }
+        });
   }
 }

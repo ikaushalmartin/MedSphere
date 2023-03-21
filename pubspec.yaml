@@ -54,6 +54,8 @@ dependencies:
   image_cropper: ^3.0.0
   dependencies:
   flutter_local_notifications: ^13.0.0
+  firebase_in_app_messaging: ^0.7.0+16
+
   app_settings: ^4.2.0
 dev_dependencies:
   flutter_test:
