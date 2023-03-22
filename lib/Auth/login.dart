@@ -315,6 +315,7 @@ class _loginState extends State<login> {
                 size: 80,
               ),
             ));
+
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailcontroller.text.trim(),
@@ -334,6 +335,7 @@ class _loginState extends State<login> {
       Navigator.of(context).pop();
       return;
     }
+
     Navigator.of(context).pop();
   }
 }

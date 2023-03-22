@@ -686,6 +686,7 @@ class _surgical_productscreenState extends State<surgical_productscreen> {
       'Use': widget.use,
       "Sterlie": widget.sterile,
       "Size": widget.size,
+      "Imageurl": widget.imageurl
     });
     Navigator.of(context).pop();
     var vpasswordsnackbar = SnackBar(

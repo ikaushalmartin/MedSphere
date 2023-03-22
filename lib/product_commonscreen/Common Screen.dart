@@ -633,7 +633,7 @@ class _product_common_screenState extends State<product_common_screen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Ingredients",
+                                  "Salts or Ingredients",
                                   style: TextStyle(
                                     fontFamily: 'medium',
                                     fontSize: 18,
@@ -787,7 +787,13 @@ class _product_common_screenState extends State<product_common_screen> {
       'price': price,
       'productname': productname,
       'imageurl': widget.image_url,
-      'quantity': quantity
+      'quantity': quantity,
+      'Medical_Discription': widget.medicaldiscription,
+      'Uses': widget.uses,
+      'Doses': widget.doses,
+      'Side_Effect': widget.sideeffect,
+      'Precaution_and_warning': widget.precaution_and_warning,
+      'Salts': widget.ingredients
     });
     Navigator.of(context).pop();
     var vpasswordsnackbar = SnackBar(

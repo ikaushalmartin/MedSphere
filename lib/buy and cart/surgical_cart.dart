@@ -48,6 +48,7 @@ class _surgical_cartState extends State<surgical_cart> {
     // TODO: implement initState
     super.initState();
     fetch_cart_data();
+    fetch_cart_data2();
     fetch_discount_and_minimumvalue();
   }
 

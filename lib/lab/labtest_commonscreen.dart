@@ -594,7 +594,13 @@ class _labtest_commonscreenState extends State<labtest_commonscreen> {
       'name': productname,
       'price': price,
       'cutprice': cutprice,
-      'quantity': quantity
+      'quantity': quantity,
+      'sampletype': widget.sampletype,
+      'fastingrequired': widget.fastingrequired,
+      'tubetype': widget.tubetype,
+      'packagesinclude': widget.packagesinclude,
+      'description': widget.description,
+      'info': widget.info
     });
     Navigator.of(context).pop();
     var vpasswordsnackbar = SnackBar(

@@ -277,7 +277,7 @@ class _dashboardState extends State<dashboard> {
                               decoration: kTextFieldDecoration.copyWith(
                                   prefixIcon: Icon(Icons.search),
                                   contentPadding: EdgeInsets.only(left: 20),
-                                  hintText: "Search"),
+                                  hintText: "Search for Medicine and Products"),
                             ),
                           ),
                         ),
@@ -912,7 +912,9 @@ class _dashboardState extends State<dashboard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        FirebaseAuth.instance.signOut();
+                      },
                       icon: Icon(UniconsLine.capsule),
                       color: textcolor,
                     ),
