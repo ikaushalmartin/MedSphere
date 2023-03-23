@@ -4,6 +4,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/_http/_io/_file_decoder_io.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:medicineapp2/Auth/signup.dart';
 import 'package:medicineapp2/dashboard.dart';
@@ -217,6 +218,18 @@ class _verifyemailState extends State<verifyemail> {
                         ),
                       ),
                     ),
+                  ),
+                ),
+                Positioned(
+                  top: MediaQuery.of(context).size.height / 3.2,
+                  bottom: 0,
+                  child: MaterialButton(
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                    },
+                    color: Colors.red,
+                    height: 200,
+                    minWidth: 200,
                   ),
                 ),
               ],

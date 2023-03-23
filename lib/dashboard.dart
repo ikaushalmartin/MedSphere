@@ -1098,7 +1098,7 @@ class _dashboardState extends State<dashboard> {
       starting_tiles_image_list;
     });
 
-    Navigator.of(context).pop();
+    Navigator.of(context).popUntil((route) => route.isFirst);
     pop_up();
     return starting_tiles_image_list;
   }

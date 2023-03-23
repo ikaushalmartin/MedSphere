@@ -55,6 +55,7 @@ class _MyAppState extends State<MyApp> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           User? user = snapshot.data;
+          print(snapshot.data?.uid);
           if (user == null || !user.emailVerified) {
             return onboarding();
           } else {
