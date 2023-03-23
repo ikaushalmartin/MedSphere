@@ -3,9 +3,14 @@ import 'dart:async';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:medicineapp2/Auth/signup.dart';
 import 'package:medicineapp2/dashboard.dart';
+import 'package:medicineapp2/onboarding/onboarding.dart';
 
 import '../const.dart';
+import 'login.dart';
 
 class verifyemail extends StatefulWidget {
   const verifyemail({Key? key}) : super(key: key);
@@ -213,7 +218,7 @@ class _verifyemailState extends State<verifyemail> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ));

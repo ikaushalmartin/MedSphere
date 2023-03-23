@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medicineapp2/dashboard.dart';
 
+import 'Auth/login.dart';
+import 'Auth/verifyemail.dart';
 import 'firebase_message_provider.dart';
 import 'onboarding/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,10 +34,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
     NotificationListenerProvider().getMessage(context);
     print("dkfkdfkdjfdkfdfdfdfd");
 
@@ -52,13 +56,11 @@ class _MyAppState extends State<MyApp> {
     return StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            uid = snapshot.data?.uid;
-            print(
-                "--------------------->>>>>>>>>>>>>>>>>${snapshot.data?.uid}");
-            return dashboard();
-          } else {
+          User? user = snapshot.data;
+          if (user == null || !user.emailVerified) {
             return onboarding();
+          } else {
+            return dashboard();
           }
         });
   }

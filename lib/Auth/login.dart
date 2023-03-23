@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:medicineapp2/Auth/verifyemail.dart';
 import 'package:medicineapp2/dashboard.dart';
 import 'package:medicineapp2/Auth/resetpassword.dart';
 import 'package:medicineapp2/Auth/signup.dart';
@@ -20,7 +21,6 @@ class _loginState extends State<login> {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   final navigatorKey = GlobalKey<NavigatorState>();
-
   Color color = Color(0xffececef);
   Color textcolor = Color(0xff273238);
   Color buttoncolor = Color(0xffececef);
@@ -50,7 +50,17 @@ class _loginState extends State<login> {
               child: Text("Something went wrong"),
             );
           } else if (snapshot.hasData) {
-            return dashboard();
+            if (snapshot.data!.emailVerified) {
+              return dashboard();
+            } else {
+              return WillPopScope(
+                onWillPop: () async {
+                  await FirebaseAuth.instance.signOut();
+                  return true;
+                },
+                child: const verifyemail(),
+              );
+            }
           } else {
             return Scaffold(
                 backgroundColor: Color(0xff2c64e3),

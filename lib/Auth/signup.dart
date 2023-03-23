@@ -49,8 +49,8 @@ class _signupState extends State<signup> {
     return StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return verifyemail();
+          if (snapshot.hasData && snapshot.data!.emailVerified) {
+            return dashboard();
           } else {
             return Scaffold(
                 backgroundColor: Color(0xff2c64e3),
