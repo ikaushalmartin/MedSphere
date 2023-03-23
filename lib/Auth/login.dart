@@ -53,13 +53,7 @@ class _loginState extends State<login> {
             if (snapshot.data!.emailVerified) {
               return dashboard();
             } else {
-              return WillPopScope(
-                onWillPop: () async {
-                  await FirebaseAuth.instance.signOut();
-                  return true;
-                },
-                child: const verifyemail(),
-              );
+              return verifyemail();
             }
           } else {
             return Scaffold(
@@ -343,6 +337,7 @@ class _loginState extends State<login> {
         ScaffoldMessenger.of(context).showSnackBar(othersnackbar);
       });
       Navigator.of(context).pop();
+
       return;
     }
 

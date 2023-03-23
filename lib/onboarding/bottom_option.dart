@@ -32,7 +32,7 @@ class bottomoption extends StatelessWidget {
         ButtonTheme(
             child: MaterialButton(
           onPressed: () {
-            Get.off(() => login(), transition: Transition.rightToLeft);
+            Get.to(() => login(), transition: Transition.rightToLeft);
           },
           elevation: 0,
           hoverElevation: 0,

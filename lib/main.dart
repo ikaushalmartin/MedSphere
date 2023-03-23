@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medicineapp2/dashboard.dart';
 
-import 'Auth/login.dart';
-import 'Auth/verifyemail.dart';
 import 'firebase_message_provider.dart';
 import 'onboarding/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';

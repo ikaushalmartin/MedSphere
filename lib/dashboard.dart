@@ -7,6 +7,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/Medicine/medicine.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:medicineapp2/pick/pick_drop.dart';
 import 'package:medicineapp2/profile.dart';
 import 'package:medicineapp2/rentals/rental.dart';
 import 'package:medicineapp2/shopby_concern.dart';
@@ -437,6 +438,11 @@ class _dashboardState extends State<dashboard> {
                                                           transition: Transition
                                                               .rightToLeft);
                                                     }
+                                                  } else if (index == 7) {
+                                                    Get.to(
+                                                        () => LocationScreen(),
+                                                        transition: Transition
+                                                            .rightToLeft);
                                                   }
                                                 },
                                                 child: Padding(
