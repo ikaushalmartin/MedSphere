@@ -43,12 +43,11 @@ class dashboard extends StatefulWidget {
 }
 
 class _dashboardState extends State<dashboard> {
-  Color textcolor = Color(0xff013759);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
   Color textcolor_white = Color(0xff42474e);
   Color white = Color(0xffffffff);
-  Color redcolor = Color(0xffE46473);
-  Color yellowcolor = Color(0xffF9BF80);
-  Color background = Color(0xffD8D8D8);
+  Color background = Color(0xffF1F1F1);
   final user = FirebaseAuth.instance.currentUser!;
   List<Item> popular_categories = [];
   List<Item> shop_by_category = [];
@@ -101,9 +100,14 @@ class _dashboardState extends State<dashboard> {
                                     transition: Transition.rightToLeft);
                                 // FirebaseAuth.instance.signOut();
                               },
-                              child: Icon(
-                                Icons.person_outline_outlined,
-                                color: textcolor,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundColor: bluecolor,
+                                child: Icon(
+                                  Icons.person_outline_outlined,
+                                  color: white,
+                                  size: 20,
+                                ),
                               )),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -222,7 +226,7 @@ class _dashboardState extends State<dashboard> {
                                     );
                                   },
                                   icon: Icon(Icons.shopping_cart_outlined),
-                                  color: textcolor,
+                                  color: bluecolor,
                                 ),
                               ),
                             ],
@@ -231,17 +235,46 @@ class _dashboardState extends State<dashboard> {
                       ),
                     ), //toprow
                     SizedBox(height: MediaQuery.of(context).size.height / 120),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Color(0xff2E2E2E),
-                            width: 1.0,
-                          ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 20,
+                        decoration: BoxDecoration(
+                          color: background,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: TextFormField(
+                          readOnly: true,
+                          onTap: () {
+                            Get.to(() => SearchScreen(),
+                                transition: Transition.rightToLeft);
+                          },
+                          keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(color: textcolor_white),
+                          textAlign: TextAlign.left,
+                          decoration: kTextFieldDecoration.copyWith(
+                              prefixIcon: Icon(
+                                Icons.search_rounded,
+                                color: bluecolor,
+                                size: 25,
+                              ),
+                              contentPadding: EdgeInsets.only(left: 20),
+                              hintText: "Search for Medicine and Products"),
                         ),
                       ),
                     ),
-                    //searchbar
+                    SizedBox(height: MediaQuery.of(context).size.height / 80),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(width: 1.0, color: Colors.grey),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -257,85 +290,43 @@ class _dashboardState extends State<dashboard> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 35,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: MediaQuery.of(context).size.height / 60,
-                            right: MediaQuery.of(context).size.height / 60,
-                          ),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              color: background,
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: TextFormField(
-                              readOnly: true,
-                              onTap: () {
-                                Get.to(() => SearchScreen(),
-                                    transition: Transition.rightToLeft);
-                              },
-                              keyboardType: TextInputType.emailAddress,
-                              style: TextStyle(color: textcolor_white),
-                              textAlign: TextAlign.left,
-                              decoration: kTextFieldDecoration.copyWith(
-                                  prefixIcon: Icon(
-                                    Icons.search,
-                                    color: Color(0xff42474e),
-                                  ),
-                                  contentPadding: EdgeInsets.only(left: 20),
-                                  hintText: "Search for Medicine and Products"),
-                            ),
-                          ),
-                        ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 35,
-                        ),
-                        Container(
-                          color: white,
                           width: MediaQuery.of(context).size.width,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              // left: MediaQuery.of(context).size.height / 60,
-                              //right: MediaQuery.of(context).size.height / 90,
-                              bottom: MediaQuery.of(context).size.height / 110,
-                            ),
-                            child: SizedBox(
-                                height: MediaQuery.of(context).size.height / 5,
-                                width: MediaQuery.of(context).size.width,
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: BouncingScrollPhysics(),
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: starting_tiles_image_list.length,
-                                    itemBuilder: (context, index) {
-                                      return Theme(
-                                        data: ThemeData(
-                                          splashColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                        ),
-                                        child: MaterialButton(
-                                          onPressed: () {
-                                            Get.to(() => populardiscounts(),
-                                                transition:
-                                                    Transition.rightToLeft);
-                                          },
-                                          child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  1.085,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(6),
-                                                  image: DecorationImage(
-                                                      fit: BoxFit.cover,
-                                                      image: NetworkImage(
-                                                          "${starting_tiles_image_list[index]}")))),
-                                        ),
-                                      );
-                                    })),
-                          ),
+                          child: SizedBox(
+                              height: MediaQuery.of(context).size.height / 5,
+                              width: MediaQuery.of(context).size.width,
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: BouncingScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: starting_tiles_image_list.length,
+                                  itemBuilder: (context, index) {
+                                    return Theme(
+                                      data: ThemeData(
+                                        splashColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                      ),
+                                      child: MaterialButton(
+                                        onPressed: () {
+                                          Get.to(() => populardiscounts(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                        child: Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                1.085,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(6),
+                                                image: DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image: NetworkImage(
+                                                        "${starting_tiles_image_list[index]}")))),
+                                      ),
+                                    );
+                                  })),
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 35,
@@ -352,7 +343,7 @@ class _dashboardState extends State<dashboard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 60,
+                          height: MediaQuery.of(context).size.height / 80,
                         ),
                         Padding(
                           padding: EdgeInsets.only(
@@ -362,167 +353,122 @@ class _dashboardState extends State<dashboard> {
                           child: Text(
                             "Popular Services",
                             style: TextStyle(
-                              fontFamily: 'semibold',
-                              fontSize: 21,
+                              fontFamily: 'medium',
+                              fontSize: 16,
                               color: textcolor,
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 40,
+                          height: MediaQuery.of(context).size.height / 80,
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            color: white,
-                            boxShadow: [
-                              BoxShadow(
-                                offset: Offset(0.0, 0.0001),
-                                blurRadius: 0.0001,
-                                spreadRadius: 0.0003,
-                                color: Color(0xffD2D1D5),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                  padding: EdgeInsets.only(
-                                      left: MediaQuery.of(context).size.height /
-                                          60,
-                                      right:
-                                          MediaQuery.of(context).size.height /
-                                              200),
-                                  child: SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              7,
-                                      width: MediaQuery.of(context).size.width,
-                                      child: ListView.builder(
-                                          shrinkWrap: true,
-                                          physics: BouncingScrollPhysics(),
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount: files.length,
-                                          itemBuilder: (context, index) {
-                                            return GestureDetector(
-                                                onTap: () {
-                                                  if (index == 0) {
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                                padding: EdgeInsets.only(
+                                    left:
+                                        MediaQuery.of(context).size.height / 60,
+                                    right: MediaQuery.of(context).size.height /
+                                        60),
+                                child: SizedBox(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height /
+                                        3.3,
+                                    child: GridView.builder(
+                                        gridDelegate:
+                                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                          childAspectRatio: 3.5 / 2.6,
+                                          mainAxisSpacing: 0,
+                                          crossAxisCount: 2,
+                                        ),
+                                        shrinkWrap: true,
+                                        physics: BouncingScrollPhysics(),
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: files.length,
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+                                              onTap: () {
+                                                if (index == 0) {
+                                                  Get.to(
+                                                      () => medicineforbutton(),
+                                                      transition: Transition
+                                                          .rightToLeft);
+                                                } else if (index == 1) {
+                                                  Get.to(() => const labtest(),
+                                                      transition: Transition
+                                                          .rightToLeft);
+                                                } else if (index == 2) {
+                                                  Get.to(() => doctor(),
+                                                      transition: Transition
+                                                          .rightToLeft);
+                                                } else if (index == 3) {
+                                                  Get.to(() => const rental(),
+                                                      transition: Transition
+                                                          .rightToLeft);
+                                                } else if (index == 4) {
+                                                  Get.to(() => const homecare(),
+                                                      transition: Transition
+                                                          .rightToLeft);
+                                                } else if (index == 5) {
+                                                  Get.to(() => const surgical(),
+                                                      transition: Transition
+                                                          .rightToLeft);
+                                                } else if (index == 6) {
+                                                  if (doctor_checked == 0) {
+                                                    Get.to(
+                                                        () => dr_image_upload(),
+                                                        transition: Transition
+                                                            .rightToLeft);
+                                                  } else {
                                                     Get.to(
                                                         () =>
-                                                            medicineforbutton(),
-                                                        transition: Transition
-                                                            .rightToLeft);
-                                                  } else if (index == 1) {
-                                                    Get.to(
-                                                        () => const labtest(),
-                                                        transition: Transition
-                                                            .rightToLeft);
-                                                  } else if (index == 2) {
-                                                    Get.to(() => doctor(),
-                                                        transition: Transition
-                                                            .rightToLeft);
-                                                  } else if (index == 3) {
-                                                    Get.to(() => const rental(),
-                                                        transition: Transition
-                                                            .rightToLeft);
-                                                  } else if (index == 4) {
-                                                    Get.to(
-                                                        () => const homecare(),
-                                                        transition: Transition
-                                                            .rightToLeft);
-                                                  } else if (index == 5) {
-                                                    Get.to(
-                                                        () => const surgical(),
-                                                        transition: Transition
-                                                            .rightToLeft);
-                                                  } else if (index == 6) {
-                                                    if (doctor_checked == 0) {
-                                                      Get.to(
-                                                          () =>
-                                                              dr_image_upload(),
-                                                          transition: Transition
-                                                              .rightToLeft);
-                                                    } else {
-                                                      Get.to(
-                                                          () =>
-                                                              const mainscreen(),
-                                                          transition: Transition
-                                                              .rightToLeft);
-                                                    }
-                                                  } else if (index == 7) {
-                                                    Get.to(
-                                                        () => LocationScreen(),
+                                                            const mainscreen(),
                                                         transition: Transition
                                                             .rightToLeft);
                                                   }
-                                                },
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width /
-                                                              25),
-                                                  child: Column(
-                                                    children: [
-                                                      Container(
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height /
-                                                              9.2,
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height /
-                                                              9,
-                                                          child: CircleAvatar(
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .all(Radius
-                                                                          .circular(
-                                                                              6)),
-                                                              child: Image.network(
-                                                                  "${files[index]}"),
-                                                            ),
-                                                          )),
-                                                      SizedBox(
-                                                        height: MediaQuery.of(
-                                                                    context)
+                                                } else if (index == 7) {
+                                                  Get.to(() => LocationScreen(),
+                                                      transition: Transition
+                                                          .rightToLeft);
+                                                }
+                                              },
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(
+                                                      child: CircleAvatar(
+                                                    radius: 32,
+                                                    backgroundColor: background,
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  8)),
+                                                      child: Image.network(
+                                                          "${files[index]}"),
+                                                    ),
+                                                  )),
+                                                  SizedBox(
+                                                    height:
+                                                        MediaQuery.of(context)
                                                                 .size
                                                                 .height /
-                                                            160,
-                                                      ),
-                                                      SizedBox(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            4.3,
-                                                      ),
-                                                      Text(
-                                                        "${popular_categories[index].name}",
-                                                        style: TextStyle(
-                                                          fontFamily: 'medium',
-                                                          fontSize: 14,
-                                                          color:
-                                                              textcolor_white,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                      ),
-                                                    ],
+                                                            140,
                                                   ),
-                                                ));
-                                          }))),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height / 60,
+                                                  Text(
+                                                    "${popular_categories[index].name}",
+                                                    style: TextStyle(
+                                                      fontFamily: 'regular',
+                                                      fontSize: 12,
+                                                      color: textcolor_white,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ],
+                                              ));
+                                        }))),
+                          ],
                         ),
                       ],
                     ),
@@ -533,7 +479,10 @@ class _dashboardState extends State<dashboard> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 8,
-                    color: white,
+                    decoration: BoxDecoration(
+                      //borderRadius: BorderRadius.circular(8),
+                      color: white,
+                    ),
                     child: orderbyprescription(),
                   ), //prescription
                   SizedBox(
@@ -542,31 +491,32 @@ class _dashboardState extends State<dashboard> {
                   Container(
                     color: white,
                     padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 60,
                       left: MediaQuery.of(context).size.height / 60,
                       right: MediaQuery.of(context).size.height / 60,
-                      bottom: MediaQuery.of(context).size.height / 80,
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 80,
+                        ),
                         Text(
                           "Shop By Category",
                           style: TextStyle(
-                            fontFamily: 'semibold',
-                            fontSize: 21,
+                            fontFamily: 'medium',
+                            fontSize: 16,
                             color: textcolor,
                           ),
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width,
-                            height: 250,
+                            height: MediaQuery.of(context).size.height / 3,
                             child: GridView.builder(
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio: 3 / 3,
-                                  mainAxisSpacing: 20,
+                                  childAspectRatio: 2.4 / 2.1,
+                                  mainAxisSpacing: 0,
                                   crossAxisCount: 2,
                                 ),
                                 shrinkWrap: true,
@@ -588,21 +538,21 @@ class _dashboardState extends State<dashboard> {
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .width /
-                                              20,
+                                              35,
                                         ),
                                         ClipRRect(
                                           borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
+                                              Radius.circular(20)),
                                           child: Image.network(
                                             "${shop_by_category_list[index]}",
-                                            scale: 8,
+                                            scale: 7,
                                           ),
                                         ),
                                         SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .width /
-                                              50,
+                                              60,
                                         ),
                                         Container(
                                           height: 32,
@@ -610,8 +560,8 @@ class _dashboardState extends State<dashboard> {
                                             "${shop_by_category[index].name}",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              fontFamily: 'medium',
-                                              fontSize: 15,
+                                              fontFamily: 'regular',
+                                              fontSize: 13,
                                               color: textcolor,
                                             ),
                                           ),
@@ -620,6 +570,9 @@ class _dashboardState extends State<dashboard> {
                                     ),
                                   );
                                 })),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 35,
+                        ),
                       ],
                     ),
                   ), //Shop By Category
@@ -627,39 +580,29 @@ class _dashboardState extends State<dashboard> {
                     height: MediaQuery.of(context).size.height / 100,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      // borderRadius: BorderRadius.circular(10),
-                      color: white,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 40,
-                          spreadRadius: 3,
-                          color: Color(0xffD2D1D5),
-                        ),
-                      ],
-                    ),
+                    color: white,
                     child: Padding(
                       padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 60,
                         left: MediaQuery.of(context).size.height / 60,
                         right: MediaQuery.of(context).size.height / 60,
-                        bottom: MediaQuery.of(context).size.height / 40,
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height / 80,
+                          ),
                           Text(
                             "Deals of the day",
                             style: TextStyle(
-                              fontFamily: 'semibold',
-                              fontSize: 21,
+                              fontFamily: 'medium',
+                              fontSize: 16,
                               color: textcolor,
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height / 60,
+                            height: MediaQuery.of(context).size.height / 80,
                           ),
                           SizedBox(
                               height: MediaQuery.of(context).size.height / 5.5,
@@ -694,6 +637,9 @@ class _dashboardState extends State<dashboard> {
                                       ),
                                     );
                                   })),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height / 40,
+                          ),
                         ],
                       ),
                     ),
@@ -722,13 +668,6 @@ class _dashboardState extends State<dashboard> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               color: white,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 40,
-                                  spreadRadius: 3,
-                                  color: Color(0xffD2D1D5),
-                                ),
-                              ],
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -764,13 +703,6 @@ class _dashboardState extends State<dashboard> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               color: white,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 40,
-                                  spreadRadius: 3,
-                                  color: Color(0xffD2D1D5),
-                                ),
-                              ],
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -802,45 +734,37 @@ class _dashboardState extends State<dashboard> {
                     height: MediaQuery.of(context).size.height / 100,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      // borderRadius: BorderRadius.circular(10),
-                      color: white,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 40,
-                          spreadRadius: 3,
-                          color: Color(0xffD2D1D5),
-                        ),
-                      ],
-                    ),
+                    color: white,
                     child: Padding(
                       padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 60,
+                        //top: MediaQuery.of(context).size.height / 60,
                         left: MediaQuery.of(context).size.height / 60,
                         right: MediaQuery.of(context).size.height / 60,
-                        bottom: MediaQuery.of(context).size.height / 60,
+                        //bottom: MediaQuery.of(context).size.height / 60,
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height / 100,
+                          ),
                           Text(
                             "Shop By Concern",
                             style: TextStyle(
-                              fontFamily: 'semibold',
-                              fontSize: 21,
+                              fontFamily: 'medium',
+                              fontSize: 16,
                               color: textcolor,
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height / 60,
+                            height: MediaQuery.of(context).size.height / 80,
                           ),
                           SizedBox(
                               width: MediaQuery.of(context).size.width,
                               child: GridView.builder(
                                   gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 3,
                                   ),
                                   shrinkWrap: true,
@@ -861,22 +785,30 @@ class _dashboardState extends State<dashboard> {
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
-                                          Image.network(
-                                              "${shop_by_concern_list[index]}",
-                                              scale: 7),
+                                          ClipRRect(
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(10)),
+                                            child: Image.network(
+                                                "${shop_by_concern_list[index]}",
+                                                fit: BoxFit.cover,
+                                                scale: 8),
+                                          ),
                                           SizedBox(
                                             height: MediaQuery.of(context)
                                                     .size
-                                                    .width /
-                                                35,
+                                                    .height /
+                                                140,
                                           ),
                                           Text(
                                             "${shop_by_concern[index].name}",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              fontFamily: 'medium',
-                                              fontSize: 14,
+                                              fontFamily: 'regular',
+                                              fontSize: 16,
                                               color: textcolor,
                                             ),
                                           ),
@@ -884,6 +816,9 @@ class _dashboardState extends State<dashboard> {
                                       ),
                                     );
                                   })),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height / 100,
+                          ),
                         ],
                       ),
                     ),

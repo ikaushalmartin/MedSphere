@@ -18,18 +18,25 @@ class orderbyprescription extends StatefulWidget {
 }
 
 class _orderbyprescriptionState extends State<orderbyprescription> {
-  Color textcolor = Color(0xff013759);
+  Color textcolor = Color(0xff1A1D44);
 
-  Color buttontextcolor = Color(0xff013759);
+  Color buttontextcolor = Colors.white;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: EdgeInsets.only(
+        left: MediaQuery.of(context).size.height / 60,
+        right: MediaQuery.of(context).size.height / 60,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Image.asset(
+            "images/prescription.png",
+            scale: 9,
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,8 +45,8 @@ class _orderbyprescriptionState extends State<orderbyprescription> {
                 "Upload Prescription",
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  fontFamily: 'bold',
-                  fontSize: 22,
+                  fontFamily: 'semibold',
+                  fontSize: 16,
                   color: textcolor,
                 ),
               ),
@@ -47,15 +54,18 @@ class _orderbyprescriptionState extends State<orderbyprescription> {
                 height: MediaQuery.of(context).size.height / 300,
               ),
               Text(
-                "Order via prescription",
+                "Upload your prescription\nand we will deliver your item.",
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  fontFamily: 'semibold',
-                  fontSize: 16,
+                  fontFamily: 'regular',
+                  fontSize: 12,
                   color: textcolor,
                 ),
               ),
             ],
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 800,
           ),
           ButtonTheme(
             child: Center(
@@ -67,17 +77,15 @@ class _orderbyprescriptionState extends State<orderbyprescription> {
                 hoverElevation: 0,
                 focusElevation: 0,
                 highlightElevation: 0,
-                height: MediaQuery.of(context).size.height / 20,
+                height: MediaQuery.of(context).size.height / 22,
                 minWidth: MediaQuery.of(context).size.height / 9,
-                color: Color(0xff00DCA8),
+                color: Color(0xff1A1D44),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
+                    borderRadius: BorderRadius.circular(6)),
                 child: Text(
                   "Upload",
                   style: TextStyle(
-                      color: buttontextcolor,
-                      fontFamily: 'semibold',
-                      fontSize: 16),
+                      color: Colors.white, fontFamily: 'medium', fontSize: 12),
                 ),
               ),
             ),

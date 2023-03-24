@@ -32,6 +32,7 @@ class _signupState extends State<signup> {
   final phonecontroller = TextEditingController();
   final addresscontroller = TextEditingController();
 
+  var newid;
   @override
   void dispose() {
     emailcontroller.dispose();
@@ -49,6 +50,7 @@ class _signupState extends State<signup> {
     return StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
+          newid = snapshot.data?.uid;
           if (snapshot.hasData) {
             if (snapshot.data!.emailVerified) {
               return dashboard();
@@ -576,7 +578,11 @@ class _signupState extends State<signup> {
 
   Future adduserdata(String firstname, String lastname, String email,
       String phone, String address) async {
-    await FirebaseFirestore.instance.collection('users').add({
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(email)
+        .collection("uid")
+        .add({
       'first name': firstname,
       'last name': lastname,
       'email': email,

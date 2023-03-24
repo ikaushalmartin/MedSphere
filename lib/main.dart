@@ -9,6 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 var uid;
+var emailofuser;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +56,10 @@ class _MyAppState extends State<MyApp> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           User? user = snapshot.data;
+          uid = snapshot.data?.uid;
+          emailofuser = snapshot.data?.email;
           print(snapshot.data?.uid);
+          print(snapshot.data?.email);
           if (user == null || !user.emailVerified) {
             return onboarding();
           } else {
