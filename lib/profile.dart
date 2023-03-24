@@ -21,7 +21,10 @@ class _profileState extends State<profile> {
   Color bluecolor_bg = Color(0xffDAE1FF);
 
   Color textcolor_light = Color(0x99181818);
-
+  Color oncolor = Color(0xff01BDF3);
+  Color offcolor = Color(0xffE6E6EC);
+  Color button1color = Color(0xff01BDF3);
+  Color button2color = Color(0xffE6E6EC);
   Color search_bg = Color(0x1A000000);
   Color textcolor = Color(0xff1A1D44);
   Color bluecolor = Color(0xff014CC4);
@@ -29,12 +32,17 @@ class _profileState extends State<profile> {
   Color white = Color(0xffffffff);
   Color background = Color(0xffF1F1F1);
   List<order> orderd_items = [];
+  List<order> orderd_items2 = [];
+
+  bool button1 = true;
+  bool button2 = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     fetch_orders();
+    fetch_prescription_data();
   }
 
   @override
@@ -56,7 +64,7 @@ class _profileState extends State<profile> {
                     Padding(
                       padding: EdgeInsets.only(
                           left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 200),
+                          right: MediaQuery.of(context).size.height / 60),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -118,6 +126,7 @@ class _profileState extends State<profile> {
               ),
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       color: white,
@@ -135,7 +144,7 @@ class _profileState extends State<profile> {
                               height: MediaQuery.of(context).size.height / 80,
                             ),
                             Text(
-                              "Hey! $emailofuser",
+                              "LoggedIn as $emailofuser",
                               style: TextStyle(
                                 fontFamily: 'medium',
                                 fontSize: 16,
@@ -145,126 +154,323 @@ class _profileState extends State<profile> {
                             SizedBox(
                               height: MediaQuery.of(context).size.height / 80,
                             ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height / 40,
-                            ),
                           ],
                         ),
                       ),
                     ),
                     Container(
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            itemCount: orderd_items.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                width: MediaQuery.of(context).size.width,
-                                color: white,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    //top: MediaQuery.of(context).size.height / 60,
-                                    left:
-                                        MediaQuery.of(context).size.height / 60,
-                                    right:
-                                        MediaQuery.of(context).size.height / 60,
-                                    bottom:
-                                        MediaQuery.of(context).size.height / 60,
-                                  ),
-                                  child: Column(
-                                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
+                        color: white,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.height / 60,
+                              right: MediaQuery.of(context).size.height / 60),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 80,
+                              ),
+                              Text(
+                                "Order Status",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 16,
+                                  color: textcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 80,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ButtonTheme(
+                                    child: Center(
+                                      child: MaterialButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            button1 = true;
+                                            button2 = false;
+                                            button1color = oncolor;
+                                            button2color = offcolor;
+                                          });
+                                        },
+                                        elevation: 0,
+                                        hoverElevation: 0,
+                                        focusElevation: 0,
+                                        highlightElevation: 0,
                                         height:
                                             MediaQuery.of(context).size.height /
-                                                150,
-                                      ),
-                                      Divider(
-                                        color: background,
-                                        thickness: 2,
-                                      ),
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        decoration: BoxDecoration(
-                                          color: white,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                                22,
+                                        minWidth:
+                                            MediaQuery.of(context).size.height /
+                                                6,
+                                        color: button1color,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(6)),
+                                        child: Text(
+                                          "Normal Orders",
+                                          style: TextStyle(
+                                              color: white,
+                                              fontFamily: 'medium',
+                                              fontSize: 13),
                                         ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
+                                      ),
+                                    ),
+                                  ),
+                                  ButtonTheme(
+                                    child: Center(
+                                      child: MaterialButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            button1 = false;
+                                            button2 = true;
+                                            button1color = offcolor;
+                                            button2color = oncolor;
+                                          });
+                                        },
+                                        elevation: 0,
+                                        hoverElevation: 0,
+                                        focusElevation: 0,
+                                        highlightElevation: 0,
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                22,
+                                        minWidth:
+                                            MediaQuery.of(context).size.height /
+                                                6,
+                                        color: button2color,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(6)),
+                                        child: Text(
+                                          "Prescription Orders",
+                                          style: TextStyle(
+                                              color: white,
+                                              fontFamily: 'medium',
+                                              fontSize: 13),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 60,
+                              ),
+                            ],
+                          ),
+                        )),
+                    button1 == true
+                        ? SizedBox(
+                            height: MediaQuery.of(context).size.height / 1.58,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: BouncingScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                itemCount: orderd_items.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: EdgeInsets.only(
+                                      bottom:
+                                          MediaQuery.of(context).size.height /
+                                              60,
+                                      left: MediaQuery.of(context).size.height /
+                                          60,
+                                      right:
+                                          MediaQuery.of(context).size.height /
+                                              60,
+                                    ),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              10,
+                                      decoration: BoxDecoration(
+                                        color: white,
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "${orderd_items[index].name}",
+                                              style: TextStyle(
+                                                fontFamily: 'medium',
+                                                fontSize: 16,
+                                                color: textcolor,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  100,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "Price: ${orderd_items[index].price}",
+                                                      textAlign: TextAlign.left,
+                                                      style: TextStyle(
+                                                        fontFamily: 'medium',
+                                                        fontSize: 14,
+                                                        color: textcolor_light,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width /
+                                                              20,
+                                                    ),
+                                                    Text(
+                                                      "MRP: ${orderd_items[index].cutprice}",
+                                                      textAlign: TextAlign.left,
+                                                      style: TextStyle(
+                                                        decoration:
+                                                            TextDecoration
+                                                                .lineThrough,
+                                                        fontFamily: 'medium',
+                                                        fontSize: 16,
+                                                        color: textcolor_light,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "Status: ",
+                                                      textAlign: TextAlign.left,
+                                                      style: TextStyle(
+                                                        fontFamily: 'medium',
+                                                        fontSize: 16,
+                                                        color: textcolor_light,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "${orderd_items[index].status}",
+                                                      textAlign: TextAlign.left,
+                                                      style: TextStyle(
+                                                        fontFamily: 'medium',
+                                                        fontSize: 16,
+                                                        color:
+                                                            Color(0xffEA7D6B),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          )
+                        : SizedBox(
+                            height: MediaQuery.of(context).size.height / 1.58,
+                            child: GridView.builder(
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 3.4 / 2.6,
+                                  mainAxisSpacing: 0,
+                                  crossAxisCount: 2,
+                                ),
+                                shrinkWrap: true,
+                                physics: BouncingScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                itemCount: orderd_items2.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: EdgeInsets.only(
+                                      bottom:
+                                          MediaQuery.of(context).size.height /
+                                              60,
+                                      left: MediaQuery.of(context).size.height /
+                                          60,
+                                      right:
+                                          MediaQuery.of(context).size.height /
+                                              60,
+                                    ),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              5,
+                                      decoration: BoxDecoration(
+                                        color: white,
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title: Text('Prescription'),
+                                                  content: Image.network(
+                                                    "${orderd_items2[index].company}",
+                                                    scale: 2,
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
                                           child: Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.end,
+                                                CrossAxisAlignment.center,
                                             children: [
-                                              Text(
-                                                "${orderd_items[index].name}",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  fontFamily: 'semibold',
-                                                  fontSize: 19,
-                                                  color: textcolor,
-                                                ),
+                                              Image.network(
+                                                "${orderd_items2[index].company}",
+                                                scale: 8,
                                               ),
                                               SizedBox(
                                                 height: MediaQuery.of(context)
                                                         .size
                                                         .height /
-                                                    350,
+                                                    60,
                                               ),
                                               Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                    MainAxisAlignment.center,
                                                 children: [
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        "${orderd_items[index].price}",
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                          fontFamily: 'medium',
-                                                          fontSize: 16,
-                                                          color:
-                                                              textcolor_light,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            15,
-                                                      ),
-                                                      Text(
-                                                        "MRP${orderd_items[index].cutprice}",
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .lineThrough,
-                                                          fontFamily: 'medium',
-                                                          fontSize: 16,
-                                                          color:
-                                                              textcolor_light,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
                                                   Text(
-                                                    "${orderd_items[index].status}",
+                                                    "Status: ",
                                                     textAlign: TextAlign.left,
                                                     style: TextStyle(
                                                       fontFamily: 'medium',
                                                       fontSize: 16,
                                                       color: textcolor_light,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "${orderd_items2[index].status}",
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontFamily: 'medium',
+                                                      fontSize: 16,
+                                                      color: Color(0xffEA7D6B),
                                                     ),
                                                   ),
                                                 ],
@@ -273,13 +479,10 @@ class _profileState extends State<profile> {
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }),
-                      ),
-                    ),
+                                    ),
+                                  );
+                                }),
+                          )
                   ],
                 ),
               ),
@@ -357,6 +560,42 @@ class _profileState extends State<profile> {
     Navigator.of(context).pop();
     setState(() {
       orderd_items = _doctor_deatils_list;
+    });
+  }
+
+  fetch_prescription_data() async {
+    var doctor_details = await FirebaseFirestore.instance
+        .collection('/ORDERS')
+        .doc('/prescription_orders')
+        .collection(uid)
+        .get();
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    map_precription_details(doctor_details);
+  }
+
+  map_precription_details(QuerySnapshot<Map<String, dynamic>> data) {
+    var _doctor_deatils_list = data.docs
+        .map((item) => order(
+              id: item.id,
+              cutprice: item['Cutprice'],
+              company: item['Url'],
+              name: item['Coustmer Name'],
+              price: item['phone'],
+              status: item['status'],
+              quantity: int.parse(item['pincode']),
+            ))
+        .toList();
+    Navigator.of(context).pop();
+    setState(() {
+      orderd_items2 = _doctor_deatils_list;
     });
   }
 }

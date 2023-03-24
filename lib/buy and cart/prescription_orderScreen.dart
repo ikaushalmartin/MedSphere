@@ -331,13 +331,15 @@ class _prescription_orderscreenState extends State<prescription_orderscreen> {
     await FirebaseFirestore.instance
         .collection('/ORDERS')
         .doc('prescription_orders')
-        .collection("orders")
+        .collection("$uid")
         .doc("${DateTime.now()}")
         .set({
       'Url': uniqueFileName,
       'Coustmer Name': patientname.text,
       'pincode': patientpincode.text,
       'phone': patientphone.text,
+      'status': 'Pending',
+      'Cutprice': "NIL"
     });
 
     await FirebaseFirestore.instance
