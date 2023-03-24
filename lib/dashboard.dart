@@ -43,12 +43,12 @@ class dashboard extends StatefulWidget {
 }
 
 class _dashboardState extends State<dashboard> {
-  Color textcolor = Color(0xff1D1D1F);
-  Color textcolor_white = Color(0xff949494);
+  Color textcolor = Color(0xff013759);
+  Color textcolor_white = Color(0xff42474e);
   Color white = Color(0xffffffff);
   Color redcolor = Color(0xffE46473);
   Color yellowcolor = Color(0xffF9BF80);
-  Color background = Color(0xffD9D9D9);
+  Color background = Color(0xffD8D8D8);
   final user = FirebaseAuth.instance.currentUser!;
   List<Item> popular_categories = [];
   List<Item> shop_by_category = [];
@@ -85,14 +85,14 @@ class _dashboardState extends State<dashboard> {
             children: [
               Container(
                 color: white,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 200),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 200),
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
@@ -228,13 +228,21 @@ class _dashboardState extends State<dashboard> {
                             ],
                           )
                         ],
-                      ), //toprow
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height / 100),
-
-                      //searchbar
-                    ],
-                  ),
+                      ),
+                    ), //toprow
+                    SizedBox(height: MediaQuery.of(context).size.height / 120),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Color(0xff2E2E2E),
+                            width: 1.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                    //searchbar
+                  ],
                 ),
               ),
               Expanded(
@@ -243,18 +251,12 @@ class _dashboardState extends State<dashboard> {
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: white,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 40,
-                          spreadRadius: 3,
-                          color: Color(0xffD2D1D5),
-                        ),
-                      ],
-                    ),
+                    color: white,
                     child: Column(
                       children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 35,
+                        ),
                         Padding(
                           padding: EdgeInsets.only(
                             left: MediaQuery.of(context).size.height / 60,
@@ -264,7 +266,7 @@ class _dashboardState extends State<dashboard> {
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               color: background,
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(6),
                             ),
                             child: TextFormField(
                               readOnly: true,
@@ -273,10 +275,13 @@ class _dashboardState extends State<dashboard> {
                                     transition: Transition.rightToLeft);
                               },
                               keyboardType: TextInputType.emailAddress,
-                              style: TextStyle(color: textcolor),
+                              style: TextStyle(color: textcolor_white),
                               textAlign: TextAlign.left,
                               decoration: kTextFieldDecoration.copyWith(
-                                  prefixIcon: Icon(Icons.search),
+                                  prefixIcon: Icon(
+                                    Icons.search,
+                                    color: Color(0xff42474e),
+                                  ),
                                   contentPadding: EdgeInsets.only(left: 20),
                                   hintText: "Search for Medicine and Products"),
                             ),
@@ -290,7 +295,6 @@ class _dashboardState extends State<dashboard> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).size.height / 90,
                               // left: MediaQuery.of(context).size.height / 60,
                               //right: MediaQuery.of(context).size.height / 90,
                               bottom: MediaQuery.of(context).size.height / 110,
@@ -319,11 +323,11 @@ class _dashboardState extends State<dashboard> {
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width /
-                                                  1.16,
+                                                  1.085,
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
-                                                      BorderRadius.circular(12),
+                                                      BorderRadius.circular(6),
                                                   image: DecorationImage(
                                                       fit: BoxFit.cover,
                                                       image: NetworkImage(
@@ -335,6 +339,37 @@ class _dashboardState extends State<dashboard> {
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 35,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 100,
+                  ),
+                  Container(
+                    color: white,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 60,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.height / 60,
+                            right: MediaQuery.of(context).size.height / 60,
+                          ),
+                          child: Text(
+                            "Popular Services",
+                            style: TextStyle(
+                              fontFamily: 'semibold',
+                              fontSize: 21,
+                              color: textcolor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 40,
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width,
@@ -355,28 +390,6 @@ class _dashboardState extends State<dashboard> {
                             children: [
                               Padding(
                                   padding: EdgeInsets.only(
-                                    top:
-                                        MediaQuery.of(context).size.height / 60,
-                                    left:
-                                        MediaQuery.of(context).size.height / 60,
-                                    right: MediaQuery.of(context).size.height /
-                                        200,
-                                    bottom:
-                                        MediaQuery.of(context).size.height / 60,
-                                  ),
-                                  child: Text(
-                                    "Popular Services",
-                                    style: TextStyle(
-                                      fontFamily: 'semibold',
-                                      fontSize: 21,
-                                      color: textcolor,
-                                    ),
-                                  )),
-                              Padding(
-                                  padding: EdgeInsets.only(
-                                      bottom:
-                                          MediaQuery.of(context).size.height /
-                                              50,
                                       left: MediaQuery.of(context).size.height /
                                           60,
                                       right:
@@ -455,27 +468,25 @@ class _dashboardState extends State<dashboard> {
                                                   child: Column(
                                                     children: [
                                                       Container(
-                                                          height:
-                                                              MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .height /
-                                                                  10,
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height /
+                                                              9.2,
                                                           width: MediaQuery.of(
                                                                       context)
                                                                   .size
                                                                   .height /
-                                                              9.5,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            10)),
-                                                            child: FittedBox(
+                                                              9,
+                                                          child: CircleAvatar(
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .all(Radius
+                                                                          .circular(
+                                                                              6)),
                                                               child: Image.network(
                                                                   "${files[index]}"),
-                                                              fit: BoxFit.cover,
                                                             ),
                                                           )),
                                                       SizedBox(
@@ -483,7 +494,14 @@ class _dashboardState extends State<dashboard> {
                                                                     context)
                                                                 .size
                                                                 .height /
-                                                            100,
+                                                            160,
+                                                      ),
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width /
+                                                            4.3,
                                                       ),
                                                       Text(
                                                         "${popular_categories[index].name}",
@@ -503,147 +521,110 @@ class _dashboardState extends State<dashboard> {
                             ],
                           ),
                         ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 60,
+                        ),
                       ],
                     ),
                   ),
-
-                  //starting tiles
-                  //popular services
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 35,
+                    height: MediaQuery.of(context).size.height / 100,
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      //  top: MediaQuery.of(context).size.height / 60,
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 60,
-                      // bottom: MediaQuery.of(context).size.height / 60,
-                    ),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 7,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: white,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 40,
-                            spreadRadius: 3,
-                            color: Color(0xffD2D1D5),
-                          ),
-                        ],
-                      ),
-                      child: orderbyprescription(),
-                    ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 8,
+                    color: white,
+                    child: orderbyprescription(),
                   ), //prescription
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 35,
+                    height: MediaQuery.of(context).size.height / 100,
                   ),
-                  Padding(
+                  Container(
+                    color: white,
                     padding: EdgeInsets.only(
-                      //  top: MediaQuery.of(context).size.height / 60,
+                      top: MediaQuery.of(context).size.height / 60,
                       left: MediaQuery.of(context).size.height / 60,
                       right: MediaQuery.of(context).size.height / 60,
-                      // bottom: MediaQuery.of(context).size.height / 80,
+                      bottom: MediaQuery.of(context).size.height / 80,
                     ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: white,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 40,
-                            spreadRadius: 3,
-                            color: Color(0xffD2D1D5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Shop By Category",
+                          style: TextStyle(
+                            fontFamily: 'semibold',
+                            fontSize: 21,
+                            color: textcolor,
                           ),
-                        ],
-                      ),
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 60,
-                        left: MediaQuery.of(context).size.height / 60,
-                        right: MediaQuery.of(context).size.height / 60,
-                        bottom: MediaQuery.of(context).size.height / 80,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Shop By Category",
-                            style: TextStyle(
-                              fontFamily: 'semibold',
-                              fontSize: 21,
-                              color: textcolor,
-                            ),
-                          ),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              height: 250,
-                              child: GridView.builder(
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    childAspectRatio: 3 / 3,
-                                    mainAxisSpacing: 20,
-                                    crossAxisCount: 2,
-                                  ),
-                                  shrinkWrap: true,
-                                  physics: BouncingScrollPhysics(),
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: shop_by_category_list.length,
-                                  itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        Get.to(
-                                            () => shop_by_category_items(
-                                                heading3:
-                                                    shop_by_category[index]
-                                                        .name),
-                                            transition: Transition.rightToLeft);
-                                      },
-                                      child: Column(
-                                        children: [
-                                          SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                20,
+                        ),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: 250,
+                            child: GridView.builder(
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 3 / 3,
+                                  mainAxisSpacing: 20,
+                                  crossAxisCount: 2,
+                                ),
+                                shrinkWrap: true,
+                                physics: BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: shop_by_category_list.length,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.to(
+                                          () => shop_by_category_items(
+                                              heading3:
+                                                  shop_by_category[index].name),
+                                          transition: Transition.rightToLeft);
+                                    },
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              20,
+                                        ),
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          child: Image.network(
+                                            "${shop_by_category_list[index]}",
+                                            scale: 8,
                                           ),
-                                          ClipRRect(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10)),
-                                            child: Image.network(
-                                              "${shop_by_category_list[index]}",
-                                              scale: 8,
+                                        ),
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              50,
+                                        ),
+                                        Container(
+                                          height: 32,
+                                          child: Text(
+                                            "${shop_by_category[index].name}",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontFamily: 'medium',
+                                              fontSize: 15,
+                                              color: textcolor,
                                             ),
                                           ),
-                                          SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                50,
-                                          ),
-                                          Container(
-                                            height: 32,
-                                            child: Text(
-                                              "${shop_by_category[index].name}",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontFamily: 'medium',
-                                                fontSize: 15,
-                                                color: textcolor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  })),
-                        ],
-                      ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                })),
+                      ],
                     ),
                   ), //Shop By Category
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 35,
+                    height: MediaQuery.of(context).size.height / 100,
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -705,7 +686,7 @@ class _dashboardState extends State<dashboard> {
                                             decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 borderRadius:
-                                                    BorderRadius.circular(12),
+                                                    BorderRadius.circular(6),
                                                 image: DecorationImage(
                                                     fit: BoxFit.cover,
                                                     image: NetworkImage(
@@ -718,7 +699,7 @@ class _dashboardState extends State<dashboard> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 35,
+                    height: MediaQuery.of(context).size.height / 100,
                   ), //deal of the day
                   Padding(
                     padding: EdgeInsets.only(
@@ -739,7 +720,7 @@ class _dashboardState extends State<dashboard> {
                             width: MediaQuery.of(context).size.width / 2.2,
                             height: MediaQuery.of(context).size.height / 8,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(6),
                               color: white,
                               boxShadow: [
                                 BoxShadow(
@@ -781,7 +762,7 @@ class _dashboardState extends State<dashboard> {
                             width: MediaQuery.of(context).size.width / 2.2,
                             height: MediaQuery.of(context).size.height / 8,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(6),
                               color: white,
                               boxShadow: [
                                 BoxShadow(
@@ -818,7 +799,7 @@ class _dashboardState extends State<dashboard> {
                     ),
                   ), //essentials and ngos
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 35,
+                    height: MediaQuery.of(context).size.height / 100,
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,

@@ -18,9 +18,9 @@ class orderbyprescription extends StatefulWidget {
 }
 
 class _orderbyprescriptionState extends State<orderbyprescription> {
-  Color textcolor = Color(0xff1D1D1F);
+  Color textcolor = Color(0xff013759);
 
-  Color buttontextcolor = Colors.white;
+  Color buttontextcolor = Color(0xff013759);
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class _orderbyprescriptionState extends State<orderbyprescription> {
                 highlightElevation: 0,
                 height: MediaQuery.of(context).size.height / 20,
                 minWidth: MediaQuery.of(context).size.height / 9,
-                color: Color(0xff007AFE),
+                color: Color(0xff00DCA8),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 child: Text(
