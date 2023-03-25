@@ -58,9 +58,14 @@ class _dashboardState extends State<dashboard> {
   List shop_by_concern_list = [];
   List deals_of_the_day_image_list = [];
   List starting_tiles_image_list = [];
-
   int doctor_checked = 0;
   late var everyday_essential_image_url;
+
+  Color bottom1 = Color(0xff575F75);
+  Color bottom2 = Color(0xff575F75);
+  Color bottom3 = Color(0xff01BDF3);
+  Color bottom4 = Color(0xff575F75);
+  Color bottom5 = Color(0xff575F75);
 
   void initState() {
     fetch_number();
@@ -104,7 +109,7 @@ class _dashboardState extends State<dashboard> {
                                 radius: 15,
                                 backgroundColor: bluecolor,
                                 child: Icon(
-                                  Icons.person_outline_outlined,
+                                  UniconsLine.user,
                                   color: white,
                                   size: 20,
                                 ),
@@ -258,9 +263,9 @@ class _dashboardState extends State<dashboard> {
                           textAlign: TextAlign.left,
                           decoration: kTextFieldDecoration.copyWith(
                               prefixIcon: Icon(
-                                Icons.search_rounded,
+                                UniconsLine.search,
                                 color: bluecolor,
-                                size: 25,
+                                size: 23,
                               ),
                               contentPadding: EdgeInsets.only(left: 20),
                               hintText: "Search for Medicine and Products"),
@@ -835,30 +840,52 @@ class _dashboardState extends State<dashboard> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        FirebaseAuth.instance.signOut();
+                        Get.to(() => const medicineforbutton(),
+                            transition: Transition.noTransition);
                       },
                       icon: Icon(UniconsLine.capsule),
-                      color: textcolor,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom1,
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(() => const labtest(),
+                            transition: Transition.noTransition);
+                      },
                       icon: Icon(UniconsLine.flask),
-                      color: textcolor,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom2,
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(UniconsLine.estate),
-                      color: textcolor,
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: Icon(UniconsLine.home_alt),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom3,
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(UniconsLine.ambulance),
-                      color: textcolor,
+                      onPressed: () {
+                        Get.to(() => SearchScreen(),
+                            transition: Transition.noTransition);
+                      },
+                      icon: Icon(UniconsLine.search),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom4,
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(UniconsLine.book_medical),
-                      color: textcolor,
+                      onPressed: () {
+                        Get.to(() => const profile(),
+                            transition: Transition.noTransition);
+                      },
+                      icon: Icon(UniconsLine.user),
+                      color: bottom5,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                     ),
                   ],
                 ),

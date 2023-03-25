@@ -4,11 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:medicineapp2/Medicine/medicine_forbutton.dart';
+import 'package:medicineapp2/lab/labtest.dart';
 import 'package:medicineapp2/main.dart';
 
 import 'package:unicons/unicons.dart';
 
 import 'Models/orders.dart';
+import 'dashboard_search.dart';
 
 class profile extends StatefulWidget {
   const profile({Key? key}) : super(key: key);
@@ -33,6 +36,12 @@ class _profileState extends State<profile> {
   Color background = Color(0xffF1F1F1);
   List<order> orderd_items = [];
   List<order> orderd_items2 = [];
+
+  Color bottom1 = Color(0xff575F75);
+  Color bottom2 = Color(0xff575F75);
+  Color bottom3 = Color(0xff575F75);
+  Color bottom4 = Color(0xff575F75);
+  Color bottom5 = Color(0xff01BDF3);
 
   bool button1 = true;
   bool button2 = false;
@@ -70,16 +79,6 @@ class _profileState extends State<profile> {
                         children: [
                           Row(
                             children: [
-                              GestureDetector(
-                                  onTap: () {
-                                    Get.back();
-                                    // FirebaseAuth.instance.signOut();
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_back_ios,
-                                    color: textcolor,
-                                    size: 20,
-                                  )),
                               SizedBox(
                                   width:
                                       MediaQuery.of(context).size.height / 80),
@@ -144,7 +143,18 @@ class _profileState extends State<profile> {
                               height: MediaQuery.of(context).size.height / 80,
                             ),
                             Text(
-                              "LoggedIn as $emailofuser",
+                              "Hi! There",
+                              style: TextStyle(
+                                fontFamily: 'medium',
+                                fontSize: 22,
+                                color: textcolor,
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 80,
+                            ),
+                            Text(
+                              "Email : $emailofuser",
                               style: TextStyle(
                                 fontFamily: 'medium',
                                 fontSize: 16,
@@ -266,7 +276,7 @@ class _profileState extends State<profile> {
                         )),
                     button1 == true
                         ? SizedBox(
-                            height: MediaQuery.of(context).size.height / 1.58,
+                            height: MediaQuery.of(context).size.height / 1.7,
                             child: ListView.builder(
                                 shrinkWrap: true,
                                 physics: BouncingScrollPhysics(),
@@ -385,7 +395,7 @@ class _profileState extends State<profile> {
                                 }),
                           )
                         : SizedBox(
-                            height: MediaQuery.of(context).size.height / 1.58,
+                            height: MediaQuery.of(context).size.height / 1.7,
                             child: GridView.builder(
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
@@ -495,29 +505,50 @@ class _profileState extends State<profile> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(() => const medicineforbutton(),
+                            transition: Transition.rightToLeft);
+                      },
                       icon: Icon(UniconsLine.capsule),
-                      color: textcolor,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom1,
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(() => const labtest(),
+                            transition: Transition.rightToLeft);
+                      },
                       icon: Icon(UniconsLine.flask),
-                      color: textcolor,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom2,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: Icon(UniconsLine.home_alt),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom3,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.to(() => SearchScreen(),
+                            transition: Transition.rightToLeft);
+                      },
+                      icon: Icon(UniconsLine.search),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom4,
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(UniconsLine.estate),
-                      color: textcolor,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(UniconsLine.ambulance),
-                      color: textcolor,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(UniconsLine.book_medical),
-                      color: textcolor,
+                      icon: Icon(UniconsLine.user),
+                      color: bottom5,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                     ),
                   ],
                 ),
