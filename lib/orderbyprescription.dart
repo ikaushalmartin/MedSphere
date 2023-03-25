@@ -253,10 +253,12 @@ class _orderbyprescription_medicinepageState
 
   @override
   Widget build(BuildContext context) {
-    Color textcolor = Color(0xff1D1D1F);
-
-    Color upload_prescription_button_bg = Color(0xffE6EFFE);
-    Color upload_prescription_button_text = Color(0xff007AFF);
+    Color textcolor = Color(0xff1A1D44);
+    Color bluecolor = Color(0xff014CC4);
+    Color textcolor_white = Color(0xff42474e);
+    Color white = Color(0xffffffff);
+    Color background = Color(0xffF1F1F1);
+    Color lightblue = Color(0xff01BDF3);
 
     return Padding(
       padding: const EdgeInsets.all(11.0),
@@ -270,11 +272,11 @@ class _orderbyprescription_medicinepageState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Upload Prescription",
+                    "Order with prescription",
                     textAlign: TextAlign.left,
                     style: TextStyle(
-                      fontFamily: 'semibold',
-                      fontSize: 21,
+                      fontFamily: 'medium',
+                      fontSize: 18,
                       color: textcolor,
                     ),
                   ),
@@ -282,7 +284,7 @@ class _orderbyprescription_medicinepageState
                     height: MediaQuery.of(context).size.height / 120,
                   ),
                   Text(
-                    "Upload the photo and we will \ndeliver the medicine",
+                    "Upload the photo and we will \ndeliver the item",
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontFamily: 'regular',
@@ -299,7 +301,8 @@ class _orderbyprescription_medicinepageState
             height: MediaQuery.of(context).size.height / 40,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15),
+            padding: const EdgeInsets.only(
+                top: 1, left: 15.0, right: 15.0, bottom: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -314,16 +317,16 @@ class _orderbyprescription_medicinepageState
                       focusElevation: 0,
                       highlightElevation: 0,
                       height: MediaQuery.of(context).size.height / 18,
-                      minWidth: MediaQuery.of(context).size.height / 8,
-                      color: upload_prescription_button_bg,
+                      minWidth: MediaQuery.of(context).size.height / 9,
+                      color: bluecolor,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)),
+                          borderRadius: BorderRadius.circular(6)),
                       child: Row(
                         children: [
                           Icon(
                             Icons.camera_alt_rounded,
                             size: 25,
-                            color: upload_prescription_button_text,
+                            color: white,
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.height / 80,
@@ -331,9 +334,9 @@ class _orderbyprescription_medicinepageState
                           Text(
                             "Camera",
                             style: TextStyle(
-                              fontFamily: 'semibold',
+                              fontFamily: 'medium',
                               fontSize: 18,
-                              color: upload_prescription_button_text,
+                              color: white,
                             ),
                           )
                         ],
@@ -355,16 +358,16 @@ class _orderbyprescription_medicinepageState
                       focusElevation: 0,
                       highlightElevation: 0,
                       height: MediaQuery.of(context).size.height / 18,
-                      minWidth: MediaQuery.of(context).size.height / 8,
-                      color: upload_prescription_button_bg,
+                      minWidth: MediaQuery.of(context).size.height / 9,
+                      color: lightblue,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)),
+                          borderRadius: BorderRadius.circular(6)),
                       child: Row(
                         children: [
                           Icon(
                             Icons.photo,
                             size: 25,
-                            color: upload_prescription_button_text,
+                            color: white,
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.height / 80,
@@ -374,7 +377,7 @@ class _orderbyprescription_medicinepageState
                             style: TextStyle(
                               fontFamily: 'semibold',
                               fontSize: 18,
-                              color: upload_prescription_button_text,
+                              color: white,
                             ),
                           )
                         ],
@@ -404,29 +407,17 @@ class _orderbyprescription_medicinepageState
                         focusElevation: 0,
                         highlightElevation: 0,
                         height: MediaQuery.of(context).size.height / 18,
-                        minWidth: MediaQuery.of(context).size.height / 8,
-                        color: upload_prescription_button_bg,
+                        minWidth: MediaQuery.of(context).size.height / 2.21,
+                        color: background,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.arrow_forward_ios_outlined,
-                              size: 25,
-                              color: upload_prescription_button_text,
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.height / 80,
-                            ),
-                            Text(
-                              "Order",
-                              style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 18,
-                                color: upload_prescription_button_text,
-                              ),
-                            )
-                          ],
+                            borderRadius: BorderRadius.circular(6)),
+                        child: Text(
+                          "Continue with prescription",
+                          style: TextStyle(
+                            fontFamily: 'medium',
+                            fontSize: 16,
+                            color: bluecolor,
+                          ),
                         ),
                       ),
                     ),

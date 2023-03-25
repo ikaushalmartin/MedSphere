@@ -7,11 +7,14 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:unicons/unicons.dart';
 
 import '../Models/topdeals_model.dart';
 import '../buy and cart/cart.dart';
 import '../const.dart';
 
+import '../dashboard_search.dart';
+import '../order_status.dart';
 import '../orderbyprescription.dart';
 import '../product_commonscreen/Common Screen.dart';
 
@@ -26,13 +29,19 @@ class _medicineforbuttonState extends State<medicineforbutton> {
   List top_images_list_images = [];
   List<topdeals> top_deals_deatils_list = [];
 
-  Color bluecolor = Color(0xff6588E6);
-  Color bluecolor_bg = Color(0xffDAE1FF);
-  Color textcolor = Color(0xff1D1D1F);
-  Color textcolor_light = Color(0x99181818);
-  Color background = Color(0xffF2F1F6);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
+  Color textcolor_white = Color(0xff42474e);
   Color white = Color(0xffffffff);
+  Color background = Color(0xffF1F1F1);
+  Color textcolor_light = Color(0xff575F75);
   Color search_bg = Color(0x1A000000);
+
+  Color bottom1 = Color(0xff01BDF3);
+  Color bottom2 = Color(0xff575F75);
+  Color bottom3 = Color(0xff575F75);
+  Color bottom4 = Color(0xff575F75);
+  Color bottom5 = Color(0xff575F75);
   @override
   void initState() {
     // TODO: implement initState
@@ -184,8 +193,8 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                               child: Text(
                                 "Top Deals",
                                 style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 21,
+                                  fontFamily: 'medium',
+                                  fontSize: 16,
                                   color: textcolor,
                                 ),
                               )),
@@ -318,7 +327,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                                     style: TextStyle(
                                                       fontFamily: 'medium',
                                                       fontSize: 16,
-                                                      color: textcolor,
+                                                      color: bluecolor,
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -350,6 +359,63 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                     ),
                   ],
                 )),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height / 15,
+                decoration: BoxDecoration(
+                  color: white,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.to(() => const medicineforbutton(),
+                            transition: Transition.noTransition);
+                      },
+                      icon: Icon(UniconsLine.capsule),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom1,
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(UniconsLine.flask),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom2,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: Icon(UniconsLine.home_alt),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom3,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.to(() => SearchScreen(),
+                            transition: Transition.noTransition);
+                      },
+                      icon: Icon(UniconsLine.search),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom4,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.to(() => const profile(),
+                            transition: Transition.noTransition);
+                      },
+                      icon: Icon(UniconsLine.user),
+                      color: bottom5,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
