@@ -69,24 +69,12 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios_new_outlined,
+                            Text(
+                              "Medicine",
+                              style: TextStyle(
+                                fontFamily: 'medium',
+                                fontSize: 16,
                                 color: textcolor,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "Medicine",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 24,
-                                  color: textcolor,
-                                ),
                               ),
                             ),
                             Theme(
@@ -101,6 +89,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                 },
                                 icon: Icon(Icons.shopping_cart_outlined),
                                 color: textcolor,
+                                iconSize: 20,
                               ),
                             )
                           ],
@@ -165,47 +154,22 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                   physics: BouncingScrollPhysics(),
                   children: [
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 150,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 60,
-                        left: MediaQuery.of(context).size.height / 60,
-                        right: MediaQuery.of(context).size.height / 60,
-                        bottom: MediaQuery.of(context).size.height / 60,
-                      ),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: white,
-                          boxShadow: const [
-                            BoxShadow(
-                              blurRadius: 40,
-                              spreadRadius: 3,
-                              color: Color(0xffD2D1D5),
-                            ),
-                          ],
-                        ),
-                        child:
-                            Center(child: orderbyprescription_medicinepage()),
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 150,
+                      height: MediaQuery.of(context).size.height / 100,
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
+                        //borderRadius: BorderRadius.circular(10),
                         color: white,
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 40,
-                            spreadRadius: 3,
-                            color: Color(0xffD2D1D5),
-                          ),
-                        ],
                       ),
+                      child: Center(child: orderbyprescription_medicinepage()),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 100,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: white,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,

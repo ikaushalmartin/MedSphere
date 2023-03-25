@@ -77,20 +77,13 @@ class _profileState extends State<profile> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.height / 80),
-                              Text(
-                                "Profile",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 16,
-                                  color: textcolor,
-                                ),
-                              ),
-                            ],
+                          Text(
+                            "Profile",
+                            style: TextStyle(
+                              fontFamily: 'medium',
+                              fontSize: 16,
+                              color: textcolor,
+                            ),
                           ),
                           Row(
                             children: [
