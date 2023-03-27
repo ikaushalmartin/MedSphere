@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:medicineapp2/lab/labtest.dart';
 import 'package:unicons/unicons.dart';
 
 import '../Models/topdeals_model.dart';
@@ -65,95 +66,39 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                 decoration: BoxDecoration(
                   color: white,
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: white,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            //   top: MediaQuery.of(context).size.height / 80,
-                            left: MediaQuery.of(context).size.height / 60,
-                            right: MediaQuery.of(context).size.height / 200),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Medicine",
-                              style: TextStyle(
-                                fontFamily: 'medium',
-                                fontSize: 16,
-                                color: textcolor,
-                              ),
-                            ),
-                            Theme(
-                              data: ThemeData(
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                              ),
-                              child: IconButton(
-                                onPressed: () {
-                                  Get.to(() => cart(),
-                                      transition: Transition.rightToLeft);
-                                },
-                                icon: Icon(Icons.shopping_cart_outlined),
-                                color: textcolor,
-                                iconSize: 20,
-                              ),
-                            )
-                          ],
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      //   top: MediaQuery.of(context).size.height / 80,
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 200),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Medicine",
+                        style: TextStyle(
+                          fontFamily: 'medium',
+                          fontSize: 16,
+                          color: textcolor,
                         ),
                       ),
-                    ), //toprow
-                    /*SizedBox(height: MediaQuery.of(context).size.height / 200),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 60),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width / 1.35,
-                            decoration: BoxDecoration(
-                              color: background,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextField(
-                              onChanged: (value) {},
-                              keyboardType: TextInputType.emailAddress,
-                              style: TextStyle(color: textcolor),
-                              textAlign: TextAlign.left,
-                              decoration: kTextFieldDecoration.copyWith(
-                                  contentPadding: EdgeInsets.only(left: 20),
-                                  hintText: "Search"),
-                            ),
-                          ),
-                          Container(
-                              width: MediaQuery.of(context).size.width / 6,
-                              decoration: BoxDecoration(
-                                color: background,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Theme(
-                                data: ThemeData(
-                                  splashColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                ),
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.search),
-                                  color: textcolor,
-                                ),
-                              ))
-                        ],
-                      ),
-                    ),*/
-                    SizedBox(height: MediaQuery.of(context).size.height / 70),
-                    //searchbar
-                  ],
+                      Theme(
+                        data: ThemeData(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            Get.to(() => cart(),
+                                transition: Transition.rightToLeft);
+                          },
+                          icon: Icon(Icons.shopping_cart_outlined),
+                          color: textcolor,
+                          iconSize: 20,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               Expanded(
@@ -381,18 +326,25 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        Get.off(() => const medicineforbutton(),
-                            transition: Transition.noTransition);
-                      },
-                      icon: Icon(UniconsLine.capsule),
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      color: bottom1,
+                    Column(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Get.off(() => const medicineforbutton(),
+                                transition: Transition.noTransition);
+                          },
+                          icon: Icon(UniconsLine.capsule),
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          color: bottom1,
+                        ),
+                      ],
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.off(() => const labtest(),
+                            transition: Transition.noTransition);
+                      },
                       icon: Icon(UniconsLine.flask),
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,

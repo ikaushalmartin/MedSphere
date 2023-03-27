@@ -79,7 +79,7 @@ class _orderbyprescriptionState extends State<orderbyprescription> {
                 highlightElevation: 0,
                 height: MediaQuery.of(context).size.height / 22,
                 minWidth: MediaQuery.of(context).size.height / 9,
-                color: Color(0xff1A1D44),
+                color: const Color(0xff1A1D44),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6)),
                 child: Text(
