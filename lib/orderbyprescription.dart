@@ -275,8 +275,8 @@ class _orderbyprescription_medicinepageState
                     "Order with prescription",
                     textAlign: TextAlign.left,
                     style: TextStyle(
-                      fontFamily: 'medium',
-                      fontSize: 18,
+                      fontFamily: 'semibold',
+                      fontSize: 16,
                       color: textcolor,
                     ),
                   ),
@@ -288,7 +288,7 @@ class _orderbyprescription_medicinepageState
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontFamily: 'regular',
-                      fontSize: 14,
+                      fontSize: 12,
                       color: textcolor,
                     ),
                   ),
@@ -298,14 +298,17 @@ class _orderbyprescription_medicinepageState
             ],
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 40,
+            height: MediaQuery.of(context).size.height / 50,
           ),
           Padding(
             padding: const EdgeInsets.only(
-                top: 1, left: 15.0, right: 15.0, bottom: 15),
+                top: 0, left: 15.0, right: 15.0, bottom: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.height / 50,
+                ),
                 ButtonTheme(
                   child: Center(
                     child: MaterialButton(
@@ -316,8 +319,8 @@ class _orderbyprescription_medicinepageState
                       hoverElevation: 0,
                       focusElevation: 0,
                       highlightElevation: 0,
-                      height: MediaQuery.of(context).size.height / 18,
-                      minWidth: MediaQuery.of(context).size.height / 9,
+                      height: MediaQuery.of(context).size.height / 20,
+                      minWidth: MediaQuery.of(context).size.height / 11,
                       color: bluecolor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6)),
@@ -325,7 +328,7 @@ class _orderbyprescription_medicinepageState
                         children: [
                           Icon(
                             Icons.camera_alt_rounded,
-                            size: 25,
+                            size: 20,
                             color: white,
                           ),
                           SizedBox(
@@ -335,7 +338,7 @@ class _orderbyprescription_medicinepageState
                             "Camera",
                             style: TextStyle(
                               fontFamily: 'medium',
-                              fontSize: 18,
+                              fontSize: 14,
                               color: white,
                             ),
                           )
@@ -345,7 +348,7 @@ class _orderbyprescription_medicinepageState
                   ),
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.height / 20,
+                  width: MediaQuery.of(context).size.height / 10,
                 ),
                 ButtonTheme(
                   child: Center(
@@ -357,8 +360,8 @@ class _orderbyprescription_medicinepageState
                       hoverElevation: 0,
                       focusElevation: 0,
                       highlightElevation: 0,
-                      height: MediaQuery.of(context).size.height / 18,
-                      minWidth: MediaQuery.of(context).size.height / 9,
+                      height: MediaQuery.of(context).size.height / 20,
+                      minWidth: MediaQuery.of(context).size.height / 11,
                       color: lightblue,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6)),
@@ -366,7 +369,7 @@ class _orderbyprescription_medicinepageState
                         children: [
                           Icon(
                             Icons.photo,
-                            size: 25,
+                            size: 20,
                             color: white,
                           ),
                           SizedBox(
@@ -376,7 +379,7 @@ class _orderbyprescription_medicinepageState
                             "Gallery",
                             style: TextStyle(
                               fontFamily: 'semibold',
-                              fontSize: 18,
+                              fontSize: 14,
                               color: white,
                             ),
                           )
@@ -384,6 +387,9 @@ class _orderbyprescription_medicinepageState
                       ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.height / 50,
                 ),
               ],
             ),

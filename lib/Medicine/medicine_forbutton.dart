@@ -13,10 +13,12 @@ import '../Models/topdeals_model.dart';
 import '../buy and cart/cart.dart';
 import '../const.dart';
 
+import '../dashboard.dart';
 import '../dashboard_search.dart';
-import '../order_status.dart';
+
 import '../orderbyprescription.dart';
 import '../product_commonscreen/Common Screen.dart';
+import '../profile.dart';
 
 class medicineforbutton extends StatefulWidget {
   const medicineforbutton({Key? key}) : super(key: key);
@@ -105,7 +107,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                         ),
                       ),
                     ), //toprow
-                    SizedBox(height: MediaQuery.of(context).size.height / 200),
+                    /*SizedBox(height: MediaQuery.of(context).size.height / 200),
                     Padding(
                       padding: EdgeInsets.only(
                           left: MediaQuery.of(context).size.height / 60,
@@ -148,19 +150,15 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                               ))
                         ],
                       ),
-                    ),
+                    ),*/
                     SizedBox(height: MediaQuery.of(context).size.height / 70),
                     //searchbar
                   ],
                 ),
               ),
               Expanded(
-                child: Container(
-                    // height: MediaQuery.of(context).size.height / 1.451,
-                    //  width: MediaQuery.of(context).size.width,
-                    // color: Colors.white,
-                    child: ListView(
-                  physics: BouncingScrollPhysics(),
+                child: ListView(
+                  physics: const BouncingScrollPhysics(),
                   children: [
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 100,
@@ -187,7 +185,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                               padding: EdgeInsets.only(
                                 top: MediaQuery.of(context).size.height / 60,
                                 left: MediaQuery.of(context).size.height / 60,
-                                right: MediaQuery.of(context).size.height / 200,
+                                right: MediaQuery.of(context).size.height / 60,
                                 bottom: MediaQuery.of(context).size.height / 60,
                               ),
                               child: Text(
@@ -200,17 +198,14 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                               )),
                           Padding(
                               padding: EdgeInsets.only(
-                                //top:MediaQuery.of(context).size.height / 50,
+                                right: MediaQuery.of(context).size.height / 60,
                                 left: MediaQuery.of(context).size.height / 60,
                               ),
-                              child: SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 3.5,
-                                  width: MediaQuery.of(context).size.width,
+                              child: Expanded(
                                   child: ListView.builder(
                                       shrinkWrap: true,
-                                      physics: BouncingScrollPhysics(),
-                                      scrollDirection: Axis.horizontal,
+                                      physics: const BouncingScrollPhysics(),
+                                      scrollDirection: Axis.vertical,
                                       itemCount: top_images_list_images.length,
                                       itemBuilder: (context, index) {
                                         return GestureDetector(
@@ -272,84 +267,103 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                           },
                                           child: Column(
                                             children: [
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    2,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    3,
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                  child: Image.network(
-                                                      "${top_images_list_images[index]}",
-                                                      scale: 5),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    100,
-                                              ),
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    2.5,
-                                                child: Text(
-                                                  "${top_deals_deatils_list[index].name}",
-                                                  style: TextStyle(
-                                                    fontFamily: 'medium',
-                                                    fontSize: 15,
-                                                    color: textcolor,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height /
-                                                    150,
-                                              ),
                                               Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
                                                 children: [
-                                                  Text(
-                                                    "₹${top_deals_deatils_list[index].price}",
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      fontFamily: 'medium',
-                                                      fontSize: 16,
-                                                      color: bluecolor,
-                                                    ),
+                                                  SizedBox(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            5,
+                                                    child: Image.network(
+                                                        "${top_images_list_images[index]}",
+                                                        scale: 8),
                                                   ),
                                                   SizedBox(
                                                     width:
                                                         MediaQuery.of(context)
                                                                 .size
                                                                 .width /
-                                                            20,
+                                                            10,
                                                   ),
-                                                  Text(
-                                                    "MRP₹${top_deals_deatils_list[index].cuttopdeals}",
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      decoration: TextDecoration
-                                                          .lineThrough,
-                                                      fontFamily: 'medium',
-                                                      fontSize: 16,
-                                                      color: textcolor_light,
-                                                    ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width /
+                                                            1.6,
+                                                        child: Text(
+                                                          "${top_deals_deatils_list[index].name}",
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'medium',
+                                                            fontSize: 12,
+                                                            color: textcolor,
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height /
+                                                            150,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "₹${top_deals_deatils_list[index].price}",
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  'medium',
+                                                              fontSize: 12,
+                                                              color: bluecolor,
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width /
+                                                                20,
+                                                          ),
+                                                          Text(
+                                                            "MRP₹${top_deals_deatils_list[index].cuttopdeals}",
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: TextStyle(
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .lineThrough,
+                                                              fontFamily:
+                                                                  'medium',
+                                                              fontSize: 12,
+                                                              color:
+                                                                  textcolor_light,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
                                                   ),
                                                 ],
                                               ),
+                                              SizedBox(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    30,
+                                              ),
+                                              Text("data")
                                             ],
                                           ),
                                         );
@@ -358,7 +372,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                       ),
                     ),
                   ],
-                )),
+                ),
               ),
               Container(
                 height: MediaQuery.of(context).size.height / 15,
@@ -370,7 +384,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        Get.to(() => const medicineforbutton(),
+                        Get.off(() => const medicineforbutton(),
                             transition: Transition.noTransition);
                       },
                       icon: Icon(UniconsLine.capsule),
@@ -387,7 +401,8 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                     ),
                     IconButton(
                       onPressed: () {
-                        Get.back();
+                        Get.off(dashboard(),
+                            transition: Transition.noTransition);
                       },
                       icon: Icon(UniconsLine.home_alt),
                       splashColor: Colors.transparent,
@@ -397,7 +412,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                     IconButton(
                       onPressed: () {
                         Get.to(() => SearchScreen(),
-                            transition: Transition.noTransition);
+                            transition: Transition.rightToLeft);
                       },
                       icon: Icon(UniconsLine.search),
                       splashColor: Colors.transparent,
@@ -406,7 +421,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                     ),
                     IconButton(
                       onPressed: () {
-                        Get.to(() => const profile(),
+                        Get.off(() => const profile(),
                             transition: Transition.noTransition);
                       },
                       icon: Icon(UniconsLine.user),

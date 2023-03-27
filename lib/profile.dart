@@ -11,6 +11,7 @@ import 'package:medicineapp2/main.dart';
 import 'package:unicons/unicons.dart';
 
 import 'Models/orders.dart';
+import 'dashboard.dart';
 import 'dashboard_search.dart';
 
 class profile extends StatefulWidget {
@@ -161,6 +162,9 @@ class _profileState extends State<profile> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 80,
+                    ),
                     Container(
                         color: white,
                         child: Padding(
@@ -267,9 +271,11 @@ class _profileState extends State<profile> {
                             ],
                           ),
                         )),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 80,
+                    ),
                     button1 == true
-                        ? SizedBox(
-                            height: MediaQuery.of(context).size.height / 1.7,
+                        ? Expanded(
                             child: ListView.builder(
                                 shrinkWrap: true,
                                 physics: BouncingScrollPhysics(),
@@ -387,8 +393,8 @@ class _profileState extends State<profile> {
                                   );
                                 }),
                           )
-                        : SizedBox(
-                            height: MediaQuery.of(context).size.height / 1.7,
+                        : Expanded(
+                            //height: MediaQuery.of(context).size.height / 1.7,
                             child: GridView.builder(
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
@@ -499,8 +505,8 @@ class _profileState extends State<profile> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        Get.to(() => const medicineforbutton(),
-                            transition: Transition.rightToLeft);
+                        Get.off(() => const medicineforbutton(),
+                            transition: Transition.noTransition);
                       },
                       icon: Icon(UniconsLine.capsule),
                       splashColor: Colors.transparent,
@@ -509,8 +515,8 @@ class _profileState extends State<profile> {
                     ),
                     IconButton(
                       onPressed: () {
-                        Get.to(() => const labtest(),
-                            transition: Transition.rightToLeft);
+                        Get.off(() => const labtest(),
+                            transition: Transition.noTransition);
                       },
                       icon: Icon(UniconsLine.flask),
                       splashColor: Colors.transparent,
@@ -519,7 +525,8 @@ class _profileState extends State<profile> {
                     ),
                     IconButton(
                       onPressed: () {
-                        Get.back();
+                        Get.off(dashboard(),
+                            transition: Transition.noTransition);
                       },
                       icon: Icon(UniconsLine.home_alt),
                       splashColor: Colors.transparent,
