@@ -363,7 +363,6 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                                                         .width /
                                                     30,
                                               ),
-                                              Text("data")
                                             ],
                                           ),
                                         );
