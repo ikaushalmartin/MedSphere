@@ -390,7 +390,7 @@ class _dashboardState extends State<dashboard> {
                                           crossAxisCount: 2,
                                         ),
                                         shrinkWrap: true,
-                                        physics: BouncingScrollPhysics(),
+                                        physics: const BouncingScrollPhysics(),
                                         scrollDirection: Axis.horizontal,
                                         itemCount: files.length,
                                         itemBuilder: (context, index) {
@@ -442,8 +442,7 @@ class _dashboardState extends State<dashboard> {
                                               },
                                               child: Column(
                                                 children: [
-                                                  SizedBox(
-                                                      child: CircleAvatar(
+                                                  CircleAvatar(
                                                     radius: 32,
                                                     backgroundColor: background,
                                                     child: ClipRRect(
@@ -454,7 +453,7 @@ class _dashboardState extends State<dashboard> {
                                                       child: Image.network(
                                                           "${files[index]}"),
                                                     ),
-                                                  )),
+                                                  ),
                                                   SizedBox(
                                                     height:
                                                         MediaQuery.of(context)

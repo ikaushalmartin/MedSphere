@@ -47,18 +47,15 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                decoration: BoxDecoration(
-                  color: background,
-                ),
+                color: white,
                 child: Padding(
                   padding: EdgeInsets.only(
                       left: MediaQuery.of(context).size.height / 60,
                       right: MediaQuery.of(context).size.height / 200),
-                  child: Column(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
                             onTap: () {
@@ -67,197 +64,169 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                             child: Icon(
                               Icons.arrow_back_ios_new_outlined,
                               color: textcolor,
+                              size: 20,
                             ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.height / 60,
                           ),
                           Align(
                             alignment: Alignment.topLeft,
                             child: Text(
                               "${widget.heading}",
                               style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 24,
+                                fontFamily: 'medium',
+                                fontSize: 16,
                                 color: textcolor,
                               ),
                             ),
                           ),
-                          Theme(
-                            data: ThemeData(
-                              splashColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                Get.to(() => lab_cart(),
-                                    transition: Transition.rightToLeft);
-                              },
-                              icon: Icon(Icons.shopping_cart_outlined),
-                              color: textcolor,
-                            ),
-                          )
                         ],
-                      ), //toprow
-
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height / 100),
-                      //searchbar
+                      ),
+                      Theme(
+                        data: ThemeData(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            Get.to(() => lab_cart(),
+                                transition: Transition.rightToLeft);
+                          },
+                          icon: Icon(Icons.shopping_cart_outlined),
+                          color: textcolor,
+                          iconSize: 20,
+                        ),
+                      )
                     ],
-                  ),
+                  ), //toprow
                 ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 100,
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 60,
-                    bottom: MediaQuery.of(context).size.height / 60,
                     left: MediaQuery.of(context).size.height / 60,
                     right: MediaQuery.of(context).size.height / 60),
                 child: Text(
                   "Recommended Packages",
                   style: TextStyle(
-                    fontFamily: 'semibold',
-                    fontSize: 21,
+                    fontFamily: 'medium',
+                    fontSize: 16,
                     color: textcolor,
                   ),
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 35,
+                height: MediaQuery.of(context).size.height / 100,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                color: background,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.height / 60,
-                    right: MediaQuery.of(context).size.height / 60,
-                  ),
-                  child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                          ),
-                          shrinkWrap: true,
-                          physics: BouncingScrollPhysics(),
-                          scrollDirection: Axis.vertical,
-                          itemCount: packages.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.only(
-                                left: MediaQuery.of(context).size.height / 120,
-                                right: MediaQuery.of(context).size.height / 120,
+              SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: packages.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(
+                                () => labtest_commonscreen(
+                                      heading: widget.heading,
+                                      name: packages[index].name,
+                                      cutprice: packages[index].cutprice,
+                                      info: packages[index].info,
+                                      price: packages[index].price,
+                                      sampletype: packages[index].sampletype,
+                                      fastingrequired:
+                                          packages[index].fastingrequired,
+                                      tubetype: packages[index].tubetype,
+                                      packagesinclude:
+                                          packages[index].packagesinclude,
+                                      description: packages[index].description,
+                                    ),
+                                transition: Transition.rightToLeft);
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).size.height / 60,
+                              left: MediaQuery.of(context).size.height / 60,
+                              right: MediaQuery.of(context).size.height / 60,
+                            ),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height / 10,
+                              decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(6),
                               ),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Get.to(
-                                      () => labtest_commonscreen(
-                                            heading: widget.heading,
-                                            name: packages[index].name,
-                                            cutprice: packages[index].cutprice,
-                                            info: packages[index].info,
-                                            price: packages[index].price,
-                                            sampletype:
-                                                packages[index].sampletype,
-                                            fastingrequired:
-                                                packages[index].fastingrequired,
-                                            tubetype: packages[index].tubetype,
-                                            packagesinclude:
-                                                packages[index].packagesinclude,
-                                            description:
-                                                packages[index].description,
-                                          ),
-                                      transition: Transition.rightToLeft);
-                                },
-                                child: Container(
-                                  margin: const EdgeInsets.all(10.0),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 40,
-                                        spreadRadius: 3,
-                                        color: Color(0xffD2D1D5),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "${packages[index].name}",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 14,
+                                        color: textcolor,
                                       ),
-                                    ],
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "${packages[index].name}",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: 'medium',
-                                          fontSize: 18,
-                                          color: textcolor,
+                                    ),
+                                    Text(
+                                      "${packages[index].info}",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontFamily: 'regular',
+                                        fontSize: 12,
+                                        color: textcolor_white,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              120,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "₹${packages[index].price}",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontFamily: 'medium',
+                                            fontSize: 14,
+                                            color: bluecolor,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        "${packages[index].info}",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: 'regular',
-                                          fontSize: 13,
-                                          color: bluecolor,
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              50,
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                80,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "₹${packages[index].price}",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontFamily: 'medium',
-                                              fontSize: 14,
-                                              color: textcolor,
-                                            ),
+                                        Text(
+                                          "MRP₹${packages[index].cutprice}",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                            fontFamily: 'medium',
+                                            fontSize: 12,
+                                            color: textcolor_white,
                                           ),
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                25,
-                                          ),
-                                          Text(
-                                            "MRP₹${packages[index].cutprice}",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              decoration:
-                                                  TextDecoration.lineThrough,
-                                              fontFamily: 'medium',
-                                              fontSize: 14,
-                                              color: textcolor_white,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      /*Text(
-                                        "${packages[index].description}",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: 'regular',
-                                          fontSize: 12,
-                                          color: textcolor_white,
                                         ),
-                                      ),*/
-                                    ],
-                                  ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
-                            );
-                          })),
-                ),
-              ),
+                            ),
+                          ),
+                        );
+                      })),
             ],
           ),
         ));

@@ -578,7 +578,7 @@ class _cartState extends State<cart> {
                           Text(
                             "Amount",
                             style: TextStyle(
-                              fontFamily: 'medium',
+                              fontFamily: 'regular',
                               fontSize: 16,
                               color: textcolor,
                             ),

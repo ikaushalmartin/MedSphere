@@ -10,10 +10,14 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/Models/price_model.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:medicineapp2/lab/packagesscreen_labtest.dart';
+import 'package:unicons/unicons.dart';
 
 import '../Medicine/medicine.dart';
+import '../Medicine/medicine_forbutton.dart';
 import '../buy and cart/cart.dart';
 import '../dashboard.dart';
+import '../dashboard_search.dart';
+import '../profile.dart';
 import 'lab_cart.dart';
 import '../const.dart';
 import '../orderbyprescription.dart';
@@ -32,14 +36,17 @@ class _labtestState extends State<labtest> {
   List<Price> packages = [];
   List packages_images = [];
 
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
+  Color textcolor_white = Color(0xff42474e);
   Color white = Color(0xffffffff);
+  Color background = Color(0xffF1F1F1);
 
-  Color textcolor = Color(0xff1D1D1F);
-  Color textcolor_white = Color(0xff949494);
-  Color bluecolor = Color(0xff007AFF);
-  Color bluecolor_bg = Color(0xffDAE1FF);
-  Color redcolor = Color(0xffFE2D54);
-  Color background = Color(0xffF2F1F6);
+  Color bottom1 = Color(0xff575F75);
+  Color bottom2 = Color(0xff01BDF3);
+  Color bottom3 = Color(0xff575F75);
+  Color bottom4 = Color(0xff575F75);
+  Color bottom5 = Color(0xff575F75);
 
   @override
   void initState() {
@@ -47,7 +54,6 @@ class _labtestState extends State<labtest> {
 
     fetch_labtestbyhealthconcern_labes();
     healthbyconcern_images();
-    //  popular_packages_images();
     labtest_discounts();
   }
 
@@ -70,106 +76,46 @@ class _labtestState extends State<labtest> {
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(
+                      //   top: MediaQuery.of(context).size.height / 80,
                       left: MediaQuery.of(context).size.height / 60,
                       right: MediaQuery.of(context).size.height / 200),
-                  child: Column(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Get.back();
-                            },
-                            child: Icon(
-                              Icons.arrow_back_ios_new_outlined,
-                              color: textcolor,
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "Lab Test",
-                              style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 24,
-                                color: textcolor,
-                              ),
-                            ),
-                          ),
-                          Theme(
-                            data: ThemeData(
-                              splashColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                Get.to(() => lab_cart(),
-                                    transition: Transition.rightToLeft);
-                              },
-                              icon: Icon(Icons.shopping_cart_outlined),
-                              color: textcolor,
-                            ),
-                          )
-                        ],
-                      ), //toprow
-                      SizedBox(height: MediaQuery.of(context).size.height / 80),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 1.35,
-                              decoration: BoxDecoration(
-                                color: background,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: TextField(
-                                onChanged: (value) {},
-                                keyboardType: TextInputType.emailAddress,
-                                style: TextStyle(color: textcolor),
-                                textAlign: TextAlign.left,
-                                decoration: kTextFieldDecoration.copyWith(
-                                    contentPadding: EdgeInsets.only(left: 20),
-                                    hintText: "Search"),
-                              ),
-                            ),
-                            Container(
-                                width: MediaQuery.of(context).size.width / 6,
-                                decoration: BoxDecoration(
-                                  color: background,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Theme(
-                                  data: ThemeData(
-                                    splashColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                  ),
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.search),
-                                    color: textcolor,
-                                  ),
-                                ))
-                          ],
+                      Text(
+                        "Lab Test",
+                        style: TextStyle(
+                          fontFamily: 'medium',
+                          fontSize: 16,
+                          color: textcolor,
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height / 70),
-                      //searchbar
+                      Theme(
+                        data: ThemeData(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            Get.to(() => const lab_cart(),
+                                transition: Transition.rightToLeft);
+                          },
+                          icon: Icon(Icons.shopping_cart_outlined),
+                          color: textcolor,
+                          iconSize: 20,
+                        ),
+                      )
                     ],
                   ),
                 ),
               ),
               Expanded(
-                child: Container(
-                    // height: MediaQuery.of(context).size.height / 1.451,
-                    //  width: MediaQuery.of(context).size.width,
-                    // color: background,
-                    child: ListView(
-                  physics: BouncingScrollPhysics(),
+                child: ListView(
+                  physics: const BouncingScrollPhysics(),
                   children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 100,
+                    ),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       color: white,
@@ -185,7 +131,7 @@ class _labtestState extends State<labtest> {
                             width: MediaQuery.of(context).size.width,
                             child: ListView.builder(
                                 shrinkWrap: true,
-                                physics: BouncingScrollPhysics(),
+                                physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 itemCount: tabtest_discount.length,
                                 itemBuilder: (context, index) {
@@ -208,19 +154,12 @@ class _labtestState extends State<labtest> {
                                 })),
                       ),
                     ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 100,
+                    ),
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        color: white,
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(0.0, 0.0001),
-                            blurRadius: 0.0001,
-                            spreadRadius: 0.0003,
-                            color: Color(0xffD2D1D5),
-                          ),
-                        ],
-                      ),
+                      color: white,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -229,20 +168,19 @@ class _labtestState extends State<labtest> {
                               padding: EdgeInsets.only(
                                 top: MediaQuery.of(context).size.height / 60,
                                 left: MediaQuery.of(context).size.height / 60,
-                                right: MediaQuery.of(context).size.height / 200,
-                                bottom: MediaQuery.of(context).size.height / 60,
+                                // right: MediaQuery.of(context).size.height / 200,
+                                // bottom: MediaQuery.of(context).size.height / 60,
                               ),
                               child: Text(
-                                "Lab Test By Health Concern",
+                                "Lab Test by Health Concern",
                                 style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 21,
+                                  fontFamily: 'medium',
+                                  fontSize: 16,
                                   color: textcolor,
                                 ),
                               )),
                           Padding(
                               padding: EdgeInsets.only(
-                                  //top:MediaQuery.of(context).size.height / 50,
                                   left: MediaQuery.of(context).size.height / 60,
                                   right:
                                       MediaQuery.of(context).size.height / 200),
@@ -257,45 +195,47 @@ class _labtestState extends State<labtest> {
                                       itemCount:
                                           labtestbyhealthconcern_images.length,
                                       itemBuilder: (context, index) {
-                                        return Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              4,
-                                          margin: const EdgeInsets.all(6.0),
-                                          child: MaterialButton(
-                                            onPressed: () {
-                                              Get.to(
-                                                  () => packages_commonnscreen(
-                                                      heading:
-                                                          '${labtestbyhealthconcern_labes[index].name}'),
-                                                  transition:
-                                                      Transition.rightToLeft);
-                                            },
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Image.network(
-                                                    "${labtestbyhealthconcern_images[index]}",
-                                                    scale: 7),
-                                                SizedBox(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      35,
+                                        return MaterialButton(
+                                          onPressed: () {
+                                            Get.to(
+                                                () => packages_commonnscreen(
+                                                    heading:
+                                                        '${labtestbyhealthconcern_labes[index].name}'),
+                                                transition:
+                                                    Transition.rightToLeft);
+                                          },
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              CircleAvatar(
+                                                radius: 32,
+                                                backgroundColor: background,
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(8)),
+                                                  child: Image.network(
+                                                      "${labtestbyhealthconcern_images[index]}",
+                                                      scale: 7),
                                                 ),
-                                                Text(
-                                                  "${labtestbyhealthconcern_labes[index].name}",
-                                                  style: TextStyle(
-                                                    fontFamily: 'medium',
-                                                    fontSize: 14,
-                                                    color: textcolor,
-                                                  ),
-                                                  textAlign: TextAlign.center,
+                                              ),
+                                              SizedBox(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    140,
+                                              ),
+                                              Text(
+                                                "${labtestbyhealthconcern_labes[index].name}",
+                                                style: TextStyle(
+                                                  fontFamily: 'regular',
+                                                  fontSize: 12,
+                                                  color: textcolor_white,
                                                 ),
-                                              ],
-                                            ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ],
                                           ),
                                         );
                                       }))),
@@ -303,112 +243,83 @@ class _labtestState extends State<labtest> {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 35,
+                      height: MediaQuery.of(context).size.height / 100,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).size.height / 60,
-                          top: MediaQuery.of(context).size.height / 60,
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 60),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(() => medicine(),
-                                  transition: Transition.rightToLeft);
-                            },
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 2.2,
-                              height: MediaQuery.of(context).size.height / 8,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 40,
-                                    spreadRadius: 3,
-                                    color: Color(0xffD2D1D5),
-                                  ),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(7.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Upload\nPrescription",
-                                      style: TextStyle(
-                                        fontFamily: 'semibold',
-                                        fontSize: 18,
-                                        color: bluecolor,
-                                      ),
-                                    ),
-                                    Image.asset(
-                                      "images/prescription.png",
-                                      scale: 10,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          /* GestureDetector(
-                            onTap: () {
-                              makecall_med();
-                            },
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 2.2,
-                              height: MediaQuery.of(context).size.height / 8,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 40,
-                                    spreadRadius: 3,
-                                    color: Color(0xffD2D1D5),
-                                  ),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Call Us\nTo Book",
-                                      style: TextStyle(
-                                        fontFamily: 'semibold',
-                                        fontSize: 16,
-                                        color: redcolor,
-                                      ),
-                                    ),
-                                    Image.asset(
-                                      "images/com.png",
-                                      scale: 10,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),*/
-                        ],
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 8,
+                      decoration: BoxDecoration(
+                        //borderRadius: BorderRadius.circular(8),
+                        color: white,
                       ),
+                      child: orderbyprescription(),
                     ),
                   ],
-                )),
+                ),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height / 15,
+                decoration: BoxDecoration(
+                  color: white,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.off(() => const medicineforbutton(),
+                            transition: Transition.noTransition);
+                      },
+                      icon: const Icon(UniconsLine.capsule),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom1,
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(UniconsLine.flask),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom2,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: Icon(UniconsLine.home_alt),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom3,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.to(() => SearchScreen(),
+                            transition: Transition.noTransition);
+                      },
+                      icon: Icon(UniconsLine.search),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      color: bottom4,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.off(() => const profile(),
+                            transition: Transition.noTransition);
+                      },
+                      icon: Icon(UniconsLine.user),
+                      color: bottom5,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
         ));
   }
 
-  fetch_labtestbyhealthconcern_labes() async {
+  Future fetch_labtestbyhealthconcern_labes() async {
     var labtestbyhealthconcern_labes = await FirebaseFirestore.instance
         .collection('labtest_by_concern_label')
         .get();
@@ -452,19 +363,13 @@ class _labtestState extends State<labtest> {
     showDialog(
       barrierDismissible: false,
       context: context,
-      builder: (context) => WillPopScope(
-        onWillPop: () async {
-          return false;
-        },
-        child: Center(
-          child: LoadingAnimationWidget.waveDots(
-            color: Color(0xff273238),
-            size: 80,
-          ),
+      builder: (context) => Center(
+        child: LoadingAnimationWidget.waveDots(
+          color: Color(0xff273238),
+          size: 80,
         ),
       ),
     );
-
     await Future.forEach<Reference>(allFiles, (file) async {
       String fileUrl = await file.getDownloadURL();
       tabtest_discount.add(fileUrl);

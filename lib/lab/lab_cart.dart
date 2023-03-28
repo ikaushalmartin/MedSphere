@@ -28,17 +28,12 @@ class lab_cart extends StatefulWidget {
 }
 
 class _lab_cartState extends State<lab_cart> {
-  Color bluecolor = Color(0xff007AFF);
-  Color redcoloe = Color(0xffFE2D54);
-  Color textcolor_light2 = Color(0x4D181818);
-  Color search_bg = Color(0xffF2F1F6);
-  Color heading_bluecolor_bg = Color(0xD9181818);
-  Color textcolor = Color(0xff1D1D1F);
-  Color textcolor_white = Color(0xff949494);
-  Color textcolor_light = Color(0x4D181818);
-  Color bluecolor_bg = Color(0x1A000000);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
+  Color textcolor_white = Color(0xffACAEBA);
   Color white = Color(0xffffffff);
-  Color background = Color(0xffF2F1F6);
+  Color background = Color(0xffF1F1F1);
+  Color redcoloe = Color(0xffFE2D54);
 
   List<Item> _deliveryandminval_list = [];
   int selected_tab = 1;
@@ -67,23 +62,15 @@ class _lab_cartState extends State<lab_cart> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                decoration: BoxDecoration(
-                  color: white,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 40,
-                      spreadRadius: 3,
-                      color: Color(0xffD2D1D5),
-                    ),
-                  ],
-                ),
+                color: white,
+                height: MediaQuery.of(context).size.height / 16,
                 child: Padding(
                   padding: EdgeInsets.only(
                       // top: MediaQuery.of(context).size.height / 50,
                       left: MediaQuery.of(context).size.height / 60,
                       right: MediaQuery.of(context).size.height / 200),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       GestureDetector(
                         onTap: () {
@@ -92,33 +79,22 @@ class _lab_cartState extends State<lab_cart> {
                         child: Icon(
                           Icons.arrow_back_ios_new_outlined,
                           color: textcolor,
+                          size: 20,
                         ),
                       ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.height / 60,
+                      ),
                       Align(
-                        alignment: Alignment.topLeft,
                         child: Text(
                           "Lab Cart",
                           style: TextStyle(
-                            fontFamily: 'semibold',
-                            fontSize: 24,
+                            fontFamily: 'medium',
+                            fontSize: 16,
                             color: textcolor,
                           ),
                         ),
                       ),
-                      Theme(
-                        data: ThemeData(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                        ),
-                        child: IconButton(
-                          onPressed: () {
-                            Get.offAll(() => const dashboard(),
-                                transition: Transition.rightToLeft);
-                          },
-                          icon: Icon(Icons.home_outlined),
-                          color: textcolor,
-                        ),
-                      )
                     ],
                   ),
                 ),
@@ -128,498 +104,426 @@ class _lab_cartState extends State<lab_cart> {
                   physics: const BouncingScrollPhysics(),
                   children: [
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 35,
+                      height: MediaQuery.of(context).size.height / 100,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        //  top: MediaQuery.of(context).size.height / 60,
-                        left: MediaQuery.of(context).size.height / 60,
-                        right: MediaQuery.of(context).size.height / 60,
-                        // bottom: MediaQuery.of(context).size.height / 60,
-                      ),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: white,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 40,
-                              spreadRadius: 3,
-                              color: Color(0xffD2D1D5),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: white,
+                      child: SizedBox(
+                          //height: MediaQuery.of(context).size.height / 5,
+                          width: MediaQuery.of(context).size.width,
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: BouncingScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              itemCount: lab_cartdata.length,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(
+                                        () => labtest_commonscreen(
+                                              heading:
+                                                  lab_cartdata2[index].packages,
+                                              name: lab_cartdata2[index].name,
+                                              cutprice:
+                                                  lab_cartdata2[index].cutprice,
+                                              info: lab_cartdata2[index].info,
+                                              price: lab_cartdata2[index].price,
+                                              sampletype: lab_cartdata2[index]
+                                                  .sampletype,
+                                              fastingrequired:
+                                                  lab_cartdata2[index]
+                                                      .fastingrequired,
+                                              tubetype:
+                                                  lab_cartdata2[index].tubetype,
+                                              packagesinclude:
+                                                  lab_cartdata2[index]
+                                                      .packagesinclude,
+                                              description: lab_cartdata2[index]
+                                                  .description,
+                                            ),
+                                        transition: Transition.rightToLeft);
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        top:
+                                            MediaQuery.of(context).size.height /
+                                                80,
+                                        left:
+                                            MediaQuery.of(context).size.height /
+                                                60,
+                                        right:
+                                            MediaQuery.of(context).size.height /
+                                                60,
+                                        bottom:
+                                            MediaQuery.of(context).size.height /
+                                                80),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      "${lab_cartdata[index].packages}",
+                                                      style: TextStyle(
+                                                        fontFamily: 'medium',
+                                                        fontSize: 12,
+                                                        color: textcolor,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "${lab_cartdata[index].name}",
+                                                      style: TextStyle(
+                                                        fontFamily: 'medium',
+                                                        fontSize: 12,
+                                                        color: bluecolor,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "₹${lab_cartdata[index].price}    ",
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'medium',
+                                                            fontSize: 12,
+                                                            color: textcolor,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "MRP₹${lab_cartdata[index].cutprice}",
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .lineThrough,
+                                                              color:
+                                                                  textcolor_white,
+                                                              fontFamily:
+                                                                  "medium"),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    deleteDocument(
+                                                        lab_cartdata[index].id);
+                                                    deliverycharges_updationforlab();
+                                                  },
+                                                  child: Icon(
+                                                    Icons
+                                                        .delete_outline_outlined,
+                                                    color: redcolor,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      100,
+                                                ),
+                                                Container(
+                                                  width: 130,
+                                                  height: 25,
+                                                  decoration: BoxDecoration(
+                                                    color: background,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                  ),
+                                                  child: MaterialButton(
+                                                    onPressed: () {
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                              'Patients',
+                                                              style: TextStyle(
+                                                                  color:
+                                                                      textcolor,
+                                                                  fontFamily:
+                                                                      "medium"),
+                                                            ),
+                                                            content: Container(
+                                                              height: 350,
+                                                              width: 1,
+                                                              child: ListView
+                                                                  .builder(
+                                                                physics:
+                                                                    const BouncingScrollPhysics(),
+                                                                shrinkWrap:
+                                                                    true,
+                                                                itemCount: 6,
+                                                                itemBuilder:
+                                                                    (BuildContext
+                                                                            context,
+                                                                        int x) {
+                                                                  return ListTile(
+                                                                    title:
+                                                                        GestureDetector(
+                                                                      onTap:
+                                                                          () {
+                                                                        selected_quantity =
+                                                                            x + 1;
+                                                                        updateDocument(
+                                                                            lab_cartdata[index].id);
+
+                                                                        Navigator.of(context)
+                                                                            .pop();
+                                                                      },
+                                                                      child:
+                                                                          Container(
+                                                                        width: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width,
+                                                                        height:
+                                                                            50,
+                                                                        child: Text(
+                                                                            '${x + 1}'),
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                      'Patients - ${lab_cartdata[index].quantity}',
+                                                      style: TextStyle(
+                                                          color: textcolor,
+                                                          fontFamily: "medium"),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        Divider(
+                                          color: textcolor,
+                                          thickness: 0.2,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              })),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 100,
+                    ),
+                    Container(
+                      color: white,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).size.height / 40,
+                            left: MediaQuery.of(context).size.height / 60,
+                            right: MediaQuery.of(context).size.height / 60,
+                            bottom: MediaQuery.of(context).size.height / 40),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "Check Available Coupons!",
+                                  style: TextStyle(
+                                    fontFamily: 'medium',
+                                    fontSize: 16,
+                                    color: redcoloe,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Icon(
+                                    Icons.arrow_forward_ios_outlined,
+                                    color: textcolor,
+                                    size: 16,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 50,
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                        child: SizedBox(
-                            //height: MediaQuery.of(context).size.height / 5,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: BouncingScrollPhysics(),
-                                scrollDirection: Axis.vertical,
-                                itemCount: lab_cartdata.length,
-                                itemBuilder: (context, index) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      Get.to(
-                                          () => labtest_commonscreen(
-                                                heading: lab_cartdata2[index]
-                                                    .packages,
-                                                name: lab_cartdata2[index].name,
-                                                cutprice: lab_cartdata2[index]
-                                                    .cutprice,
-                                                info: lab_cartdata2[index].info,
-                                                price:
-                                                    lab_cartdata2[index].price,
-                                                sampletype: lab_cartdata2[index]
-                                                    .sampletype,
-                                                fastingrequired:
-                                                    lab_cartdata2[index]
-                                                        .fastingrequired,
-                                                tubetype: lab_cartdata2[index]
-                                                    .tubetype,
-                                                packagesinclude:
-                                                    lab_cartdata2[index]
-                                                        .packagesinclude,
-                                                description:
-                                                    lab_cartdata2[index]
-                                                        .description,
-                                              ),
-                                          transition: Transition.rightToLeft);
-                                    },
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.only(
-                                              top: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  80,
-                                              left: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  60,
-                                              right: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  60,
-                                              bottom: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  80),
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        "${lab_cartdata[index].packages}",
-                                                        style: TextStyle(
-                                                            fontSize: 18,
-                                                            color: textcolor,
-                                                            fontFamily:
-                                                                "semibold"),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 12,
-                                                      ),
-                                                      Text(
-                                                        "${lab_cartdata[index].name}",
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            color: textcolor,
-                                                            fontFamily:
-                                                                "medium"),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            "₹${lab_cartdata[index].price}    ",
-                                                            style: TextStyle(
-                                                                fontSize: 14,
-                                                                color:
-                                                                    textcolor,
-                                                                fontFamily:
-                                                                    "medium"),
-                                                          ),
-                                                          Text(
-                                                            "MRP₹${lab_cartdata[index].cutprice}",
-                                                            style: TextStyle(
-                                                                fontSize: 14,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .lineThrough,
-                                                                color:
-                                                                    textcolor_white,
-                                                                fontFamily:
-                                                                    "medium"),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                children: [
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      deleteDocument(
-                                                          lab_cartdata[index]
-                                                              .id);
-                                                      deliverycharges_updationforlab();
-                                                    },
-                                                    child: Icon(
-                                                      Icons
-                                                          .delete_outline_outlined,
-                                                      color: redcolor,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height /
-                                                            100,
-                                                  ),
-                                                  Container(
-                                                    width: 130,
-                                                    height: 25,
-                                                    decoration: BoxDecoration(
-                                                        color: search_bg,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20),
-                                                        border: Border.all(
-                                                            color:
-                                                                textcolor_white,
-                                                            width: 1.1)),
-                                                    child: MaterialButton(
-                                                      onPressed: () {
-                                                        showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return AlertDialog(
-                                                              title: Text(
-                                                                'Patients',
-                                                                style: TextStyle(
-                                                                    color:
-                                                                        textcolor,
-                                                                    fontFamily:
-                                                                        "medium"),
-                                                              ),
-                                                              content:
-                                                                  Container(
-                                                                height: 350,
-                                                                width: 1,
-                                                                child: ListView
-                                                                    .builder(
-                                                                  physics:
-                                                                      const BouncingScrollPhysics(),
-                                                                  shrinkWrap:
-                                                                      true,
-                                                                  itemCount: 6,
-                                                                  itemBuilder:
-                                                                      (BuildContext
-                                                                              context,
-                                                                          int x) {
-                                                                    return ListTile(
-                                                                      title:
-                                                                          GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          selected_quantity =
-                                                                              x + 1;
-                                                                          updateDocument(
-                                                                              lab_cartdata[index].id);
-
-                                                                          Navigator.of(context)
-                                                                              .pop();
-                                                                        },
-                                                                        child:
-                                                                            Container(
-                                                                          width: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width,
-                                                                          height:
-                                                                              50,
-                                                                          child:
-                                                                              Text('${x + 1}'),
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            );
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Text(
-                                                        'Patients - ${lab_cartdata[index].quantity}',
-                                                        style: TextStyle(
-                                                            color: textcolor,
-                                                            fontFamily:
-                                                                "medium"),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                          Divider(
-                                            color: textcolor,
-                                            thickness: 0.2,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                })),
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 35,
+                      height: MediaQuery.of(context).size.height / 100,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.height / 60,
-                        right: MediaQuery.of(context).size.height / 60,
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: white,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 40,
-                              spreadRadius: 3,
-                              color: Color(0xffD2D1D5),
-                            ),
-                          ],
-                        ),
-                        child: Padding(
+                    Container(
+                      color: white,
+                      child: Padding(
                           padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).size.height / 40,
+                              top: MediaQuery.of(context).size.height / 80,
                               left: MediaQuery.of(context).size.height / 60,
                               right: MediaQuery.of(context).size.height / 60,
-                              bottom: MediaQuery.of(context).size.height / 40),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              bottom: MediaQuery.of(context).size.height / 80),
+                          child: Column(
                             children: [
                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Check Available Coupons!",
+                                    "Total MRP :",
                                     style: TextStyle(
-                                      fontFamily: 'semibold',
-                                      fontSize: 18,
+                                      fontFamily: 'medium',
+                                      fontSize: 13,
+                                      color: textcolor,
+                                    ),
+                                  ),
+                                  Text(
+                                    "₹$totalmrp",
+                                    style: TextStyle(
+                                      fontFamily: 'medium',
+                                      fontSize: 13,
+                                      color: textcolor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 100,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Discounted Price :",
+                                    style: TextStyle(
+                                      fontFamily: 'medium',
+                                      fontSize: 13,
+                                      color: textcolor,
+                                    ),
+                                  ),
+                                  Text(
+                                    "₹$discountedprice",
+                                    style: TextStyle(
+                                      fontFamily: 'medium',
+                                      fontSize: 13,
+                                      color: textcolor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 100,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Addition Charges :",
+                                    style: TextStyle(
+                                      fontFamily: 'medium',
+                                      fontSize: 13,
+                                      color: textcolor,
+                                    ),
+                                  ),
+                                  Text(
+                                    "₹$deliverycharges",
+                                    style: TextStyle(
+                                      fontFamily: 'medium',
+                                      fontSize: 13,
+                                      color: textcolor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 60,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Discount Percentage :",
+                                    style: TextStyle(
+                                      fontFamily: 'medium',
+                                      fontSize: 13,
+                                      color: redcoloe,
+                                    ),
+                                  ),
+                                  Text(
+                                    "%${(discountpercentage).toStringAsFixed(2)}",
+                                    style: TextStyle(
+                                      fontFamily: 'medium',
+                                      fontSize: 13,
                                       color: redcoloe,
                                     ),
                                   ),
                                 ],
                               ),
+                              Divider(
+                                color: textcolor,
+                                thickness: 0.2,
+                              ),
                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Icon(
-                                      Icons.arrow_forward_ios_outlined,
+                                  Text(
+                                    "Amount To Be Paid :",
+                                    style: TextStyle(
+                                      fontFamily: 'medium',
+                                      fontSize: 13,
                                       color: textcolor,
-                                      size: 18,
                                     ),
                                   ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 50,
+                                  Text(
+                                    "₹${discountedprice + deliverycharges}",
+                                    style: TextStyle(
+                                      fontFamily: 'medium',
+                                      fontSize: 13,
+                                      color: textcolor,
+                                    ),
                                   ),
                                 ],
-                              ),
+                              )
                             ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 35,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.height / 60,
-                        right: MediaQuery.of(context).size.height / 60,
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: white,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 40,
-                              spreadRadius: 3,
-                              color: Color(0xffD2D1D5),
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 80,
-                                left: MediaQuery.of(context).size.height / 60,
-                                right: MediaQuery.of(context).size.height / 60,
-                                bottom:
-                                    MediaQuery.of(context).size.height / 80),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Total MRP :",
-                                      style: TextStyle(
-                                        fontFamily: 'medium',
-                                        fontSize: 14,
-                                        color: textcolor,
-                                      ),
-                                    ),
-                                    Text(
-                                      "₹$totalmrp",
-                                      style: TextStyle(
-                                        fontFamily: 'medium',
-                                        fontSize: 14,
-                                        color: textcolor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 100,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Discounted Price :",
-                                      style: TextStyle(
-                                        fontFamily: 'medium',
-                                        fontSize: 14,
-                                        color: textcolor,
-                                      ),
-                                    ),
-                                    Text(
-                                      "₹$discountedprice",
-                                      style: TextStyle(
-                                        fontFamily: 'medium',
-                                        fontSize: 14,
-                                        color: textcolor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 100,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Addition Charges :",
-                                      style: TextStyle(
-                                        fontFamily: 'medium',
-                                        fontSize: 14,
-                                        color: textcolor,
-                                      ),
-                                    ),
-                                    Text(
-                                      "₹$deliverycharges",
-                                      style: TextStyle(
-                                        fontFamily: 'medium',
-                                        fontSize: 14,
-                                        color: textcolor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 60,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Discount Percentage :",
-                                      style: TextStyle(
-                                        fontFamily: 'medium',
-                                        fontSize: 14,
-                                        color: redcoloe,
-                                      ),
-                                    ),
-                                    Text(
-                                      "%${(discountpercentage).toStringAsFixed(2)}",
-                                      style: TextStyle(
-                                        fontFamily: 'medium',
-                                        fontSize: 14,
-                                        color: redcoloe,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Divider(
-                                  color: textcolor,
-                                  thickness: 0.2,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Amount To Be Paid :",
-                                      style: TextStyle(
-                                        fontFamily: 'medium',
-                                        fontSize: 14,
-                                        color: textcolor,
-                                      ),
-                                    ),
-                                    Text(
-                                      "₹${discountedprice + deliverycharges}",
-                                      style: TextStyle(
-                                        fontFamily: 'medium',
-                                        fontSize: 14,
-                                        color: textcolor,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            )),
-                      ),
+                          )),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 35,
@@ -628,16 +532,7 @@ class _lab_cartState extends State<lab_cart> {
                 ),
               ),
               Container(
-                decoration: BoxDecoration(
-                  color: white,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 40,
-                      spreadRadius: 3,
-                      color: Color(0xffD2D1D5),
-                    ),
-                  ],
-                ),
+                color: white,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 13,
                 child: Padding(
@@ -686,7 +581,7 @@ class _lab_cartState extends State<lab_cart> {
                           child: Ink(
                             decoration: BoxDecoration(
                                 color: bluecolor,
-                                borderRadius: BorderRadius.circular(30.0)),
+                                borderRadius: BorderRadius.circular(6)),
                             child: Container(
                               constraints: BoxConstraints(maxWidth: 200),
                               alignment: Alignment.center,
