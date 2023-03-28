@@ -146,7 +146,7 @@ class _dashboardState extends State<dashboard> {
                                             "Carts",
                                             style: TextStyle(
                                               fontFamily: 'semibold',
-                                              fontSize: 21,
+                                              fontSize: 20,
                                               color: textcolor,
                                             ),
                                           ),
@@ -231,7 +231,8 @@ class _dashboardState extends State<dashboard> {
                                     );
                                   },
                                   icon: Icon(Icons.shopping_cart_outlined),
-                                  color: bluecolor,
+                                  color: textcolor,
+                                  iconSize: 20,
                                 ),
                               ),
                             ],

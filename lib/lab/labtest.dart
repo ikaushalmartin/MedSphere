@@ -450,14 +450,20 @@ class _labtestState extends State<labtest> {
     List<Reference> allFiles = result.items;
 
     showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) => Center(
-              child: LoadingAnimationWidget.waveDots(
-                color: Color(0xff273238),
-                size: 80,
-              ),
-            ));
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => WillPopScope(
+        onWillPop: () async {
+          return false;
+        },
+        child: Center(
+          child: LoadingAnimationWidget.waveDots(
+            color: Color(0xff273238),
+            size: 80,
+          ),
+        ),
+      ),
+    );
 
     await Future.forEach<Reference>(allFiles, (file) async {
       String fileUrl = await file.getDownloadURL();

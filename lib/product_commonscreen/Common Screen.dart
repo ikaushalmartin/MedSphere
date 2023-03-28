@@ -691,6 +691,7 @@ class _product_common_screenState extends State<product_common_screen> {
     setState(() {
       ScaffoldMessenger.of(context).showSnackBar(vpasswordsnackbar);
     });
+    Get.to(() => const cart(), transition: Transition.rightToLeft);
   }
 
   fetch_cart_data_for_check() async {
