@@ -379,13 +379,12 @@ class _dashboardState extends State<dashboard> {
                                     right: MediaQuery.of(context).size.height /
                                         60),
                                 child: SizedBox(
-                                    width: MediaQuery.of(context).size.width,
                                     height: MediaQuery.of(context).size.height /
                                         3.3,
                                     child: GridView.builder(
                                         gridDelegate:
                                             const SliverGridDelegateWithFixedCrossAxisCount(
-                                          childAspectRatio: 3.5 / 2.6,
+                                          childAspectRatio: 3.5 / 2.8,
                                           mainAxisSpacing: 0,
                                           crossAxisCount: 2,
                                         ),
