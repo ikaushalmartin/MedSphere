@@ -125,64 +125,63 @@ class _rentalState extends State<rental> {
                                     imageurl: rental_machine_image[index]),
                                 transition: Transition.rightToLeft);
                           },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(6),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).size.height / 60,
                             ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                left: MediaQuery.of(context).size.height / 60,
-                                right: MediaQuery.of(context).size.height / 60,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(6),
                               ),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                  color: white,
-                                  borderRadius: BorderRadius.circular(10),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  top: MediaQuery.of(context).size.height / 80,
+                                  left: MediaQuery.of(context).size.height / 60,
+                                  right:
+                                      MediaQuery.of(context).size.height / 60,
+                                  bottom:
+                                      MediaQuery.of(context).size.height / 80,
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 30,
-                                        foregroundImage: NetworkImage(
-                                          rental_machine_image[index],
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 30,
+                                      foregroundImage: NetworkImage(
+                                        rental_machine_image[index],
+                                      ),
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          "${rental_machine_info[index].name}",
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                            fontFamily: 'medium',
+                                            fontSize: 16,
+                                            color: textcolor,
+                                          ),
                                         ),
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Text(
-                                            "${rental_machine_info[index].name}",
-                                            textAlign: TextAlign.left,
-                                            style: TextStyle(
-                                              fontFamily: 'medium',
-                                              fontSize: 16,
-                                              color: textcolor,
-                                            ),
+                                        Text(
+                                          "${rental_machine_info[index].hospital}",
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                            fontFamily: 'medium',
+                                            fontSize: 14,
+                                            color: textcolor_light,
                                           ),
-                                          Text(
-                                            "${rental_machine_info[index].hospital}",
-                                            textAlign: TextAlign.left,
-                                            style: TextStyle(
-                                              fontFamily: 'medium',
-                                              fontSize: 14,
-                                              color: textcolor_light,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

@@ -20,13 +20,11 @@ class homecare_available_partner extends StatefulWidget {
 
 class _homecare_available_partnerState
     extends State<homecare_available_partner> {
-  Color textcolor = Color(0xD9181818);
-  Color textcolor_light = Color(0x99181818);
-  Color medicine_colour_button_1 = Color(0xff07DAEB);
-  Color medicine_colour_button_2 = Color(0xff5093FE);
-  Color background = Color(0xffD9D9D9);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
   Color white = Color(0xffffffff);
-  Color search_bg = Color(0x1A000000);
+  Color background = Color(0xffF1F1F1);
+  Color textcolor_light = Color(0xff42474e);
 
   List<doc> homecare_available_partner = [];
 
@@ -44,178 +42,133 @@ class _homecare_available_partnerState
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              decoration: BoxDecoration(
-                color: white,
-              ),
+              color: white,
+              height: MediaQuery.of(context).size.height / 16,
               child: Padding(
                 padding: EdgeInsets.only(
                     // top: MediaQuery.of(context).size.height / 50,
                     left: MediaQuery.of(context).size.height / 60,
                     right: MediaQuery.of(context).size.height / 200),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Row(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Icon(
-                            Icons.arrow_back_ios_new_outlined,
-                            color: textcolor,
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "${widget.servicename}",
-                            style: TextStyle(
-                              fontFamily: 'semibold',
-                              fontSize: 24,
-                              color: textcolor,
-                            ),
-                          ),
-                        ),
-                        Text("")
-                      ],
-                    ), //toprow
-
-                    SizedBox(height: MediaQuery.of(context).size.height / 100),
-                    //searchbar
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios_new_outlined,
+                        color: textcolor,
+                        size: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.height / 60,
+                    ),
+                    Text(
+                      "${widget.servicename}",
+                      style: TextStyle(
+                        fontFamily: 'medium',
+                        fontSize: 16,
+                        color: textcolor,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 150,
-            ),
-            Container(
-              color: white,
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 50,
-                    left: MediaQuery.of(context).size.height / 60,
-                    right: MediaQuery.of(context).size.height / 200,
+            SizedBox(height: MediaQuery.of(context).size.height / 100),
+            Padding(
+                padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height / 60,
+                  right: MediaQuery.of(context).size.height / 60,
+                  bottom: MediaQuery.of(context).size.height / 100,
+                ),
+                child: Text(
+                  "Available Partners",
+                  style: TextStyle(
+                    fontFamily: 'medium',
+                    fontSize: 16,
+                    color: textcolor,
                   ),
-                  child: Text(
-                    "Available Partners",
-                    style: TextStyle(
-                      fontFamily: 'semibold',
-                      fontSize: 20,
-                      color: textcolor,
-                    ),
-                  )),
-            ),
+                )),
             Expanded(
-              child: Container(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height / 5.5,
-                  width: MediaQuery.of(context).size.width,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      itemCount: homecare_available_partner.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Get.to(homecare_commonscreen(
-                              name: homecare_available_partner[index].name,
-                              specialist:
-                                  homecare_available_partner[index].specialist,
-                              available_for_time:
-                                  homecare_available_partner[index]
-                                      .workinghours,
-                              priceperday:
-                                  homecare_available_partner[index].hospital,
-                              experience:
-                                  homecare_available_partner[index].experience,
-                              bio: homecare_available_partner[index].bio,
-                            ));
-                          },
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height / 60,
+                  right: MediaQuery.of(context).size.height / 60,
+                ),
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemCount: homecare_available_partner.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Get.to(homecare_commonscreen(
+                            name: homecare_available_partner[index].name,
+                            specialist:
+                                homecare_available_partner[index].specialist,
+                            available_for_time:
+                                homecare_available_partner[index].workinghours,
+                            priceperday:
+                                homecare_available_partner[index].hospital,
+                            experience:
+                                homecare_available_partner[index].experience,
+                            bio: homecare_available_partner[index].bio,
+                          ));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).size.height / 60,
+                          ),
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            color: white,
+                            decoration: BoxDecoration(
+                              color: white,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
                             child: Padding(
                               padding: EdgeInsets.only(
-                                //top: MediaQuery.of(context).size.height / 60,
+                                top: MediaQuery.of(context).size.height / 80,
                                 left: MediaQuery.of(context).size.height / 60,
                                 right: MediaQuery.of(context).size.height / 60,
-                                bottom: MediaQuery.of(context).size.height / 60,
+                                bottom: MediaQuery.of(context).size.height / 80,
                               ),
-                              child: Column(
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height /
-                                        150,
-                                  ),
-                                  Divider(
-                                    color: background,
-                                    thickness: 2,
-                                  ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                      color: white,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                "${homecare_available_partner[index].name}",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  fontFamily: 'semibold',
-                                                  fontSize: 19,
-                                                  color: textcolor,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height /
-                                                    350,
-                                              ),
-                                              Text(
-                                                "${homecare_available_partner[index].specialist}",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  fontFamily: 'medium',
-                                                  fontSize: 16,
-                                                  color: textcolor_light,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "${homecare_available_partner[index].name}",
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 16,
+                                        color: textcolor,
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      "${homecare_available_partner[index].specialist}",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 14,
+                                        color: textcolor_light,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        );
-                      }),
-                ),
+                        ),
+                      );
+                    }),
               ),
             ),
           ],

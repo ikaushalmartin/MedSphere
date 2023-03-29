@@ -54,7 +54,7 @@ class product_common_screen extends StatefulWidget {
 class _product_common_screenState extends State<product_common_screen> {
   Color textcolor = Color(0xff1A1D44);
   Color bluecolor = Color(0xff014CC4);
-  Color textcolor_light = Color(0xffACAEBA);
+  Color textcolor_light = Color(0x99181818);
   Color white = Color(0xffffffff);
   Color background = Color(0xffF1F1F1);
 

@@ -29,10 +29,10 @@ class _profileState extends State<profile> {
   Color offcolor = Color(0xffE6E6EC);
   Color button1color = Color(0xff01BDF3);
   Color button2color = Color(0xffE6E6EC);
-  Color search_bg = Color(0x1A000000);
+
   Color textcolor = Color(0xff1A1D44);
   Color bluecolor = Color(0xff014CC4);
-  Color textcolor_white = Color(0xff42474e);
+
   Color white = Color(0xffffffff);
   Color background = Color(0xffF1F1F1);
   List<order> orderd_items = [];
