@@ -2,11 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import '../const.dart';
+import '../dashboard.dart';
 import '../main.dart';
 
 class doctor_final extends StatefulWidget {
@@ -24,16 +26,12 @@ class doctor_final extends StatefulWidget {
 }
 
 class _doctor_finalState extends State<doctor_final> {
-  Color bluecolor = Color(0xff5093FE);
-  Color bluecolor_bg = Color(0xffDAE1FF);
-  Color textcolor = Color(0xD9181818);
-  Color textcolor_light = Color(0x99181818);
-  Color textcolor_light2 = Color(0x4D181818);
-  Color background = Color(0xffD9D9D9);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
   Color white = Color(0xffffffff);
-  Color search_bg = Color(0x1A000000);
-  Color medicine_colour_button_1 = Color(0xff07DAEB);
-  Color medicine_colour_button_2 = Color(0xff5093FE);
+  Color background = Color(0xffF1F1F1);
+  Color textcolor_light = Color(0xffACAEBA);
+
   final _formKey = GlobalKey<FormState>();
   final patientname = TextEditingController();
   final patientphone = TextEditingController();
@@ -48,184 +46,213 @@ class _doctor_finalState extends State<doctor_final> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
+            Expanded(
+              child: ListView(
+                children: [
+                  Container(
                     color: white,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(height: MediaQuery.of(context).size.height / 70),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            //   top: MediaQuery.of(context).size.height / 80,
-                            left: MediaQuery.of(context).size.height / 60,
-                            right: MediaQuery.of(context).size.height / 200),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios_new_outlined,
-                                color: textcolor,
-                              ),
+                    height: MediaQuery.of(context).size.height / 16,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 200),
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Icon(
+                              Icons.arrow_back_ios_new_outlined,
+                              color: textcolor,
+                              size: 20,
                             ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "Details",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 24,
-                                  color: textcolor,
-                                ),
-                              ),
-                            ),
-                            Text(""),
-                          ],
-                        ),
-                      ), //toprow
-                      SizedBox(height: MediaQuery.of(context).size.height / 70),
-                      //searchbar
-                    ],
-                  ),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height / 135),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 5,
-                  decoration: BoxDecoration(
-                    color: white,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 60,
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 60,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Consultancy Details",
-                          style: TextStyle(
-                            fontFamily: 'semibold',
-                            fontSize: 21,
-                            color: textcolor,
                           ),
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height / 80),
-                        Row(
-                          children: [
-                            Text(
-                              "Doctor Name  -  ",
-                              style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 18,
-                                color: textcolor,
-                              ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.height / 60,
+                          ),
+                          Text(
+                            "Details",
+                            style: TextStyle(
+                              fontFamily: 'medium',
+                              fontSize: 16,
+                              color: textcolor,
                             ),
-                            Text(
-                              "${widget.doctorname}",
-                              style: TextStyle(
-                                fontFamily: 'medium',
-                                fontSize: 18,
-                                color: textcolor_light,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height / 520),
-                        Row(
-                          children: [
-                            Text(
-                              "Hospital  -  ",
-                              style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 18,
-                                color: textcolor,
-                              ),
-                            ),
-                            Text(
-                              "${widget.hospitalname}",
-                              style: TextStyle(
-                                fontFamily: 'medium',
-                                fontSize: 18,
-                                color: textcolor_light,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height / 520),
-                        Row(
-                          children: [
-                            Text(
-                              "Fees  -  ",
-                              style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 18,
-                                color: textcolor,
-                              ),
-                            ),
-                            Text(
-                              "${widget.fees}",
-                              style: TextStyle(
-                                fontFamily: 'medium',
-                                fontSize: 18,
-                                color: textcolor_light,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height / 520),
-                        Row(
-                          children: [
-                            Text(
-                              "Working Hours  -  ",
-                              style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 18,
-                                color: textcolor,
-                              ),
-                            ),
-                            Text(
-                              "${widget.workinghours}",
-                              style: TextStyle(
-                                fontFamily: 'medium',
-                                fontSize: 18,
-                                color: textcolor_light,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                          ),
+                        ],
+                      ), //toprow
                     ),
                   ),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height / 135),
-                SingleChildScrollView(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    // height: MediaQuery.of(context).size.height / 3.5,
+                  SizedBox(height: MediaQuery.of(context).size.height / 100),
+                  Container(
                     decoration: BoxDecoration(
                       color: white,
                     ),
                     child: Padding(
                       padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 60,
+                        top: MediaQuery.of(context).size.height / 80,
                         left: MediaQuery.of(context).size.height / 60,
                         right: MediaQuery.of(context).size.height / 60,
-                        bottom: MediaQuery.of(context).size.height / 60,
+                        bottom: MediaQuery.of(context).size.height / 80,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Consultancy Details",
+                            style: TextStyle(
+                              fontFamily: 'medium',
+                              fontSize: 16,
+                              color: textcolor,
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height / 80,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.circle,
+                                size: 6,
+                                color: bluecolor,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 70,
+                              ),
+                              Text(
+                                "Doctor Name :",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 12,
+                                  color: textcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 45,
+                              ),
+                              Text(
+                                "${widget.doctorname}",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 12,
+                                  color: textcolor_light,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height / 100,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.circle,
+                                size: 6,
+                                color: bluecolor,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 70,
+                              ),
+                              Text(
+                                "Hospital :",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 12,
+                                  color: textcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 45,
+                              ),
+                              Text(
+                                "${widget.hospitalname}",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 12,
+                                  color: textcolor_light,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height / 100,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.circle,
+                                size: 6,
+                                color: bluecolor,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 70,
+                              ),
+                              Text(
+                                "Fees :",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 12,
+                                  color: textcolor,
+                                ),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 45,
+                              ),
+                              Text(
+                                "${widget.fees}",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: textcolor_light,
+                                    fontFamily: "regular"),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height / 100,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.circle,
+                                size: 6,
+                                color: bluecolor,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 70,
+                              ),
+                              Text(
+                                "Working Hours  -  ",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 12,
+                                  color: textcolor,
+                                ),
+                              ),
+                              Text(
+                                "${widget.workinghours}",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 12,
+                                  color: textcolor_light,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height / 100),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    color: white,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height / 80,
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
+                        bottom: MediaQuery.of(context).size.height / 80,
                       ),
                       child: Form(
                         key: _formKey,
@@ -236,14 +263,14 @@ class _doctor_finalState extends State<doctor_final> {
                             Text(
                               "Your Details",
                               style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 21,
+                                fontFamily: 'medium',
+                                fontSize: 16,
                                 color: textcolor,
                               ),
                             ),
                             SizedBox(
                                 height:
-                                    MediaQuery.of(context).size.height / 65),
+                                    MediaQuery.of(context).size.height / 100),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -252,10 +279,13 @@ class _doctor_finalState extends State<doctor_final> {
                                       MediaQuery.of(context).size.width / 2.2,
                                   decoration: BoxDecoration(
                                     color: background,
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(6),
                                   ),
                                   child: TextFormField(
                                     controller: patientname,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(30),
+                                    ],
                                     keyboardType: TextInputType.name,
                                     style: TextStyle(color: textcolor),
                                     textAlign: TextAlign.left,
@@ -268,7 +298,7 @@ class _doctor_finalState extends State<doctor_final> {
                                     validator: (firstname) =>
                                         firstname != null &&
                                                 firstname.length! < 1
-                                            ? 'First name cannot be empty'
+                                            ? 'Name cannot be empty'
                                             : null,
                                   ),
                                 ),
@@ -277,10 +307,14 @@ class _doctor_finalState extends State<doctor_final> {
                                       MediaQuery.of(context).size.width / 2.2,
                                   decoration: BoxDecoration(
                                     color: background,
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(6),
                                   ),
                                   child: TextFormField(
                                     onChanged: (value) {},
+                                    enableInteractiveSelection: false,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(7),
+                                    ],
                                     controller: patientpincode,
                                     keyboardType: TextInputType.phone,
                                     style: TextStyle(color: textcolor),
@@ -306,10 +340,14 @@ class _doctor_finalState extends State<doctor_final> {
                               //  width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                 color: background,
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(6),
                               ),
                               child: TextFormField(
                                 onChanged: (value) {},
+                                enableInteractiveSelection: false,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(12),
+                                ],
                                 controller: patientphone,
                                 keyboardType: TextInputType.phone,
                                 style: TextStyle(color: textcolor),
@@ -330,8 +368,8 @@ class _doctor_finalState extends State<doctor_final> {
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Container(
               color: white,
@@ -360,18 +398,11 @@ class _doctor_finalState extends State<doctor_final> {
                           }
                         },
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
+                            borderRadius: BorderRadius.circular(6)),
                         child: Ink(
                           decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  medicine_colour_button_1,
-                                  medicine_colour_button_2
-                                ],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0)),
+                              color: bluecolor,
+                              borderRadius: BorderRadius.circular(6)),
                           child: Container(
                             constraints: BoxConstraints(maxWidth: 150.0),
                             alignment: Alignment.center,
@@ -443,6 +474,7 @@ class _doctor_finalState extends State<doctor_final> {
       title: 'Success',
       desc: 'Got Your Details!\nWill Get Back To You Soon!!',
       btnOkOnPress: () {
+        Get.offAll(dashboard(), transition: Transition.leftToRight);
         debugPrint('OnClcik');
       },
       btnOkIcon: Icons.check_circle,

@@ -33,6 +33,7 @@ class _lab_cartState extends State<lab_cart> {
   Color textcolor_white = Color(0xffACAEBA);
   Color white = Color(0xffffffff);
   Color background = Color(0xffF1F1F1);
+  Color light_red = Color(0xffdae1ff);
   Color redcoloe = Color(0xffFE2D54);
 
   List<Item> _deliveryandminval_list = [];

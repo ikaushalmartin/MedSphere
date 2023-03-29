@@ -8,6 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../const.dart';
+import '../dashboard.dart';
 import '../main.dart';
 
 class labtest_final extends StatefulWidget {
@@ -31,6 +32,8 @@ class _labtest_finalState extends State<labtest_final> {
   Color textcolor_light = Color(0xffACAEBA);
   Color white = Color(0xffffffff);
   Color background = Color(0xffF1F1F1);
+  Color light_red = Color(0xffdae1ff);
+
   Color redcoloe = Color(0xffFE2D54);
 
   final _formKey = GlobalKey<FormState>();
@@ -248,7 +251,7 @@ class _labtest_finalState extends State<labtest_final> {
                                     validator: (firstname) =>
                                         firstname != null &&
                                                 firstname.length! < 1
-                                            ? 'First name cannot be empty'
+                                            ? 'Name cannot be empty'
                                             : null,
                                   ),
                                 ),
@@ -441,6 +444,7 @@ class _labtest_finalState extends State<labtest_final> {
       title: 'Success',
       desc: 'Got Your Details!\nWill Get Back To You Soon!!',
       btnOkOnPress: () {
+        Get.offAll(dashboard(), transition: Transition.leftToRight);
         debugPrint('OnClcik');
       },
       btnOkIcon: Icons.check_circle,

@@ -31,14 +31,12 @@ class _rentalState extends State<rental> {
   }
 
   @override
-  Color bluecolor_bg = Color(0xffDAE1FF);
-
-  Color textcolor = Color(0xD9181818);
-  Color textcolor_light = Color(0x99181818);
-  Color bluecolor = Color(0xff5093FE);
-  Color background = Color(0xffD9D9D9);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
   Color white = Color(0xffffffff);
-  Color search_bg = Color(0x1A000000);
+  Color background = Color(0xffF1F1F1);
+  Color textcolor_light = Color(0xffACAEBA);
+
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -49,204 +47,148 @@ class _rentalState extends State<rental> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                decoration: BoxDecoration(
-                  color: white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: white,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            //   top: MediaQuery.of(context).size.height / 80,
-                            left: MediaQuery.of(context).size.height / 60,
-                            right: MediaQuery.of(context).size.height / 200),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios_new_outlined,
-                                color: textcolor,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "Rental",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 24,
-                                  color: textcolor,
-                                ),
-                              ),
-                            ),
-                            Theme(
-                              data: ThemeData(
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                              ),
-                              child: IconButton(
-                                onPressed: () {
-                                  Get.to(() => cart(),
-                                      transition: Transition.rightToLeft);
-                                },
-                                icon: Icon(Icons.shopping_cart_outlined),
-                                color: textcolor,
-                              ),
-                            )
-                          ],
+                color: white,
+                height: MediaQuery.of(context).size.height / 16,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 200),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios_new_outlined,
+                          color: textcolor,
+                          size: 20,
                         ),
                       ),
-                    ), //toprow
-
-                    SizedBox(height: MediaQuery.of(context).size.height / 70),
-                    //searchbar
-                  ],
+                      SizedBox(
+                        width: MediaQuery.of(context).size.height / 60,
+                      ),
+                      Text(
+                        "Medical Rentals",
+                        style: TextStyle(
+                          fontFamily: 'medium',
+                          fontSize: 16,
+                          color: textcolor,
+                        ),
+                      ),
+                    ],
+                  ), //toprow
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 150,
+                height: MediaQuery.of(context).size.height / 100,
               ),
-              Container(
-                color: white,
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 50,
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 200,
+              Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 60,
+                    bottom: MediaQuery.of(context).size.height / 100,
+                  ),
+                  child: Text(
+                    "Available Rentals",
+                    style: TextStyle(
+                      fontFamily: 'medium',
+                      fontSize: 16,
+                      color: textcolor,
                     ),
-                    child: Text(
-                      "Available Rentals",
-                      style: TextStyle(
-                        fontFamily: 'semibold',
-                        fontSize: 20,
-                        color: textcolor,
-                      ),
-                    )),
-              ),
+                  )),
               Expanded(
-                child: Container(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height / 5.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemCount: rental_machine_image.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Get.to(
-                                  () => rental_commonscreen(
-                                      name: rental_machine_info[index].name,
-                                      company:
-                                          rental_machine_info[index].hospital,
-                                      description:
-                                          rental_machine_info[index].bio,
-                                      available_for_time:
-                                          rental_machine_info[index]
-                                              .workinghours,
-                                      priceperday:
-                                          rental_machine_info[index].experience,
-                                      use:
-                                          rental_machine_info[index].specialist,
-                                      imageurl: rental_machine_image[index]),
-                                  transition: Transition.rightToLeft);
-                            },
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 60,
+                  ),
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: rental_machine_image.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(
+                                () => rental_commonscreen(
+                                    name: rental_machine_info[index].name,
+                                    company:
+                                        rental_machine_info[index].hospital,
+                                    description: rental_machine_info[index].bio,
+                                    available_for_time:
+                                        rental_machine_info[index].workinghours,
+                                    priceperday:
+                                        rental_machine_info[index].experience,
+                                    use: rental_machine_info[index].specialist,
+                                    imageurl: rental_machine_image[index]),
+                                transition: Transition.rightToLeft);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
                               color: white,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                  //top: MediaQuery.of(context).size.height / 60,
-                                  left: MediaQuery.of(context).size.height / 60,
-                                  right:
-                                      MediaQuery.of(context).size.height / 60,
-                                  bottom:
-                                      MediaQuery.of(context).size.height / 60,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).size.height / 60,
+                                right: MediaQuery.of(context).size.height / 60,
+                              ),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  color: white,
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: Column(
-                                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              150,
-                                    ),
-                                    Divider(
-                                      color: background,
-                                      thickness: 2,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      decoration: BoxDecoration(
-                                        color: white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Image.network(
-                                              rental_machine_image[index],
-                                              scale: 7,
-                                            ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                Text(
-                                                  "${rental_machine_info[index].name}",
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontFamily: 'semibold',
-                                                    fontSize: 19,
-                                                    color: textcolor,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      350,
-                                                ),
-                                                Text(
-                                                  "${rental_machine_info[index].hospital}",
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontFamily: 'medium',
-                                                    fontSize: 16,
-                                                    color: textcolor_light,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 30,
+                                        foregroundImage: NetworkImage(
+                                          rental_machine_image[index],
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            "${rental_machine_info[index].name}",
+                                            textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                              fontFamily: 'medium',
+                                              fontSize: 16,
+                                              color: textcolor,
+                                            ),
+                                          ),
+                                          Text(
+                                            "${rental_machine_info[index].hospital}",
+                                            textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                              fontFamily: 'medium',
+                                              fontSize: 14,
+                                              color: textcolor_light,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          );
-                        }),
-                  ),
+                          ),
+                        );
+                      }),
                 ),
               ),
             ],

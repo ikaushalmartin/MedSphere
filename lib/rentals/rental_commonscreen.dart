@@ -28,13 +28,12 @@ class rental_commonscreen extends StatefulWidget {
 }
 
 class _rental_commonscreenState extends State<rental_commonscreen> {
-  Color textcolor = Color(0xD9181818);
-  Color textcolor_light = Color(0x99181818);
-  Color medicine_colour_button_1 = Color(0xff07DAEB);
-  Color medicine_colour_button_2 = Color(0xff5093FE);
-  Color background = Color(0xffD9D9D9);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
   Color white = Color(0xffffffff);
-  Color search_bg = Color(0x1A000000);
+  Color background = Color(0xffF1F1F1);
+  Color textcolor_light = Color(0xffACAEBA);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,71 +45,59 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
             Column(
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                    color: white,
-                  ),
+                  color: white,
+                  height: MediaQuery.of(context).size.height / 16,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        // top: MediaQuery.of(context).size.height / 50,
                         left: MediaQuery.of(context).size.height / 60,
                         right: MediaQuery.of(context).size.height / 200),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Row(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios_new_outlined,
-                                color: textcolor,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "Product Info",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 24,
-                                  color: textcolor,
-                                ),
-                              ),
-                            ),
-                            Text("")
-                          ],
-                        ), //toprow
-
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios_new_outlined,
+                            color: textcolor,
+                            size: 20,
+                          ),
+                        ),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height / 100),
-                        //searchbar
+                          width: MediaQuery.of(context).size.height / 60,
+                        ),
+                        Text(
+                          "Rental Information",
+                          style: TextStyle(
+                            fontFamily: 'medium',
+                            fontSize: 16,
+                            color: textcolor,
+                          ),
+                        ),
                       ],
-                    ),
+                    ), //toprow
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 150,
+                  height: MediaQuery.of(context).size.height / 100,
                 ),
                 Container(
                   color: white,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.height / 60,
-                        right: MediaQuery.of(context).size.height / 60,
-                        top: MediaQuery.of(context).size.height / 80,
-                        bottom: MediaQuery.of(context).size.height / 80),
+                      top: MediaQuery.of(context).size.height / 80,
+                      bottom: MediaQuery.of(context).size.height / 80,
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 60,
+                    ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.network(
-                          "${widget.imageurl}",
-                          scale: 6,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 20,
+                        CircleAvatar(
+                          radius: 40,
+                          foregroundImage: NetworkImage(
+                            "${widget.imageurl}",
+                          ),
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,22 +105,21 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                             Text(
                               "${widget.name}",
                               style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 20,
+                                fontFamily: 'medium',
+                                fontSize: 16,
                                 color: textcolor,
                               ),
                             ),
                             SizedBox(
-                              height: MediaQuery.of(context).size.width / 80,
+                              height: MediaQuery.of(context).size.height / 140,
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width / 1.5,
+                            SizedBox(
                               child: Text(
-                                "${widget.use}",
+                                widget.use,
                                 style: TextStyle(
                                   fontFamily: 'medium',
-                                  fontSize: 18,
-                                  color: textcolor_light,
+                                  fontSize: 14,
+                                  color: bluecolor,
                                 ),
                               ),
                             ),
@@ -141,7 +127,7 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                               "${widget.company}",
                               style: TextStyle(
                                 fontFamily: 'medium',
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: textcolor_light,
                               ),
                             ),
@@ -152,14 +138,14 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 150,
+                  height: MediaQuery.of(context).size.height / 100,
                 ),
                 Container(
                   color: white,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.height / 40,
-                        right: MediaQuery.of(context).size.height / 40,
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
                         top: MediaQuery.of(context).size.height / 80,
                         bottom: MediaQuery.of(context).size.height / 80),
                     child: Row(
@@ -171,8 +157,8 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                             Text(
                               "Price/Day",
                               style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 18,
+                                fontFamily: 'medium',
+                                fontSize: 16,
                                 color: textcolor,
                               ),
                             ),
@@ -180,14 +166,11 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                               "₹${widget.priceperday}",
                               style: TextStyle(
                                 fontFamily: 'medium',
-                                fontSize: 16,
-                                color: textcolor_light,
+                                fontSize: 14,
+                                color: bluecolor,
                               ),
                             ),
                           ],
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.height / 150,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -195,8 +178,8 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                             Text(
                               "Usage/Application",
                               style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 18,
+                                fontFamily: 'medium',
+                                fontSize: 16,
                                 color: textcolor,
                               ),
                             ),
@@ -207,8 +190,8 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                               "${widget.available_for_time}",
                               style: TextStyle(
                                 fontFamily: 'medium',
-                                fontSize: 16,
-                                color: textcolor_light,
+                                fontSize: 14,
+                                color: bluecolor,
                               ),
                             ),
                           ],
@@ -218,15 +201,15 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 150,
+                  height: MediaQuery.of(context).size.height / 100,
                 ),
                 Container(
                   color: white,
                   width: MediaQuery.of(context).size.width,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.height / 40,
-                        right: MediaQuery.of(context).size.height / 40,
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
                         top: MediaQuery.of(context).size.height / 80,
                         bottom: MediaQuery.of(context).size.height / 80),
                     child: Column(
@@ -235,16 +218,16 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                         Text(
                           "Product Description",
                           style: TextStyle(
-                            fontFamily: 'semibold',
-                            fontSize: 18,
+                            fontFamily: 'medium',
+                            fontSize: 16,
                             color: textcolor,
                           ),
                         ),
                         Text(
                           "${widget.description}",
                           style: TextStyle(
-                            fontFamily: 'medium',
-                            fontSize: 13,
+                            fontFamily: 'regular',
+                            fontSize: 14,
                             color: textcolor_light,
                           ),
                         ),
@@ -288,15 +271,8 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                             borderRadius: BorderRadius.circular(80.0)),
                         child: Ink(
                           decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  medicine_colour_button_1,
-                                  medicine_colour_button_2
-                                ],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0)),
+                              color: bluecolor,
+                              borderRadius: BorderRadius.circular(6)),
                           child: Container(
                             constraints: BoxConstraints(maxWidth: 150.0),
                             alignment: Alignment.center,

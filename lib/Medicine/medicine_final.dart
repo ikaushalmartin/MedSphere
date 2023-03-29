@@ -288,7 +288,7 @@ class _medicine_finalState extends State<medicine_final> {
                                     validator: (firstname) =>
                                         firstname != null &&
                                                 firstname.length! < 1
-                                            ? 'First name cannot be empty'
+                                            ? 'Name cannot be empty'
                                             : null,
                                   ),
                                 ),

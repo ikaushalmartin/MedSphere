@@ -45,14 +45,13 @@ class labtest_commonscreen extends StatefulWidget {
 }
 
 class _labtest_commonscreenState extends State<labtest_commonscreen> {
-  Color light_red = Color(0xffdae1ff);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
+  Color textcolor_white = Color(0xffACAEBA);
   Color white = Color(0xffffffff);
-  Color textcolor = Color(0xff1D1D1F);
-  Color textcolor_white = Color(0xff949494);
-  Color bluecolor = Color(0xff007AFF);
-  Color bluecolor_bg = Color(0xffDAE1FF);
-  Color redcolor = Color(0xffFE2D54);
-  Color background = Color(0xffF2F1F6);
+  Color background = Color(0xffF1F1F1);
+  Color light_red = Color(0xffdae1ff);
+
   bool enable = true;
 
   List<lab_cartmodel> deliveryandminval_list_for_checkforlab = [];

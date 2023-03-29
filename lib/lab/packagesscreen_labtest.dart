@@ -20,14 +20,12 @@ class packages_commonnscreen extends StatefulWidget {
 class _packages_commonnscreenState extends State<packages_commonnscreen> {
   List<labtest_packages> packages = [];
   @override
-  Color light_red = Color(0xffdae1ff);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
+  Color textcolor_white = Color(0xffACAEBA);
   Color white = Color(0xffffffff);
-  Color textcolor = Color(0xff1D1D1F);
-  Color textcolor_white = Color(0xff949494);
-  Color bluecolor = Color(0xff007AFF);
-  Color bluecolor_bg = Color(0xffDAE1FF);
+  Color background = Color(0xffF1F1F1);
   Color redcolor = Color(0xffFE2D54);
-  Color background = Color(0xffF2F1F6);
 
   @override
   void initState() {

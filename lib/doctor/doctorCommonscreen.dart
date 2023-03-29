@@ -24,13 +24,12 @@ class doctorcommonscreen extends StatefulWidget {
 }
 
 class _doctorcommonscreenState extends State<doctorcommonscreen> {
-  Color textcolor = Color(0xD9181818);
-  Color textcolor_light = Color(0x99181818);
-  Color medicine_colour_button_1 = Color(0xff07DAEB);
-  Color medicine_colour_button_2 = Color(0xff5093FE);
-  Color background = Color(0xffD9D9D9);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
   Color white = Color(0xffffffff);
-  Color search_bg = Color(0x1A000000);
+  Color background = Color(0xffF1F1F1);
+  Color textcolor_light = Color(0xffACAEBA);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,73 +41,59 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
             Column(
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                    color: white,
-                  ),
+                  color: white,
+                  height: MediaQuery.of(context).size.height / 16,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        // top: MediaQuery.of(context).size.height / 50,
                         left: MediaQuery.of(context).size.height / 60,
                         right: MediaQuery.of(context).size.height / 200),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Row(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios_new_outlined,
-                                color: textcolor,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "Doctor's Info",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 24,
-                                  color: textcolor,
-                                ),
-                              ),
-                            ),
-                            Text("")
-                          ],
-                        ), //toprow
-
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios_new_outlined,
+                            color: textcolor,
+                            size: 20,
+                          ),
+                        ),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height / 100),
-                        //searchbar
+                          width: MediaQuery.of(context).size.height / 60,
+                        ),
+                        Text(
+                          "Doctor's Information",
+                          style: TextStyle(
+                            fontFamily: 'medium',
+                            fontSize: 16,
+                            color: textcolor,
+                          ),
+                        ),
                       ],
-                    ),
+                    ), //toprow
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 150,
+                  height: MediaQuery.of(context).size.height / 100,
                 ),
                 Container(
                   color: white,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.height / 60,
-                        right: MediaQuery.of(context).size.height / 60,
-                        top: MediaQuery.of(context).size.height / 80,
-                        bottom: MediaQuery.of(context).size.height / 80),
+                      top: MediaQuery.of(context).size.height / 80,
+                      bottom: MediaQuery.of(context).size.height / 80,
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 60,
+                    ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CircleAvatar(
-                          radius: 60,
+                          radius: 40,
                           foregroundImage: NetworkImage(
                             "${widget.imageurl}",
                           ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 20,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,27 +101,27 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                             Text(
                               "${widget.name}",
                               style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 20,
+                                fontFamily: 'medium',
+                                fontSize: 16,
                                 color: textcolor,
                               ),
                             ),
                             SizedBox(
-                              height: MediaQuery.of(context).size.width / 80,
+                              height: MediaQuery.of(context).size.height / 140,
                             ),
                             Text(
                               "${widget.specialist}",
                               style: TextStyle(
                                 fontFamily: 'medium',
-                                fontSize: 18,
-                                color: textcolor_light,
+                                fontSize: 14,
+                                color: bluecolor,
                               ),
                             ),
                             Text(
                               "${widget.hospital}",
                               style: TextStyle(
                                 fontFamily: 'medium',
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: textcolor_light,
                               ),
                             ),
@@ -147,14 +132,14 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 150,
+                  height: MediaQuery.of(context).size.height / 100,
                 ),
                 Container(
                   color: white,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.height / 40,
-                        right: MediaQuery.of(context).size.height / 40,
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
                         top: MediaQuery.of(context).size.height / 80,
                         bottom: MediaQuery.of(context).size.height / 80),
                     child: Row(
@@ -166,8 +151,8 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                             Text(
                               "Fees",
                               style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 18,
+                                fontFamily: 'medium',
+                                fontSize: 16,
                                 color: textcolor,
                               ),
                             ),
@@ -175,14 +160,11 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                               "${widget.experience}",
                               style: TextStyle(
                                 fontFamily: 'medium',
-                                fontSize: 16,
-                                color: textcolor_light,
+                                fontSize: 14,
+                                color: bluecolor,
                               ),
                             ),
                           ],
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.height / 150,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -190,20 +172,17 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                             Text(
                               "Working Hours",
                               style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 18,
+                                fontFamily: 'medium',
+                                fontSize: 16,
                                 color: textcolor,
                               ),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 150,
                             ),
                             Text(
                               "${widget.workinghours}",
                               style: TextStyle(
                                 fontFamily: 'medium',
-                                fontSize: 16,
-                                color: textcolor_light,
+                                fontSize: 14,
+                                color: bluecolor,
                               ),
                             ),
                           ],
@@ -213,15 +192,15 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 150,
+                  height: MediaQuery.of(context).size.height / 100,
                 ),
                 Container(
                   color: white,
                   width: MediaQuery.of(context).size.width,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.height / 40,
-                        right: MediaQuery.of(context).size.height / 40,
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
                         top: MediaQuery.of(context).size.height / 80,
                         bottom: MediaQuery.of(context).size.height / 80),
                     child: Column(
@@ -230,16 +209,16 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                         Text(
                           "Bio",
                           style: TextStyle(
-                            fontFamily: 'semibold',
-                            fontSize: 18,
+                            fontFamily: 'medium',
+                            fontSize: 16,
                             color: textcolor,
                           ),
                         ),
                         Text(
                           "${widget.bio}",
                           style: TextStyle(
-                            fontFamily: 'medium',
-                            fontSize: 13,
+                            fontFamily: 'regular',
+                            fontSize: 14,
                             color: textcolor_light,
                           ),
                         ),
@@ -267,7 +246,7 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                         color: textcolor,
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: 38.0,
                       child: MaterialButton(
                         onPressed: () {
@@ -283,19 +262,12 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                             borderRadius: BorderRadius.circular(80.0)),
                         child: Ink(
                           decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  medicine_colour_button_1,
-                                  medicine_colour_button_2
-                                ],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(30.0)),
+                              color: bluecolor,
+                              borderRadius: BorderRadius.circular(6)),
                           child: Container(
-                            constraints: BoxConstraints(maxWidth: 150.0),
+                            constraints: const BoxConstraints(maxWidth: 150.0),
                             alignment: Alignment.center,
-                            child: Text(
+                            child: const Text(
                               "Consult",
                               textAlign: TextAlign.center,
                               style: TextStyle(
