@@ -22,9 +22,9 @@ class _homecare_available_partnerState
     extends State<homecare_available_partner> {
   Color textcolor = Color(0xff1A1D44);
   Color bluecolor = Color(0xff014CC4);
+  Color textcolor_light = Color(0xffACAEBA);
   Color white = Color(0xffffffff);
   Color background = Color(0xffF1F1F1);
-  Color textcolor_light = Color(0xff42474e);
 
   List<doc> homecare_available_partner = [];
 

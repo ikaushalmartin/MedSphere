@@ -248,14 +248,14 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "${widget.name}",
+                      widget.name,
                       style: TextStyle(
                         fontFamily: 'medium',
                         fontSize: 16,
                         color: textcolor,
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: 38.0,
                       child: MaterialButton(
                         onPressed: () {
@@ -276,7 +276,7 @@ class _rental_commonscreenState extends State<rental_commonscreen> {
                           child: Container(
                             constraints: BoxConstraints(maxWidth: 150.0),
                             alignment: Alignment.center,
-                            child: Text(
+                            child: const Text(
                               "Book",
                               textAlign: TextAlign.center,
                               style: TextStyle(

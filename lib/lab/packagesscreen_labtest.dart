@@ -25,7 +25,6 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
   Color textcolor_white = Color(0xffACAEBA);
   Color white = Color(0xffffffff);
   Color background = Color(0xffF1F1F1);
-  Color redcolor = Color(0xffFE2D54);
 
   @override
   void initState() {
@@ -123,7 +122,7 @@ class _packages_commonnscreenState extends State<packages_commonnscreen> {
                   width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
                       shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       itemCount: packages.length,
                       itemBuilder: (context, index) {

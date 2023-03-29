@@ -24,7 +24,7 @@ class profile extends StatefulWidget {
 class _profileState extends State<profile> {
   Color bluecolor_bg = Color(0xffDAE1FF);
 
-  Color textcolor_light = Color(0x99181818);
+  Color textcolor_light = Color(0xffACAEBA);
   Color oncolor = Color(0xff01BDF3);
   Color offcolor = Color(0xffE6E6EC);
   Color button1color = Color(0xff01BDF3);
@@ -355,7 +355,7 @@ class _profileState extends State<profile> {
                                                             TextDecoration
                                                                 .lineThrough,
                                                         fontFamily: 'medium',
-                                                        fontSize: 16,
+                                                        fontSize: 14,
                                                         color: textcolor_light,
                                                       ),
                                                     ),
@@ -368,7 +368,7 @@ class _profileState extends State<profile> {
                                                       textAlign: TextAlign.left,
                                                       style: TextStyle(
                                                         fontFamily: 'medium',
-                                                        fontSize: 16,
+                                                        fontSize: 14,
                                                         color: textcolor_light,
                                                       ),
                                                     ),
@@ -377,7 +377,7 @@ class _profileState extends State<profile> {
                                                       textAlign: TextAlign.left,
                                                       style: TextStyle(
                                                         fontFamily: 'medium',
-                                                        fontSize: 16,
+                                                        fontSize: 14,
                                                         color:
                                                             Color(0xffEA7D6B),
                                                       ),

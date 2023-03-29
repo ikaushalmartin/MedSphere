@@ -48,6 +48,8 @@ class _doctor_finalState extends State<doctor_final> {
           children: [
             Expanded(
               child: ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
                 children: [
                   Container(
                     color: white,

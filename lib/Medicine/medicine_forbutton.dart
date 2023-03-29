@@ -37,7 +37,7 @@ class _medicineforbuttonState extends State<medicineforbutton> {
 
   Color white = Color(0xffffffff);
   Color background = Color(0xffF1F1F1);
-  Color textcolor_light = Color(0x99181818);
+  Color textcolor_light = Color(0xffACAEBA);
   Color search_bg = Color(0x1A000000);
 
   Color bottom1 = Color(0xff01BDF3);

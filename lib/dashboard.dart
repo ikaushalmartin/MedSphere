@@ -45,7 +45,7 @@ class dashboard extends StatefulWidget {
 class _dashboardState extends State<dashboard> {
   Color textcolor = Color(0xff1A1D44);
   Color bluecolor = Color(0xff014CC4);
-  Color textcolor_white = Color(0xff42474e);
+  Color textcolor_white = Color(0xffACAEBA);
   Color white = Color(0xffffffff);
   Color background = Color(0xffF1F1F1);
   final user = FirebaseAuth.instance.currentUser!;

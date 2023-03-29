@@ -31,6 +31,7 @@ class _doctorState extends State<doctor> {
 
   @override
   Widget build(BuildContext context) {
+    Color textcolor_light = Color(0xffACAEBA);
     Color textcolor = Color(0xff1A1D44);
     Color bluecolor = Color(0xff014CC4);
     Color white = Color(0xffffffff);
@@ -224,7 +225,7 @@ class _doctorState extends State<doctor> {
                                                   style: TextStyle(
                                                     fontFamily: 'medium',
                                                     fontSize: 14,
-                                                    color: bluecolor,
+                                                    color: textcolor_light,
                                                   ),
                                                 ),
                                               ],
