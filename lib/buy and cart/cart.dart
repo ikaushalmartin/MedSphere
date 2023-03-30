@@ -198,7 +198,8 @@ class _cartState extends State<cart> {
                                                                   .width /
                                                               3,
                                                       child: Text(
-                                                        "${cartdata[index].productname}",
+                                                        cartdata[index]
+                                                            .productname,
                                                         style: TextStyle(
                                                           fontFamily: 'medium',
                                                           fontSize: 12,
@@ -206,14 +207,14 @@ class _cartState extends State<cart> {
                                                         ),
                                                       ),
                                                     ),
-                                                    Container(
+                                                    SizedBox(
                                                       width:
                                                           MediaQuery.of(context)
                                                                   .size
                                                                   .width /
                                                               3,
                                                       child: Text(
-                                                        "${cartdata[index].company}",
+                                                        cartdata[index].company,
                                                         style: TextStyle(
                                                           fontFamily: 'medium',
                                                           fontSize: 12,
@@ -221,16 +222,13 @@ class _cartState extends State<cart> {
                                                         ),
                                                       ),
                                                     ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
                                                     Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
                                                         Text(
-                                                          "MRP ₹${cartdata[index].price}    ",
+                                                          "₹${cartdata[index].price}    ",
                                                           style: TextStyle(
                                                             fontFamily:
                                                                 'medium',
@@ -239,7 +237,7 @@ class _cartState extends State<cart> {
                                                           ),
                                                         ),
                                                         Text(
-                                                          "₹${cartdata[index].cutprice}",
+                                                          "MRP ₹${cartdata[index].cutprice}",
                                                           style: TextStyle(
                                                               fontSize: 12,
                                                               decoration:
@@ -301,7 +299,8 @@ class _cartState extends State<cart> {
                                                                   color:
                                                                       textcolor,
                                                                   fontFamily:
-                                                                      "medium"),
+                                                                      "medium",
+                                                                  fontSize: 14),
                                                             ),
                                                             content: SizedBox(
                                                               height: 500,
@@ -381,37 +380,26 @@ class _cartState extends State<cart> {
                         padding: EdgeInsets.only(
                             top: MediaQuery.of(context).size.height / 40,
                             left: MediaQuery.of(context).size.height / 60,
-                            right: MediaQuery.of(context).size.height / 60,
+                            right: MediaQuery.of(context).size.height / 50,
                             bottom: MediaQuery.of(context).size.height / 40),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                Text(
-                                  "Check Available Coupons!",
-                                  style: TextStyle(
-                                    fontFamily: 'medium',
-                                    fontSize: 16,
-                                    color: redcoloe,
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              "Check Available Coupons!",
+                              style: TextStyle(
+                                fontFamily: 'medium',
+                                fontSize: 16,
+                                color: redcoloe,
+                              ),
                             ),
-                            Row(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Icon(
-                                    Icons.arrow_forward_ios_outlined,
-                                    color: textcolor,
-                                    size: 16,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 50,
-                                ),
-                              ],
+                            GestureDetector(
+                              onTap: () {},
+                              child: Icon(
+                                Icons.arrow_forward_ios_outlined,
+                                color: textcolor,
+                                size: 16,
+                              ),
                             ),
                           ],
                         ),
@@ -490,7 +478,7 @@ class _cartState extends State<cart> {
                                     "Delivery Charges :",
                                     style: TextStyle(
                                       fontFamily: 'medium',
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       color: textcolor,
                                     ),
                                   ),
@@ -606,8 +594,6 @@ class _cartState extends State<cart> {
                                     ),
                                 transition: Transition.rightToLeft);
                           },
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
                           child: Ink(
                             decoration: BoxDecoration(
                                 color: bluecolor,

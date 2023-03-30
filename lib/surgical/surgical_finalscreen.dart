@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -33,18 +34,12 @@ class surgical_final extends StatefulWidget {
 }
 
 class _surgical_finalState extends State<surgical_final> {
-  Color bluecolor = Color(0xff5093FE);
-  Color bluecolor_bg = Color(0xffDAE1FF);
-  Color textcolor = Color(0xD9181818);
-  Color textcolor_light = Color(0x99181818);
-  Color textcolor_light2 = Color(0x4D181818);
-  Color background = Color(0xffD9D9D9);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
+  Color textcolor_light = Color(0xffACAEBA);
   Color white = Color(0xffffffff);
-  Color search_bg = Color(0x1A000000);
-  Color medicine_colour_button_1 = Color(0xff07DAEB);
-  Color medicine_colour_button_2 = Color(0xff5093FE);
+  Color background = Color(0xffF1F1F1);
   Color redcoloe = Color(0xffFE2D54);
-  Color doctorbuttoncolor = Color(0xD9181818);
 
   final _formKey = GlobalKey<FormState>();
   final patientname = TextEditingController();
@@ -62,54 +57,47 @@ class _surgical_finalState extends State<surgical_final> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                decoration: BoxDecoration(
-                  color: white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).size.height / 70),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          //   top: MediaQuery.of(context).size.height / 80,
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 200),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Get.back();
-                            },
-                            child: Icon(
-                              Icons.arrow_back_ios_new_outlined,
-                              color: textcolor,
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "Details",
-                              style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 24,
-                                color: textcolor,
-                              ),
-                            ),
-                          ),
-                          Text(""),
-                        ],
+                color: white,
+                height: MediaQuery.of(context).size.height / 16,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      // top: MediaQuery.of(context).size.height / 50,
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 200),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios_new_outlined,
+                          color: textcolor,
+                          size: 20,
+                        ),
                       ),
-                    ), //toprow
-                    SizedBox(height: MediaQuery.of(context).size.height / 70),
-                    //searchbar
-                  ],
+                      SizedBox(
+                        width: MediaQuery.of(context).size.height / 60,
+                      ),
+                      Align(
+                        child: Text(
+                          "Details",
+                          style: TextStyle(
+                            fontFamily: 'medium',
+                            fontSize: 16,
+                            color: textcolor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Expanded(
                 child: ListView(
                   children: [
-                    SizedBox(height: MediaQuery.of(context).size.height / 135),
+                    SizedBox(height: MediaQuery.of(context).size.height / 100),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -117,111 +105,101 @@ class _surgical_finalState extends State<surgical_final> {
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).size.height / 60,
-                          top: MediaQuery.of(context).size.height / 60,
+                          bottom: MediaQuery.of(context).size.height / 100,
+                          top: MediaQuery.of(context).size.height / 100,
                           left: MediaQuery.of(context).size.height / 60,
                           right: MediaQuery.of(context).size.height / 60,
                         ),
                         child: Text(
                           "Products",
                           style: TextStyle(
-                            fontFamily: 'semibold',
-                            fontSize: 21,
+                            fontFamily: 'medium',
+                            fontSize: 16,
                             color: textcolor,
                           ),
                         ),
                       ),
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width,
                       color: white,
-                      child: SizedBox(
-                        //height: MediaQuery.of(context).size.height / 5,
-                        width: MediaQuery.of(context).size.width,
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            itemCount: widget.cart_items.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: EdgeInsets.only(
-                                    top:
-                                        MediaQuery.of(context).size.height / 80,
-                                    left:
-                                        MediaQuery.of(context).size.height / 60,
-                                    right:
-                                        MediaQuery.of(context).size.height / 60,
-                                    bottom: MediaQuery.of(context).size.height /
-                                        80),
-                                child: Row(
-                                  children: [
-                                    CircleAvatar(
-                                      backgroundColor: white,
-                                      radius: 30,
-                                      child: Image.network(
-                                        "${widget.cart_items[index].url}",
-                                        scale: 8,
-                                      ),
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          itemCount: widget.cart_items.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.only(
+                                  top: MediaQuery.of(context).size.height / 80,
+                                  left: MediaQuery.of(context).size.height / 60,
+                                  right:
+                                      MediaQuery.of(context).size.height / 60,
+                                  bottom:
+                                      MediaQuery.of(context).size.height / 80),
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: white,
+                                    radius: 30,
+                                    child: Image.network(
+                                      "${widget.cart_items[index].url}",
                                     ),
-                                    SizedBox(
+                                  ),
+                                  SizedBox(
+                                      width: MediaQuery.of(context).size.width /
+                                          20),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
                                         width:
                                             MediaQuery.of(context).size.width /
-                                                20),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              1.4,
-                                          child: Text(
-                                            "${widget.cart_items[index].productname}",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: textcolor,
-                                                fontFamily: "medium"),
+                                                1.4,
+                                        child: Text(
+                                          "${widget.cart_items[index].productname}",
+                                          style: TextStyle(
+                                            fontFamily: 'medium',
+                                            fontSize: 12,
+                                            color: textcolor,
                                           ),
                                         ),
-                                        Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              1.4,
-                                          child: Text(
-                                            "${widget.cart_items[index].company}",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                color: bluecolor,
-                                                fontFamily: "medium"),
+                                      ),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1.4,
+                                        child: Text(
+                                          "${widget.cart_items[index].company}",
+                                          style: TextStyle(
+                                            fontFamily: 'medium',
+                                            fontSize: 12,
+                                            color: bluecolor,
                                           ),
                                         ),
-                                        Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              1.4,
-                                          child: Text(
-                                            "Quantity - ${widget.cart_items[index].quantity}",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                color: textcolor,
-                                                fontFamily: "medium"),
+                                      ),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1.4,
+                                        child: Text(
+                                          "Quantity - ${widget.cart_items[index].quantity}",
+                                          style: TextStyle(
+                                            fontFamily: 'medium',
+                                            fontSize: 12,
+                                            color: textcolor_light,
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }),
-                      ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 135),
+                    SizedBox(height: MediaQuery.of(context).size.height / 100),
                     Container(
                       color: white,
                       child: Padding(
@@ -237,7 +215,7 @@ class _surgical_finalState extends State<surgical_final> {
                               "Total Discount!",
                               style: TextStyle(
                                 fontFamily: 'semibold',
-                                fontSize: 18,
+                                fontSize: 16,
                                 color: redcoloe,
                               ),
                             ),
@@ -247,7 +225,7 @@ class _surgical_finalState extends State<surgical_final> {
                                   "${(widget.discount).toStringAsFixed(2)}%",
                                   style: TextStyle(
                                     fontFamily: 'semibold',
-                                    fontSize: 18,
+                                    fontSize: 16,
                                     color: redcoloe,
                                   ),
                                 ),
@@ -260,7 +238,7 @@ class _surgical_finalState extends State<surgical_final> {
                         ),
                       ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 135),
+                    SizedBox(height: MediaQuery.of(context).size.height / 100),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       // height: MediaQuery.of(context).size.height / 3.5,
@@ -284,7 +262,7 @@ class _surgical_finalState extends State<surgical_final> {
                                 "Your Details",
                                 style: TextStyle(
                                   fontFamily: 'semibold',
-                                  fontSize: 21,
+                                  fontSize: 16,
                                   color: textcolor,
                                 ),
                               ),
@@ -300,16 +278,20 @@ class _surgical_finalState extends State<surgical_final> {
                                         MediaQuery.of(context).size.width / 2.2,
                                     decoration: BoxDecoration(
                                       color: background,
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(6),
                                     ),
                                     child: TextFormField(
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(30),
+                                      ],
+                                      enableInteractiveSelection: false,
                                       controller: patientname,
                                       keyboardType: TextInputType.name,
                                       style: TextStyle(color: textcolor),
                                       textAlign: TextAlign.left,
                                       decoration: kTextFieldDecoration.copyWith(
                                           contentPadding:
-                                              EdgeInsets.only(left: 20),
+                                              const EdgeInsets.only(left: 20),
                                           hintText: "Name"),
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
@@ -333,9 +315,13 @@ class _surgical_finalState extends State<surgical_final> {
                                       keyboardType: TextInputType.phone,
                                       style: TextStyle(color: textcolor),
                                       textAlign: TextAlign.left,
+                                      enableInteractiveSelection: false,
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(7),
+                                      ],
                                       decoration: kTextFieldDecoration.copyWith(
                                           contentPadding:
-                                              EdgeInsets.only(left: 20),
+                                              const EdgeInsets.only(left: 20),
                                           hintText: "Pincode"),
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
@@ -358,6 +344,10 @@ class _surgical_finalState extends State<surgical_final> {
                                 ),
                                 child: TextFormField(
                                   onChanged: (value) {},
+                                  enableInteractiveSelection: false,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(12),
+                                  ],
                                   controller: patientphone,
                                   keyboardType: TextInputType.phone,
                                   style: TextStyle(color: textcolor),
@@ -398,8 +388,8 @@ class _surgical_finalState extends State<surgical_final> {
                           Text(
                             "Total Payable",
                             style: TextStyle(
-                              fontFamily: 'medium',
-                              fontSize: 16,
+                              fontFamily: 'regular',
+                              fontSize: 14,
                               color: textcolor,
                             ),
                           ),
@@ -408,7 +398,7 @@ class _surgical_finalState extends State<surgical_final> {
                             style: TextStyle(
                               fontFamily: 'medium',
                               fontSize: 14,
-                              color: textcolor,
+                              color: bluecolor,
                             ),
                           ),
                         ],
@@ -433,15 +423,8 @@ class _surgical_finalState extends State<surgical_final> {
                               borderRadius: BorderRadius.circular(80.0)),
                           child: Ink(
                             decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    medicine_colour_button_1,
-                                    medicine_colour_button_2
-                                  ],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                ),
-                                borderRadius: BorderRadius.circular(30.0)),
+                                color: bluecolor,
+                                borderRadius: BorderRadius.circular(6)),
                             child: Container(
                               constraints:
                                   const BoxConstraints(maxWidth: 150.0),

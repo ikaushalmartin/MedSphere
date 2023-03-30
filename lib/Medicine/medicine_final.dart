@@ -138,7 +138,6 @@ class _medicine_finalState extends State<medicine_final> {
                                   radius: 30,
                                   child: Image.network(
                                     "${widget.cart_items[index].url}",
-                                    scale: 8,
                                   ),
                                 ),
                                 SizedBox(
