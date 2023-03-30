@@ -498,6 +498,8 @@ class _rentalfinalState extends State<rentalfinal> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             book_rentals();
+                          } else {
+                            Navigator.of(context).pop();
                           }
                         },
                         shape: RoundedRectangleBorder(

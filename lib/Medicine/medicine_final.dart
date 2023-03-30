@@ -397,6 +397,8 @@ class _medicine_finalState extends State<medicine_final> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             book_medicine();
+                          } else {
+                            Navigator.of(context).pop();
                           }
                         },
                         shape: RoundedRectangleBorder(

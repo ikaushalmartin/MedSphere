@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -21,6 +20,7 @@ class dr_image_upload extends StatefulWidget {
 
 class _dr_image_uploadState extends State<dr_image_upload> {
   var _selectedFile = null;
+  bool _showWidget = false;
   bool _inProcess = false;
 
   Widget getImageWidget() {
@@ -29,13 +29,13 @@ class _dr_image_uploadState extends State<dr_image_upload> {
         _selectedFile,
         width: 250,
         height: 250,
-        fit: BoxFit.cover,
+        fit: BoxFit.contain,
       );
     } else {
       return Image.asset(
-        "images/upload.png",
-        width: 250,
-        height: 250,
+        "images/file-upload.png",
+        width: 150,
+        height: 150,
         fit: BoxFit.cover,
       );
     }
@@ -72,6 +72,7 @@ class _dr_image_uploadState extends State<dr_image_upload> {
 
       this.setState(() {
         _selectedFile = File(cropped!.path);
+        _showWidget = true;
         _inProcess = false;
       });
     } else {
@@ -83,102 +84,317 @@ class _dr_image_uploadState extends State<dr_image_upload> {
 
   @override
   Widget build(BuildContext context) {
+    Color lightblue = Color(0xff01BDF3);
+    Color textcolor = Color(0xff1A1D44);
+    Color bluecolor = Color(0xff014CC4);
+    Color white = Color(0xffffffff);
+    Color background = Color(0xffF1F1F1);
+
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xffEEE3CB),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 1.5,
-                decoration: BoxDecoration(
-                  color: Color(0xffB7C4CF),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)),
+        backgroundColor: background,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                Container(
+                  color: white,
+                  height: MediaQuery.of(context).size.height / 16,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 200),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios_new_outlined,
+                            color: textcolor,
+                            size: 20,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.height / 60,
+                        ),
+                        Text(
+                          "Details",
+                          style: TextStyle(
+                            fontFamily: 'medium',
+                            fontSize: 16,
+                            color: textcolor,
+                          ),
+                        ),
+                      ],
+                    ), //toprow
+                  ),
                 ),
-                child: Stack(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 50),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          getImageWidget(),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              MaterialButton(
-                                  color: Color(0xff967E76),
-                                  child: Text(
-                                    "Camera",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  onPressed: () {
-                                    getImage(ImageSource.camera);
-                                  }),
-                              MaterialButton(
-                                  color: Color(0xff967E76),
-                                  child: Text(
-                                    "Device",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  onPressed: () {
-                                    getImage(ImageSource.gallery);
-                                  })
-                            ],
-                          )
-                        ],
-                      ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 100,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  //height: MediaQuery.of(context).size.height / 1.5,
+                  color: white,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 60,
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 60,
+                      bottom: MediaQuery.of(context).size.height / 40,
                     ),
-                  ],
-                ),
-              ),
-              MaterialButton(
-                onPressed: () {
-                  showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (context) => Center(
-                            child: LoadingAnimationWidget.waveDots(
-                              color: Color(0xff273238),
-                              size: 80,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.circle,
+                              size: 8,
+                              color: bluecolor,
                             ),
-                          ));
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 70,
+                            ),
+                            Text(
+                              "A Special Section For Doctors",
+                              style: TextStyle(
+                                fontFamily: 'medium',
+                                fontSize: 14,
+                                color: textcolor,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 100,
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.circle,
+                              size: 8,
+                              color: bluecolor,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 70,
+                            ),
+                            Text(
+                              "Upload Your Doctor's Identity",
+                              style: TextStyle(
+                                fontFamily: 'medium',
+                                fontSize: 14,
+                                color: textcolor,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 100,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.circle,
+                              size: 8,
+                              color: bluecolor,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 70,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.4,
+                              child: Text(
+                                "Can place orders but only be delivered if identity is verified.",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 14,
+                                  color: textcolor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 40,
+                        ),
+                        getImageWidget(),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 30,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.height / 30,
+                            right: MediaQuery.of(context).size.height / 30,
+                            bottom: MediaQuery.of(context).size.height / 60,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ButtonTheme(
+                                child: Center(
+                                  child: MaterialButton(
+                                    onPressed: () {
+                                      getImage(ImageSource.camera);
+                                    },
+                                    elevation: 0,
+                                    hoverElevation: 0,
+                                    focusElevation: 0,
+                                    highlightElevation: 0,
+                                    height:
+                                        MediaQuery.of(context).size.height / 20,
+                                    minWidth:
+                                        MediaQuery.of(context).size.height / 11,
+                                    color: bluecolor,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(6)),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.camera_alt_rounded,
+                                          size: 20,
+                                          color: white,
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              80,
+                                        ),
+                                        Text(
+                                          "Camera",
+                                          style: TextStyle(
+                                            fontFamily: 'medium',
+                                            fontSize: 14,
+                                            color: white,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              ButtonTheme(
+                                child: Center(
+                                  child: MaterialButton(
+                                    onPressed: () {
+                                      getImage(ImageSource.gallery);
+                                    },
+                                    elevation: 0,
+                                    hoverElevation: 0,
+                                    focusElevation: 0,
+                                    highlightElevation: 0,
+                                    height:
+                                        MediaQuery.of(context).size.height / 20,
+                                    minWidth:
+                                        MediaQuery.of(context).size.height / 11,
+                                    color: lightblue,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(6)),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.photo,
+                                          size: 20,
+                                          color: white,
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              80,
+                                        ),
+                                        Text(
+                                          "Gallery",
+                                          style: TextStyle(
+                                            fontFamily: 'semibold',
+                                            fontSize: 14,
+                                            color: white,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        AnimatedContainer(
+                          duration: Duration(milliseconds: 600),
+                          height: _showWidget ? 50.0 : 0.0,
+                          child: _showWidget
+                              ? ButtonTheme(
+                                  child: Center(
+                                    child: MaterialButton(
+                                      onPressed: () {
+                                        showDialog(
+                                            barrierDismissible: false,
+                                            context: context,
+                                            builder: (context) => Center(
+                                                  child: LoadingAnimationWidget
+                                                      .waveDots(
+                                                    color: Color(0xff273238),
+                                                    size: 80,
+                                                  ),
+                                                ));
 
-                  if (_selectedFile != null) {
-                    uploadImageToFirebaseStorage();
-                  } else {
-                    Navigator.of(context).pop();
-                    var othersnackbar = SnackBar(
-                      content: Text("Please select image to upload"),
-                      shape: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(1)),
-                      duration: Duration(milliseconds: 2000),
-                      behavior: SnackBarBehavior.floating,
-                    );
-                    setState(() {
-                      ScaffoldMessenger.of(context).showSnackBar(othersnackbar);
-                    });
-                  }
-                },
-                minWidth: 20,
-                height: 50,
-                color: Colors.white,
-                child: Text("upload"),
-              )
-            ],
-          ),
+                                        if (_selectedFile != null) {
+                                          uploadImageToFirebaseStorage();
+                                        } else {
+                                          Navigator.of(context).pop();
+                                          var othersnackbar = SnackBar(
+                                            content: Text(
+                                                "Please select image to upload"),
+                                            duration:
+                                                Duration(milliseconds: 2000),
+                                            behavior: SnackBarBehavior.floating,
+                                          );
+                                          setState(() {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(othersnackbar);
+                                          });
+                                        }
+                                      },
+                                      elevation: 0,
+                                      hoverElevation: 0,
+                                      focusElevation: 0,
+                                      highlightElevation: 0,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              18,
+                                      minWidth:
+                                          MediaQuery.of(context).size.height /
+                                              2.21,
+                                      color: background,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(6)),
+                                      child: Text(
+                                        "Continue",
+                                        style: TextStyle(
+                                          fontFamily: 'medium',
+                                          fontSize: 16,
+                                          color: bluecolor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : null,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

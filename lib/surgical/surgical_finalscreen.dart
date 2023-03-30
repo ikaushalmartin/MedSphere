@@ -16,6 +16,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../const.dart';
 
+import '../dashboard.dart';
 import '../main.dart';
 
 class surgical_final extends StatefulWidget {
@@ -307,7 +308,7 @@ class _surgical_finalState extends State<surgical_final> {
                                         MediaQuery.of(context).size.width / 2.2,
                                     decoration: BoxDecoration(
                                       color: background,
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(6),
                                     ),
                                     child: TextFormField(
                                       onChanged: (value) {},
@@ -340,7 +341,7 @@ class _surgical_finalState extends State<surgical_final> {
                                 //  width: MediaQuery.of(context).size.width / 2.4,
                                 decoration: BoxDecoration(
                                   color: background,
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(6),
                                 ),
                                 child: TextFormField(
                                   onChanged: (value) {},
@@ -403,7 +404,7 @@ class _surgical_finalState extends State<surgical_final> {
                           ),
                         ],
                       ),
-                      Container(
+                      SizedBox(
                         height: 38.0,
                         child: MaterialButton(
                           onPressed: () {
@@ -417,6 +418,8 @@ class _surgical_finalState extends State<surgical_final> {
                                     ));
                             if (_formKey.currentState!.validate()) {
                               book_surgicals();
+                            } else {
+                              Navigator.of(context).pop();
                             }
                           },
                           shape: RoundedRectangleBorder(
@@ -540,6 +543,7 @@ class _surgical_finalState extends State<surgical_final> {
       title: 'Success',
       desc: 'Got Your Details!\nWill Get Back To You Soon!!',
       btnOkOnPress: () {
+        Get.offAll(const dashboard(), transition: Transition.leftToRight);
         debugPrint('OnClcik');
       },
       btnOkIcon: Icons.check_circle,

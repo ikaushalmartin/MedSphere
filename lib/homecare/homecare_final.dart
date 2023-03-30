@@ -489,6 +489,8 @@ class _homecare_finalState extends State<homecare_final> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             book_homecare();
+                          } else {
+                            Navigator.of(context).pop();
                           }
                         },
                         shape: RoundedRectangleBorder(

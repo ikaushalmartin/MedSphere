@@ -361,6 +361,8 @@ class _labtest_finalState extends State<labtest_final> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             book_lab();
+                          } else {
+                            Navigator.of(context).pop();
                           }
                         },
                         shape: RoundedRectangleBorder(
