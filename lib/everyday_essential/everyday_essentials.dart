@@ -20,15 +20,11 @@ class everyday_essentials extends StatefulWidget {
 }
 
 class _everyday_essentialsState extends State<everyday_essentials> {
-  Color heading_bluecolor_bg = Color(0xD9181818);
-  Color textcolor = Color(0xff1D1D1F);
-  Color textcolor_white = Color(0xff949494);
-  Color textcolor_light = Color(0x4D181818);
-  Color bluecolor = Color(0xff007AFF);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
   Color white = Color(0xffffffff);
-  Color redcolor = Color(0xffE46473);
-  Color yellowcolor = Color(0xffF9BF80);
-  Color background = Color(0xffF2F1F6);
+  Color background = Color(0xffF1F1F1);
+  Color textcolor_light = Color(0xffACAEBA);
 
   List everyday_essential_category_images = [];
   List<Item> everyday_essential_category_name = [];
@@ -49,18 +45,16 @@ class _everyday_essentialsState extends State<everyday_essentials> {
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                decoration: BoxDecoration(
-                  color: white,
-                ),
+                color: white,
+                height: MediaQuery.of(context).size.height / 16,
                 child: Padding(
                   padding: EdgeInsets.only(
-                      //   top: MediaQuery.of(context).size.height / 80,
                       left: MediaQuery.of(context).size.height / 60,
                       right: MediaQuery.of(context).size.height / 200),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
                         onTap: () {
@@ -69,129 +63,120 @@ class _everyday_essentialsState extends State<everyday_essentials> {
                         child: Icon(
                           Icons.arrow_back_ios_new_outlined,
                           color: textcolor,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Everyday Essentials",
-                          style: TextStyle(
-                            fontFamily: 'semibold',
-                            fontSize: 24,
-                            color: textcolor,
-                          ),
-                        ),
-                      ),
-                      Text("")
-                    ],
-                  ),
-                ),
-              ), //toprow
-              SizedBox(height: MediaQuery.of(context).size.height / 35),
-              Padding(
-                padding: EdgeInsets.only(
-                  //  top: MediaQuery.of(context).size.height / 60,
-                  left: MediaQuery.of(context).size.height / 60,
-                  right: MediaQuery.of(context).size.height / 60,
-                  // bottom: MediaQuery.of(context).size.height / 80,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: white,
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 40,
-                        spreadRadius: 3,
-                        color: Color(0xffD2D1D5),
-                      ),
-                    ],
-                  ),
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 60,
-                    left: MediaQuery.of(context).size.height / 60,
-                    right: MediaQuery.of(context).size.height / 60,
-                    bottom: MediaQuery.of(context).size.height / 80,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Popular Categories",
-                        style: TextStyle(
-                          fontFamily: 'semibold',
-                          fontSize: 21,
-                          color: textcolor,
+                          size: 20,
                         ),
                       ),
                       SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          // height: MediaQuery.of(context).size.height / 1.3,
-                          child: GridView.builder(
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                childAspectRatio: 3 / 3,
-                                mainAxisSpacing: 20,
-                                crossAxisCount: 2,
-                              ),
-                              shrinkWrap: true,
-                              physics: const BouncingScrollPhysics(),
-                              scrollDirection: Axis.vertical,
-                              itemCount:
-                                  everyday_essential_category_images.length,
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    Get.to(
-                                        () => essential_items_items_screen(
-                                            headding:
-                                                everyday_essential_category_name[
-                                                        index]
-                                                    .name),
-                                        transition: Transition.rightToLeft);
-                                  },
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.width /
-                                                20,
-                                      ),
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
-                                        child: Image.network(
-                                          "${everyday_essential_category_images[index]}",
-                                          scale: 8,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.width /
-                                                50,
-                                      ),
-                                      Container(
-                                        height: 32,
-                                        child: Text(
-                                          "${everyday_essential_category_name[index].name}",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'medium',
-                                            fontSize: 15,
-                                            color: textcolor,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              })),
+                        width: MediaQuery.of(context).size.height / 60,
+                      ),
+                      Text(
+                        "Everyday Essentials",
+                        style: TextStyle(
+                          fontFamily: 'medium',
+                          fontSize: 16,
+                          color: textcolor,
+                        ),
+                      ),
                     ],
-                  ),
+                  ), //toprow
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height / 35),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 100,
+              ),
+              Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 60,
+                    bottom: MediaQuery.of(context).size.height / 100,
+                  ),
+                  child: Text(
+                    "Available Rentals",
+                    style: TextStyle(
+                      fontFamily: 'medium',
+                      fontSize: 16,
+                      color: textcolor,
+                    ),
+                  )),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 100,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    //  top: MediaQuery.of(context).size.height / 60,
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 60,
+                    // bottom: MediaQuery.of(context).size.height / 80,
+                  ),
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: everyday_essential_category_images.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(
+                                () => essential_items_items_screen(
+                                    headding:
+                                        everyday_essential_category_name[index]
+                                            .name),
+                                transition: Transition.rightToLeft);
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).size.height / 60,
+                            ),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  top: MediaQuery.of(context).size.height / 80,
+                                  left: MediaQuery.of(context).size.height / 60,
+                                  right:
+                                      MediaQuery.of(context).size.height / 60,
+                                  bottom:
+                                      MediaQuery.of(context).size.height / 80,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 30,
+                                      foregroundImage: NetworkImage(
+                                        "${everyday_essential_category_images[index]}",
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width /
+                                          1.6,
+                                      child: Text(
+                                        everyday_essential_category_name[index]
+                                            .name,
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                          fontFamily: 'medium',
+                                          fontSize: 15,
+                                          color: textcolor,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                ),
+              ),
             ],
           ),
         ));

@@ -21,14 +21,11 @@ class shopbyconcern extends StatefulWidget {
 }
 
 class _shopbyconcernState extends State<shopbyconcern> {
-  Color textcolor = Color(0xD9181818);
-  Color textcolor_light = Color(0x99181818);
-  Color medicine_colour_button_1 = Color(0xff07DAEB);
-  Color medicine_colour_button_2 = Color(0xff5093FE);
-  Color background = Color(0xffD9D9D9);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
   Color white = Color(0xffffffff);
-  Color search_bg = Color(0x1A000000);
-  Color bluecolor = Color(0xff007AFF);
+  Color background = Color(0xffF1F1F1);
+  Color textcolor_light = Color(0xffACAEBA);
 
   List shopbycenern_images = [];
   List<topdeals> shopbycenern_items = [];
@@ -44,262 +41,220 @@ class _shopbyconcernState extends State<shopbyconcern> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: background,
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                decoration: BoxDecoration(
-                  color: white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: white,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            //   top: MediaQuery.of(context).size.height / 80,
-                            left: MediaQuery.of(context).size.height / 60,
-                            right: MediaQuery.of(context).size.height / 200),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios_new_outlined,
-                                color: textcolor,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "${widget.heading3}",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 24,
-                                  color: textcolor,
-                                ),
-                              ),
-                            ),
-                            Text("")
-                          ],
+                color: white,
+                height: MediaQuery.of(context).size.height / 16,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 200),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios_new_outlined,
+                          color: textcolor,
+                          size: 20,
                         ),
                       ),
-                    ), //toprow
-
-                    SizedBox(height: MediaQuery.of(context).size.height / 70),
-                    //searchbar
-                  ],
+                      SizedBox(
+                        width: MediaQuery.of(context).size.height / 60,
+                      ),
+                      Text(
+                        widget.heading3,
+                        style: TextStyle(
+                          fontFamily: 'medium',
+                          fontSize: 16,
+                          color: textcolor,
+                        ),
+                      ),
+                    ],
+                  ), //toprow
                 ),
               ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 100,
+              ),
+              Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 60,
+                  ),
+                  child: Text(
+                    "All ${widget.heading3} Products",
+                    style: TextStyle(
+                      fontFamily: 'medium',
+                      fontSize: 16,
+                      color: textcolor,
+                    ),
+                  )),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 100,
+              ),
               Expanded(
-                child: Container(
-                    // height: MediaQuery.of(context).size.height / 1.451,
-                    //  width: MediaQuery.of(context).size.width,
-                    color: background,
-                    child: ListView(
-                      physics: BouncingScrollPhysics(),
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height / 150,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 60,
+                  ),
+                  child: ListView(
+                    physics: const BouncingScrollPhysics(),
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).size.height / 60,
                         ),
-                        Container(
-                          child: Padding(
-                              padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 60,
-                                left: MediaQuery.of(context).size.height / 60,
-                                //right: MediaQuery.of(context).size.height / 200,
-                                bottom: MediaQuery.of(context).size.height / 60,
-                              ),
-                              child: Text(
-                                "All ${widget.heading3} Products",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 21,
-                                  color: textcolor,
-                                ),
-                              )),
-                        ),
-                        Container(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).size.height / 60,
-                              left: MediaQuery.of(context).size.height / 60,
-                              right: MediaQuery.of(context).size.height / 60,
-                              bottom: MediaQuery.of(context).size.height / 80,
-                            ),
-                            child: SizedBox(
-                              // height: MediaQuery.of(context).size.height / 5.5,
-                              width: MediaQuery.of(context).size.width,
-                              child: GridView.builder(
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    childAspectRatio: 2 / 3,
-                                    mainAxisSpacing: 20,
-                                    crossAxisCount: 2,
-                                  ),
-                                  shrinkWrap: true,
-                                  physics: BouncingScrollPhysics(),
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: shopbycenern_images.length,
-                                  itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        Get.to(
-                                            () => product_common_screen(
-                                                  heading: "Product Detail",
-                                                  image_url:
-                                                      shopbycenern_images[
-                                                          index],
-                                                  name:
-                                                      shopbycenern_items[index]
-                                                          .name,
-                                                  precaution_and_warning:
-                                                      shopbycenern_items[index]
-                                                          .precaution_and_warning,
-                                                  sideeffect:
-                                                      shopbycenern_items[index]
-                                                          .sideeffect,
-                                                  doses:
-                                                      shopbycenern_items[index]
-                                                          .doses,
-                                                  uses:
-                                                      shopbycenern_items[index]
-                                                          .uses,
-                                                  medicaldiscription:
-                                                      shopbycenern_items[index]
-                                                          .medicaldiscription,
-                                                  company:
-                                                      shopbycenern_items[index]
-                                                          .company,
-                                                  quantity:
-                                                      shopbycenern_items[index]
-                                                          .quantity,
-                                                  cuttopdeals:
-                                                      shopbycenern_items[index]
-                                                          .cuttopdeals,
-                                                  price:
-                                                      shopbycenern_items[index]
-                                                          .price,
-                                                  ingredients:
-                                                      shopbycenern_items[index]
-                                                          .salts,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: white,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              itemCount: shopbycenern_images.length,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(
+                                        () => product_common_screen(
+                                              heading: "Product Detail",
+                                              image_url:
+                                                  shopbycenern_images[index],
+                                              name: shopbycenern_items[index]
+                                                  .name,
+                                              precaution_and_warning:
+                                                  shopbycenern_items[index]
+                                                      .precaution_and_warning,
+                                              sideeffect:
+                                                  shopbycenern_items[index]
+                                                      .sideeffect,
+                                              doses: shopbycenern_items[index]
+                                                  .doses,
+                                              uses: shopbycenern_items[index]
+                                                  .uses,
+                                              medicaldiscription:
+                                                  shopbycenern_items[index]
+                                                      .medicaldiscription,
+                                              company: shopbycenern_items[index]
+                                                  .company,
+                                              quantity:
+                                                  shopbycenern_items[index]
+                                                      .quantity,
+                                              cuttopdeals:
+                                                  shopbycenern_items[index]
+                                                      .cuttopdeals,
+                                              price: shopbycenern_items[index]
+                                                  .price,
+                                              ingredients:
+                                                  shopbycenern_items[index]
+                                                      .salts,
+                                            ),
+                                        transition: Transition.rightToLeft);
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      top: MediaQuery.of(context).size.height /
+                                          80,
+                                      left: MediaQuery.of(context).size.height /
+                                          60,
+                                      right:
+                                          MediaQuery.of(context).size.height /
+                                              60,
+                                      bottom:
+                                          MediaQuery.of(context).size.height /
+                                              80,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        CircleAvatar(
+                                          radius: 30,
+                                          foregroundImage: NetworkImage(
+                                            "${shopbycenern_images[index]}",
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  1.6,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  23,
+                                              child: Text(
+                                                shopbycenern_items[index].name,
+                                                style: TextStyle(
+                                                  fontFamily: 'semibold',
+                                                  fontSize: 16,
+                                                  color: textcolor,
                                                 ),
-                                            transition: Transition.rightToLeft);
-                                      },
-                                      child: Column(
-                                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: white,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 40,
-                                                  spreadRadius: 3,
-                                                  color: Color(0xffD2D1D5),
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "₹${shopbycenern_items[index].price}",
+                                                  style: TextStyle(
+                                                    fontFamily: 'medium',
+                                                    fontSize: 12,
+                                                    color: bluecolor,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      20,
+                                                ),
+                                                Text(
+                                                  "MRP ₹${shopbycenern_items[index].cuttopdeals}",
+                                                  style: TextStyle(
+                                                    decoration: TextDecoration
+                                                        .lineThrough,
+                                                    fontFamily: 'medium',
+                                                    fontSize: 12,
+                                                    color: textcolor_light,
+                                                  ),
                                                 ),
                                               ],
                                             ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  CircleAvatar(
-                                                    radius: 40,
-                                                    foregroundImage:
-                                                        NetworkImage(
-                                                      "${shopbycenern_images[index]}",
-                                                    ),
-                                                  ),
-                                                  Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Text(
-                                                        "${shopbycenern_items[index].name}",
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                          fontFamily:
-                                                              'semibold',
-                                                          fontSize: 16,
-                                                          color: textcolor,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height /
-                                                            350,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            "₹${shopbycenern_items[index].price}",
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  'medium',
-                                                              fontSize: 16,
-                                                              color: bluecolor,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            "₹${shopbycenern_items[index].cuttopdeals}",
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                            style: TextStyle(
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .lineThrough,
-                                                              fontFamily:
-                                                                  'medium',
-                                                              fontSize: 16,
-                                                              color:
-                                                                  textcolor_light,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                            ),
-                          ),
-                        )
-                      ],
-                    )),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ],
           ),

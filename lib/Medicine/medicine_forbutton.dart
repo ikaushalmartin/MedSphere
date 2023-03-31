@@ -119,202 +119,167 @@ class _medicineforbuttonState extends State<medicineforbutton> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 100,
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: white,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                              padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 60,
-                                left: MediaQuery.of(context).size.height / 60,
-                                right: MediaQuery.of(context).size.height / 60,
-                                bottom: MediaQuery.of(context).size.height / 60,
-                              ),
-                              child: Text(
-                                "Top Deals",
-                                style: TextStyle(
-                                  fontFamily: 'medium',
-                                  fontSize: 16,
-                                  color: textcolor,
-                                ),
-                              )),
-                          Padding(
-                              padding: EdgeInsets.only(
-                                right: MediaQuery.of(context).size.height / 60,
-                                left: MediaQuery.of(context).size.height / 60,
-                              ),
-                              child: Expanded(
-                                  child: ListView.builder(
-                                      shrinkWrap: true,
-                                      physics: const BouncingScrollPhysics(),
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: top_images_list_images.length,
-                                      itemBuilder: (context, index) {
-                                        return GestureDetector(
-                                          onTap: () {
-                                            Get.to(
-                                                () => product_common_screen(
-                                                      heading:
-                                                          "Medicine Detail",
-                                                      image_url:
-                                                          top_images_list_images[
-                                                              index],
-                                                      name:
-                                                          top_deals_deatils_list[
-                                                                  index]
-                                                              .name,
-                                                      precaution_and_warning:
-                                                          top_deals_deatils_list[
-                                                                  index]
-                                                              .precaution_and_warning,
-                                                      sideeffect:
-                                                          top_deals_deatils_list[
-                                                                  index]
-                                                              .sideeffect,
-                                                      doses:
-                                                          top_deals_deatils_list[
-                                                                  index]
-                                                              .doses,
-                                                      uses:
-                                                          top_deals_deatils_list[
-                                                                  index]
-                                                              .uses,
-                                                      medicaldiscription:
-                                                          top_deals_deatils_list[
-                                                                  index]
-                                                              .medicaldiscription,
-                                                      company:
-                                                          top_deals_deatils_list[
-                                                                  index]
-                                                              .company,
-                                                      quantity:
-                                                          top_deals_deatils_list[
-                                                                  index]
-                                                              .quantity,
-                                                      cuttopdeals:
-                                                          top_deals_deatils_list[
-                                                                  index]
-                                                              .cuttopdeals,
-                                                      price:
-                                                          top_deals_deatils_list[
-                                                                  index]
-                                                              .price,
-                                                      ingredients:
-                                                          top_deals_deatils_list[
-                                                                  index]
-                                                              .salts,
-                                                    ),
-                                                transition:
-                                                    Transition.rightToLeft);
-                                          },
-                                          child: Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  SizedBox(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                    child: Image.network(
-                                                        "${top_images_list_images[index]}",
-                                                        scale: 8),
-                                                  ),
-                                                  SizedBox(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width /
-                                                            10,
-                                                  ),
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      SizedBox(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            1.6,
-                                                        child: Text(
-                                                          "${top_deals_deatils_list[index].name}",
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'medium',
-                                                            fontSize: 12,
-                                                            color: textcolor,
-                                                          ),
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height /
-                                                            150,
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Text(
-                                                            "₹${top_deals_deatils_list[index].price}",
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  'medium',
-                                                              fontSize: 12,
-                                                              color: bluecolor,
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width /
-                                                                20,
-                                                          ),
-                                                          Text(
-                                                            "MRP₹${top_deals_deatils_list[index].cuttopdeals}",
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: TextStyle(
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .lineThrough,
-                                                              fontFamily:
-                                                                  'medium',
-                                                              fontSize: 12,
-                                                              color:
-                                                                  textcolor_light,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    30,
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      }))),
-                        ],
-                      ),
+                    Padding(
+                        padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60,
+                        ),
+                        child: Text(
+                          "Top Deals",
+                          style: TextStyle(
+                            fontFamily: 'medium',
+                            fontSize: 16,
+                            color: textcolor,
+                          ),
+                        )),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 100,
                     ),
+                    Expanded(
+                        child: Padding(
+                      padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
+                      ),
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          itemCount: top_images_list_images.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(
+                                    () => product_common_screen(
+                                          heading: "Medicine Detail",
+                                          image_url:
+                                              top_images_list_images[index],
+                                          name: top_deals_deatils_list[index]
+                                              .name,
+                                          precaution_and_warning:
+                                              top_deals_deatils_list[index]
+                                                  .precaution_and_warning,
+                                          sideeffect:
+                                              top_deals_deatils_list[index]
+                                                  .sideeffect,
+                                          doses: top_deals_deatils_list[index]
+                                              .doses,
+                                          uses: top_deals_deatils_list[index]
+                                              .uses,
+                                          medicaldiscription:
+                                              top_deals_deatils_list[index]
+                                                  .medicaldiscription,
+                                          company: top_deals_deatils_list[index]
+                                              .company,
+                                          quantity:
+                                              top_deals_deatils_list[index]
+                                                  .quantity,
+                                          cuttopdeals:
+                                              top_deals_deatils_list[index]
+                                                  .cuttopdeals,
+                                          price: top_deals_deatils_list[index]
+                                              .price,
+                                          ingredients:
+                                              top_deals_deatils_list[index]
+                                                  .salts,
+                                        ),
+                                    transition: Transition.rightToLeft);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  bottom:
+                                      MediaQuery.of(context).size.height / 60,
+                                ),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    color: white,
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      top: MediaQuery.of(context).size.height /
+                                          80,
+                                      left: MediaQuery.of(context).size.height /
+                                          60,
+                                      right:
+                                          MediaQuery.of(context).size.height /
+                                              60,
+                                      bottom:
+                                          MediaQuery.of(context).size.height /
+                                              80,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        CircleAvatar(
+                                          radius: 30,
+                                          foregroundImage: NetworkImage(
+                                            "${top_images_list_images[index]}",
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  1.6,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  23,
+                                              child: Text(
+                                                "${top_deals_deatils_list[index].name}",
+                                                style: TextStyle(
+                                                  fontFamily: 'medium',
+                                                  fontSize: 14,
+                                                  color: textcolor,
+                                                ),
+                                                textAlign: TextAlign.left,
+                                              ),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "₹${top_deals_deatils_list[index].price}",
+                                                  style: TextStyle(
+                                                    fontFamily: 'medium',
+                                                    fontSize: 12,
+                                                    color: bluecolor,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      20,
+                                                ),
+                                                Text(
+                                                  "MRP₹${top_deals_deatils_list[index].cuttopdeals}",
+                                                  style: TextStyle(
+                                                    decoration: TextDecoration
+                                                        .lineThrough,
+                                                    fontFamily: 'medium',
+                                                    fontSize: 12,
+                                                    color: textcolor_light,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                    )),
                   ],
                 ),
               ),

@@ -494,30 +494,34 @@ class _rentalfinalState extends State<rentalfinal> {
                     ),
                     Container(
                       height: 38.0,
-                      child: MaterialButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            book_rentals();
-                          } else {
-                            Navigator.of(context).pop();
-                          }
-                        },
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              color: bluecolor,
-                              borderRadius: BorderRadius.circular(6)),
-                          child: Container(
-                            constraints: BoxConstraints(maxWidth: 150.0),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Book",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontFamily: "medium"),
+                      child: Theme(
+                        data: ThemeData(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                        ),
+                        child: MaterialButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              book_rentals();
+                            }
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80.0)),
+                          child: Ink(
+                            decoration: BoxDecoration(
+                                color: bluecolor,
+                                borderRadius: BorderRadius.circular(6)),
+                            child: Container(
+                              constraints: BoxConstraints(maxWidth: 150.0),
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Book",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontFamily: "medium"),
+                              ),
                             ),
                           ),
                         ),

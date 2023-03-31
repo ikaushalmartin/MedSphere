@@ -15,11 +15,13 @@ import 'package:medicineapp2/shopbycategory.dart';
 import 'package:medicineapp2/surgical/surgical.dart';
 import 'package:unicons/unicons.dart';
 import 'Medicine/medicine_forbutton.dart';
+import 'Models/topdeals_model.dart';
 import 'buy and cart/cart.dart';
 import 'buy and cart/surgical_cart.dart';
 import 'const.dart';
 import 'dashboard_search.dart';
-import 'discounts/popular_discounts.dart';
+import 'discounts/discount_products.dart';
+
 import 'doctor/doctor.dart';
 import 'doctors_corner/image_upload.dart';
 import 'doctors_corner/mainscreen.dart';
@@ -58,6 +60,12 @@ class _dashboardState extends State<dashboard> {
   List shop_by_concern_list = [];
   List deals_of_the_day_image_list = [];
   List starting_tiles_image_list = [];
+
+  List deals_of_the_day_image_list2 = [];
+  List<topdeals> top_deals_deatils_list = [];
+  List<topdeals> deal_ofthedayitems = [];
+
+  List dealoftheday_items = [];
   int doctor_checked = 0;
   late var everyday_essential_image_url;
 
@@ -74,6 +82,7 @@ class _dashboardState extends State<dashboard> {
     loadImages();
     shop_by_category_images();
     deals_of_the_day_image();
+    deals_of_the_day_imagessss();
   }
 
   String searchitem = "";
@@ -297,43 +306,30 @@ class _dashboardState extends State<dashboard> {
                           height: MediaQuery.of(context).size.height / 35,
                         ),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: SizedBox(
-                              height: MediaQuery.of(context).size.height / 5,
-                              width: MediaQuery.of(context).size.width,
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: BouncingScrollPhysics(),
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: starting_tiles_image_list.length,
-                                  itemBuilder: (context, index) {
-                                    return Theme(
-                                      data: ThemeData(
-                                        splashColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                      ),
-                                      child: MaterialButton(
-                                        onPressed: () {
-                                          Get.to(() => populardiscounts(),
-                                              transition:
-                                                  Transition.rightToLeft);
-                                        },
-                                        child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
+                            height: MediaQuery.of(context).size.height / 5,
+                            width: MediaQuery.of(context).size.width,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: starting_tiles_image_list.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 4.0, right: 6),
+                                    child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
                                                 1.085,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(6),
-                                                image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: NetworkImage(
-                                                        "${starting_tiles_image_list[index]}")))),
-                                      ),
-                                    );
-                                  })),
-                        ),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: NetworkImage(
+                                                    "${starting_tiles_image_list[index]}")))),
+                                  );
+                                })),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 35,
                         ),
@@ -585,19 +581,19 @@ class _dashboardState extends State<dashboard> {
                   ),
                   Container(
                     color: white,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.height / 60,
-                        right: MediaQuery.of(context).size.height / 60,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 80,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 80,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.height / 60,
+                            right: MediaQuery.of(context).size.height / 60,
                           ),
-                          Text(
+                          child: Text(
                             "Deals of the day",
                             style: TextStyle(
                               fontFamily: 'medium',
@@ -605,47 +601,52 @@ class _dashboardState extends State<dashboard> {
                               color: textcolor,
                             ),
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 80,
-                          ),
-                          SizedBox(
-                              height: MediaQuery.of(context).size.height / 5.5,
-                              width: MediaQuery.of(context).size.width,
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: BouncingScrollPhysics(),
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: deals_of_the_day_image_list.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Get.to(() => populardiscounts(),
-                                              transition:
-                                                  Transition.rightToLeft);
-                                        },
-                                        child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                1.2,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(6),
-                                                image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: NetworkImage(
-                                                        "${deals_of_the_day_image_list[index]}")))),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 80,
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 5.5,
+                            width: MediaQuery.of(context).size.width,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: deals_of_the_day_image_list.length,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      deal_ofthedayitems.clear();
+                                      dealoftheday_items.clear();
+                                      fetch_deal_of_the_day(index + 1);
+                                      dealofthedayimages(index + 1);
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                        left:
+                                            MediaQuery.of(context).size.height /
+                                                60,
                                       ),
-                                    );
-                                  })),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 40,
-                          ),
-                        ],
-                      ),
+                                      child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              1.2,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: NetworkImage(
+                                                      "${deals_of_the_day_image_list[index]}")))),
+                                    ),
+                                  );
+                                })),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 40,
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
@@ -1070,5 +1071,86 @@ class _dashboardState extends State<dashboard> {
         );
       },
     );
+  }
+
+  Future deals_of_the_day_imagessss() async {
+    ListResult result =
+        await FirebaseStorage.instance.ref().child("/deals of the day").list();
+    List<Reference> allFiles = result.items;
+
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      deals_of_the_day_image_list2.add(fileUrl);
+    });
+
+    setState(() {
+      deals_of_the_day_image_list2;
+    });
+
+    return deals_of_the_day_image_list2;
+  }
+
+  fetch_deal_of_the_day(int x) async {
+    var _packages_name = await FirebaseFirestore.instance
+        .collection('DEAL_OFTHE_DAY')
+        .doc('$x')
+        .collection('discount_items')
+        .get();
+    map_dealsoftheday(_packages_name, x);
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+  }
+
+  map_dealsoftheday(QuerySnapshot<Map<String, dynamic>> data, int x) {
+    var topdeal_name = data.docs
+        .map((item) => topdeals(
+            id: item.id,
+            cuttopdeals: item['Cutprice'],
+            name: item['Name'],
+            price: item['Price'],
+            quantity: item['Quantity'],
+            company: item['Company'],
+            medicaldiscription: item['Medical_Discription'],
+            uses: item['Uses'],
+            doses: item['Doses'],
+            sideeffect: item['Side_Effect'],
+            precaution_and_warning: item['Precaution_and_warning'],
+            salts: item['Salts']))
+        .toList();
+
+    setState(() {
+      deal_ofthedayitems = topdeal_name;
+    });
+  }
+
+  Future dealofthedayimages(int x) async {
+    ListResult result = await FirebaseStorage.instance
+        .ref()
+        .child("/deals of the day/$x")
+        .list();
+    List<Reference> allFiles = result.items;
+
+    await Future.forEach<Reference>(allFiles, (file) async {
+      String fileUrl = await file.getDownloadURL();
+      dealoftheday_items.add(fileUrl);
+    });
+
+    setState(() {
+      dealoftheday_items;
+    });
+    Navigator.of(context).pop();
+
+    Get.to(
+        () => discount_products(
+            productlist: deal_ofthedayitems, item_image: dealoftheday_items),
+        transition: Transition.rightToLeft);
+    return dealoftheday_items;
   }
 }

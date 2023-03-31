@@ -8,6 +8,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../Models/surgical_model.dart';
 import '../../buy and cart/cart.dart';
+import '../../buy and cart/surgical_cart.dart';
 import '../../doctor/doctor_model.dart';
 import '../../rentals/rental_commonscreen.dart';
 import '../../surgical/surgical_productscreen.dart';
@@ -22,13 +23,11 @@ class injectables extends StatefulWidget {
 }
 
 class _injectablesState extends State<injectables> {
-  Color bluecolor_bg = Color(0xffDAE1FF);
-  Color textcolor = Color(0xD9181818);
-  Color textcolor_light = Color(0x99181818);
-  Color bluecolor = Color(0xff5093FE);
-  Color background = Color(0xffD9D9D9);
+  Color textcolor = Color(0xff1A1D44);
+
   Color white = Color(0xffffffff);
-  Color search_bg = Color(0x1A000000);
+  Color background = Color(0xffF1F1F1);
+  Color textcolor_light = Color(0xffACAEBA);
 
   List surgical_image = [];
   List<surgical_model> surgical_info = [];
@@ -55,199 +54,177 @@ class _injectablesState extends State<injectables> {
                 decoration: BoxDecoration(
                   color: white,
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: white,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      //   top: MediaQuery.of(context).size.height / 80,
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 200),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Icon(
+                              Icons.arrow_back_ios_new_outlined,
+                              color: textcolor,
+                              size: 20,
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.height / 60,
+                          ),
+                          Text(
+                            widget.category,
+                            style: TextStyle(
+                              fontFamily: 'medium',
+                              fontSize: 16,
+                              color: textcolor,
+                            ),
+                          ),
+                        ],
                       ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            //   top: MediaQuery.of(context).size.height / 80,
-                            left: MediaQuery.of(context).size.height / 60,
-                            right: MediaQuery.of(context).size.height / 200),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios_new_outlined,
-                                color: textcolor,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "${widget.category}",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 24,
-                                  color: textcolor,
-                                ),
-                              ),
-                            ),
-                            Theme(
-                              data: ThemeData(
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                              ),
-                              child: IconButton(
-                                onPressed: () {
-                                  Get.to(() => cart(),
-                                      transition: Transition.rightToLeft);
-                                },
-                                icon: Icon(Icons.shopping_cart_outlined),
-                                color: textcolor,
-                              ),
-                            )
-                          ],
+                      Theme(
+                        data: ThemeData(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
                         ),
-                      ),
-                    ), //toprow
-
-                    SizedBox(height: MediaQuery.of(context).size.height / 70),
-                    //searchbar
-                  ],
+                        child: IconButton(
+                          onPressed: () {
+                            Get.to(() => const surgical_cart(),
+                                transition: Transition.rightToLeft);
+                          },
+                          icon: Icon(Icons.shopping_cart_outlined),
+                          color: textcolor,
+                          iconSize: 20,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 150,
+                height: MediaQuery.of(context).size.height / 100,
               ),
-              Container(
-                color: white,
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 50,
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 200,
+              Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 60,
+                    bottom: MediaQuery.of(context).size.height / 100,
+                  ),
+                  child: Text(
+                    "Available Injectable",
+                    style: TextStyle(
+                      fontFamily: 'medium',
+                      fontSize: 16,
+                      color: textcolor,
                     ),
-                    child: Text(
-                      "Available Rentals",
-                      style: TextStyle(
-                        fontFamily: 'semibold',
-                        fontSize: 20,
-                        color: textcolor,
-                      ),
-                    )),
-              ),
+                  )),
               Expanded(
-                child: Container(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height / 5.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemCount: surgical_image.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Get.to(
-                                  () => surgical_productscreen(
-                                      imageurl: surgical_image[index],
-                                      category: surgical_info[index].category,
-                                      company: surgical_info[index].company,
-                                      cutprice: surgical_info[index].cutprice,
-                                      description:
-                                          surgical_info[index].description,
-                                      name: surgical_info[index].name,
-                                      price: surgical_info[index].price,
-                                      size: surgical_info[index].size,
-                                      sterile: surgical_info[index].sterile,
-                                      use: surgical_info[index].use),
-                                  transition: Transition.rightToLeft);
-                            },
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 60,
+                  ),
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: surgical_image.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(
+                                () => surgical_productscreen(
+                                    imageurl: surgical_image[index],
+                                    category: surgical_info[index].category,
+                                    company: surgical_info[index].company,
+                                    cutprice: surgical_info[index].cutprice,
+                                    description:
+                                        surgical_info[index].description,
+                                    name: surgical_info[index].name,
+                                    price: surgical_info[index].price,
+                                    size: surgical_info[index].size,
+                                    sterile: surgical_info[index].sterile,
+                                    use: surgical_info[index].use),
+                                transition: Transition.rightToLeft);
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).size.height / 60,
+                            ),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
-                              color: white,
+                              decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
                               child: Padding(
                                 padding: EdgeInsets.only(
-                                  //top: MediaQuery.of(context).size.height / 60,
+                                  top: MediaQuery.of(context).size.height / 80,
                                   left: MediaQuery.of(context).size.height / 60,
                                   right:
                                       MediaQuery.of(context).size.height / 60,
                                   bottom:
-                                      MediaQuery.of(context).size.height / 60,
+                                      MediaQuery.of(context).size.height / 80,
                                 ),
-                                child: Column(
-                                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              150,
-                                    ),
-                                    Divider(
-                                      color: background,
-                                      thickness: 2,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      decoration: BoxDecoration(
-                                        color: white,
-                                        borderRadius: BorderRadius.circular(10),
+                                    CircleAvatar(
+                                      radius: 30,
+                                      foregroundImage: NetworkImage(
+                                        surgical_image[index],
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Image.network(
-                                              surgical_image[index],
-                                              scale: 7,
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              1.6,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              23,
+                                          child: Text(
+                                            "${surgical_info[index].name}",
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                              fontFamily: 'medium',
+                                              fontSize: 16,
+                                              color: textcolor,
                                             ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                Text(
-                                                  "${surgical_info[index].name}",
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontFamily: 'semibold',
-                                                    fontSize: 19,
-                                                    color: textcolor,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      350,
-                                                ),
-                                                Text(
-                                                  "${surgical_info[index].company}",
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontFamily: 'medium',
-                                                    fontSize: 16,
-                                                    color: textcolor_light,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                          ),
                                         ),
-                                      ),
+                                        Text(
+                                          "${surgical_info[index].company}",
+                                          textAlign: TextAlign.right,
+                                          style: TextStyle(
+                                            fontFamily: 'medium',
+                                            fontSize: 14,
+                                            color: textcolor_light,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
                               ),
                             ),
-                          );
-                        }),
-                  ),
+                          ),
+                        );
+                      }),
                 ),
               ),
             ],

@@ -393,28 +393,34 @@ class _doctor_finalState extends State<doctor_final> {
                     ),
                     Container(
                       height: 38.0,
-                      child: MaterialButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            book_doctor();
-                          }
-                        },
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              color: bluecolor,
+                      child: Theme(
+                        data: ThemeData(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                        ),
+                        child: MaterialButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              book_doctor();
+                            }
+                          },
+                          shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6)),
-                          child: Container(
-                            constraints: BoxConstraints(maxWidth: 150.0),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Book",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontFamily: "medium"),
+                          child: Ink(
+                            decoration: BoxDecoration(
+                                color: bluecolor,
+                                borderRadius: BorderRadius.circular(6)),
+                            child: Container(
+                              constraints: BoxConstraints(maxWidth: 150.0),
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Book",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontFamily: "medium"),
+                              ),
                             ),
                           ),
                         ),

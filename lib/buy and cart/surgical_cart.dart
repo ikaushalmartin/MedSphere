@@ -570,29 +570,36 @@ class _surgical_cartState extends State<surgical_cart> {
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 20,
-                        child: MaterialButton(
-                          onPressed: () {
-                            Get.to(
-                                () => surgical_final(
-                                      cart_items: cartdata,
-                                      totalamount:
-                                          (discountedprice + deliverycharges),
-                                      discount: discountpercentage,
-                                    ),
-                                transition: Transition.rightToLeft);
-                          },
-                          child: Ink(
-                            decoration: BoxDecoration(
-                                color: bluecolor,
-                                borderRadius: BorderRadius.circular(6)),
-                            child: Container(
-                              constraints: BoxConstraints(maxWidth: 200),
-                              alignment: Alignment.center,
-                              child: Text(
-                                "Add Delivery Address",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white, fontFamily: "medium"),
+                        child: Theme(
+                          data: ThemeData(
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                          ),
+                          child: MaterialButton(
+                            onPressed: () {
+                              Get.to(
+                                  () => surgical_final(
+                                        cart_items: cartdata,
+                                        totalamount:
+                                            (discountedprice + deliverycharges),
+                                        discount: discountpercentage,
+                                      ),
+                                  transition: Transition.rightToLeft);
+                            },
+                            child: Ink(
+                              decoration: BoxDecoration(
+                                  color: bluecolor,
+                                  borderRadius: BorderRadius.circular(6)),
+                              child: Container(
+                                constraints: BoxConstraints(maxWidth: 200),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Add Delivery Address",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: "medium"),
+                                ),
                               ),
                             ),
                           ),

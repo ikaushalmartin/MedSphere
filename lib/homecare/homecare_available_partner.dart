@@ -108,18 +108,25 @@ class _homecare_available_partnerState
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Get.to(homecare_commonscreen(
-                            name: homecare_available_partner[index].name,
-                            specialist:
-                                homecare_available_partner[index].specialist,
-                            available_for_time:
-                                homecare_available_partner[index].workinghours,
-                            priceperday:
-                                homecare_available_partner[index].hospital,
-                            experience:
-                                homecare_available_partner[index].experience,
-                            bio: homecare_available_partner[index].bio,
-                          ));
+                          Get.to(
+                              () => homecare_commonscreen(
+                                    name:
+                                        homecare_available_partner[index].name,
+                                    specialist:
+                                        homecare_available_partner[index]
+                                            .specialist,
+                                    available_for_time:
+                                        homecare_available_partner[index]
+                                            .workinghours,
+                                    priceperday:
+                                        homecare_available_partner[index]
+                                            .hospital,
+                                    experience:
+                                        homecare_available_partner[index]
+                                            .experience,
+                                    bio: homecare_available_partner[index].bio,
+                                  ),
+                              transition: Transition.rightToLeft);
                         },
                         child: Padding(
                           padding: EdgeInsets.only(

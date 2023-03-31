@@ -176,59 +176,67 @@ class _homecare_finalState extends State<homecare_final> {
                                 color: background,
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: MaterialButton(
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: Text(
-                                          'Days',
-                                          style: TextStyle(
-                                              color: textcolor,
-                                              fontFamily: "medium"),
-                                        ),
-                                        content: Container(
-                                          height: 350,
-                                          width: 1,
-                                          child: ListView.builder(
-                                            physics:
-                                                const BouncingScrollPhysics(),
-                                            shrinkWrap: true,
-                                            itemCount: 29,
-                                            itemBuilder:
-                                                (BuildContext context, int x) {
-                                              return ListTile(
-                                                title: GestureDetector(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      days = x + 1;
-                                                    });
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    height: 50,
-                                                    child: Text('${x + 1}'),
-                                                  ),
-                                                ),
-                                              );
-                                            },
+                              child: Theme(
+                                data: ThemeData(
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                ),
+                                child: MaterialButton(
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                            'Days',
+                                            style: TextStyle(
+                                                color: textcolor,
+                                                fontFamily: "medium"),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                                child: Text(
-                                  'Days - $days',
-                                  style: TextStyle(
-                                      color: textcolor,
-                                      fontFamily: "medium",
-                                      fontSize: 12),
+                                          content: Container(
+                                            height: 350,
+                                            width: 1,
+                                            child: ListView.builder(
+                                              physics:
+                                                  const BouncingScrollPhysics(),
+                                              shrinkWrap: true,
+                                              itemCount: 29,
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int x) {
+                                                return ListTile(
+                                                  title: GestureDetector(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        days = x + 1;
+                                                      });
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      height: 50,
+                                                      child: Text('${x + 1}'),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: Text(
+                                    'Days - $days',
+                                    style: TextStyle(
+                                        color: textcolor,
+                                        fontFamily: "medium",
+                                        fontSize: 12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -489,8 +497,6 @@ class _homecare_finalState extends State<homecare_final> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             book_homecare();
-                          } else {
-                            Navigator.of(context).pop();
                           }
                         },
                         shape: RoundedRectangleBorder(

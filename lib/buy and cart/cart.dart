@@ -286,74 +286,84 @@ class _cartState extends State<cart> {
                                                         BorderRadius.circular(
                                                             6),
                                                   ),
-                                                  child: MaterialButton(
-                                                    onPressed: () {
-                                                      showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                            context) {
-                                                          return AlertDialog(
-                                                            title: Text(
-                                                              'Quantity',
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      textcolor,
-                                                                  fontFamily:
-                                                                      "medium",
-                                                                  fontSize: 14),
-                                                            ),
-                                                            content: SizedBox(
-                                                              height: 500,
-                                                              width: 1,
-                                                              child: ListView
-                                                                  .builder(
-                                                                physics:
-                                                                    const BouncingScrollPhysics(),
-                                                                shrinkWrap:
-                                                                    true,
-                                                                itemCount: 30,
-                                                                itemBuilder:
-                                                                    (BuildContext
-                                                                            context,
-                                                                        int x) {
-                                                                  return ListTile(
-                                                                    title:
-                                                                        GestureDetector(
-                                                                      onTap:
-                                                                          () {
-                                                                        selected_quantity =
-                                                                            x + 1;
-                                                                        updateDocument(
-                                                                            cartdata[index].id);
-
-                                                                        Navigator.of(context)
-                                                                            .pop();
-                                                                      },
-                                                                      child:
-                                                                          SizedBox(
-                                                                        width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width,
-                                                                        height:
-                                                                            50,
-                                                                        child: Text(
-                                                                            '${x + 1}'),
-                                                                      ),
-                                                                    ),
-                                                                  );
-                                                                },
+                                                  child: Theme(
+                                                    data: ThemeData(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                    ),
+                                                    child: MaterialButton(
+                                                      onPressed: () {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                              context) {
+                                                            return AlertDialog(
+                                                              title: Text(
+                                                                'Quantity',
+                                                                style: TextStyle(
+                                                                    color:
+                                                                        textcolor,
+                                                                    fontFamily:
+                                                                        "medium",
+                                                                    fontSize:
+                                                                        14),
                                                               ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      );
-                                                    },
-                                                    child: Text(
-                                                      'Qty - ${cartdata[index].quantity}',
-                                                      style: TextStyle(
-                                                          color: textcolor,
-                                                          fontSize: 12,
-                                                          fontFamily: "medium"),
+                                                              content: SizedBox(
+                                                                height: 500,
+                                                                width: 1,
+                                                                child: ListView
+                                                                    .builder(
+                                                                  physics:
+                                                                      const BouncingScrollPhysics(),
+                                                                  shrinkWrap:
+                                                                      true,
+                                                                  itemCount: 30,
+                                                                  itemBuilder:
+                                                                      (BuildContext
+                                                                              context,
+                                                                          int x) {
+                                                                    return ListTile(
+                                                                      title:
+                                                                          GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          selected_quantity =
+                                                                              x + 1;
+                                                                          updateDocument(
+                                                                              cartdata[index].id);
+
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                        },
+                                                                        child:
+                                                                            SizedBox(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          height:
+                                                                              50,
+                                                                          child:
+                                                                              Text('${x + 1}'),
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                      child: Text(
+                                                        'Qty - ${cartdata[index].quantity}',
+                                                        style: TextStyle(
+                                                            color: textcolor,
+                                                            fontSize: 12,
+                                                            fontFamily:
+                                                                "medium"),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -583,29 +593,36 @@ class _cartState extends State<cart> {
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 20,
-                        child: MaterialButton(
-                          onPressed: () {
-                            Get.to(
-                                () => medicine_final(
-                                      discount: discountpercentage,
-                                      cart_items: cartdata,
-                                      totalamount:
-                                          discountedprice + deliverycharges,
-                                    ),
-                                transition: Transition.rightToLeft);
-                          },
-                          child: Ink(
-                            decoration: BoxDecoration(
-                                color: bluecolor,
-                                borderRadius: BorderRadius.circular(6)),
-                            child: Container(
-                              constraints: BoxConstraints(maxWidth: 200),
-                              alignment: Alignment.center,
-                              child: Text(
-                                "Add Delivery Address",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white, fontFamily: "medium"),
+                        child: Theme(
+                          data: ThemeData(
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                          ),
+                          child: MaterialButton(
+                            onPressed: () {
+                              Get.to(
+                                  () => medicine_final(
+                                        discount: discountpercentage,
+                                        cart_items: cartdata,
+                                        totalamount:
+                                            discountedprice + deliverycharges,
+                                      ),
+                                  transition: Transition.rightToLeft);
+                            },
+                            child: Ink(
+                              decoration: BoxDecoration(
+                                  color: bluecolor,
+                                  borderRadius: BorderRadius.circular(6)),
+                              child: Container(
+                                constraints: BoxConstraints(maxWidth: 200),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Add Delivery Address",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: "medium"),
+                                ),
                               ),
                             ),
                           ),

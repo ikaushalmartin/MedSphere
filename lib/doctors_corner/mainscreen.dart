@@ -46,192 +46,113 @@ class _mainscreenState extends State<mainscreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                decoration: BoxDecoration(
-                  color: white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: white,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            //   top: MediaQuery.of(context).size.height / 80,
-                            left: MediaQuery.of(context).size.height / 60,
-                            right: MediaQuery.of(context).size.height / 200),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios_new_outlined,
-                                color: textcolor,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "Doctors Corner",
-                                style: TextStyle(
-                                  fontFamily: 'semibold',
-                                  fontSize: 24,
-                                  color: textcolor,
-                                ),
-                              ),
-                            ),
-                            Theme(
-                              data: ThemeData(
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                              ),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.shopping_cart_outlined),
-                                color: textcolor,
-                              ),
-                            )
-                          ],
+                color: white,
+                height: MediaQuery.of(context).size.height / 16,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      // top: MediaQuery.of(context).size.height / 50,
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 200),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios_new_outlined,
+                          color: textcolor,
+                          size: 20,
                         ),
                       ),
-                    ), //toprow
-                    SizedBox(height: MediaQuery.of(context).size.height / 200),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 60),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width / 1.35,
-                            decoration: BoxDecoration(
-                              color: background,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextField(
-                              onChanged: (value) {},
-                              keyboardType: TextInputType.emailAddress,
-                              style: TextStyle(color: textcolor),
-                              textAlign: TextAlign.left,
-                              decoration: kTextFieldDecoration.copyWith(
-                                  contentPadding: EdgeInsets.only(left: 20),
-                                  hintText: "Search"),
-                            ),
-                          ),
-                          Container(
-                              width: MediaQuery.of(context).size.width / 6,
-                              decoration: BoxDecoration(
-                                color: background,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Theme(
-                                data: ThemeData(
-                                  splashColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                ),
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.search),
-                                  color: textcolor,
-                                ),
-                              ))
-                        ],
+                      SizedBox(
+                        width: MediaQuery.of(context).size.height / 60,
                       ),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 70),
-                    //searchbar
-                  ],
+                      Align(
+                        child: Text(
+                          "Doctor's Corner",
+                          style: TextStyle(
+                            fontFamily: 'medium',
+                            fontSize: 16,
+                            color: textcolor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 100,
+              ),
               Expanded(
-                child: Container(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height / 5.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemCount: doctor_corner_image.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Get.to(
-                                  () => option_screen(
-                                        itemname:
-                                            doctor_corners_items[index].name,
-                                      ),
-                                  transition: Transition.rightToLeft);
-                            },
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 60,
+                  ),
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: doctor_corner_image.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(
+                                () => option_screen(
+                                      itemname:
+                                          doctor_corners_items[index].name,
+                                    ),
+                                transition: Transition.rightToLeft);
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).size.height / 60,
+                            ),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
-                              color: white,
+                              decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
                               child: Padding(
                                 padding: EdgeInsets.only(
-                                  //top: MediaQuery.of(context).size.height / 60,
+                                  top: MediaQuery.of(context).size.height / 80,
                                   left: MediaQuery.of(context).size.height / 60,
                                   right:
                                       MediaQuery.of(context).size.height / 60,
                                   bottom:
-                                      MediaQuery.of(context).size.height / 60,
+                                      MediaQuery.of(context).size.height / 80,
                                 ),
-                                child: Column(
-                                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              150,
-                                    ),
-                                    Divider(
-                                      color: background,
-                                      thickness: 2,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      decoration: BoxDecoration(
-                                        color: white,
-                                        borderRadius: BorderRadius.circular(10),
+                                    CircleAvatar(
+                                      radius: 30,
+                                      foregroundImage: NetworkImage(
+                                        doctor_corner_image[index],
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            CircleAvatar(
-                                              backgroundImage: NetworkImage(
-                                                doctor_corner_image[index],
-                                              ),
-                                              maxRadius: 40,
-                                            ),
-                                            Text(
-                                              "${doctor_corners_items[index].name}",
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                fontFamily: 'semibold',
-                                                fontSize: 19,
-                                                color: textcolor,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                    ),
+                                    Text(
+                                      "${doctor_corners_items[index].name}",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        fontFamily: 'medium',
+                                        fontSize: 16,
+                                        color: textcolor,
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
                             ),
-                          );
-                        }),
-                  ),
+                          ),
+                        );
+                      }),
                 ),
               ),
             ],

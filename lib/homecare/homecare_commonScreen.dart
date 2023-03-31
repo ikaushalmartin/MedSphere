@@ -275,32 +275,38 @@ class _homecare_commonscreenState extends State<homecare_commonscreen> {
                     ),
                     SizedBox(
                       height: 38.0,
-                      child: MaterialButton(
-                        onPressed: () {
-                          Get.to(
-                              () => homecare_final(
-                                    priceperday: widget.priceperday,
-                                    name: widget.name,
-                                    profession: widget.specialist,
-                                  ),
-                              transition: Transition.rightToLeft);
-                        },
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              color: bluecolor,
-                              borderRadius: BorderRadius.circular(6)),
-                          child: Container(
-                            constraints: BoxConstraints(maxWidth: 150.0),
-                            alignment: Alignment.center,
-                            child: const Text(
-                              "Book",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontFamily: "medium"),
+                      child: Theme(
+                        data: ThemeData(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                        ),
+                        child: MaterialButton(
+                          onPressed: () {
+                            Get.to(
+                                () => homecare_final(
+                                      priceperday: widget.priceperday,
+                                      name: widget.name,
+                                      profession: widget.specialist,
+                                    ),
+                                transition: Transition.rightToLeft);
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80.0)),
+                          child: Ink(
+                            decoration: BoxDecoration(
+                                color: bluecolor,
+                                borderRadius: BorderRadius.circular(6)),
+                            child: Container(
+                              constraints: BoxConstraints(maxWidth: 150.0),
+                              alignment: Alignment.center,
+                              child: const Text(
+                                "Book",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontFamily: "medium"),
+                              ),
                             ),
                           ),
                         ),

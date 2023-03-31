@@ -248,32 +248,39 @@ class _doctorcommonscreenState extends State<doctorcommonscreen> {
                     ),
                     SizedBox(
                       height: 38.0,
-                      child: MaterialButton(
-                        onPressed: () {
-                          Get.to(
-                              () => doctor_final(
-                                  doctorname: widget.name,
-                                  fees: widget.experience,
-                                  workinghours: widget.workinghours,
-                                  hospitalname: widget.hospital),
-                              transition: Transition.rightToLeft);
-                        },
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              color: bluecolor,
-                              borderRadius: BorderRadius.circular(6)),
-                          child: Container(
-                            constraints: const BoxConstraints(maxWidth: 150.0),
-                            alignment: Alignment.center,
-                            child: const Text(
-                              "Consult",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontFamily: "medium"),
+                      child: Theme(
+                        data: ThemeData(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                        ),
+                        child: MaterialButton(
+                          onPressed: () {
+                            Get.to(
+                                () => doctor_final(
+                                    doctorname: widget.name,
+                                    fees: widget.experience,
+                                    workinghours: widget.workinghours,
+                                    hospitalname: widget.hospital),
+                                transition: Transition.rightToLeft);
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80.0)),
+                          child: Ink(
+                            decoration: BoxDecoration(
+                                color: bluecolor,
+                                borderRadius: BorderRadius.circular(6)),
+                            child: Container(
+                              constraints:
+                                  const BoxConstraints(maxWidth: 150.0),
+                              alignment: Alignment.center,
+                              child: const Text(
+                                "Consult",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontFamily: "medium"),
+                              ),
                             ),
                           ),
                         ),

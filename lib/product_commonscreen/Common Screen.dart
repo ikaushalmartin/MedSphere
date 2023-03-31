@@ -271,64 +271,71 @@ class _product_common_screenState extends State<product_common_screen> {
                                     color: background,
                                     borderRadius: BorderRadius.circular(6),
                                   ),
-                                  child: MaterialButton(
-                                    onPressed: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Text(
-                                              'Quantity',
-                                              style: TextStyle(
-                                                  color: bluecolor,
-                                                  fontFamily: 'semibold',
-                                                  fontSize: 16),
-                                            ),
-                                            content: Container(
-                                              height: 500,
-                                              width: 1,
-                                              child: ListView.builder(
-                                                physics:
-                                                    const BouncingScrollPhysics(),
-                                                shrinkWrap: true,
-                                                itemCount: 30,
-                                                itemBuilder:
-                                                    (BuildContext context,
-                                                        int x) {
-                                                  return ListTile(
-                                                    title: GestureDetector(
-                                                      onTap: () {
-                                                        quantity = x + 1;
-
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        setState(() {
-                                                          quantity;
-                                                        });
-                                                      },
-                                                      child: SizedBox(
-                                                        width: MediaQuery.of(
-                                                                context)
-                                                            .size
-                                                            .width,
-                                                        height: 50,
-                                                        child: Text('${x + 1}'),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
+                                  child: Theme(
+                                    data: ThemeData(
+                                      splashColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                    ),
+                                    child: MaterialButton(
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                'Quantity',
+                                                style: TextStyle(
+                                                    color: bluecolor,
+                                                    fontFamily: 'semibold',
+                                                    fontSize: 16),
                                               ),
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                    child: Text(
-                                      'Qty - $quantity',
-                                      style: TextStyle(
-                                        fontFamily: 'medium',
-                                        fontSize: 14,
-                                        color: textcolor,
+                                              content: Container(
+                                                height: 500,
+                                                width: 1,
+                                                child: ListView.builder(
+                                                  physics:
+                                                      const BouncingScrollPhysics(),
+                                                  shrinkWrap: true,
+                                                  itemCount: 30,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int x) {
+                                                    return ListTile(
+                                                      title: GestureDetector(
+                                                        onTap: () {
+                                                          quantity = x + 1;
+
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                          setState(() {
+                                                            quantity;
+                                                          });
+                                                        },
+                                                        child: SizedBox(
+                                                          width: MediaQuery.of(
+                                                                  context)
+                                                              .size
+                                                              .width,
+                                                          height: 50,
+                                                          child:
+                                                              Text('${x + 1}'),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: Text(
+                                        'Qty - $quantity',
+                                        style: TextStyle(
+                                          fontFamily: 'medium',
+                                          fontSize: 14,
+                                          color: textcolor,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -337,59 +344,68 @@ class _product_common_screenState extends State<product_common_screen> {
                                   height:
                                       MediaQuery.of(context).size.height / 100,
                                 ),
-                                MaterialButton(
-                                  onPressed: () {
-                                    fetch_cart_data_for_check();
-                                    if (deliveryandminval_list_for_check
-                                        .isEmpty) {
-                                      enable = true;
-                                    }
-                                    setState(() {
-                                      enable;
-                                    });
-
-                                    if (enable == true) {
-                                      addtocart(widget.name, widget.price,
-                                          widget.company);
-                                    } else {
-                                      var checksnackbar = SnackBar(
-                                        content:
-                                            const Text("Item Already Added!"),
-                                        // backgroundColor: textcolor,
-                                        shape: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(1)),
-                                        duration: Duration(milliseconds: 2000),
-                                        behavior: SnackBarBehavior.floating,
-                                      );
+                                Theme(
+                                  data: ThemeData(
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                  ),
+                                  child: MaterialButton(
+                                    onPressed: () {
+                                      fetch_cart_data_for_check();
+                                      if (deliveryandminval_list_for_check
+                                          .isEmpty) {
+                                        enable = true;
+                                      }
                                       setState(() {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(checksnackbar);
+                                        enable;
                                       });
-                                    }
-                                  },
-                                  child: Ink(
-                                    decoration: BoxDecoration(
-                                        color: bluecolor,
-                                        borderRadius:
-                                            BorderRadius.circular(6.0)),
-                                    child: Container(
-                                      constraints: BoxConstraints(
-                                        minHeight:
-                                            MediaQuery.of(context).size.height /
-                                                20,
-                                        minWidth:
-                                            MediaQuery.of(context).size.height /
-                                                7,
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "Add to cart",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: 'medium',
-                                          fontSize: 14,
-                                          color: white,
+
+                                      if (enable == true) {
+                                        addtocart(widget.name, widget.price,
+                                            widget.company);
+                                      } else {
+                                        var checksnackbar = SnackBar(
+                                          content:
+                                              const Text("Item Already Added!"),
+                                          // backgroundColor: textcolor,
+                                          shape: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(1)),
+                                          duration:
+                                              Duration(milliseconds: 2000),
+                                          behavior: SnackBarBehavior.floating,
+                                        );
+                                        setState(() {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(checksnackbar);
+                                        });
+                                      }
+                                    },
+                                    child: Ink(
+                                      decoration: BoxDecoration(
+                                          color: bluecolor,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0)),
+                                      child: Container(
+                                        constraints: BoxConstraints(
+                                          minHeight: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              20,
+                                          minWidth: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              7,
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Add to cart",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontFamily: 'medium',
+                                            fontSize: 14,
+                                            color: white,
+                                          ),
                                         ),
                                       ),
                                     ),

@@ -564,33 +564,40 @@ class _lab_cartState extends State<lab_cart> {
                           ),
                         ],
                       ),
-                      Container(
+                      SizedBox(
                         height: MediaQuery.of(context).size.height / 20,
-                        child: MaterialButton(
-                          onPressed: () {
-                            Get.to(
-                                () => labtest_final(
-                                      cart_items: lab_cartdata,
-                                      totalamount:
-                                          (discountedprice + deliverycharges),
-                                      discount: discountpercentage,
-                                    ),
-                                transition: Transition.rightToLeft);
-                          },
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
-                          child: Ink(
-                            decoration: BoxDecoration(
-                                color: bluecolor,
-                                borderRadius: BorderRadius.circular(6)),
-                            child: Container(
-                              constraints: BoxConstraints(maxWidth: 200),
-                              alignment: Alignment.center,
-                              child: Text(
-                                "Add Delivery Address",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white, fontFamily: "medium"),
+                        child: Theme(
+                          data: ThemeData(
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                          ),
+                          child: MaterialButton(
+                            onPressed: () {
+                              Get.to(
+                                  () => labtest_final(
+                                        cart_items: lab_cartdata,
+                                        totalamount:
+                                            (discountedprice + deliverycharges),
+                                        discount: discountpercentage,
+                                      ),
+                                  transition: Transition.rightToLeft);
+                            },
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(80.0)),
+                            child: Ink(
+                              decoration: BoxDecoration(
+                                  color: bluecolor,
+                                  borderRadius: BorderRadius.circular(6)),
+                              child: Container(
+                                constraints: BoxConstraints(maxWidth: 200),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Add Delivery Address",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: "medium"),
+                                ),
                               ),
                             ),
                           ),
