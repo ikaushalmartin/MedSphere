@@ -165,7 +165,7 @@ class _discount_productsState extends State<discount_products> {
                                         Row(
                                           children: [
                                             Text(
-                                              "Offer Price - ₹${widget.productlist[index].price}",
+                                              "Offer Price : ₹${widget.productlist[index].price}",
                                               textAlign: TextAlign.left,
                                               style: const TextStyle(
                                                 fontFamily: 'medium',

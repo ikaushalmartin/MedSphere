@@ -58,10 +58,10 @@ class _product_common_screenState extends State<product_common_screen> {
   Color white = Color(0xffffffff);
   Color background = Color(0xffF1F1F1);
 
-  int quantity = 1;
+  int quantity_second = 1;
   List<cartmodel> deliveryandminval_list_for_check = [];
-
   bool enable = true;
+  late int quantity_index;
   @override
   void initState() {
     // TODO: implement initState
@@ -303,12 +303,20 @@ class _product_common_screenState extends State<product_common_screen> {
                                                     return ListTile(
                                                       title: GestureDetector(
                                                         onTap: () {
-                                                          quantity = x + 1;
+                                                          quantity_second =
+                                                              x + 1;
+                                                          checkButton();
+                                                          if (enable == false) {
+                                                            updateDocument(
+                                                                deliveryandminval_list_for_check[
+                                                                        quantity_index]
+                                                                    .id);
+                                                          }
 
                                                           Navigator.of(context)
                                                               .pop();
                                                           setState(() {
-                                                            quantity;
+                                                            quantity_second;
                                                           });
                                                         },
                                                         child: SizedBox(
@@ -330,7 +338,7 @@ class _product_common_screenState extends State<product_common_screen> {
                                         );
                                       },
                                       child: Text(
-                                        'Qty - $quantity',
+                                        'Qty - $quantity_second',
                                         style: TextStyle(
                                           fontFamily: 'medium',
                                           fontSize: 14,
@@ -684,7 +692,7 @@ class _product_common_screenState extends State<product_common_screen> {
       'price': price,
       'productname': productname,
       'imageurl': widget.image_url,
-      'quantity': quantity,
+      'quantity': quantity_second,
       'Medical_Discription': widget.medicaldiscription,
       'Uses': widget.uses,
       'Doses': widget.doses,
@@ -740,6 +748,8 @@ class _product_common_screenState extends State<product_common_screen> {
           '${widget.company}---------------${deliveryandminval_list_for_check[i].company}');
       if (widget.name == deliveryandminval_list_for_check[i].productname &&
           widget.company == deliveryandminval_list_for_check[i].company) {
+        quantity_index = i;
+
         enable = false;
         break;
       } else {
@@ -750,5 +760,26 @@ class _product_common_screenState extends State<product_common_screen> {
     setState(() {
       enable;
     });
+  }
+
+  void updateDocument(String documentId) async {
+    showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    await FirebaseFirestore.instance
+        .collection('medicine_cart')
+        .doc(uid)
+        .collection("cartitems")
+        .doc(documentId)
+        .update({
+      "quantity": quantity_second,
+    });
+
+    Navigator.of(context).pop();
   }
 }

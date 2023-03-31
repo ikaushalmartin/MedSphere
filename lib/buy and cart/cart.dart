@@ -141,9 +141,7 @@ class _cartState extends State<cart> {
                                               price: cartdata2[index].price,
                                               ingredients:
                                                   cartdata2[index].salts,
-                                              quantity:
-                                                  (cartdata2[index].quantity)
-                                                      .toString(),
+                                              quantity: "",
                                             ),
                                         transition: Transition.rightToLeft);
                                   },

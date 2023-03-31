@@ -53,6 +53,7 @@ class _surgical_productscreenState extends State<surgical_productscreen> {
   bool enable = true;
   int quantity = 1;
 
+  late int quantity_index;
   @override
   void initState() {
     // TODO: implement initState
@@ -282,7 +283,12 @@ class _surgical_productscreenState extends State<surgical_productscreen> {
                                                     title: GestureDetector(
                                                       onTap: () {
                                                         quantity = x + 1;
-
+                                                        if (enable == false) {
+                                                          updateDocument(
+                                                              deliveryandminval_list_for_check[
+                                                                      quantity_index]
+                                                                  .id);
+                                                        }
                                                         Navigator.of(context)
                                                             .pop();
                                                         setState(() {
@@ -656,6 +662,8 @@ class _surgical_productscreenState extends State<surgical_productscreen> {
           '${widget.company}---------------${deliveryandminval_list_for_check[i].company}');
       if (widget.name == deliveryandminval_list_for_check[i].productname &&
           widget.company == deliveryandminval_list_for_check[i].company) {
+        quantity_index = i;
+
         enable = false;
         break;
       } else {
@@ -666,5 +674,26 @@ class _surgical_productscreenState extends State<surgical_productscreen> {
     setState(() {
       enable;
     });
+  }
+
+  void updateDocument(String documentId) async {
+    showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    await FirebaseFirestore.instance
+        .collection('CARTS')
+        .doc(uid)
+        .collection("Surgical Cart")
+        .doc(documentId)
+        .update({
+      "Quantity": quantity,
+    });
+
+    Navigator.of(context).pop();
   }
 }
