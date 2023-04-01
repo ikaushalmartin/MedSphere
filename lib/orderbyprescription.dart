@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:medicineapp2/const.dart';
 import 'package:medicineapp2/dashboard.dart';
 import 'dart:core';
 
@@ -19,7 +20,7 @@ class orderbyprescription extends StatefulWidget {
 
 class _orderbyprescriptionState extends State<orderbyprescription> {
   Color textcolor = Color(0xff1A1D44);
-
+  Color bluecolor = Color(0xff014CC4);
   Color buttontextcolor = Colors.white;
 
   @override
@@ -79,7 +80,7 @@ class _orderbyprescriptionState extends State<orderbyprescription> {
                 highlightElevation: 0,
                 height: MediaQuery.of(context).size.height / 22,
                 minWidth: MediaQuery.of(context).size.height / 9,
-                color: const Color(0xff1A1D44),
+                color: textcolor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6)),
                 child: Text(
@@ -300,99 +301,95 @@ class _orderbyprescription_medicinepageState
           SizedBox(
             height: MediaQuery.of(context).size.height / 50,
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-                top: 0, left: 15.0, right: 15.0, bottom: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.height / 50,
-                ),
-                ButtonTheme(
-                  child: Center(
-                    child: MaterialButton(
-                      onPressed: () {
-                        getImage(ImageSource.camera);
-                      },
-                      elevation: 0,
-                      hoverElevation: 0,
-                      focusElevation: 0,
-                      highlightElevation: 0,
-                      height: MediaQuery.of(context).size.height / 20,
-                      minWidth: MediaQuery.of(context).size.height / 11,
-                      color: bluecolor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6)),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.camera_alt_rounded,
-                            size: 20,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.height / 50,
+              ),
+              ButtonTheme(
+                child: Center(
+                  child: MaterialButton(
+                    onPressed: () {
+                      getImage(ImageSource.camera);
+                    },
+                    elevation: 0,
+                    hoverElevation: 0,
+                    focusElevation: 0,
+                    highlightElevation: 0,
+                    height: MediaQuery.of(context).size.height / 20,
+                    minWidth: MediaQuery.of(context).size.height / 11,
+                    color: bluecolor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6)),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.camera_alt_rounded,
+                          size: 20,
+                          color: white,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.height / 80,
+                        ),
+                        Text(
+                          "Camera",
+                          style: TextStyle(
+                            fontFamily: 'medium',
+                            fontSize: 14,
                             color: white,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.height / 80,
-                          ),
-                          Text(
-                            "Camera",
-                            style: TextStyle(
-                              fontFamily: 'medium',
-                              fontSize: 14,
-                              color: white,
-                            ),
-                          )
-                        ],
-                      ),
+                        )
+                      ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.height / 10,
-                ),
-                ButtonTheme(
-                  child: Center(
-                    child: MaterialButton(
-                      onPressed: () {
-                        getImage(ImageSource.gallery);
-                      },
-                      elevation: 0,
-                      hoverElevation: 0,
-                      focusElevation: 0,
-                      highlightElevation: 0,
-                      height: MediaQuery.of(context).size.height / 20,
-                      minWidth: MediaQuery.of(context).size.height / 11,
-                      color: lightblue,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6)),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.photo,
-                            size: 20,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.height / 10,
+              ),
+              ButtonTheme(
+                child: Center(
+                  child: MaterialButton(
+                    onPressed: () {
+                      getImage(ImageSource.gallery);
+                    },
+                    elevation: 0,
+                    hoverElevation: 0,
+                    focusElevation: 0,
+                    highlightElevation: 0,
+                    height: MediaQuery.of(context).size.height / 20,
+                    minWidth: MediaQuery.of(context).size.height / 11,
+                    color: lightblue,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6)),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.photo,
+                          size: 20,
+                          color: white,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.height / 80,
+                        ),
+                        Text(
+                          "Gallery",
+                          style: TextStyle(
+                            fontFamily: 'semibold',
+                            fontSize: 14,
                             color: white,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.height / 80,
-                          ),
-                          Text(
-                            "Gallery",
-                            style: TextStyle(
-                              fontFamily: 'semibold',
-                              fontSize: 14,
-                              color: white,
-                            ),
-                          )
-                        ],
-                      ),
+                        )
+                      ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.height / 50,
-                ),
-              ],
-            ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.height / 50,
+              ),
+            ],
           ),
           AnimatedContainer(
             duration: Duration(milliseconds: 600),
@@ -445,12 +442,15 @@ class callus_to_place_order extends StatelessWidget {
   }
 
   Widget build(BuildContext context) {
-    Color textcolor = Color(0xffffdadb);
-    Color buttontextcolor = Color(0xff40000e);
-    Color buttonbg = Color(0xffffdadb);
+    Color textcolor = Color(0xff1A1D44);
+    Color buttontextcolor = Color(0xffffffff);
+    Color buttonbg = Color(0xff014CC4);
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.only(
+        left: MediaQuery.of(context).size.height / 60,
+        right: MediaQuery.of(context).size.height / 60,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -468,19 +468,19 @@ class callus_to_place_order extends StatelessWidget {
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: 'semibold',
-                  fontSize: 19,
+                  fontSize: 16,
                   color: textcolor,
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 350,
+                height: MediaQuery.of(context).size.height / 300,
               ),
               Text(
-                "Place your order via call",
+                "Place your order via call,\nonly placed after verification",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: 'regular',
-                  fontSize: 16,
+                  fontSize: 12,
                   color: textcolor,
                 ),
               ),
@@ -496,11 +496,11 @@ class callus_to_place_order extends StatelessWidget {
                 hoverElevation: 0,
                 focusElevation: 0,
                 highlightElevation: 0,
-                height: MediaQuery.of(context).size.height / 20,
+                height: MediaQuery.of(context).size.height / 22,
                 minWidth: MediaQuery.of(context).size.height / 9,
                 color: buttonbg,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
+                    borderRadius: BorderRadius.circular(6)),
                 child: Text(
                   "Call",
                   style: TextStyle(
