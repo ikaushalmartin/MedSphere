@@ -1,21 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:medicineapp2/product_commonscreen/Common%20Screen.dart';
+
 import 'package:unicons/unicons.dart';
 
-import 'Models/topdeals_model.dart';
-import 'const.dart';
+import '../Models/labtest_package_detail.dart';
 
-class SearchScreen extends StatefulWidget {
+import '../const.dart';
+import '../doctor/doctor_model.dart';
+import '../lab/labtest_commonscreen.dart';
+import '../rentals/rental_commonscreen.dart';
+
+class rental_search extends StatefulWidget {
+  const rental_search({Key? key}) : super(key: key);
+
   @override
-  _SearchScreenState createState() => _SearchScreenState();
+  State<rental_search> createState() => _rental_searchState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _rental_searchState extends State<rental_search> {
   Color textcolor = Color(0xff1A1D44);
   Color bluecolor = Color(0xff014CC4);
   Color white = Color(0xffffffff);
@@ -52,7 +59,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       width: MediaQuery.of(context).size.height / 60,
                     ),
                     Text(
-                      "Medical Rentals",
+                      "Search Medical Rentals",
                       style: TextStyle(
                         fontFamily: 'medium',
                         fontSize: 16,
@@ -90,7 +97,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         size: 23,
                       ),
                       contentPadding: EdgeInsets.only(left: 20),
-                      hintText: "Search for Medicine and Products"),
+                      hintText: "Search for Medical Rentals"),
                   onChanged: (val) {
                     setState(() {
                       inputText = val;
@@ -106,7 +113,7 @@ class _SearchScreenState extends State<SearchScreen> {
             Expanded(
               child: StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection("/Medicine_and_Products")
+                      .collection("/rental details")
                       .where("Name", isGreaterThanOrEqualTo: inputText)
                       .snapshots(),
                   builder: (BuildContext context,
@@ -128,20 +135,14 @@ class _SearchScreenState extends State<SearchScreen> {
                       physics: const BouncingScrollPhysics(),
                       children:
                           snapshot.data!.docs.map((DocumentSnapshot item) {
-                        topdeals(
+                        doc(
                             id: item.id,
-                            cuttopdeals: item['Cutprice'],
+                            hospital: item['Company'],
                             name: item['Name'],
-                            price: item['Price'],
-                            quantity: item['Quantity'],
-                            company: item['Company'],
-                            medicaldiscription: item['Medical_Discription'],
-                            uses: item['Uses'],
-                            doses: item['Doses'],
-                            sideeffect: item['Side_Effect'],
-                            precaution_and_warning:
-                                item['Precaution_and_warning'],
-                            salts: item['Salts']);
+                            specialist: item['Use'],
+                            bio: item['Description'],
+                            experience: item['priceperday'],
+                            workinghours: item['application']);
                         return Padding(
                           padding: EdgeInsets.only(
                             left: MediaQuery.of(context).size.height / 60,
@@ -151,19 +152,12 @@ class _SearchScreenState extends State<SearchScreen> {
                           child: GestureDetector(
                             onTap: () {
                               fetch_and_move(
-                                "Medicine Detail",
-                                item['Name'],
-                                item['Precaution_and_warning'],
-                                item['Side_Effect'],
-                                item['Doses'],
-                                item['Uses'],
-                                item['Medical_Discription'],
-                                item['Company'],
-                                item['Quantity'],
-                                item['Cutprice'],
-                                item['Price'],
-                                item['Salts'],
-                              );
+                                  item['Name'],
+                                  item['Company'],
+                                  item['Description'],
+                                  item['application'],
+                                  item['priceperday'],
+                                  item['Use']);
                             },
                             child: Container(
                                 width: MediaQuery.of(context).size.width,
@@ -196,7 +190,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                         ),
                                       ),
                                       Text(
-                                        "${item["Quantity"]}",
+                                        "${item["Use"]}",
                                         style: TextStyle(
                                           fontFamily: 'medium',
                                           fontSize: 14,
@@ -216,19 +210,8 @@ class _SearchScreenState extends State<SearchScreen> {
         )));
   }
 
-  fetch_and_move(
-      String heading,
-      String name,
-      String precaution_and_warning,
-      String sideeffect,
-      String doses,
-      String uses,
-      String medicaldiscription,
-      String company,
-      String quantity,
-      String cuttopdeals,
-      String price,
-      String ingredients) async {
+  fetch_and_move(String name, String company, String desc, String application,
+      String priceperday, String uses) async {
     showDialog(
         barrierDismissible: false,
         context: context,
@@ -239,25 +222,18 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ));
     final FirebaseStorage storage = FirebaseStorage.instance;
-    final String imagePath = ("/Images/Medicine_and_Product/$name.jpg");
+    final String imagePath = ("/rental images/$name.jpeg");
     String imageUrl = await storage.ref().child(imagePath).getDownloadURL();
     Navigator.of(context).pop();
     Get.to(
-        () => product_common_screen(
-              heading: "Product Detail",
-              image_url: imageUrl,
-              name: name,
-              precaution_and_warning: precaution_and_warning,
-              sideeffect: sideeffect,
-              doses: doses,
-              uses: uses,
-              medicaldiscription: medicaldiscription,
-              company: company,
-              quantity: quantity,
-              cuttopdeals: cuttopdeals,
-              price: price,
-              ingredients: ingredients,
-            ),
+        () => rental_commonscreen(
+            name: name,
+            company: company,
+            description: desc,
+            available_for_time: application,
+            priceperday: priceperday,
+            use: uses,
+            imageurl: imageUrl),
         transition: Transition.rightToLeft);
   }
 }

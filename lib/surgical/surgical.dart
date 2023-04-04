@@ -6,8 +6,11 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/rentals/rental_commonscreen.dart';
 import 'package:medicineapp2/surgical/surgical_productscreen.dart';
+import 'package:unicons/unicons.dart';
 
+import '../Search_screen/surgical_search.dart';
 import '../buy and cart/surgical_cart.dart';
+import '../const.dart';
 import '../doctor/doctor_model.dart';
 import '../Models/surgical_model.dart';
 
@@ -49,55 +52,99 @@ class _surgicalState extends State<surgical> {
             children: [
               Container(
                 color: white,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 200),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 200),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              Get.back();
-                            },
-                            child: Icon(
-                              Icons.arrow_back_ios_new_outlined,
-                              color: textcolor,
-                              size: 20,
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Icon(
+                                  Icons.arrow_back_ios_new_outlined,
+                                  color: textcolor,
+                                  size: 20,
+                                ),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.height / 60,
+                              ),
+                              Text(
+                                "Surgical",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 16,
+                                  color: textcolor,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Theme(
+                            data: ThemeData(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                             ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.height / 60,
-                          ),
-                          Text(
-                            "Surgical",
-                            style: TextStyle(
-                              fontFamily: 'medium',
-                              fontSize: 16,
+                            child: IconButton(
+                              onPressed: () {
+                                Get.to(() => surgical_cart(),
+                                    transition: Transition.rightToLeft);
+                              },
+                              icon: Icon(Icons.shopping_cart_outlined),
                               color: textcolor,
+                              iconSize: 20,
                             ),
-                          ),
+                          )
                         ],
                       ),
-                      Theme(
-                        data: ThemeData(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 20,
+                        decoration: BoxDecoration(
+                          color: background,
+                          borderRadius: BorderRadius.circular(6),
                         ),
-                        child: IconButton(
-                          onPressed: () {
-                            Get.to(() => surgical_cart(),
+                        child: TextFormField(
+                          readOnly: true,
+                          onTap: () {
+                            Get.to(() => const surgical_search(),
                                 transition: Transition.rightToLeft);
                           },
-                          icon: Icon(Icons.shopping_cart_outlined),
-                          color: textcolor,
-                          iconSize: 20,
+                          keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(color: textcolor_light),
+                          textAlign: TextAlign.left,
+                          decoration: kTextFieldDecoration.copyWith(
+                              prefixIcon: Icon(
+                                UniconsLine.search,
+                                color: bluecolor,
+                                size: 23,
+                              ),
+                              contentPadding: EdgeInsets.only(left: 20),
+                              hintText: "Search for Lab Packages"),
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height / 80),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(width: 1.0, color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(

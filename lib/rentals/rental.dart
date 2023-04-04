@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/rentals/rental_commonscreen.dart';
+import 'package:unicons/unicons.dart';
 
+import '../Search_screen/rental_search.dart';
 import '../buy and cart/cart.dart';
 import '../const.dart';
 import '../doctor/doctor_model.dart';
@@ -48,36 +50,91 @@ class _rentalState extends State<rental> {
             children: [
               Container(
                 color: white,
-                height: MediaQuery.of(context).size.height / 16,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 200),
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Icon(
-                          Icons.arrow_back_ios_new_outlined,
-                          color: textcolor,
-                          size: 20,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 200),
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Icon(
+                              Icons.arrow_back_ios_new_outlined,
+                              color: textcolor,
+                              size: 20,
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.height / 60,
+                          ),
+                          Text(
+                            "Medical Rentals",
+                            style: TextStyle(
+                              fontFamily: 'medium',
+                              fontSize: 16,
+                              color: textcolor,
+                            ),
+                          ),
+                          Theme(
+                            data: ThemeData(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                            ),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.circle),
+                              color: white,
+                              iconSize: 0,
+                            ),
+                          )
+                        ],
+                      ), //toprow
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 20,
+                        decoration: BoxDecoration(
+                          color: background,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: TextFormField(
+                          readOnly: true,
+                          onTap: () {
+                            Get.to(() => const rental_search(),
+                                transition: Transition.rightToLeft);
+                          },
+                          keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(color: textcolor_light),
+                          textAlign: TextAlign.left,
+                          decoration: kTextFieldDecoration.copyWith(
+                              prefixIcon: Icon(
+                                UniconsLine.search,
+                                color: bluecolor,
+                                size: 23,
+                              ),
+                              contentPadding: EdgeInsets.only(left: 20),
+                              hintText: "Search for Lab Packages"),
                         ),
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.height / 60,
-                      ),
-                      Text(
-                        "Medical Rentals",
-                        style: TextStyle(
-                          fontFamily: 'medium',
-                          fontSize: 16,
-                          color: textcolor,
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height / 80),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(width: 1.0, color: Colors.grey),
                         ),
                       ),
-                    ],
-                  ), //toprow
+                    ),
+                  ],
                 ),
               ),
               SizedBox(

@@ -14,9 +14,10 @@ import 'package:unicons/unicons.dart';
 
 import '../Medicine/medicine.dart';
 import '../Medicine/medicine_forbutton.dart';
+import '../Search_screen/lab_search.dart';
 import '../buy and cart/cart.dart';
 import '../dashboard.dart';
-import '../dashboard_search.dart';
+import '../Search_screen/dashboard_search.dart';
 import '../profile.dart';
 import 'lab_cart.dart';
 import '../const.dart';
@@ -74,39 +75,83 @@ class _labtestState extends State<labtest> {
                 decoration: BoxDecoration(
                   color: white,
                 ),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      //   top: MediaQuery.of(context).size.height / 80,
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 200),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Lab Test",
-                        style: TextStyle(
-                          fontFamily: 'medium',
-                          fontSize: 16,
-                          color: textcolor,
-                        ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          //   top: MediaQuery.of(context).size.height / 80,
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 200),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Lab Test",
+                            style: TextStyle(
+                              fontFamily: 'medium',
+                              fontSize: 16,
+                              color: textcolor,
+                            ),
+                          ),
+                          Theme(
+                            data: ThemeData(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                            ),
+                            child: IconButton(
+                              onPressed: () {
+                                Get.to(() => const lab_cart(),
+                                    transition: Transition.rightToLeft);
+                              },
+                              icon: Icon(Icons.shopping_cart_outlined),
+                              color: textcolor,
+                              iconSize: 20,
+                            ),
+                          )
+                        ],
                       ),
-                      Theme(
-                        data: ThemeData(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 20,
+                        decoration: BoxDecoration(
+                          color: background,
+                          borderRadius: BorderRadius.circular(6),
                         ),
-                        child: IconButton(
-                          onPressed: () {
-                            Get.to(() => const lab_cart(),
+                        child: TextFormField(
+                          readOnly: true,
+                          onTap: () {
+                            Get.to(() => const lab_search(),
                                 transition: Transition.rightToLeft);
                           },
-                          icon: Icon(Icons.shopping_cart_outlined),
-                          color: textcolor,
-                          iconSize: 20,
+                          keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(color: textcolor_white),
+                          textAlign: TextAlign.left,
+                          decoration: kTextFieldDecoration.copyWith(
+                              prefixIcon: Icon(
+                                UniconsLine.search,
+                                color: bluecolor,
+                                size: 23,
+                              ),
+                              contentPadding: EdgeInsets.only(left: 20),
+                              hintText: "Search for Lab Packages"),
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height / 80),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(width: 1.0, color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Expanded(

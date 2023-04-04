@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../Models/labtest_package_detail.dart';
-import '../Models/price_model.dart';
-import '../buy and cart/cart.dart';
+
 import 'lab_cart.dart';
 import 'labtest_commonscreen.dart';
 

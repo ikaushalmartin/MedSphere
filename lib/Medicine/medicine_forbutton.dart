@@ -15,7 +15,7 @@ import '../buy and cart/cart.dart';
 import '../const.dart';
 
 import '../dashboard.dart';
-import '../dashboard_search.dart';
+import '../Search_screen/dashboard_search.dart';
 
 import '../orderbyprescription.dart';
 import '../product_commonscreen/Common Screen.dart';

@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:unicons/unicons.dart';
 
 import '../Models/popularcategories_model.dart';
+import '../Search_screen/Doctors_corners_search/mainscreen.dart';
 import '../const.dart';
 import 'option_screen.dart';
 
@@ -47,40 +49,96 @@ class _mainscreenState extends State<mainscreen> {
             children: [
               Container(
                 color: white,
-                height: MediaQuery.of(context).size.height / 16,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      // top: MediaQuery.of(context).size.height / 50,
-                      left: MediaQuery.of(context).size.height / 60,
-                      right: MediaQuery.of(context).size.height / 200),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Icon(
-                          Icons.arrow_back_ios_new_outlined,
-                          color: textcolor,
-                          size: 20,
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.height / 60,
-                      ),
-                      Align(
-                        child: Text(
-                          "Doctor's Corner",
-                          style: TextStyle(
-                            fontFamily: 'medium',
-                            fontSize: 16,
-                            color: textcolor,
+                // height: MediaQuery.of(context).size.height / 16,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          // top: MediaQuery.of(context).size.height / 50,
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 200),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Icon(
+                              Icons.arrow_back_ios_new_outlined,
+                              color: textcolor,
+                              size: 20,
+                            ),
                           ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.height / 60,
+                          ),
+                          Align(
+                            child: Text(
+                              "Doctor's Corner",
+                              style: TextStyle(
+                                fontFamily: 'medium',
+                                fontSize: 16,
+                                color: textcolor,
+                              ),
+                            ),
+                          ),
+                          Theme(
+                            data: ThemeData(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                            ),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.circle),
+                              color: white,
+                              iconSize: 0,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.height / 60,
+                        right: MediaQuery.of(context).size.height / 60,
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 20,
+                        decoration: BoxDecoration(
+                          color: background,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: TextFormField(
+                          readOnly: true,
+                          onTap: () {
+                            Get.to(() => const doctor_corners_mainSearch(),
+                                transition: Transition.rightToLeft);
+                          },
+                          keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(color: textcolor_light),
+                          textAlign: TextAlign.left,
+                          decoration: kTextFieldDecoration.copyWith(
+                              prefixIcon: Icon(
+                                UniconsLine.search,
+                                color: bluecolor,
+                                size: 23,
+                              ),
+                              contentPadding: EdgeInsets.only(left: 20),
+                              hintText: "Search for Operations"),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height / 80),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(width: 1.0, color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(

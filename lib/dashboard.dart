@@ -19,7 +19,7 @@ import 'Models/topdeals_model.dart';
 import 'buy and cart/cart.dart';
 import 'buy and cart/surgical_cart.dart';
 import 'const.dart';
-import 'dashboard_search.dart';
+import 'Search_screen/dashboard_search.dart';
 import 'discounts/discount_products.dart';
 
 import 'doctor/doctor.dart';
