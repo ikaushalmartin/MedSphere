@@ -8,7 +8,7 @@ import 'package:medicineapp2/Medicine/medicine.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:medicineapp2/pick/pick_drop.dart';
-import 'package:medicineapp2/profile.dart';
+import 'package:medicineapp2/Profile/profile.dart';
 import 'package:medicineapp2/rentals/rental.dart';
 import 'package:medicineapp2/shopby_concern.dart';
 import 'package:medicineapp2/shopbycategory.dart';

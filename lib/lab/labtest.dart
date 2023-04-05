@@ -18,7 +18,7 @@ import '../Search_screen/lab_search.dart';
 import '../buy and cart/cart.dart';
 import '../dashboard.dart';
 import '../Search_screen/dashboard_search.dart';
-import '../profile.dart';
+import '../Profile/profile.dart';
 import 'lab_cart.dart';
 import '../const.dart';
 import '../orderbyprescription.dart';

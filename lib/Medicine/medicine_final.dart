@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import '../Models/address_model.dart';
 import '../const.dart';
 import '../dashboard.dart';
 import '../main.dart';
@@ -38,7 +39,15 @@ class _medicine_finalState extends State<medicine_final> {
   final patientname = TextEditingController();
   final patientphone = TextEditingController();
   final patientpincode = TextEditingController();
+  final patientaddress = TextEditingController();
   int days = 1;
+  List<address_model> user_address = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetch_user_address();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -251,7 +260,7 @@ class _medicine_finalState extends State<medicine_final> {
                             Text(
                               "Your Details",
                               style: TextStyle(
-                                fontFamily: 'semibold',
+                                fontFamily: 'medium',
                                 fontSize: 16,
                                 color: textcolor,
                               ),
@@ -352,10 +361,141 @@ class _medicine_finalState extends State<medicine_final> {
                                         : null,
                               ),
                             ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 80),
+                            Container(
+                              //  width: MediaQuery.of(context).size.width / 2.4,
+                              decoration: BoxDecoration(
+                                color: background,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: TextFormField(
+                                onChanged: (value) {},
+                                enableInteractiveSelection: false,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(60),
+                                ],
+                                controller: patientaddress,
+                                keyboardType: TextInputType.phone,
+                                style: TextStyle(color: textcolor),
+                                textAlign: TextAlign.left,
+                                decoration: kTextFieldDecoration.copyWith(
+                                    contentPadding: EdgeInsets.only(left: 20),
+                                    hintText: "Address"),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (phone) =>
+                                    phone != null && phone.length < 10
+                                        ? 'Enter a valid address'
+                                        : null,
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height / 100),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 60,
+                    ),
+                    child: Text(
+                      "Saved Address",
+                      style: TextStyle(
+                        fontFamily: 'medium',
+                        fontSize: 16,
+                        color: textcolor,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 100,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 60,
+                    ),
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        itemCount: user_address.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).size.height / 60,
+                            ),
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  color: white,
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    top:
+                                        MediaQuery.of(context).size.height / 80,
+                                    left:
+                                        MediaQuery.of(context).size.height / 60,
+                                    right:
+                                        MediaQuery.of(context).size.height / 60,
+                                    bottom:
+                                        MediaQuery.of(context).size.height / 80,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "${user_address[index].name}",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          fontFamily: 'medium',
+                                          fontSize: 16,
+                                          color: textcolor,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Phone : ${user_address[index].phone}",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          fontFamily: 'medium',
+                                          fontSize: 14,
+                                          color: textcolor_light,
+                                        ),
+                                      ),
+                                      Text(
+                                        "${user_address[index].useraddress}",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          fontFamily: 'regular',
+                                          fontSize: 14,
+                                          color: textcolor_light,
+                                        ),
+                                      ),
+                                      Text(
+                                        "${user_address[index].pincode}",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          fontFamily: 'regular',
+                                          fontSize: 14,
+                                          color: textcolor_light,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
                   ),
                 ],
               ),
@@ -458,6 +598,7 @@ class _medicine_finalState extends State<medicine_final> {
         'Customer Name': patientname.text,
         'phone': patientphone.text,
         'pincode': patientpincode.text,
+        'address': patientaddress.text,
         'Total Amount': widget.totalamount
       });
 
@@ -489,5 +630,76 @@ class _medicine_finalState extends State<medicine_final> {
       },
       btnOkIcon: Icons.check_circle,
     ).show();
+  }
+
+  Future add_user_address() async {
+    showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+
+    await FirebaseFirestore.instance
+        .collection('/Saved_address')
+        .doc(uid)
+        .collection("Saved Addesses")
+        .doc("${DateTime.now()}")
+        .set({
+      'Customer Name': patientname.text,
+      'phone': patientphone.text,
+      'pincode': patientpincode.text,
+      'address': patientaddress.text,
+    });
+
+    Navigator.of(context).pop();
+    AwesomeDialog(
+      context: context,
+      animType: AnimType.scale,
+      headerAnimationLoop: false,
+      dialogType: DialogType.success,
+      title: 'Success',
+      desc: 'Got Your Details!\nWill Get Back To You Soon!!',
+      btnOkOnPress: () {
+        Navigator.of(context).pop();
+        fetch_user_address();
+      },
+      btnOkIcon: Icons.check_circle,
+    ).show();
+  }
+
+  fetch_user_address() async {
+    var address_var = await FirebaseFirestore.instance
+        .collection('/Saved_address/$uid/Saved Addesses')
+        .get();
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    map_rental_details(address_var);
+  }
+
+  map_rental_details(QuerySnapshot<Map<String, dynamic>> data) {
+    var _doctor_deatils_list = data.docs
+        .map((item) => address_model(
+              id: item.id,
+              name: item['Customer Name'],
+              useraddress: item['address'],
+              phone: item['phone'],
+              pincode: item['pincode'],
+            ))
+        .toList();
+
+    setState(() {
+      user_address = _doctor_deatils_list;
+    });
+    Navigator.of(context).pop();
   }
 }

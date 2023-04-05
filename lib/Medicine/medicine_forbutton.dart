@@ -19,7 +19,7 @@ import '../Search_screen/dashboard_search.dart';
 
 import '../orderbyprescription.dart';
 import '../product_commonscreen/Common Screen.dart';
-import '../profile.dart';
+import '../Profile/profile.dart';
 
 class medicineforbutton extends StatefulWidget {
   const medicineforbutton({Key? key}) : super(key: key);
