@@ -3,10 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import '../Models/address_model.dart';
 import '../const.dart';
 import '../main.dart';
 
@@ -21,47 +23,47 @@ class prescription_orderscreen extends StatefulWidget {
 }
 
 class _prescription_orderscreenState extends State<prescription_orderscreen> {
-  Color bluecolor = Color(0xff5093FE);
-  Color bluecolor_bg = Color(0xffDAE1FF);
-  Color textcolor = Color(0xD9181818);
-  Color textcolor_light = Color(0x99181818);
-  Color textcolor_light2 = Color(0x4D181818);
-  Color background = Color(0xffD9D9D9);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
+  Color textcolor_light = Color(0xffACAEBA);
   Color white = Color(0xffffffff);
-  Color search_bg = Color(0x1A000000);
-  Color medicine_colour_button_1 = Color(0xff07DAEB);
-  Color medicine_colour_button_2 = Color(0xff5093FE);
-  Color redcoloe = Color(0xffFE2D54);
+  Color background = Color(0xffF1F1F1);
+
   final _formKey = GlobalKey<FormState>();
-  final patientname = TextEditingController();
-  final patientphone = TextEditingController();
-  final patientpincode = TextEditingController();
+  TextEditingController patientname = TextEditingController();
+  TextEditingController patientphone = TextEditingController();
+  TextEditingController patientpincode = TextEditingController();
+  TextEditingController patientaddress = TextEditingController();
+
+  List<address_model> user_address = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetch_user_address();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: background,
-        body: Stack(
+        body: Column(
           children: [
-            Positioned(
-              child: Column(
+            Expanded(
+              child: ListView(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
                 children: [
                   Container(
-                    decoration: BoxDecoration(
-                      color: white,
-                    ),
+                    color: white,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height / 70),
                         Padding(
                           padding: EdgeInsets.only(
-                              //   top: MediaQuery.of(context).size.height / 80,
                               left: MediaQuery.of(context).size.height / 60,
                               right: MediaQuery.of(context).size.height / 200),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureDetector(
                                 onTap: () {
@@ -70,30 +72,41 @@ class _prescription_orderscreenState extends State<prescription_orderscreen> {
                                 child: Icon(
                                   Icons.arrow_back_ios_new_outlined,
                                   color: textcolor,
+                                  size: 20,
                                 ),
                               ),
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  "Details",
-                                  style: TextStyle(
-                                    fontFamily: 'semibold',
-                                    fontSize: 24,
-                                    color: textcolor,
-                                  ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.height / 60,
+                              ),
+                              Text(
+                                "Deatils",
+                                style: TextStyle(
+                                  fontFamily: 'medium',
+                                  fontSize: 16,
+                                  color: textcolor,
                                 ),
                               ),
-                              Text(""),
+                              Theme(
+                                data: ThemeData(
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.circle),
+                                  color: white,
+                                  iconSize: 0,
+                                ),
+                              )
                             ],
-                          ),
-                        ), //toprow
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height / 70),
-                        //searchbar
+                          ), //toprow
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height / 135),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 100,
+                  ),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
@@ -106,26 +119,34 @@ class _prescription_orderscreenState extends State<prescription_orderscreen> {
                         left: MediaQuery.of(context).size.height / 60,
                         right: MediaQuery.of(context).size.height / 60,
                       ),
-                      child: Text(
-                        "Prescription",
-                        style: TextStyle(
-                          fontFamily: 'semibold',
-                          fontSize: 21,
-                          color: textcolor,
-                        ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Prescription",
+                            style: TextStyle(
+                              fontFamily: 'medium',
+                              fontSize: 16,
+                              color: textcolor,
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height / 100,
+                          ),
+                          Center(
+                            child: Image.file(
+                              widget.selectedFile,
+                              height: MediaQuery.of(context).size.height / 3,
+                              fit: BoxFit.scaleDown,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  Image.file(
-                    widget.selectedFile,
-                    height: 200,
-                    fit: BoxFit.scaleDown,
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height / 135),
-                  SizedBox(height: MediaQuery.of(context).size.height / 135),
+                  SizedBox(height: MediaQuery.of(context).size.height / 100),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    // height: MediaQuery.of(context).size.height / 3.5,
                     decoration: BoxDecoration(
                       color: white,
                     ),
@@ -145,8 +166,8 @@ class _prescription_orderscreenState extends State<prescription_orderscreen> {
                             Text(
                               "Your Details",
                               style: TextStyle(
-                                fontFamily: 'semibold',
-                                fontSize: 21,
+                                fontFamily: 'medium',
+                                fontSize: 16,
                                 color: textcolor,
                               ),
                             ),
@@ -161,9 +182,13 @@ class _prescription_orderscreenState extends State<prescription_orderscreen> {
                                       MediaQuery.of(context).size.width / 2.2,
                                   decoration: BoxDecoration(
                                     color: background,
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(6),
                                   ),
                                   child: TextFormField(
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(30),
+                                    ],
+                                    enableInteractiveSelection: false,
                                     controller: patientname,
                                     keyboardType: TextInputType.name,
                                     style: TextStyle(color: textcolor),
@@ -177,7 +202,7 @@ class _prescription_orderscreenState extends State<prescription_orderscreen> {
                                     validator: (firstname) =>
                                         firstname != null &&
                                                 firstname.length! < 1
-                                            ? 'First name cannot be empty'
+                                            ? 'Name cannot be empty'
                                             : null,
                                   ),
                                 ),
@@ -186,9 +211,13 @@ class _prescription_orderscreenState extends State<prescription_orderscreen> {
                                       MediaQuery.of(context).size.width / 2.2,
                                   decoration: BoxDecoration(
                                     color: background,
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(6),
                                   ),
                                   child: TextFormField(
+                                    enableInteractiveSelection: false,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(7),
+                                    ],
                                     onChanged: (value) {},
                                     controller: patientpincode,
                                     keyboardType: TextInputType.phone,
@@ -215,10 +244,14 @@ class _prescription_orderscreenState extends State<prescription_orderscreen> {
                               //  width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                 color: background,
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(6),
                               ),
                               child: TextFormField(
                                 onChanged: (value) {},
+                                enableInteractiveSelection: false,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(12),
+                                ],
                                 controller: patientphone,
                                 keyboardType: TextInputType.phone,
                                 style: TextStyle(color: textcolor),
@@ -234,59 +267,200 @@ class _prescription_orderscreenState extends State<prescription_orderscreen> {
                                         : null,
                               ),
                             ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 80),
+                            Container(
+                              //  width: MediaQuery.of(context).size.width / 2.4,
+                              decoration: BoxDecoration(
+                                color: background,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: TextFormField(
+                                onChanged: (value) {},
+                                enableInteractiveSelection: false,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(60),
+                                ],
+                                controller: patientaddress,
+                                keyboardType: TextInputType.name,
+                                style: TextStyle(color: textcolor),
+                                textAlign: TextAlign.left,
+                                decoration: kTextFieldDecoration.copyWith(
+                                    contentPadding: EdgeInsets.only(left: 20),
+                                    hintText: "Address"),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (phone) =>
+                                    phone != null && phone.length < 10
+                                        ? 'Enter a valid address'
+                                        : null,
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ),
                   ),
+                  SizedBox(height: MediaQuery.of(context).size.height / 100),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 60,
+                    ),
+                    child: Text(
+                      "Saved Address",
+                      style: TextStyle(
+                        fontFamily: 'medium',
+                        fontSize: 16,
+                        color: textcolor,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 100,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.height / 60,
+                      right: MediaQuery.of(context).size.height / 60,
+                    ),
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        itemCount: user_address.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).size.height / 60,
+                            ),
+                            child: GestureDetector(
+                              onTap: () {
+                                patientname.text = user_address[index].name;
+                                patientpincode.text =
+                                    user_address[index].pincode;
+                                patientphone.text = user_address[index].phone;
+                                patientaddress.text =
+                                    user_address[index].useraddress;
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  color: white,
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    top:
+                                        MediaQuery.of(context).size.height / 80,
+                                    left:
+                                        MediaQuery.of(context).size.height / 60,
+                                    right:
+                                        MediaQuery.of(context).size.height / 60,
+                                    bottom:
+                                        MediaQuery.of(context).size.height / 80,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "${user_address[index].name}",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          fontFamily: 'medium',
+                                          fontSize: 16,
+                                          color: textcolor,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Phone : ${user_address[index].phone}",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          fontFamily: 'medium',
+                                          fontSize: 14,
+                                          color: textcolor_light,
+                                        ),
+                                      ),
+                                      Text(
+                                        "${user_address[index].useraddress}",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          fontFamily: 'regular',
+                                          fontSize: 14,
+                                          color: textcolor_light,
+                                        ),
+                                      ),
+                                      Text(
+                                        "${user_address[index].pincode}",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          fontFamily: 'regular',
+                                          fontSize: 14,
+                                          color: textcolor_light,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
                 ],
               ),
             ),
-            Positioned(
-              bottom: 0,
-              child: Container(
-                color: white,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 15,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width / 40),
-                  child: Container(
-                    height: 38.0,
-                    child: MaterialButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          uploadImageToFirebaseStorage();
-                        }
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                medicine_colour_button_1,
-                                medicine_colour_button_2
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
+            Container(
+              color: white,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 15,
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width / 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Prescription",
+                      style: TextStyle(
+                        fontFamily: 'medium',
+                        fontSize: 14,
+                        color: textcolor,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 38.0,
+                      child: MaterialButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            uploadImageToFirebaseStorage();
+                          }
+                        },
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80.0)),
+                        child: Ink(
+                          decoration: BoxDecoration(
+                              color: bluecolor,
+                              borderRadius: BorderRadius.circular(6)),
+                          child: Container(
+                            constraints: BoxConstraints(maxWidth: 150.0),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Order",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontFamily: "medium"),
                             ),
-                            borderRadius: BorderRadius.circular(30.0)),
-                        child: Container(
-                          constraints: BoxConstraints(maxWidth: 150.0),
-                          alignment: Alignment.center,
-                          child: Text(
-                            "Order",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontFamily: "medium"),
                           ),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             )
@@ -368,5 +542,38 @@ class _prescription_orderscreenState extends State<prescription_orderscreen> {
       },
       btnOkIcon: Icons.check_circle,
     )..show();
+  }
+
+  fetch_user_address() async {
+    var address_var = await FirebaseFirestore.instance
+        .collection('/Saved_address/$uid/Saved Addesses')
+        .get();
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Center(
+              child: LoadingAnimationWidget.waveDots(
+                color: Color(0xff273238),
+                size: 80,
+              ),
+            ));
+    map_rental_details(address_var);
+  }
+
+  map_rental_details(QuerySnapshot<Map<String, dynamic>> data) {
+    var _doctor_deatils_list = data.docs
+        .map((item) => address_model(
+              id: item.id,
+              name: item['Customer Name'],
+              useraddress: item['address'],
+              phone: item['phone'],
+              pincode: item['pincode'],
+            ))
+        .toList();
+
+    setState(() {
+      user_address = _doctor_deatils_list;
+    });
+    Navigator.of(context).pop();
   }
 }

@@ -36,10 +36,10 @@ class _medicine_finalState extends State<medicine_final> {
   Color redcoloe = Color(0xffFE2D54);
 
   final _formKey = GlobalKey<FormState>();
-  final patientname = TextEditingController();
-  final patientphone = TextEditingController();
-  final patientpincode = TextEditingController();
-  final patientaddress = TextEditingController();
+  TextEditingController patientname = TextEditingController();
+  TextEditingController patientphone = TextEditingController();
+  TextEditingController patientpincode = TextEditingController();
+  TextEditingController patientaddress = TextEditingController();
   int days = 1;
   List<address_model> user_address = [];
   @override
@@ -377,7 +377,7 @@ class _medicine_finalState extends State<medicine_final> {
                                   LengthLimitingTextInputFormatter(60),
                                 ],
                                 controller: patientaddress,
-                                keyboardType: TextInputType.phone,
+                                keyboardType: TextInputType.name,
                                 style: TextStyle(color: textcolor),
                                 textAlign: TextAlign.left,
                                 decoration: kTextFieldDecoration.copyWith(
@@ -430,7 +430,14 @@ class _medicine_finalState extends State<medicine_final> {
                               bottom: MediaQuery.of(context).size.height / 60,
                             ),
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                patientname.text = user_address[index].name;
+                                patientpincode.text =
+                                    user_address[index].pincode;
+                                patientphone.text = user_address[index].phone;
+                                patientaddress.text =
+                                    user_address[index].useraddress;
+                              },
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
