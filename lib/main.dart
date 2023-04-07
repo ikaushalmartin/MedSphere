@@ -58,8 +58,7 @@ class _MyAppState extends State<MyApp> {
           User? user = snapshot.data;
           uid = snapshot.data?.uid;
           emailofuser = snapshot.data?.email;
-          print(snapshot.data?.uid);
-          print(snapshot.data?.email);
+
           if (user == null || !user.emailVerified) {
             return onboarding();
           } else {

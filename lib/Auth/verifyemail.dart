@@ -11,6 +11,7 @@ import 'package:medicineapp2/dashboard.dart';
 import 'package:medicineapp2/onboarding/onboarding.dart';
 
 import '../const.dart';
+import '../main.dart';
 import 'login.dart';
 
 class verifyemail extends StatefulWidget {
@@ -27,23 +28,16 @@ class _verifyemailState extends State<verifyemail> {
   final verifyemailcontroller = TextEditingController();
   bool isEmailVerified = false;
   Timer? timer;
-  @override
+
   @override
   void initState() {
     super.initState();
     isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
     if (!isEmailVerified) {
       sendverification();
-
       timer =
           Timer.periodic(Duration(seconds: 3), (_) => checkEmailverification());
     }
-  }
-
-  @override
-  void dispose() {
-    timer?.cancel();
-    super.dispose();
   }
 
   Future checkEmailverification() async {
@@ -75,7 +69,7 @@ class _verifyemailState extends State<verifyemail> {
 
   @override
   Widget build(BuildContext context) => isEmailVerified
-      ? dashboard()
+      ? const dashboard()
       : Scaffold(
           backgroundColor: bluecolor,
           body: SafeArea(
