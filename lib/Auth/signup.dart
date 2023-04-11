@@ -52,11 +52,7 @@ class _signupState extends State<signup> {
         builder: (context, snapshot) {
           newid = snapshot.data?.uid;
           if (snapshot.hasData) {
-            if (snapshot.data!.emailVerified) {
-              return dashboard();
-            } else {
-              return verifyemail();
-            }
+            return const verifyemail();
           } else {
             return Scaffold(
                 backgroundColor: Color(0xff2c64e3),

@@ -7,6 +7,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:medicineapp2/Medicine/medicine_forbutton.dart';
 import 'package:medicineapp2/lab/labtest.dart';
 import 'package:medicineapp2/main.dart';
+import 'package:medicineapp2/onboarding/onboarding.dart';
 
 import 'package:unicons/unicons.dart';
 
@@ -80,7 +81,8 @@ class _profileState extends State<profile> {
                               GestureDetector(
                                   onTap: () {
                                     FirebaseAuth.instance.signOut();
-                                    // FirebaseAuth.instance.signOut();
+                                    Get.offAll(() => const onboarding(),
+                                        transition: Transition.rightToLeft);
                                   },
                                   child: Icon(
                                     Icons.logout,

@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:medicineapp2/Auth/mobile_verification.dart';
 import 'package:medicineapp2/dashboard.dart';
 
+import 'Auth/verifyemail.dart';
 import 'firebase_message_provider.dart';
 import 'onboarding/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -53,17 +55,21 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          User? user = snapshot.data;
-          uid = snapshot.data?.uid;
-          emailofuser = snapshot.data?.email;
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        User? user = snapshot.data;
+        uid = snapshot.data?.uid;
+        emailofuser = snapshot.data?.email;
 
-          if (user == null || !user.emailVerified) {
-            return onboarding();
-          } else {
-            return dashboard();
+        if (snapshot.hasData) {
+          final user = snapshot.data!;
+          if (!user.emailVerified) {
+            return const verifyemail();
           }
-        });
+          return const mobile_verification();
+        }
+        return const onboarding();
+      },
+    );
   }
 }

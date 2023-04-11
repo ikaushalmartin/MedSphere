@@ -13,6 +13,7 @@ import 'package:medicineapp2/onboarding/onboarding.dart';
 import '../const.dart';
 import '../main.dart';
 import 'login.dart';
+import 'mobile_verification.dart';
 
 class verifyemail extends StatefulWidget {
   const verifyemail({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _verifyemailState extends State<verifyemail> {
   Color bluecolor = Color(0xff2c64e3);
   Color textcolor = Color(0xff273238);
   Color grey = Color(0xffececef);
-  final verifyemailcontroller = TextEditingController();
+
   bool isEmailVerified = false;
   Timer? timer;
 
@@ -69,7 +70,7 @@ class _verifyemailState extends State<verifyemail> {
 
   @override
   Widget build(BuildContext context) => isEmailVerified
-      ? const dashboard()
+      ? const mobile_verification()
       : Scaffold(
           backgroundColor: bluecolor,
           body: SafeArea(
@@ -149,28 +150,6 @@ class _verifyemailState extends State<verifyemail> {
                             SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height / 30),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Color(0xffececef),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: TextFormField(
-                                onChanged: (value) {},
-                                controller: verifyemailcontroller,
-                                keyboardType: TextInputType.emailAddress,
-                                style: TextStyle(color: textcolor),
-                                textAlign: TextAlign.left,
-                                decoration: kTextFieldDecoration.copyWith(
-                                    contentPadding: EdgeInsets.only(left: 20),
-                                    hintText: "Verification Code"),
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (code) =>
-                                    code != null && code.length! < 1
-                                        ? 'Enter a valid name'
-                                        : null,
-                              ),
-                            ),
                             SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height / 70),
