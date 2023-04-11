@@ -143,30 +143,49 @@ class _mobile_verificationState extends State<mobile_verification> {
                           ButtonTheme(
                               child: MaterialButton(
                             onPressed: () async {
-                              showDialog(
-                                  barrierDismissible: false,
-                                  context: context,
-                                  builder: (context) => Center(
-                                        child: LoadingAnimationWidget.waveDots(
-                                          color: Color(0xff273238),
-                                          size: 80,
-                                        ),
-                                      ));
-                              await FirebaseAuth.instance.verifyPhoneNumber(
-                                phoneNumber: '+91$phone',
-                                verificationCompleted:
-                                    (PhoneAuthCredential credential) {},
-                                verificationFailed:
-                                    (FirebaseAuthException e) {},
-                                codeSent:
-                                    (String verificationId, int? resendToken) {
-                                  Get.to(() => const otpscreen(),
-                                      transition: Transition.rightToLeft);
-                                },
-                                codeAutoRetrievalTimeout:
-                                    (String verificationId) {},
-                              );
-                              Navigator.of(context).pop();
+                              try {
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (context) => Center(
+                                          child:
+                                              LoadingAnimationWidget.waveDots(
+                                            color: Color(0xff273238),
+                                            size: 80,
+                                          ),
+                                        ));
+                                await FirebaseAuth.instance.verifyPhoneNumber(
+                                  phoneNumber: '+91 $phone',
+                                  verificationCompleted:
+                                      (PhoneAuthCredential credential) {},
+                                  verificationFailed:
+                                      (FirebaseAuthException e) {},
+                                  codeSent: (String verificationId,
+                                      int? resendToken) {
+                                    Get.to(
+                                        () => otpscreen(
+                                              verification_id: verificationId,
+                                            ),
+                                        transition: Transition.rightToLeft);
+                                  },
+                                  codeAutoRetrievalTimeout:
+                                      (String verificationId) {},
+                                );
+                                Navigator.of(context).pop();
+                              } catch (e) {
+                                var othersnackbar = SnackBar(
+                                  content: Text("${e}"),
+                                  backgroundColor: textcolor,
+                                  shape: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(1)),
+                                  duration: Duration(milliseconds: 2000),
+                                  behavior: SnackBarBehavior.floating,
+                                );
+                                setState(() {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(othersnackbar);
+                                });
+                              }
                             },
                             elevation: 0,
                             hoverElevation: 0,

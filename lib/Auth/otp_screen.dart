@@ -1,10 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
 class otpscreen extends StatefulWidget {
-  const otpscreen({Key? key}) : super(key: key);
-
+  otpscreen({Key? key, required this.verification_id}) : super(key: key);
+  var verification_id;
   @override
   State<otpscreen> createState() => _otpscreenState();
 }
@@ -13,6 +14,10 @@ class _otpscreenState extends State<otpscreen> {
   Color bluecolor = Color(0xff2c64e3);
   Color textcolor = Color(0xff273238);
   Color grey = Color(0xffececef);
+
+  var verification_code;
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
@@ -124,8 +129,8 @@ class _otpscreenState extends State<otpscreen> {
                               defaultPinTheme: defaultPinTheme,
                               focusedPinTheme: focusedPinTheme,
                               submittedPinTheme: submittedPinTheme,
-                              validator: (s) {
-                                //  return s == '2222' ? null : 'Pin is incorrect';
+                              onChanged: (s) {
+                                verification_code = s;
                               },
                               pinputAutovalidateMode:
                                   PinputAutovalidateMode.onSubmit,
@@ -137,7 +142,30 @@ class _otpscreenState extends State<otpscreen> {
                               height: MediaQuery.of(context).size.height / 70),
                           ButtonTheme(
                               child: MaterialButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              try {
+                                PhoneAuthCredential credential =
+                                    PhoneAuthProvider.credential(
+                                        verificationId: widget.verification_id,
+                                        smsCode: verification_code);
+
+                                // Sign the user in (or link) with the credential
+                                await auth.signInWithCredential(credential);
+                              } catch (e) {
+                                var othersnackbar = SnackBar(
+                                  content: Text("${e}"),
+                                  backgroundColor: textcolor,
+                                  shape: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(1)),
+                                  duration: Duration(milliseconds: 2000),
+                                  behavior: SnackBarBehavior.floating,
+                                );
+                                setState(() {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(othersnackbar);
+                                });
+                              }
+                            },
                             elevation: 0,
                             hoverElevation: 0,
                             focusElevation: 0,
