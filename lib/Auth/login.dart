@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:medicineapp2/Auth/mobile_verification.dart';
 import 'package:medicineapp2/Auth/verifyemail.dart';
 import 'package:medicineapp2/dashboard.dart';
 import 'package:medicineapp2/Auth/resetpassword.dart';
@@ -36,26 +37,25 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     navigatorKey;
+    final user = FirebaseAuth.instance.currentUser;
     return StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-                child: LoadingAnimationWidget.waveDots(
-              color: Colors.white,
-              size: 200,
-            ));
+              child: LoadingAnimationWidget.waveDots(
+                color: Colors.white,
+                size: 200,
+              ),
+            );
           } else if (snapshot.hasError) {
-            return Center(
+            return const Center(
               child: Text("Something went wrong"),
             );
-          } else if (snapshot.hasData) {
-            if (snapshot.data!.emailVerified) {
-              return dashboard();
-            } else {
-              return verifyemail();
-            }
-          } else {
+          }
+          final user = snapshot.data;
+
+          if (user == null) {
             return Scaffold(
                 backgroundColor: Color(0xff2c64e3),
                 body: SafeArea(
@@ -306,6 +306,16 @@ class _loginState extends State<login> {
                     ],
                   ),
                 ));
+          }
+
+          if (user!.emailVerified) {
+            if (user.phoneNumber?.isNotEmpty == true) {
+              return const dashboard();
+            } else {
+              return const mobile_verification();
+            }
+          } else {
+            return const verifyemail();
           }
         });
   }

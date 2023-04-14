@@ -4,8 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:medicineapp2/dashboard.dart';
+
 import 'package:email_validator/email_validator.dart';
+import 'package:medicineapp2/Auth/mobile_verification.dart';
 import 'package:medicineapp2/Auth/verifyemail.dart';
 import '../const.dart';
 

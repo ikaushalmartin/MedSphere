@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:medicineapp2/Auth/login.dart';
 import 'package:medicineapp2/Medicine/medicine_forbutton.dart';
 import 'package:medicineapp2/lab/labtest.dart';
 import 'package:medicineapp2/main.dart';
@@ -81,7 +82,7 @@ class _profileState extends State<profile> {
                               GestureDetector(
                                   onTap: () {
                                     FirebaseAuth.instance.signOut();
-                                    Get.offAll(() => const onboarding(),
+                                    Get.offAll(() => login(),
                                         transition: Transition.rightToLeft);
                                   },
                                   child: Icon(
@@ -140,6 +141,17 @@ class _profileState extends State<profile> {
                             ),
                             Text(
                               "Email : $emailofuser",
+                              style: TextStyle(
+                                fontFamily: 'medium',
+                                fontSize: 16,
+                                color: textcolor,
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 80,
+                            ),
+                            Text(
+                              "Phone : $phoneofuser",
                               style: TextStyle(
                                 fontFamily: 'medium',
                                 fontSize: 16,

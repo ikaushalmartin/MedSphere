@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:medicineapp2/Auth/mobile_verification.dart';
 import 'package:medicineapp2/Medicine/medicine.dart';
 import 'package:medicineapp2/Models/popularcategories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -67,6 +68,7 @@ class _dashboardState extends State<dashboard> {
 
   List dealoftheday_items = [];
   int doctor_checked = 0;
+
   late var everyday_essential_image_url;
 
   Color bottom1 = Color(0xff575F75);
@@ -74,11 +76,12 @@ class _dashboardState extends State<dashboard> {
   Color bottom3 = Color(0xff01BDF3);
   Color bottom4 = Color(0xff575F75);
   Color bottom5 = Color(0xff575F75);
-
+  @override
   void initState() {
+    fetch_popular_categories();
+
     fetch_number();
     starting_tiles();
-    fetch_popular_categories();
     loadImages();
     shop_by_category_images();
     deals_of_the_day_image();

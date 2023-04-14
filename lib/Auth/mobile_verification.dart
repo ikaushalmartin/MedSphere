@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:medicineapp2/dashboard.dart';
 
+import '../main.dart';
 import 'otp_screen.dart';
 
 class mobile_verification extends StatefulWidget {
@@ -20,8 +23,32 @@ class _mobile_verificationState extends State<mobile_verification> {
   Color textcolor = Color(0xff273238);
   Color grey = Color(0xffececef);
   var phone;
+  int phone_verified = 0;
+
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
+        if (!snapshot.hasData) {
+          // If the user is not authenticated, show the phone verification screen
+          return _buildPhoneVerificationScreen();
+        } else {
+          // If the user is authenticated, check if their phone credential is linked with their email credential
+          final user = snapshot.data!;
+          if (user.emailVerified && user.phoneNumber?.isNotEmpty == true) {
+            // If the user's phone is linked with their email, navigate to the dashboard
+            return const dashboard();
+          } else {
+            // If the user's phone is not linked with their email, show the phone verification screen
+            return _buildPhoneVerificationScreen();
+          }
+        }
+      },
+    );
+  }
+
+  Widget _buildPhoneVerificationScreen() {
     return Scaffold(
         backgroundColor: bluecolor,
         body: SafeArea(
@@ -221,6 +248,18 @@ class _mobile_verificationState extends State<mobile_verification> {
                       ),
                     ),
                   ),
+                ),
+              ),
+              Positioned(
+                top: MediaQuery.of(context).size.height / 3.2,
+                bottom: 0,
+                child: MaterialButton(
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut();
+                  },
+                  color: Colors.red,
+                  height: 200,
+                  minWidth: 200,
                 ),
               ),
             ],

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:medicineapp2/Auth/mobile_verification.dart';
 import 'package:medicineapp2/dashboard.dart';
 
+import 'Auth/login.dart';
 import 'Auth/verifyemail.dart';
 import 'firebase_message_provider.dart';
 import 'onboarding/onboarding.dart';
@@ -12,6 +13,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 var uid;
 var emailofuser;
+var phoneofuser;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,18 +59,23 @@ class _MyAppState extends State<MyApp> {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        User? user = snapshot.data;
         uid = snapshot.data?.uid;
         emailofuser = snapshot.data?.email;
-
-        if (snapshot.hasData) {
-          final user = snapshot.data!;
-          if (!user.emailVerified) {
+        phoneofuser = snapshot.data?.phoneNumber;
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else {
+          final user = snapshot.data;
+          if (user == null) {
+            return const onboarding();
+          } else if (!user.emailVerified) {
             return const verifyemail();
+          } else if (user.phoneNumber?.isNotEmpty == true) {
+            return const mobile_verification();
+          } else {
+            return const dashboard();
           }
-          return const mobile_verification();
         }
-        return const onboarding();
       },
     );
   }

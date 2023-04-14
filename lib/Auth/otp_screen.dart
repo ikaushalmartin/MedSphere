@@ -1,6 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:medicineapp2/Auth/verifyemail.dart';
+import 'package:medicineapp2/dashboard.dart';
+import 'package:medicineapp2/main.dart';
 import 'package:pinput/pinput.dart';
 
 class otpscreen extends StatefulWidget {
@@ -146,11 +152,22 @@ class _otpscreenState extends State<otpscreen> {
                               try {
                                 PhoneAuthCredential credential =
                                     PhoneAuthProvider.credential(
-                                        verificationId: widget.verification_id,
-                                        smsCode: verification_code);
+                                  verificationId: widget.verification_id,
+                                  smsCode: verification_code,
+                                );
 
-                                // Sign the user in (or link) with the credential
-                                await auth.signInWithCredential(credential);
+                                AuthCredential emailCredential =
+                                    EmailAuthProvider.credential(
+                                  email: 'kaushalmartin@gmail.com',
+                                  password: '123456',
+                                );
+
+                                final user = FirebaseAuth.instance.currentUser!;
+                                user.linkWithCredential(credential);
+
+                                Navigator.of(context).pop();
+                                Get.to(() => const dashboard(),
+                                    transition: Transition.rightToLeft);
                               } catch (e) {
                                 var othersnackbar = SnackBar(
                                   content: Text("${e}"),
