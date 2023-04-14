@@ -12,8 +12,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 var uid;
-var emailofuser;
-var phoneofuser;
+String? emailofuser;
+String? phoneofuser;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,20 +59,24 @@ class _MyAppState extends State<MyApp> {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        uid = snapshot.data?.uid;
-        emailofuser = snapshot.data?.email;
-        phoneofuser = snapshot.data?.phoneNumber;
+        final isPhoneVerified = snapshot.data?.providerData.any((userInfo) {
+          return userInfo.providerId == 'phone' && userInfo.phoneNumber != null;
+        });
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else {
           final user = snapshot.data;
+
           if (user == null) {
             return const onboarding();
           } else if (!user.emailVerified) {
             return const verifyemail();
-          } else if (user.phoneNumber?.isNotEmpty == true) {
+          } else if (!isPhoneVerified!) {
             return const mobile_verification();
           } else {
+            uid = snapshot.data?.uid ?? uid;
+            emailofuser = snapshot.data?.email ?? emailofuser;
+            phoneofuser = snapshot.data?.phoneNumber ?? phoneofuser;
             return const dashboard();
           }
         }

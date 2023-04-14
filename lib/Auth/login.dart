@@ -10,6 +10,7 @@ import 'package:medicineapp2/Auth/resetpassword.dart';
 import 'package:medicineapp2/Auth/signup.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../const.dart';
+import '../main.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -54,7 +55,6 @@ class _loginState extends State<login> {
             );
           }
           final user = snapshot.data;
-
           if (user == null) {
             return Scaffold(
                 backgroundColor: Color(0xff2c64e3),
@@ -310,6 +310,9 @@ class _loginState extends State<login> {
 
           if (user!.emailVerified) {
             if (user.phoneNumber?.isNotEmpty == true) {
+              uid = snapshot.data?.uid ?? uid;
+              emailofuser = snapshot.data?.email ?? emailofuser;
+              phoneofuser = snapshot.data?.phoneNumber ?? phoneofuser;
               return const dashboard();
             } else {
               return const mobile_verification();

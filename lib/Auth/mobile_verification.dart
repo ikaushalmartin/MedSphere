@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:medicineapp2/Auth/verifyemail.dart';
 import 'package:medicineapp2/dashboard.dart';
 
 import '../main.dart';
@@ -37,11 +38,13 @@ class _mobile_verificationState extends State<mobile_verification> {
           // If the user is authenticated, check if their phone credential is linked with their email credential
           final user = snapshot.data!;
           if (user.emailVerified && user.phoneNumber?.isNotEmpty == true) {
-            // If the user's phone is linked with their email, navigate to the dashboard
             return const dashboard();
-          } else {
-            // If the user's phone is not linked with their email, show the phone verification screen
+          } else if (user.emailVerified) {
+            // If the user's phone is not linked with their email and their email is verified, show the phone verification screen
             return _buildPhoneVerificationScreen();
+          } else {
+            // If the user's email is not verified, show the verify email screen
+            return const verifyemail();
           }
         }
       },

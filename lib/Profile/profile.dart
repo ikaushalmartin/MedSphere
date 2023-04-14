@@ -82,7 +82,7 @@ class _profileState extends State<profile> {
                               GestureDetector(
                                   onTap: () {
                                     FirebaseAuth.instance.signOut();
-                                    Get.offAll(() => login(),
+                                    Get.offAll(() => const onboarding(),
                                         transition: Transition.rightToLeft);
                                   },
                                   child: Icon(
@@ -152,6 +152,17 @@ class _profileState extends State<profile> {
                             ),
                             Text(
                               "Phone : $phoneofuser",
+                              style: TextStyle(
+                                fontFamily: 'medium',
+                                fontSize: 16,
+                                color: textcolor,
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 80,
+                            ),
+                            Text(
+                              "UID : $uid",
                               style: TextStyle(
                                 fontFamily: 'medium',
                                 fontSize: 16,
