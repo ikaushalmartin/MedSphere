@@ -156,12 +156,6 @@ class _otpscreenState extends State<otpscreen> {
                                   smsCode: verification_code,
                                 );
 
-                                AuthCredential emailCredential =
-                                    EmailAuthProvider.credential(
-                                  email: 'kaushalmartin@gmail.com',
-                                  password: '123456',
-                                );
-
                                 final user = FirebaseAuth.instance.currentUser!;
                                 user.linkWithCredential(credential);
 
