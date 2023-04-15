@@ -29,7 +29,6 @@ class _verifyemailState extends State<verifyemail> {
 
   bool isEmailVerified = false;
   Timer? timer;
-
   @override
   void initState() {
     super.initState();

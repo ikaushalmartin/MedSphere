@@ -558,7 +558,7 @@ class _medicine_finalState extends State<medicine_final> {
                             child: Container(
                               constraints: BoxConstraints(maxWidth: 150.0),
                               alignment: Alignment.center,
-                              child: Text(
+                              child: const Text(
                                 "Order",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(

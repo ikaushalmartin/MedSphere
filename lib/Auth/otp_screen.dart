@@ -9,6 +9,8 @@ import 'package:medicineapp2/dashboard.dart';
 import 'package:medicineapp2/main.dart';
 import 'package:pinput/pinput.dart';
 
+import 'login.dart';
+
 class otpscreen extends StatefulWidget {
   otpscreen({Key? key, required this.verification_id}) : super(key: key);
   var verification_id;
@@ -22,33 +24,11 @@ class _otpscreenState extends State<otpscreen> {
   Color grey = Color(0xffececef);
 
   var verification_code;
-
+  bool isphoneverified = false;
   final FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
-    final defaultPinTheme = PinTheme(
-      width: 56,
-      height: 56,
-      textStyle: TextStyle(
-          fontSize: 20,
-          color: Color.fromRGBO(30, 60, 87, 1),
-          fontWeight: FontWeight.w600),
-      decoration: BoxDecoration(
-        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
-        borderRadius: BorderRadius.circular(20),
-      ),
-    );
-
-    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
-      border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
-      borderRadius: BorderRadius.circular(8),
-    );
-
-    final submittedPinTheme = defaultPinTheme.copyWith(
-      decoration: defaultPinTheme.decoration?.copyWith(
-        color: Color.fromRGBO(234, 239, 243, 1),
-      ),
-    );
     return Scaffold(
         backgroundColor: bluecolor,
         body: SafeArea(
@@ -147,53 +127,60 @@ class _otpscreenState extends State<otpscreen> {
                           SizedBox(
                               height: MediaQuery.of(context).size.height / 70),
                           ButtonTheme(
-                              child: MaterialButton(
-                            onPressed: () async {
-                              try {
-                                PhoneAuthCredential credential =
-                                    PhoneAuthProvider.credential(
-                                  verificationId: widget.verification_id,
-                                  smsCode: verification_code,
-                                );
+                            child: MaterialButton(
+                              onPressed: () async {
+                                try {
+                                  PhoneAuthCredential credential =
+                                      PhoneAuthProvider.credential(
+                                    verificationId: widget.verification_id,
+                                    smsCode: verification_code,
+                                  );
 
-                                final user = FirebaseAuth.instance.currentUser!;
-                                user.linkWithCredential(credential);
+                                  final user =
+                                      FirebaseAuth.instance.currentUser!;
+                                  await user.linkWithCredential(
+                                      credential); // <-- Add await keyword here
+                                  await FirebaseAuth.instance.currentUser!
+                                      .reload();
+                                  uid = user?.uid ?? uid;
+                                  emailofuser = user?.email ?? emailofuser;
+                                  phoneofuser =
+                                      user?.phoneNumber ?? phoneofuser;
 
-                                Navigator.of(context).pop();
-                                Get.to(() => const dashboard(),
-                                    transition: Transition.rightToLeft);
-                              } catch (e) {
-                                var othersnackbar = SnackBar(
-                                  content: Text("${e}"),
-                                  backgroundColor: textcolor,
-                                  shape: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(1)),
-                                  duration: Duration(milliseconds: 2000),
-                                  behavior: SnackBarBehavior.floating,
-                                );
-                                setState(() {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(othersnackbar);
-                                });
-                              }
-                            },
-                            elevation: 0,
-                            hoverElevation: 0,
-                            focusElevation: 0,
-                            highlightElevation: 0,
-                            minWidth: MediaQuery.of(context).size.width,
-                            height: 55,
-                            color: bluecolor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            child: const Text(
-                              "Verify Code",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'medium',
-                                  fontSize: 18),
+                                  Get.offAll(const dashboard());
+                                } catch (e) {
+                                  var othersnackbar = SnackBar(
+                                    content: Text("${e}"),
+                                    backgroundColor: textcolor,
+                                    shape: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(1)),
+                                    duration: Duration(milliseconds: 2000),
+                                    behavior: SnackBarBehavior.floating,
+                                  );
+                                  setState(() {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(othersnackbar);
+                                  });
+                                }
+                              },
+                              elevation: 0,
+                              hoverElevation: 0,
+                              focusElevation: 0,
+                              highlightElevation: 0,
+                              minWidth: MediaQuery.of(context).size.width,
+                              height: 55,
+                              color: bluecolor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: const Text(
+                                "Verify Code",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'medium',
+                                    fontSize: 18),
+                              ),
                             ),
-                          )),
+                          ),
                           SizedBox(
                               height: MediaQuery.of(context).size.height / 30),
                           Align(
@@ -218,3 +205,27 @@ class _otpscreenState extends State<otpscreen> {
         ));
   }
 }
+
+final defaultPinTheme = PinTheme(
+  width: 56,
+  height: 56,
+  textStyle: TextStyle(
+      fontSize: 20,
+      color: Color.fromRGBO(30, 60, 87, 1),
+      fontWeight: FontWeight.w600),
+  decoration: BoxDecoration(
+    border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+    borderRadius: BorderRadius.circular(20),
+  ),
+);
+
+final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+  border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
+  borderRadius: BorderRadius.circular(8),
+);
+
+final submittedPinTheme = defaultPinTheme.copyWith(
+  decoration: defaultPinTheme.decoration?.copyWith(
+    color: Color.fromRGBO(234, 239, 243, 1),
+  ),
+);

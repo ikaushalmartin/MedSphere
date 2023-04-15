@@ -78,6 +78,8 @@ class _dashboardState extends State<dashboard> {
   Color bottom5 = Color(0xff575F75);
   @override
   void initState() {
+    super.initState();
+
     fetch_popular_categories();
 
     fetch_number();

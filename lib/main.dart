@@ -57,30 +57,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot) {
-        final isPhoneVerified = snapshot.data?.providerData.any((userInfo) {
-          return userInfo.providerId == 'phone' && userInfo.phoneNumber != null;
-        });
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
-        } else {
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
           final user = snapshot.data;
-
           if (user == null) {
             return const onboarding();
-          } else if (!user.emailVerified) {
-            return const verifyemail();
-          } else if (!isPhoneVerified!) {
-            return const mobile_verification();
           } else {
-            uid = snapshot.data?.uid ?? uid;
-            emailofuser = snapshot.data?.email ?? emailofuser;
-            phoneofuser = snapshot.data?.phoneNumber ?? phoneofuser;
-            return const dashboard();
+            return const login();
           }
-        }
-      },
-    );
+        });
   }
 }

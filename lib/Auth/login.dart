@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:medicineapp2/Auth/mobile_verification.dart';
@@ -23,25 +24,23 @@ class _loginState extends State<login> {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   final navigatorKey = GlobalKey<NavigatorState>();
-  Color color = Color(0xffececef);
-  Color textcolor = Color(0xff273238);
-  Color buttoncolor = Color(0xffececef);
-  Color buttontextcolor = Color(0xff273238);
-
-  @override
-  void dispose() {
-    emailcontroller.dispose();
-    passwordcontroller.dispose();
-    super.dispose();
-  }
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
+  Color textcolor_white = Color(0xffACAEBA);
+  Color white = Color(0xffffffff);
+  Color background = Color(0xffF1F1F1);
 
   @override
   Widget build(BuildContext context) {
     navigatorKey;
-    final user = FirebaseAuth.instance.currentUser;
+
     return StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
+          final isPhoneVerified = snapshot.data?.providerData.any((userInfo) {
+            return userInfo.providerId == 'phone' &&
+                userInfo.phoneNumber != null;
+          });
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
               child: LoadingAnimationWidget.waveDots(
@@ -57,259 +56,271 @@ class _loginState extends State<login> {
           final user = snapshot.data;
           if (user == null) {
             return Scaffold(
-                backgroundColor: Color(0xff2c64e3),
+                backgroundColor: background,
                 body: SafeArea(
-                  child: Stack(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Positioned(
-                        top: MediaQuery.of(context).size.height / 50,
-                        left: 20,
-                        right: 0,
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "APPNAME",
-                            style: TextStyle(
-                              fontFamily: 'bold',
-                              fontSize: 24,
-                              color: Colors.white,
-                            ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).size.height / 60,
+                            left: MediaQuery.of(context).size.height / 60,
+                            right: MediaQuery.of(context).size.height / 60,
+                            bottom: MediaQuery.of(context).size.height / 20),
+                        child: Text(
+                          "APPNAME",
+                          style: TextStyle(
+                            fontFamily: 'medium',
+                            fontSize: 20,
+                            color: textcolor,
                           ),
                         ),
                       ),
-                      Positioned(
-                        top: MediaQuery.of(context).size.height / 6.5,
-                        left: 20,
-                        right: 0,
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "Welcome!",
-                            style: TextStyle(
-                              fontFamily: 'medium',
-                              fontSize: 50,
-                              color: Colors.white,
-                            ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60,
+                        ),
+                        child: Text(
+                          "Welcome",
+                          style: TextStyle(
+                            fontFamily: 'regular',
+                            fontSize: 20,
+                            color: textcolor,
                           ),
                         ),
                       ),
-                      Positioned(
-                        top: MediaQuery.of(context).size.height / 4.6,
-                        left: 20,
-                        right: 0,
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "Glad to see you!",
-                            style: TextStyle(
-                              fontFamily: 'light',
-                              fontSize: 40,
-                              color: Colors.white,
-                            ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height / 60,
+                          right: MediaQuery.of(context).size.height / 60,
+                          bottom: MediaQuery.of(context).size.height / 60,
+                        ),
+                        child: Text(
+                          "Glad to see you!",
+                          style: TextStyle(
+                            fontFamily: 'regular',
+                            fontSize: 20,
+                            color: textcolor,
                           ),
                         ),
                       ),
-                      Positioned(
-                        top: MediaQuery.of(context).size.height / 3.5,
-                        bottom: 0,
-                        child: SingleChildScrollView(
-                          physics: BouncingScrollPhysics(),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height / 1.38,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15)),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Login",
-                                    style: TextStyle(
-                                      fontFamily: 'medium',
-                                      fontSize: 32,
-                                      color: Color(0xff273238),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              130),
-                                  Text(
-                                    "Authenticate yourself by filling up your details!",
-                                    style: TextStyle(
-                                      fontFamily: 'light',
-                                      fontSize: 14,
-                                      color: Color(0xff273238),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              30),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Color(0xffececef),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    width: 360,
-                                    child: TextField(
-                                      onChanged: (value) {},
-                                      controller: emailcontroller,
-                                      keyboardType: TextInputType.emailAddress,
-                                      style:
-                                          TextStyle(color: Color(0xff01bdf3)),
-                                      textAlign: TextAlign.left,
-                                      decoration: kTextFieldDecoration.copyWith(
-                                          contentPadding:
-                                              EdgeInsets.only(left: 20),
-                                          hintText: "Email"),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              80),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Color(0xffececef),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    width: MediaQuery.of(context).size.width,
-                                    child: TextField(
-                                      onChanged: (value) {},
-                                      controller: passwordcontroller,
-                                      keyboardType: TextInputType.emailAddress,
-                                      style:
-                                          TextStyle(color: Color(0xff01bdf3)),
-                                      textAlign: TextAlign.left,
-                                      decoration: kTextFieldDecoration.copyWith(
-                                          contentPadding:
-                                              EdgeInsets.only(left: 20),
-                                          hintText: "Password"),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: ButtonTheme(
-                                        child: MaterialButton(
-                                      onPressed: () {
-                                        Get.to(() => resetpassword(),
-                                            transition: Transition.rightToLeft);
-                                      },
-                                      elevation: 0,
-                                      hoverElevation: 0,
-                                      focusElevation: 0,
-                                      highlightElevation: 0,
-                                      //minWidth: MediaQuery.of(context).size.width / 20,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      child: Text(
-                                        "Forgot Password?",
-                                        style: TextStyle(
-                                          fontFamily: 'semibold',
-                                          fontSize: 14,
-                                          color: Color(0xff273238),
-                                        ),
-                                      ),
-                                    )),
-                                  ),
-                                  SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              60),
-                                  ButtonTheme(
-                                      child: MaterialButton(
-                                    onPressed: () {
-                                      login();
-                                    },
-                                    elevation: 0,
-                                    hoverElevation: 0,
-                                    focusElevation: 0,
-                                    highlightElevation: 0,
-                                    minWidth: MediaQuery.of(context).size.width,
-                                    height: 55,
-                                    color: Color(0xff2c64e3),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child: Text(
+                      Expanded(
+                        child: ListView(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height,
+                              decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(6),
+                                    topRight: Radius.circular(6)),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: ListView(
+                                  children: [
+                                    Text(
                                       "Login",
                                       style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'medium',
-                                          fontSize: 18),
+                                        fontFamily: 'medium',
+                                        fontSize: 16,
+                                        color: textcolor,
+                                      ),
                                     ),
-                                  )),
-                                  SizedBox(
+                                    SizedBox(
                                       height:
                                           MediaQuery.of(context).size.height /
-                                              50),
-                                  ButtonTheme(
-                                      child: MaterialButton(
-                                    onPressed: () {
-                                      Get.to(() => signup(),
-                                          transition: Transition.rightToLeft);
-                                    },
-                                    elevation: 0,
-                                    hoverElevation: 0,
-                                    focusElevation: 0,
-                                    highlightElevation: 0,
-                                    minWidth: MediaQuery.of(context).size.width,
-                                    height: 55,
-                                    color: Color(0xffececef),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child: Text(
-                                      "Don't have account? Signup",
-                                      style: TextStyle(
-                                          color: Color(0xff273238),
-                                          fontFamily: 'medium',
-                                          fontSize: 18),
+                                              120,
                                     ),
-                                  )),
-                                  SizedBox(
+                                    Text(
+                                      "Authenticate yourself by filling up your details!",
+                                      style: TextStyle(
+                                        fontFamily: 'regular',
+                                        fontSize: 12,
+                                        color: textcolor,
+                                      ),
+                                    ),
+                                    SizedBox(
                                       height:
                                           MediaQuery.of(context).size.height /
-                                              25),
-                                  ButtonTheme(
-                                      child: MaterialButton(
-                                    onPressed: () {},
-                                    elevation: 0,
-                                    hoverElevation: 0,
-                                    focusElevation: 0,
-                                    highlightElevation: 0,
-                                    minWidth: MediaQuery.of(context).size.width,
-                                    height: 55,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child: Text(
-                                      "By continuing, you agree to our Terms of Service \n and confirm that you have read our privacy Policy",
+                                              60,
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: background,
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: TextField(
+                                        onChanged: (value) {},
+                                        controller: emailcontroller,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        inputFormatters: [
+                                          LengthLimitingTextInputFormatter(320),
+                                        ],
+                                        style: TextStyle(color: textcolor),
+                                        textAlign: TextAlign.left,
+                                        decoration:
+                                            kTextFieldDecoration.copyWith(
+                                                contentPadding:
+                                                    EdgeInsets.only(left: 20),
+                                                hintText: "Email"),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                80),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: background,
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      width: MediaQuery.of(context).size.width,
+                                      child: TextField(
+                                        obscureText: true,
+                                        onChanged: (value) {},
+                                        inputFormatters: [
+                                          LengthLimitingTextInputFormatter(50),
+                                        ],
+                                        controller: passwordcontroller,
+                                        keyboardType:
+                                            TextInputType.visiblePassword,
+                                        style: TextStyle(color: textcolor),
+                                        textAlign: TextAlign.left,
+                                        decoration:
+                                            kTextFieldDecoration.copyWith(
+                                                contentPadding:
+                                                    EdgeInsets.only(left: 20),
+                                                hintText: "Password"),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                80),
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Theme(
+                                        data: ThemeData(
+                                          splashColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                        ),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Get.to(() => resetpassword(),
+                                                transition:
+                                                    Transition.rightToLeft);
+                                          },
+                                          child: Text(
+                                            "Forgot Password ?",
+                                            style: TextStyle(
+                                              fontFamily: 'regular',
+                                              fontSize: 14,
+                                              color: textcolor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                40),
+                                    Theme(
+                                      data: ThemeData(
+                                        splashColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                      ),
+                                      child: ButtonTheme(
+                                          child: MaterialButton(
+                                        onPressed: () {
+                                          login();
+                                        },
+                                        elevation: 0,
+                                        hoverElevation: 0,
+                                        focusElevation: 0,
+                                        highlightElevation: 0,
+                                        minWidth:
+                                            MediaQuery.of(context).size.width,
+                                        height: 52,
+                                        color: bluecolor,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(6)),
+                                        child: Text(
+                                          "Login",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: white,
+                                              fontFamily: "medium"),
+                                        ),
+                                      )),
+                                    ),
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                80),
+                                    Theme(
+                                      data: ThemeData(
+                                        splashColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                      ),
+                                      child: ButtonTheme(
+                                          child: MaterialButton(
+                                        onPressed: () {
+                                          Get.to(() => signup(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                        elevation: 0,
+                                        hoverElevation: 0,
+                                        focusElevation: 0,
+                                        highlightElevation: 0,
+                                        minWidth:
+                                            MediaQuery.of(context).size.width,
+                                        height: 50,
+                                        color: background,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        child: Text(
+                                          "Don't have account? Signup",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: bluecolor,
+                                              fontFamily: "medium"),
+                                        ),
+                                      )),
+                                    ),
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                40),
+                                    Text(
+                                      "By continuing, you agree to our Terms of Service \n and confirm that you have read our privacy Policy,\nRead",
                                       style: TextStyle(
-                                          color: Color(0xff273238),
-                                          fontFamily: 'light',
-                                          fontSize: 13),
+                                        fontFamily: 'regular',
+                                        fontSize: 12,
+                                        color: textcolor,
+                                      ),
                                       textAlign: TextAlign.center,
                                     ),
-                                  )),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
                       )
                     ],
                   ),
                 ));
           }
-
-          if (user!.emailVerified) {
-            if (user.phoneNumber?.isNotEmpty == true) {
+          if (user.emailVerified) {
+            if (isPhoneVerified!) {
               uid = snapshot.data?.uid ?? uid;
               emailofuser = snapshot.data?.email ?? emailofuser;
               phoneofuser = snapshot.data?.phoneNumber ?? phoneofuser;

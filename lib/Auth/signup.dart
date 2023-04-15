@@ -33,25 +33,11 @@ class _signupState extends State<signup> {
   final phonecontroller = TextEditingController();
   final addresscontroller = TextEditingController();
 
-  var newid;
-  @override
-  void dispose() {
-    emailcontroller.dispose();
-    passwordcontroller.dispose();
-    verifypasswordcontroller.dispose();
-    firstnamecontroller.dispose();
-    secondnamecontroller.dispose();
-    phonecontroller.dispose();
-    addresscontroller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          newid = snapshot.data?.uid;
           if (snapshot.hasData) {
             return const verifyemail();
           } else {

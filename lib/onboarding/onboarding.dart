@@ -18,19 +18,6 @@ class _onboardingState extends State<onboarding> {
   int _activitepage = 0;
   @override
   Widget build(BuildContext context) {
-    (context, child) => ResponsiveWrapper.builder(
-          BouncingScrollWrapper.builder(context, child!),
-          maxWidth: 1200,
-          minWidth: 450,
-          defaultScale: true,
-          breakpoints: [
-            const ResponsiveBreakpoint.resize(450, name: MOBILE),
-            const ResponsiveBreakpoint.autoScale(800, name: TABLET),
-            const ResponsiveBreakpoint.autoScale(1000, name: TABLET),
-            const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
-            const ResponsiveBreakpoint.autoScale(2460, name: "4K"),
-          ],
-        );
     _pages = [
       Container(
         child: Column(
@@ -202,17 +189,44 @@ class _onboardingState extends State<onboarding> {
           ],
         ),
       ),
+      Container(
+        child: Column(
+          children: [
+            Image.asset("images/1.png"),
+            Text(
+              "oops! Emergency?",
+              style: TextStyle(
+                  fontSize: 27,
+                  fontFamily: 'semibold',
+                  color: Color(0xff273238)),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 70,
+            ),
+            Text(
+              "Don't worry!",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'regular',
+                  color: Color(0xff273238)),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 500,
+            ),
+            Text(
+              "We are with you Everytime-Everywhere",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'regular',
+                  color: Color(0xff273238)),
+            ),
+          ],
+        ),
+      ),
     ];
 
     return Scaffold(
       backgroundColor: Colors.white,
-      /* floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              // Add your onPressed code here!
-            },
-            backgroundColor: Color(0xff014cc4),
-            child: const Icon(Icons.navigate_next),
-          ),*/
       body: SafeArea(
           child: Stack(
         children: [

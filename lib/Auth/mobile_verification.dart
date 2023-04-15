@@ -28,30 +28,6 @@ class _mobile_verificationState extends State<mobile_verification> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
-        if (!snapshot.hasData) {
-          // If the user is not authenticated, show the phone verification screen
-          return _buildPhoneVerificationScreen();
-        } else {
-          // If the user is authenticated, check if their phone credential is linked with their email credential
-          final user = snapshot.data!;
-          if (user.emailVerified && user.phoneNumber?.isNotEmpty == true) {
-            return const dashboard();
-          } else if (user.emailVerified) {
-            // If the user's phone is not linked with their email and their email is verified, show the phone verification screen
-            return _buildPhoneVerificationScreen();
-          } else {
-            // If the user's email is not verified, show the verify email screen
-            return const verifyemail();
-          }
-        }
-      },
-    );
-  }
-
-  Widget _buildPhoneVerificationScreen() {
     return Scaffold(
         backgroundColor: bluecolor,
         body: SafeArea(
