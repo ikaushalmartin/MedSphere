@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
@@ -20,10 +21,16 @@ class mobile_verification extends StatefulWidget {
 }
 
 class _mobile_verificationState extends State<mobile_verification> {
-  Color bluecolor = Color(0xff2c64e3);
-  Color textcolor = Color(0xff273238);
-  Color grey = Color(0xffececef);
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
+  Color textcolor_white = Color(0xffACAEBA);
+  Color white = Color(0xffffffff);
+  Color background = Color(0xffF1F1F1);
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final phone2 = TextEditingController();
   var phone;
+
   int phone_verified = 0;
 
   @override
@@ -31,214 +38,214 @@ class _mobile_verificationState extends State<mobile_verification> {
     return Scaffold(
         backgroundColor: bluecolor,
         body: SafeArea(
-          child: Stack(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Positioned(
-                top: MediaQuery.of(context).size.height / 50,
-                left: 20,
-                right: 0,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "APPNAME",
-                    style: TextStyle(
-                      fontFamily: 'bold',
-                      fontSize: 24,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: MediaQuery.of(context).size.height / 7.8,
-                left: 20,
-                right: 0,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Phone Verification",
-                    style: TextStyle(
-                      fontFamily: 'medium',
-                      fontSize: 50,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: MediaQuery.of(context).size.height / 3.2,
-                bottom: 0,
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 1.3,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        topRight: Radius.circular(15),
+              Padding(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 60,
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 60,
+                    bottom: MediaQuery.of(context).size.height / 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "APPNAME",
+                      style: TextStyle(
+                        fontFamily: 'medium',
+                        fontSize: 20,
+                        color: white,
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    GestureDetector(
+                        onTap: () {
+                          FirebaseAuth.instance.signOut();
+                        },
+                        child: Icon(
+                          Icons.logout,
+                          color: white,
+                          size: 20,
+                        ))
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height / 60,
+                  right: MediaQuery.of(context).size.height / 60,
+                  bottom: MediaQuery.of(context).size.height / 60,
+                ),
+                child: Text(
+                  "Phone Verification!",
+                  style: TextStyle(
+                    fontFamily: 'regular',
+                    fontSize: 20,
+                    color: white,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: white,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(6),
+                      topRight: Radius.circular(6),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Form(
+                      key: _formKey,
+                      child: ListView(
+                        physics: const BouncingScrollPhysics(),
                         children: [
                           Text(
-                            "We will send you a code",
+                            "We will send you 6 digit OTP on your phone number.\nDon't forget to check your spam folder.",
                             style: TextStyle(
-                              fontFamily: 'medium',
-                              fontSize: 32,
-                              color: Color(0xff273238),
-                            ),
-                          ),
-                          SizedBox(
-                              height: MediaQuery.of(context).size.height / 130),
-                          Text(
-                            "We will send you code on phone number. The code will expires shortly, so please enter it soon!",
-                            style: TextStyle(
-                              fontFamily: 'light',
-                              fontSize: 14,
+                              fontFamily: 'regular',
+                              fontSize: 12,
                               color: textcolor,
                             ),
                           ),
                           SizedBox(
-                              height: MediaQuery.of(context).size.height / 30),
+                              height: MediaQuery.of(context).size.height / 40),
                           Container(
                             decoration: BoxDecoration(
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
+                                color: background,
                                 borderRadius: BorderRadius.circular(6)),
                             child: Row(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Text(
                                   "+91",
                                   style:
-                                      TextStyle(fontSize: 18, color: textcolor),
+                                      TextStyle(fontSize: 16, color: textcolor),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Text(
                                   "|",
-                                  style: TextStyle(
-                                      fontSize: 32, color: Colors.grey),
+                                  style:
+                                      TextStyle(fontSize: 25, color: textcolor),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Expanded(
-                                    child: TextField(
+                                    child: TextFormField(
                                   onChanged: (value) {
                                     phone = value;
                                   },
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(10),
+                                  ],
+                                  enableInteractiveSelection: false,
+                                  controller: phone2,
                                   keyboardType: TextInputType.phone,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
+                                      hintStyle: TextStyle(
+                                          color: Color(0xff575F75),
+                                          fontSize: 13),
                                       border: InputBorder.none,
                                       hintText: "Phone Number"),
+                                  validator: (phonenumberval) =>
+                                      phonenumberval != null &&
+                                              phonenumberval.length != 10
+                                          ? 'Enter a valid number'
+                                          : null,
                                 ))
                               ],
                             ),
                           ),
                           SizedBox(
-                              height: MediaQuery.of(context).size.height / 70),
-                          ButtonTheme(
-                              child: MaterialButton(
-                            onPressed: () async {
-                              try {
-                                showDialog(
-                                    barrierDismissible: false,
-                                    context: context,
-                                    builder: (context) => Center(
-                                          child:
-                                              LoadingAnimationWidget.waveDots(
-                                            color: Color(0xff273238),
-                                            size: 80,
-                                          ),
-                                        ));
-                                await FirebaseAuth.instance.verifyPhoneNumber(
-                                  phoneNumber: '+91 $phone',
-                                  verificationCompleted:
-                                      (PhoneAuthCredential credential) {},
-                                  verificationFailed:
-                                      (FirebaseAuthException e) {},
-                                  codeSent: (String verificationId,
-                                      int? resendToken) {
-                                    Get.to(
-                                        () => otpscreen(
-                                              verification_id: verificationId,
-                                            ),
-                                        transition: Transition.rightToLeft);
-                                  },
-                                  codeAutoRetrievalTimeout:
-                                      (String verificationId) {},
-                                );
-                                Navigator.of(context).pop();
-                              } catch (e) {
-                                var othersnackbar = SnackBar(
-                                  content: Text("${e}"),
-                                  backgroundColor: textcolor,
-                                  shape: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(1)),
-                                  duration: Duration(milliseconds: 2000),
-                                  behavior: SnackBarBehavior.floating,
-                                );
-                                setState(() {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(othersnackbar);
-                                });
-                              }
-                            },
-                            elevation: 0,
-                            hoverElevation: 0,
-                            focusElevation: 0,
-                            highlightElevation: 0,
-                            minWidth: MediaQuery.of(context).size.width,
-                            height: 55,
-                            color: bluecolor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            child: const Text(
-                              "Send the code",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'medium',
-                                  fontSize: 18),
+                              height: MediaQuery.of(context).size.height / 40),
+                          Theme(
+                            data: ThemeData(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                             ),
-                          )),
-                          SizedBox(
-                              height: MediaQuery.of(context).size.height / 30),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Can't find your code? Check your spam folder!",
-                              style: TextStyle(
-                                fontFamily: 'light',
-                                fontSize: 15,
-                                color: textcolor,
+                            child: ButtonTheme(
+                                child: MaterialButton(
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+                                  try {
+                                    showDialog(
+                                        barrierDismissible: false,
+                                        context: context,
+                                        builder: (context) => Center(
+                                              child: LoadingAnimationWidget
+                                                  .waveDots(
+                                                color: Color(0xff273238),
+                                                size: 80,
+                                              ),
+                                            ));
+                                    await FirebaseAuth.instance
+                                        .verifyPhoneNumber(
+                                      phoneNumber: '+91 $phone',
+                                      verificationCompleted:
+                                          (PhoneAuthCredential credential) {},
+                                      verificationFailed:
+                                          (FirebaseAuthException e) {},
+                                      codeSent: (String verificationId,
+                                          int? resendToken) {
+                                        Get.to(
+                                            () => otpscreen(
+                                                  verification_id:
+                                                      verificationId,
+                                                ),
+                                            transition: Transition.rightToLeft);
+                                      },
+                                      codeAutoRetrievalTimeout:
+                                          (String verificationId) {},
+                                    );
+                                    Navigator.of(context).pop();
+                                  } catch (e) {
+                                    var othersnackbar = SnackBar(
+                                      content: Text("${e}"),
+                                      backgroundColor: textcolor,
+                                      shape: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(1)),
+                                      duration: Duration(milliseconds: 2000),
+                                      behavior: SnackBarBehavior.floating,
+                                    );
+                                    setState(() {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(othersnackbar);
+                                    });
+                                  }
+                                }
+                              },
+                              elevation: 0,
+                              hoverElevation: 0,
+                              focusElevation: 0,
+                              highlightElevation: 0,
+                              minWidth: MediaQuery.of(context).size.width,
+                              height: 55,
+                              color: bluecolor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: const Text(
+                                "Send the code",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'medium',
+                                    fontSize: 18),
                               ),
-                            ),
+                            )),
                           ),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height / 40),
                         ],
                       ),
                     ),
                   ),
-                ),
-              ),
-              Positioned(
-                top: MediaQuery.of(context).size.height / 3.2,
-                bottom: 0,
-                child: MaterialButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut();
-                  },
-                  color: Colors.red,
-                  height: 200,
-                  minWidth: 200,
                 ),
               ),
             ],

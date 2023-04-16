@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
@@ -156,14 +157,16 @@ class _loginState extends State<login> {
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(320),
                                       ],
+                                      enableInteractiveSelection: false,
                                       style: TextStyle(color: textcolor),
                                       textAlign: TextAlign.left,
                                       decoration: kTextFieldDecoration.copyWith(
                                           contentPadding:
                                               EdgeInsets.only(left: 20),
                                           hintText: "Email"),
-                                      validator: (phone) => phone != null
-                                          ? "Email cannot be empty!"
+                                      validator: (email) => email != null &&
+                                              !EmailValidator.validate(email)
+                                          ? 'Enter a valid email'
                                           : null,
                                     ),
                                   ),
@@ -183,6 +186,7 @@ class _loginState extends State<login> {
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(50),
                                       ],
+                                      enableInteractiveSelection: false,
                                       controller: passwordcontroller,
                                       keyboardType:
                                           TextInputType.visiblePassword,
