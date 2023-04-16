@@ -435,7 +435,7 @@ class _dashboardState extends State<dashboard> {
                                                             .rightToLeft);
                                                   }
                                                 } else if (index == 7) {
-                                                  Get.to(() => LocationScreen(),
+                                                  Get.to(() => MapScreen(),
                                                       transition: Transition
                                                           .rightToLeft);
                                                 }

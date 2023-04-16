@@ -780,8 +780,6 @@ class _cartState extends State<cart> {
     }
 
     deliverycharges_updation();
-
-    print("-------------------------${deliveryandminval_list[1].name}");
   }
 
   deliverycharges_updation() {
