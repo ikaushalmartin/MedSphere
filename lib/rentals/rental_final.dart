@@ -54,46 +54,46 @@ class _rentalfinalState extends State<rentalfinal> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            Container(
+              color: white,
+              height: MediaQuery.of(context).size.height / 16,
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height / 60,
+                    right: MediaQuery.of(context).size.height / 200),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios_new_outlined,
+                        color: textcolor,
+                        size: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.height / 60,
+                    ),
+                    Text(
+                      "Details",
+                      style: TextStyle(
+                        fontFamily: 'medium',
+                        fontSize: 16,
+                        color: textcolor,
+                      ),
+                    ),
+                  ],
+                ), //toprow
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 100),
             Expanded(
               child: ListView(
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 children: [
-                  Container(
-                    color: white,
-                    height: MediaQuery.of(context).size.height / 16,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.height / 60,
-                          right: MediaQuery.of(context).size.height / 200),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Get.back();
-                            },
-                            child: Icon(
-                              Icons.arrow_back_ios_new_outlined,
-                              color: textcolor,
-                              size: 20,
-                            ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.height / 60,
-                          ),
-                          Text(
-                            "Details",
-                            style: TextStyle(
-                              fontFamily: 'medium',
-                              fontSize: 16,
-                              color: textcolor,
-                            ),
-                          ),
-                        ],
-                      ), //toprow
-                    ),
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height / 100),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(

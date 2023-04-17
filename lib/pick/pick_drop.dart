@@ -8,6 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:http/http.dart' as http;
+import 'package:medicineapp2/pick/pick_drop_final.dart';
 import '../Models/popularcategories_model.dart';
 
 class MapScreen extends StatefulWidget {
@@ -22,12 +23,11 @@ class _MapScreenState extends State<MapScreen> {
   Color white = Color(0xffffffff);
   Color background = Color(0xffF1F1F1);
   List<LatLng> _selectedPoints = [];
-  final apiURL = 'https://api.openrouteservice.org/v2/directions/driving-car';
-  final apiKey = '5b3ce3597851110001cf624879014225f1aa41329b4115112d47602b';
-  final startLat = 8.681495;
-  final startLon = 49.41461;
-  final endLat = 8.687872;
-  final endLon = 49.420318;
+
+  late var startLat;
+  late var startLon;
+  late var endLat;
+  late var endLon;
 
   void _handleTap(LatLng point) {
     setState(() {
@@ -44,6 +44,12 @@ class _MapScreenState extends State<MapScreen> {
       LatLng secondPoint = _selectedPoints[1];
       print('First point: ${firstPoint.latitude}, ${firstPoint.longitude}');
       print('Second point: ${secondPoint.latitude}, ${secondPoint.longitude}');
+      startLat = firstPoint.latitude;
+      startLon = firstPoint.longitude;
+      endLat = secondPoint.latitude;
+      endLon = secondPoint.longitude;
+      print("$startLat,$startLon,$endLat,$endLon");
+      fetchDistanceMatrix();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -133,9 +139,9 @@ class _MapScreenState extends State<MapScreen> {
                             width: 80.0,
                             height: 80.0,
                             point: point,
-                            builder: (ctx) => Icon(
+                            builder: (ctx) => const Icon(
                               Icons.location_on,
-                              size: 50,
+                              size: 30,
                               color: Colors.red,
                             ),
                           ),
@@ -170,7 +176,6 @@ class _MapScreenState extends State<MapScreen> {
                           onPressed: () {
                             _getSelectedCoordinates();
                             fetch_discount_and_minimumvalue();
-                            fetch_distance();
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
@@ -230,17 +235,35 @@ class _MapScreenState extends State<MapScreen> {
     return deliveryandminval_list;
   }
 
-  fetch_distance() async {
-    final response = await http.get(Uri.parse(
-        '$apiURL?api_key=$apiKey&start=$startLat,$startLon&end=$endLat,$endLon'));
+  Future fetchDistanceMatrix() async {
+    final url = Uri.parse(
+        'https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=$startLat,$startLon&destinations=$endLat,$endLon&key=AIzaSyBSfEJ-HVQI8VD-yrs5xJpFSrgLu7ZXZYU');
+    final response = await http.get(url);
 
     if (response.statusCode == 200) {
-      // API request successful, parse the JSON response
-      final jsonResponse = json.decode(response.body);
-      print(jsonResponse);
+      final result = jsonDecode(response.body);
+      var address1 = result['destination_addresses'];
+      var destinationAddressString1 = address1.join(', ');
+      var address2 = result['origin_addresses'];
+      var destinationAddressString2 = address2.join(', ');
+      var distance = result['rows'][0]['elements'][0]['distance']['text'];
+      var time = result['rows'][0]['elements'][0]['duration']['text'];
+
+      final distanceInKm =
+          double.parse(distance.replaceAll(RegExp('[^0-9.]'), ''));
+      print(time);
+
+      Get.to(pick_and_drop_final(
+        orgin_address: destinationAddressString2,
+        destination_address: destinationAddressString1,
+        Expected_time: time,
+        price_km: deliveryandminval_list[6].name,
+        total_distance: "$distanceInKm KM",
+        total_price:
+            "${distanceInKm * double.parse(deliveryandminval_list[6].name)}",
+      ));
     } else {
-      // API request failed, handle the error
-      print('Request failed with status: ${response.statusCode}.');
+      throw Exception('Failed to load distance matrix');
     }
   }
 }
