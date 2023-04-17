@@ -22,7 +22,7 @@ class bottomoption extends StatelessWidget {
                   margin: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                       color: activepages == index
-                          ? Color(0xff2c64e3)
+                          ? Color(0xff014CC4)
                           : Colors.black.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(5)),
                 );
@@ -39,8 +39,8 @@ class bottomoption extends StatelessWidget {
           focusElevation: 0,
           highlightElevation: 0,
           minWidth: MediaQuery.of(context).size.width / 1.17,
-          height: 55,
-          color: Color(0xff2c64e3),
+          height: 52,
+          color: Color(0xff014CC4),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           child: Text(
             "Get Started",

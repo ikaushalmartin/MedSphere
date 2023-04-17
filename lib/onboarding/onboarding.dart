@@ -14,6 +14,8 @@ class onboarding extends StatefulWidget {
 }
 
 class _onboardingState extends State<onboarding> {
+  Color textcolor = Color(0xff1A1D44);
+  Color bluecolor = Color(0xff014CC4);
   late List<Widget> _pages;
   int _activitepage = 0;
   @override
@@ -26,29 +28,16 @@ class _onboardingState extends State<onboarding> {
             Text(
               "Home Delivery of Medicine",
               style: TextStyle(
-                  fontSize: 27,
-                  fontFamily: 'semibold',
-                  color: Color(0xff273238)),
+                  fontSize: 20, fontFamily: 'Medium', color: textcolor),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 70,
+              height: MediaQuery.of(context).size.height / 100,
             ),
             Text(
-              "Your very own Medicine Delivery Companion",
+              "Your very own Medicine Delivery Companion\nGet your Medicine Anywhere-Anytime",
+              textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 500,
-            ),
-            Text(
-              "Get your Medicine Anywhere-Anytime",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
+                  fontSize: 16, fontFamily: 'regular', color: textcolor),
             ),
           ],
         ),
@@ -58,31 +47,18 @@ class _onboardingState extends State<onboarding> {
           children: [
             Image.asset("images/1.png"),
             Text(
-              "Online Consultation",
+              "Home Delivery of Medicine",
               style: TextStyle(
-                  fontSize: 27,
-                  fontFamily: 'semibold',
-                  color: Color(0xff273238)),
+                  fontSize: 20, fontFamily: 'Medium', color: textcolor),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 70,
+              height: MediaQuery.of(context).size.height / 100,
             ),
             Text(
-              "Doctors are in touch 24/7",
+              "Your very own Medicine Delivery Companion\nGet your Medicine Anywhere-Anytime",
+              textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 500,
-            ),
-            Text(
-              "Consult with right one! Anywhere-Anytime",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
+                  fontSize: 16, fontFamily: 'regular', color: textcolor),
             ),
           ],
         ),
@@ -92,133 +68,18 @@ class _onboardingState extends State<onboarding> {
           children: [
             Image.asset("images/1.png"),
             Text(
-              "Book Lab Appointment",
+              "Home Delivery of Medicine",
               style: TextStyle(
-                  fontSize: 27,
-                  fontFamily: 'semibold',
-                  color: Color(0xff273238)),
+                  fontSize: 20, fontFamily: 'Medium', color: textcolor),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 70,
+              height: MediaQuery.of(context).size.height / 100,
             ),
             Text(
-              "No need of waiting in long queue",
+              "Your very own Medicine Delivery Companion\nGet your Medicine Anywhere-Anytime",
+              textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 500,
-            ),
-            Text(
-              "Book your Lab Test Anywhere-Anytime",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
-            ),
-          ],
-        ),
-      ),
-      Container(
-        child: Column(
-          children: [
-            Image.asset("images/1.png"),
-            Text(
-              "Need Pharma Machine?",
-              style: TextStyle(
-                  fontSize: 27,
-                  fontFamily: 'semibold',
-                  color: Color(0xff273238)),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 70,
-            ),
-            Text(
-              "Gonna delivery at your door-step",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 500,
-            ),
-            Text(
-              "Get your Meachine Anywhere-Anytime",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
-            ),
-          ],
-        ),
-      ),
-      Container(
-        child: Column(
-          children: [
-            Image.asset("images/1.png"),
-            Text(
-              "oops! Emergency?",
-              style: TextStyle(
-                  fontSize: 27,
-                  fontFamily: 'semibold',
-                  color: Color(0xff273238)),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 70,
-            ),
-            Text(
-              "Don't worry!",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 500,
-            ),
-            Text(
-              "We are with you Everytime-Everywhere",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
-            ),
-          ],
-        ),
-      ),
-      Container(
-        child: Column(
-          children: [
-            Image.asset("images/1.png"),
-            Text(
-              "oops! Emergency?",
-              style: TextStyle(
-                  fontSize: 27,
-                  fontFamily: 'semibold',
-                  color: Color(0xff273238)),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 70,
-            ),
-            Text(
-              "Don't worry!",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 500,
-            ),
-            Text(
-              "We are with you Everytime-Everywhere",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'regular',
-                  color: Color(0xff273238)),
+                  fontSize: 16, fontFamily: 'regular', color: textcolor),
             ),
           ],
         ),
@@ -228,46 +89,43 @@ class _onboardingState extends State<onboarding> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-          child: Stack(
+          child: Column(
         children: [
-          Positioned(
-            top: 20,
-            left: 0,
-            right: 0,
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                "APPNAME",
-                style: TextStyle(
-                  fontFamily: 'bold',
-                  fontSize: 24,
-                  color: Color(0xff2c64e3),
-                ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 40,
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              "APPNAME",
+              style: TextStyle(
+                fontFamily: 'Semibold',
+                fontSize: 20,
+                color: textcolor,
               ),
             ),
           ),
-          Positioned(
-              top: 100,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: PageView(
-                physics: BouncingScrollPhysics(),
-                onPageChanged: (value) {
-                  setState(() {
-                    _activitepage = value;
-                  });
-                },
-                children: _pages,
-              )),
-          Positioned(
-              left: 0,
-              right: 0,
-              bottom: 30,
-              child: bottomoption(
-                totalpages: _pages.length,
-                activepages: _activitepage,
-              )),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 10,
+          ),
+          Expanded(
+            child: PageView(
+              physics: BouncingScrollPhysics(),
+              onPageChanged: (value) {
+                setState(() {
+                  _activitepage = value;
+                });
+              },
+              children: _pages,
+            ),
+          ),
+          bottomoption(
+            totalpages: _pages.length,
+            activepages: _activitepage,
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 40,
+          ),
         ],
       )),
     );
