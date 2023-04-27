@@ -14,6 +14,7 @@ import 'package:medicineapp2/rentals/rental.dart';
 import 'package:medicineapp2/shopby_concern.dart';
 import 'package:medicineapp2/shopbycategory.dart';
 import 'package:medicineapp2/surgical/surgical.dart';
+import 'package:medicineapp2/top_sliding_carousel.dart';
 import 'package:unicons/unicons.dart';
 import 'Medicine/medicine_forbutton.dart';
 import 'Models/topdeals_model.dart';
@@ -308,12 +309,14 @@ class _dashboardState extends State<dashboard> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 35,
+                          height: MediaQuery.of(context).size.height / 55,
                         ),
                         SizedBox(
                             height: MediaQuery.of(context).size.height / 5,
                             width: MediaQuery.of(context).size.width,
-                            child: ListView.builder(
+                            child: MyCarouselSlider(
+                                imageUrls:
+                                    starting_tiles_image_list) /*ListView.builder(
                                 shrinkWrap: true,
                                 physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
@@ -334,9 +337,10 @@ class _dashboardState extends State<dashboard> {
                                                 image: NetworkImage(
                                                     "${starting_tiles_image_list[index]}")))),
                                   );
-                                })),
+                                })*/
+                            ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 35,
+                          height: MediaQuery.of(context).size.height / 55,
                         ),
                       ],
                     ),
