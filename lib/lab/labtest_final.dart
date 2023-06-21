@@ -561,12 +561,12 @@ class _labtest_finalState extends State<labtest_final> {
           .collection('/ORDERS')
           .doc('Lab_orders')
           .collection("oders")
-          .doc("${DateTime.now()}")
+          .doc("${DateTime.now()} - ${i + 1}")
           .set({
-        'Package Name - ${i + 1}': widget.cart_items[i].packages,
-        'Test Name - ${i + 1}': widget.cart_items[i].name,
-        'Test Price - ${i + 1}': widget.cart_items[i].price,
-        'Patient - ${i + 1}': widget.cart_items[i].quantity,
+        'Package Name': widget.cart_items[i].packages,
+        'Test Name': widget.cart_items[i].name,
+        'Test Price': widget.cart_items[i].price,
+        'Patient': widget.cart_items[i].quantity,
         'Customer Name': patientname.text,
         'phone': patientphone.text,
         'pincode': patientpincode.text,

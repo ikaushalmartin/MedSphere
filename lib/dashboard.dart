@@ -23,7 +23,6 @@ import 'buy and cart/surgical_cart.dart';
 import 'const.dart';
 import 'Search_screen/dashboard_search.dart';
 import 'discounts/discount_products.dart';
-
 import 'doctor/doctor.dart';
 import 'doctors_corner/image_upload.dart';
 import 'doctors_corner/mainscreen.dart';
