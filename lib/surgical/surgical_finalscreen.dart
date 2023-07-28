@@ -617,12 +617,12 @@ class _surgical_finalState extends State<surgical_final> {
           .collection('/ORDERS')
           .doc('Surgical_orders')
           .collection("oders")
-          .doc("${DateTime.now()}")
+          .doc("${DateTime.now()} - ${i + 1}")
           .set({
-        'Product Name - ${i + 1}': widget.cart_items[i].productname,
-        'Product Company - ${i + 1}': widget.cart_items[i].company,
-        'Product Price - ${i + 1}': widget.cart_items[i].price,
-        'Product Quantity - ${i + 1}': widget.cart_items[i].quantity,
+        'Product Name': widget.cart_items[i].productname,
+        'Product Company': widget.cart_items[i].company,
+        'Product Price': widget.cart_items[i].price,
+        'Product Quantity': widget.cart_items[i].quantity,
         'Customer Name': patientname.text,
         'phone': patientphone.text,
         'pincode': patientpincode.text,
@@ -664,13 +664,13 @@ class _surgical_finalState extends State<surgical_final> {
           .collection('/ORDERS')
           .doc('Surgical_orders')
           .collection("oders")
-          .doc("${DateTime.now()}")
+          .doc("${DateTime.now()} - ${i + 1}")
           .collection(uid)
           .add({
-        'Product Name - ${i + 1}': widget.cart_items[i].productname,
-        'Product Company - ${i + 1}': widget.cart_items[i].company,
-        'Product Price - ${i + 1}': widget.cart_items[i].price,
-        'Product Quantity - ${i + 1}': widget.cart_items[i].quantity,
+        'Product Name': widget.cart_items[i].productname,
+        'Product Company': widget.cart_items[i].company,
+        'Product Price': widget.cart_items[i].price,
+        'Product Quantity': widget.cart_items[i].quantity,
         'Customer Name': patientname.text,
         'phone': patientphone.text,
         'pincode': patientpincode.text,

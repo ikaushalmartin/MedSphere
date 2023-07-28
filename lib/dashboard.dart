@@ -67,7 +67,7 @@ class _dashboardState extends State<dashboard> {
   List<topdeals> deal_ofthedayitems = [];
 
   List dealoftheday_items = [];
-  int doctor_checked = 0;
+  int doctor_checked=0;
 
   late var everyday_essential_image_url;
 
@@ -425,12 +425,13 @@ class _dashboardState extends State<dashboard> {
                                                       transition: Transition
                                                           .rightToLeft);
                                                 } else if (index == 6) {
+
                                                   if (doctor_checked == 0) {
                                                     Get.to(
                                                         () => dr_image_upload(),
                                                         transition: Transition
                                                             .rightToLeft);
-                                                  } else {
+                                                  } else if(doctor_checked==1) {
                                                     Get.to(
                                                         () =>
                                                             const mainscreen(),
@@ -930,11 +931,13 @@ class _dashboardState extends State<dashboard> {
         .collection('Doctor_check')
         .doc(uid)
         .get();
-    print("<<<<<<<<<<<<<<<<<<<<<<<<<<${dr_data['Verified']}");
-    doctor_checked = dr_data['Verified'];
+
+    doctor_checked = dr_data['Verified']  ;
+
     setState(() {
       doctor_checked;
     });
+    print(doctor_checked);
   }
 
   map_fetch_popular_categories(QuerySnapshot<Map<String, dynamic>> data) {

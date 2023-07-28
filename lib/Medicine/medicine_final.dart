@@ -619,7 +619,11 @@ class _medicine_finalState extends State<medicine_final> {
         "Name": widget.cart_items[i].productname,
         "Price": widget.cart_items[i].price,
         "Status": "Pending",
-        "Quantity": widget.cart_items[i].quantity
+        "Quantity": widget.cart_items[i].quantity,
+        'Customer Name': patientname.text,
+        'phone': patientphone.text,
+        'pincode': patientpincode.text,
+        'address': patientaddress.text,
       });
     }
 

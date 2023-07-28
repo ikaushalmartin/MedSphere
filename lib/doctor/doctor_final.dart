@@ -584,7 +584,10 @@ class _doctor_finalState extends State<doctor_final> {
       "Name": widget.doctorname,
       "Price": widget.fees,
       "Status": "Pending",
-      "Quantity": 0
+      "Quantity": 0,
+      'Patient Name': patientname.text,
+      'pincode': patientpincode.text,
+      'phone': patientphone.text
     });
 
     Navigator.of(context).pop();

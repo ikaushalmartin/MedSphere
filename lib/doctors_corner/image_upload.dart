@@ -398,29 +398,13 @@ class _dr_image_uploadState extends State<dr_image_upload> {
         ),
       ),
     );
-  }
-
+  }//0==close
   Future<void> uploadImageToFirebaseStorage() async {
     FirebaseStorage storage = FirebaseStorage.instance;
-    final currentTime = DateTime.now();
-    final formatter = DateFormat('yyyyMMdd_HHmmss');
-    final imageName = formatter.format(currentTime);
-
     String fileName = uid.toString();
-    String uniqueFileName = fileName;
-
-    // Create a reference to the storage location
-    Reference storageRef =
-        storage.ref().child('Doctors_Identity/$uniqueFileName');
-
-    // Upload the image to storage
-    TaskSnapshot uploadTask = await storageRef.putFile(_selectedFile);
-
-    // Get the download URL for the image
-    String imageUrl = await storageRef.getDownloadURL();
-
-    // Do something with the download URL, like store it in Cloud Firestore or display it in your app
-    print(imageUrl);
+    Reference storageRef = storage.ref().child('Doctors_Identity/$fileName');
+    await storageRef.putFile(_selectedFile);
+    await storageRef.getDownloadURL();
     doctor_check();
   }
 
@@ -429,10 +413,21 @@ class _dr_image_uploadState extends State<dr_image_upload> {
         FirebaseFirestore.instance.collection('/Doctor_check');
     final DocumentReference documentRef = collectionRef.doc(uid);
     await documentRef.set({
-      'Verified': 1,
+      'Verified': 0,
+    });
+    Navigator.of(context).pop();
+    var vpasswordsnackbar = SnackBar(
+      content: const Text("Identity Uploaded! Wait for verification! "),
+      //  backgroundColor: textcolor,
+      shape: OutlineInputBorder(borderRadius: BorderRadius.circular(1)),
+      duration: Duration(milliseconds: 2000),
+      behavior: SnackBarBehavior.floating,
+    );
+    setState(() {
+      ScaffoldMessenger.of(context).showSnackBar(vpasswordsnackbar);
     });
 
     Navigator.of(context).pop();
-    Get.to(() => const mainscreen(), transition: Transition.rightToLeft);
+   // Get.to(() => const mainscreen(), transition: Transition.rightToLeft);
   }
 }

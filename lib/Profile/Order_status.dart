@@ -438,9 +438,9 @@ class _order_statusState extends State<order_status> {
 
   fetch_prescription_data() async {
     var doctor_details = await FirebaseFirestore.instance
-        .collection('/ORDERS')
-        .doc('/prescription_orders')
-        .collection(uid)
+
+        .collection('prescription_orders')
+        .doc("$uid").collection('oders')
         .get();
     showDialog(
         barrierDismissible: false,

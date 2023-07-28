@@ -503,31 +503,20 @@ class _prescription_orderscreenState extends State<prescription_orderscreen> {
 
   Future book_rentals(String uniqueFileName) async {
     await FirebaseFirestore.instance
-        .collection('/ORDERS')
-        .doc('prescription_orders')
-        .collection("$uid")
+        .collection('prescription_orders')
+        .doc("$uid").collection('oders')
         .doc("${DateTime.now()}")
         .set({
       'Url': uniqueFileName,
       'Coustmer Name': patientname.text,
       'pincode': patientpincode.text,
       'phone': patientphone.text,
+      'address':patientaddress.text,
       'status': 'Pending',
       'Cutprice': "NIL"
     });
 
-    await FirebaseFirestore.instance
-        .collection('Order_Status')
-        .doc(uid)
-        .collection("oders")
-        .add({
-      "Cutprice": "NA",
-      "Info": "NA",
-      "Name": "Prescription",
-      "Price": "NA",
-      "Status": "Pending",
-      "Quantity": 0
-    });
+
 
     Navigator.of(context).pop();
     AwesomeDialog(
