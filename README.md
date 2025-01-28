@@ -54,4 +54,13 @@ In conjunction with the application, an Admin Panel has been developed to overse
    <img src="Screenshots/doc1.png"  width="230" height="500">
    <img src="Screenshots/doc3.png"  width="230" height="500">
   </p>
-  
+
+## Tech Stack
+#### Frontend
+- Frontend Framework: Flutter
+- Frontend Language: Dart
+
+#### Backend
+- Database: Firestore Database
+- Authentication: Firebase Authentication
+- File Storage: Firebase Storage
