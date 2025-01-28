@@ -28,10 +28,12 @@ In conjunction with the application, an Admin Panel has been developed to overse
    <img src="Screenshots/med2.png"  width="230" height="500">
    <img src="Screenshots/med3.png"  width="230" height="500">
    <img src="Screenshots/rent1.png" width="230" height="500">
-   <img src="Screenshots/rent2.png" width="230" height="500">
+  
    <img src="Screenshots/homcare1.png" width="230" height="500">
+   
    <img src="Screenshots/homecare2.png" width="230" height="500">
    <img src="Screenshots/homecare3.png" width="230" height="500">
+    <img src="Screenshots/rent2.png" width="230" height="500">
   </p>
 
 - **Lab Testing**
