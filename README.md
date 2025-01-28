@@ -9,8 +9,7 @@ In conjunction with the application, an Admin Panel has been developed to overse
   <p align="left">
    <img src="Screenshots/log1.png" width="230" height="500">
   <img src="Screenshots/log2.png"  width="230" height="500">
-  <img src="Screenshots/log4.png"  width="230" height="500">
-   <img src="Screenshots/log3.png" width="230" height="500">
+  <img src="Screenshots/log4.png"  width="230" height="500"> 
   </p>
 
 - **Dashboard**
@@ -18,8 +17,7 @@ In conjunction with the application, an Admin Panel has been developed to overse
    <img src="Screenshots/hom1.png" width="230" height="500">
    <img src="Screenshots/hom2.png"  width="230" height="500">
    <img src="Screenshots/hom4.png"  width="230" height="500">
-   <img src="Screenshots/hom5.png" width="230" height="500">
-   <img src="Screenshots/hom6.png" width="230" height="500">
+   <img src="Screenshots/hom5.png" width="230" height="500"> 
    <img src="Screenshots/hom7.png" width="230" height="500">
    <img src="Screenshots/hom8.png" width="230" height="500">
   </p>
