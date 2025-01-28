@@ -427,7 +427,7 @@ class _dr_image_uploadState extends State<dr_image_upload> {
       ScaffoldMessenger.of(context).showSnackBar(vpasswordsnackbar);
     });
 
-    Navigator.of(context).pop();
-   // Get.to(() => const mainscreen(), transition: Transition.rightToLeft);
+    //Navigator.of(context).pop();
+   Get.to(() => const mainscreen(), transition: Transition.rightToLeft);
   }
 }

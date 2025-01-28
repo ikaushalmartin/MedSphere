@@ -122,7 +122,7 @@ class _rentalState extends State<rental> {
                                 size: 23,
                               ),
                               contentPadding: EdgeInsets.only(left: 20),
-                              hintText: "Search for Lab Packages"),
+                              hintText: "Search for Rentals"),
                         ),
                       ),
                     ),

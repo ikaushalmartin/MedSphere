@@ -80,8 +80,7 @@ class _dashboardState extends State<dashboard> {
   void initState() {
     super.initState();
 
-    fetch_popular_categories();
-
+    fetch_popular_categories(); 
     fetch_number();
     starting_tiles();
     loadImages();

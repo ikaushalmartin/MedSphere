@@ -132,7 +132,7 @@ class _surgicalState extends State<surgical> {
                                 size: 23,
                               ),
                               contentPadding: EdgeInsets.only(left: 20),
-                              hintText: "Search for Lab Packages"),
+                              hintText: "Search for Surgicals"),
                         ),
                       ),
                     ),
