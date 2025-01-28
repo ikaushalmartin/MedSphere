@@ -1,0 +1,997 @@
+{
+    "CARTS": {
+        "fzyzzrVoFlaPx4yLRjZ0": {}
+    },
+    "DEAL_OFTHE_DAY": {
+        "1": {
+            "discount_items": {
+                "9W8GHCkZvW20bRRJRkUy": {
+                    "Side_Effect": "NIL",
+                    "Cutprice": "42.3",
+                    "Price": "22.8",
+                    "Quantity": "Strip Of 10 Tablets",
+                    "Medical_Discription": "Stop sore & itchy throat before it gets worse. Try Strepsils Orange with Vitamin C lozenges for fast, soothing and effective relief from sore throats.",
+                    "Salts": "sdfsfs",
+                    "Doses": "Adults and Children: Dissolve one lozenge in the mouth every 2 to 3 hours or as prescribed by the physician.",
+                    "Precaution_and_warning": "Keep out of reach of children.",
+                    "Name": "Saridon Headache Relief Tablet",
+                    "Company": "By Saridon",
+                    "Uses": "For sore & itchy throat"
+                }
+            }
+        }
+    },
+    "Doctor_check": {
+        "FbTMmB1GZzagyfD0BLWS9DX4PdB2": {
+            "Verified": 1
+        }
+    },
+    "Lab_packages": {
+        "cxxvdsf": {
+            "Price": "afdfsd",
+            "Cutprice": "fafdsfasd",
+            "Description": "dsafsadf",
+            "PackagesInclude": "fafsafd",
+            "SampleType": "fasdfsafsa",
+            "FastingRequired": "sdfsdfs",
+            "Info": "sdaf",
+            "Name": "cxxvdsf",
+            "TubeType": "fasdfad"
+        },
+        "dfg": {
+            "Price": "sdfg",
+            "Cutprice": "sdfg",
+            "Description": "sfdg",
+            "PackagesInclude": "dsfg",
+            "SampleType": "sdfg",
+            "FastingRequired": "dfg",
+            "Info": "sdfg",
+            "Name": "dfg",
+            "TubeType": "sdfg"
+        },
+        "lEAmwhF1P9RYHN04bHJF": {
+            "Price": "2000",
+            "Cutprice": "3000",
+            "Description": "idk currently",
+            "PackagesInclude": "Chloride",
+            "SampleType": "bood",
+            "FastingRequired": "yes",
+            "Info": "Include 3 Tests",
+            "Name": "xyz",
+            "TubeType": "plain"
+        }
+    },
+    "Medicine_and_Products": {
+        "Testmedicine": {
+            "Side_Effect": "dsfgsdg",
+            "Price": "2000",
+            "Medical_Discription": "dsfgsdg",
+            "Quantity": "2",
+            "Cutprice": "200",
+            "Salts": "dfgsdf",
+            "Doses": "2",
+            "Precaution_and_warning": "dsfg",
+            "Name": "Testmedicine",
+            "Uses": "sfds",
+            "Company": "testmedicine"
+        },
+        "test": {
+            "Side_Effect": "",
+            "Price": "200",
+            "Medical_Discription": "",
+            "Quantity": "",
+            "Cutprice": "100",
+            "Salts": "",
+            "Doses": "",
+            "Precaution_and_warning": "",
+            "Name": "test",
+            "Uses": "",
+            "Company": "test"
+        },
+        "zXsEJXCpgCWsbA0gXg1A": {
+            "Side_Effect": "1. Nausea 2. Abdominal distress 3. Allergic reactions 4. Rash",
+            "Price": "59.95",
+            "Medical_Discription": "Absorption: Paracetamol is rapidly and completely absorbed after oral administration. Distribution: It is distributed mostly in the body in unbound form. Metabolism: It is extensively metabolised in the liver. Excretion: Excreted in the urine.",
+            "Quantity": "Strip of 10 Tablet",
+            "Cutprice": "30049069",
+            "Salts": "Acetanilide derivative, Non narcotic Analgesic,Antipyretic.",
+            "Doses": "Adult: 500 - 1000 mg in 3 times daily Maximum dose: 4 g / day For migraine: 500 mg to be taken at the first sign of migraine attack and repeated 4 - 6 hourly until suppress mild attacks. Children: 60 mg / kg body weight /day in 4 divided doses.",
+            "Precaution_and_warning": "1. Hepatic impairment 2. Renal impairment 3. Hypertension",
+            "Name": "Denim P 500mg Tablet (10'S)",
+            "Uses": "Denim P 500mg Tablet (10'S) is to be taken with food.",
+            "Company": "Dew Drops Lab"
+        }
+    },
+    "ORDERS": {
+        "Doctors_Consultancy": {
+            "oders": {
+                "2023-03-12 02:10:44.992387": {
+                    "Fees": "500/Consult",
+                    "Doctor Name": "Dr. Jiten Chaudhary",
+                    "pincode": "2313113",
+                    "phone": "1312113111",
+                    "Patient Name": "dfgsd",
+                    "Doctors Hospital": "Manipal Hospital"
+                },
+                "2023-03-21 23:10:29.594555": {
+                    "Fees": "500/Consult",
+                    "Doctor Name": "Dr. Jiten Chaudhary",
+                    "pincode": "147001",
+                    "phone": "9877631269",
+                    "Patient Name": "g",
+                    "Doctors Hospital": "Manipal Hospital"
+                },
+                "2023-03-22 20:24:31.424026": {
+                    "Fees": "500/Consult",
+                    "Doctor Name": "Dr. Jiten Chaudhary",
+                    "pincode": "147001",
+                    "phone": "9877631269",
+                    "Patient Name": "ga",
+                    "Doctors Hospital": "Manipal Hospital"
+                },
+                "2023-04-06 13:35:52.077882": {
+                    "Fees": "500/Consult",
+                    "Doctor Name": "Dr. Jiten Chaudhary",
+                    "pincode": "sdfsdsf",
+                    "phone": "sdfsdffssdfs",
+                    "Patient Name": "sdfds",
+                    "Doctors Hospital": "Manipal Hospital"
+                },
+                "2023-08-15 12:21:12.214913": {
+                    "Fees": "500/Consult",
+                    "Doctor Name": "Dr. Jiten Chaudhary",
+                    "pincode": "147001",
+                    "phone": "98776312691",
+                    "Patient Name": "g",
+                    "Doctors Hospital": "Manipal Hospital"
+                },
+                "2023-10-13 00:49:20.204424": {
+                    "Fees": "500/Consult",
+                    "Doctor Name": "Dr. Jiten Chaudhary",
+                    "pincode": "147001",
+                    "phone": "98776312691",
+                    "Patient Name": "g",
+                    "Doctors Hospital": "Manipal Hospital"
+                }
+            }
+        }
+    },
+    "Order_Status": {
+        "FbTMmB1GZzagyfD0BLWS9DX4PdB2": {
+            "oders": {
+                "6ntEgVUmGDEvuJgm8AZP": {
+                    "Info": "Manipal Hospital",
+                    "Price": "500/Consult",
+                    "Cutprice": "NA",
+                    "Status": "Pending",
+                    "Name": "Dr. Jiten Chaudhary",
+                    "Quantity": 0
+                },
+                "9V6BGSnikNhGs3Yg4YRQ": {
+                    "Info": "test",
+                    "Price": "2",
+                    "Cutprice": "NA",
+                    "Quantity": 2,
+                    "Name": "test",
+                    "Status": "Out for delivery"
+                },
+                "AjpwEJ3NqayhP7OFGIZv": {
+                    "Price": "286.35",
+                    "Cutprice": "345",
+                    "Status": "Pending",
+                    "phone": "98776312691",
+                    "Quantity": 1,
+                    "Info": "By Himalaya",
+                    "address": "gghhhjhhujiik",
+                    "Customer Name": "g",
+                    "pincode": "147001",
+                    "Name": "Himalaya 2"
+                },
+                "C6CAt3EJ199q95cLUW0o": {
+                    "Price": "500/Consult",
+                    "Cutprice": "NA",
+                    "Quantity": 0,
+                    "phone": "98776312691",
+                    "Status": "Pending",
+                    "Info": "Manipal Hospital",
+                    "Patient Name": "g",
+                    "Name": "Dr. Jiten Chaudhary",
+                    "pincode": "147001"
+                },
+                "E2zvtWfmirPn0kriR9qF": {
+                    "Info": "NA",
+                    "Price": "NA",
+                    "Cutprice": "NA",
+                    "Status": "Pending",
+                    "Name": "Prescription",
+                    "Quantity": 0
+                },
+                "Jhm6XKXXSR5qk7tTRoKg": {
+                    "Price": "286.35",
+                    "Cutprice": "345",
+                    "Quantity": 1,
+                    "phone": "123123123123",
+                    "Status": "Delivered",
+                    "Info": "By Himalaya",
+                    "address": "xxxxxxxxxx",
+                    "Customer Name": "xxxx",
+                    "pincode": "123123",
+                    "Name": "Himalaya Purifying Neem Face Wash"
+                },
+                "ajnv2DLShenI3m47dNoe": {
+                    "Info": "test",
+                    "Price": "1200",
+                    "Cutprice": "1000",
+                    "Status": "Pending",
+                    "Name": "test",
+                    "Quantity": 1
+                },
+                "bxs1F1AyvKc2qB1JVvlJ": {
+                    "Info": " ARMY SURGICAL WORKS",
+                    "Price": "500",
+                    "Cutprice": "1000",
+                    "Status": "Pending",
+                    "Name": "Army Surgicals CUSHING Retractors",
+                    "Quantity": 1
+                },
+                "f9gcMqkaJTf8QUb6mWFz": {
+                    "Info": "gfdg",
+                    "Price": "1200",
+                    "Cutprice": "2000",
+                    "Status": "Pending",
+                    "Name": "BOOSTRIX INJECTION",
+                    "Quantity": 1
+                },
+                "oPWybVm2eHeJRWvE7RZD": {
+                    "Info": "NA",
+                    "Price": "NA",
+                    "Cutprice": "NA",
+                    "Status": "Pending",
+                    "Name": "Prescription",
+                    "Quantity": 0
+                },
+                "onHUjdK1FNP547tBdNwZ": {
+                    "Info": "By Himalaya",
+                    "Price": "286.35",
+                    "Cutprice": "345",
+                    "Status": "Pending",
+                    "Name": "Himalaya Purifying Neem Face Wash",
+                    "Quantity": 1
+                },
+                "vpXhIU5z3VdSz5B5m8Ns": {
+                    "Price": "9.73",
+                    "Cutprice": "11.45",
+                    "Quantity": 1,
+                    "phone": "98776312691",
+                    "Status": "Delivery",
+                    "Info": "By SYSTOPIC LABORATORIES",
+                    "address": "gghhhjhhujiik",
+                    "Customer Name": "g",
+                    "pincode": "147001",
+                    "Name": "Af 150 Mg Tab 1`S"
+                }
+            }
+        }
+    },
+    "POPULAR_DISCOUNTS": {
+        "1": {
+            "discount_items": {
+                "RsD2cF2dfjKz48PF8RS9": {
+                    "Side_Effect": "NIL",
+                    "Cutprice": "460",
+                    "Medical_Discription": "Softovac Powder is an ayurvedic formulation powder that is to be taken for bowel regulation. Softovac SF contains a variety of natural ingredients, such as Isabgol, which cure constipation issues by softening the stool. Softovac is a trusted bowel regulator for diabetics as it is a sugar-free natural remedy, hence it will not contribute to high blood sugar. Softovac is used to help those with digestive issues as well as those who want to keep their system healthy.",
+                    "Quantity": "Bottle Of 250 G",
+                    "Price": "315",
+                    "Doses": "",
+                    "Precaution_and_warning": "NIL",
+                    "Name": "Softovac Sf Constipation Powder",
+                    "Company": "SOFTOVAC",
+                    "Uses": "To cure constipation as well as other bowel-related issues. Also provides relief to those with these problems."
+                }
+            }
+        }
+    },
+    "Saved_address": {
+        "f26oJpEKuAS7zPx7FJov": {}
+    },
+    "deliverycharges and minimum value": {
+        "deliverycharges": {
+            "amount": "29"
+        },
+        "lab_delivery_charges": {
+            "amount": "50"
+        },
+        "lab_minimum_value": {
+            "amount": "2000"
+        },
+        "minimumvalue_deliverycharges": {
+            "amount": "1000"
+        },
+        "surgical_deliverycharges": {
+            "amount": "19"
+        },
+        "surgical_minimumValue": {
+            "amount": "10000"
+        },
+        "t_map_price_km": {
+            "amount": "1000"
+        }
+    },
+    "doctor_corners_items": {
+        "Operation1": {
+            "Name": "Operation1",
+            "Injectable": {
+                "BOOSTRIX INJECTION": {
+                    "sterile": "dgfd",
+                    "description": "vcx",
+                    "company": "gfdg",
+                    "size": "gfd",
+                    "price": "1200",
+                    "category": "gd",
+                    "use": "xcv",
+                    "cutprice": "2000",
+                    "name": "BOOSTRIX INJECTION"
+                }
+            },
+            "Medicine": {
+                "Af 150 Mg Tab 1`S": {
+                    "Side_Effect": "Headache Vomiting Diarrhoea Nausea Increased liver enzymes Skin rash",
+                    "Cutprice": "11.45",
+                    "Medical_Discription": "Af 150 Tablet is an antifungal medicine containing Fluconazole. Af 150 Tablet is used to treat fungal infections caused by various organisms of the skin, blood, urinary tract, mouth, throat and other parts of the body. Fluconazole acts by inhibiting the growth of the fungal cell wall, thus resulting in fungal cell death. Take this medicine as prescribed by your doctor at a fixed timing to gain optimal benefits. Pregnant and nursing women should not take this medicine. The most common side effects of this medicine are abdominal pain, nausea, vomiting, headache, diarrhoea. However, these symptoms of side effects are temporary and go away on their own. If these symptoms do not resolve or worsen, consult with your doctor.",
+                    "Quantity": "1 Tablet(s) in Strip",
+                    "Price": "9.73",
+                    "Salts": "Fluconazole(150.0 Mg)",
+                    "Doses": "Af 150 Tablet should be taken as directed by your doctor. Swallow it as a whole with a glass of water. Take it at a fixed time for optimal results. Do not consume it more than that prescribed by your doctor",
+                    "Precaution_and_warning": "Fluconazole in Af 150 Tablet passes into the breastmilk. Breastfeeding can be continued after a single dose; however, if you are taking this medicine repeatedly or in high doses, breastfeeding is not recommended.",
+                    "Name": "Af 150 Mg Tab 1`S",
+                    "Company": "By SYSTOPIC LABORATORIES",
+                    "Uses": "Af 150 Tablet is used to treat fungal infections caused by various organisms."
+                },
+                "ttest": {
+                    "Side_Effect": "sdf",
+                    "Price": "123",
+                    "Medical_Discription": "sdf",
+                    "Quantity": "1",
+                    "Cutprice": "123",
+                    "Salts": "sdf",
+                    "Doses": "1",
+                    "Precaution_and_warning": "sdf",
+                    "Name": "ttest",
+                    "Uses": "dsf",
+                    "Company": "test"
+                }
+            },
+            "Surgical Instruments": {
+                "itemname": {
+                    "sterile": "idk",
+                    "description": "idkkk",
+                    "company": "idk",
+                    "size": "idk",
+                    "price": "1200",
+                    "category": "idkkk",
+                    "use": "idk",
+                    "cutprice": "2000",
+                    "name": "name"
+                },
+                "test": {
+                    "sterile": "test",
+                    "description": "test",
+                    "company": "test",
+                    "size": "test",
+                    "price": "1222",
+                    "category": "test",
+                    "use": "test",
+                    "cutprice": "12",
+                    "name": "test"
+                }
+            },
+            "Surgicals": {
+                "MEC PROCTOSCOPE WITH CUT MEDIUM": {
+                    "sterile": "sdf",
+                    "description": "sdfs",
+                    "company": "sdfs",
+                    "size": "sdf",
+                    "price": "1200",
+                    "category": "sdf",
+                    "use": "dvfs",
+                    "cutprice": "2000",
+                    "name": "MEC PROCTOSCOPE WITH CUT MEDIUM"
+                },
+                "test": {
+                    "sterile": "test",
+                    "description": "1sdsf",
+                    "company": "testt",
+                    "size": "test",
+                    "price": "12234",
+                    "category": "test",
+                    "use": "test",
+                    "cutprice": "234",
+                    "name": "test"
+                }
+            }
+        },
+        "Operation2": {
+            "Name": "Operation2"
+        },
+        "test": {
+            "Name": "test",
+            "Injectable": {
+                "test": {
+                    "sterile": "test",
+                    "description": "test",
+                    "company": "test",
+                    "size": "test",
+                    "price": "231421",
+                    "category": "test",
+                    "use": "test",
+                    "cutprice": "213",
+                    "name": "test"
+                }
+            }
+        }
+    },
+    "doctors detail": {
+        "A": {
+            "Fees": "500/Consult",
+            "Specialist": "Heart Specialist",
+            "Bio": "A doctor is a medical professional who is trained to diagnose and treat various medical conditions. They often work in hospitals, clinics, or private practices, and use their medical knowledge and expertise to help patients recover from illness and injury. Doctors play a critical role in maintaining the health and well-being of individuals and communities.",
+            "Name": "Dr. Jiten Chaudhary",
+            "Hospital": "Manipal Hospital",
+            "Workinghours": "8:00AM - 4:00PM"
+        },
+        "B": {
+            "Fees": "499/Consult",
+            "Specialist": "General Surgeon",
+            "Bio": "A doctor is a medical professional who is trained to diagnose and treat various medical conditions. They often work in hospitals, clinics, or private practices, and use their medical knowledge and expertise to help patients recover from illness and injury. Doctors play a critical role in maintaining the health and well-being of individuals and communities.",
+            "Name": "Dr. Gautam Nadkarni",
+            "Hospital": "Manipal",
+            "Workinghours": "9:00AM - 3:00PM"
+        },
+        "Test dr": {
+            "Fees": "200",
+            "Specialist": "test",
+            "Bio": "test",
+            "Name": "Test dr",
+            "Hospital": "asfd",
+            "Workinghours": "9:00"
+        }
+    },
+    "emergency number": {
+        "Ambulance": {
+            "Number": "108",
+            "Name": "Ambulance"
+        },
+        "My_Number": {
+            "Number": "7814818681",
+            "Name": "Call Us"
+        },
+        "NGO1": {
+            "Number": "12345678",
+            "Name": "NGO1"
+        }
+    },
+    "everyday_essentials": {
+        "Healthy Snacks": {
+            "Name": "Healthy Snacks",
+            "items": {
+                "Plykk47gx0vwebXdmerL": {
+                    "Side_Effect": "",
+                    "Cutprice": "349.00",
+                    "Price": "191.95",
+                    "Quantity": "200 Gms",
+                    "Medical_Discription": "cxvzx sdfasfdsa asdfasf asdf asdf asfdsa fas dfas fas fda sdf asf daf d dg v fg rvg h fdsf s adx ws xfe rs fa sdf er g xes dfdw a fvc dg hvtygc fe xds ",
+                    "Salts": "sdffsdfs",
+                    "Doses": "",
+                    "Precaution_and_warning": "",
+                    "Name": "Liveasy Foods Healthy Seed",
+                    "Company": "By LIVEASY",
+                    "Uses": "For Each Serve take 32 gms of the seed mix"
+                }
+            }
+        },
+        "Nutrition": {
+            "Name": "Nutrition"
+        },
+        "personal care": {
+            "Name": "Personal Care"
+        },
+        "test": {
+            "Name": "test",
+            "items": {
+                "Test1": {
+                    "Side_Effect": "sdf",
+                    "Price": "200",
+                    "Medical_Discription": "sdfsfsd",
+                    "Quantity": "2",
+                    "Cutprice": "123",
+                    "Salts": "sdf",
+                    "Doses": "2",
+                    "Precaution_and_warning": "sdf",
+                    "Name": "Test1",
+                    "Uses": "sdf",
+                    "Company": "test12"
+                },
+                "test": {
+                    "Side_Effect": "test",
+                    "Price": "234",
+                    "Medical_Discription": "test",
+                    "Quantity": "3",
+                    "Cutprice": "324",
+                    "Salts": "test",
+                    "Doses": "3",
+                    "Precaution_and_warning": "ters",
+                    "Name": "test",
+                    "Uses": "test",
+                    "Company": "etss"
+                }
+            }
+        }
+    },
+    "homecare_details": {
+        "Cleaning Service": {
+            "Name": "Cleaning Service",
+            "available_partners": {
+                "uSeXcmqIGX1EtdU3mVqF": {
+                    "availability": "8:00Am - 9:00PM",
+                    "priceperday": "1200",
+                    "bio": "A skilled nurse is a healthcare professional who has undergone extensive training and has developed expertise in providing patient care. They possess a combination of clinical knowledge, technical skills, and compassion, which enables them to offer high-quality care to patients in a variety of settings. ",
+                    "experience": "2 Years",
+                    "specialist": "Skin and Wound Management.",
+                    "name": "Seema Devi"
+                }
+            }
+        },
+        "Meal Delivery": {
+            "Name": "Meal Delivery",
+            "available_partners": {
+                "Test": {
+                    "priceperday": "1200",
+                    "availability": "test",
+                    "bio": "test",
+                    "experience": "test",
+                    "specialist": "test",
+                    "name": "Test"
+                }
+            }
+        },
+        "Skilled Nursing": {
+            "Name": "Skilled Nursing"
+        },
+        "Test": {
+            "Name": "Test",
+            "available_partners": {
+                "testststs": {
+                    "priceperday": "1231",
+                    "availability": "sadfafsaf",
+                    "bio": "sdfasf",
+                    "experience": "testststes",
+                    "specialist": "sdfgsgs",
+                    "name": "testststs"
+                }
+            }
+        }
+    },
+    "lab_cart": {},
+    "labtest_by_concern_label": {
+        "Diabetes": {
+            "Name": "Diabetes"
+        },
+        "Full Body": {
+            "Name": "Full Body"
+        },
+        "Test Lab data": {
+            "Name": "Test Lab data"
+        }
+    },
+    "labtest_by_concern_packages": {
+        "Diabetes": {
+            "packages": {
+                "42TqClXJZ7epvDQlDro5": {
+                    "Price": "1899",
+                    "Cutprice": "3199",
+                    "Description": "The Healthy 2023 Full Body Checkup is best for those who want to keep track of their overall health. This checkup includes necessary tests for Blood Sugar Levels, Cholesterol, Kidney and Liver Function, Thyroid Gland Function, Lipid Profile, Urine Routine and more. It also checks for Sodium, Chloride and Calcium levels in the body. Additionally, its Complete Blood Count tests can help give a clearer picture of the body's blood cells. It can help detect many diseases at an early stage and measure the body's vital parameters. This health checkup is suitable for all age groups and can be taken once every 6 to 12 months or as recommended by your doctor.",
+                    "PackagesInclude": "FBS, HbA1c, Average Blood Glucose, Creatinine",
+                    "SampleType": "Blood",
+                    "FastingRequired": "10-12 Hrs",
+                    "Info": "Include 83 test",
+                    "Name": "Complete Diabetes",
+                    "TubeType": "Plain, Edta, Fluoride"
+                },
+                "T6snrZbQEfQsjQ5pGygi": {
+                    "Price": "499",
+                    "Cutprice": "1299",
+                    "Description": "The Healthy 2023 Full Body Checkup is best for those who want to keep track of their overall health. This checkup includes necessary tests for Blood Sugar Levels, Cholesterol, Kidney and Liver Function, Thyroid Gland Function, Lipid Profile, Urine Routine and more. It also checks for Sodium, Chloride and Calcium levels in the body. Additionally, its Complete Blood Count tests can help give a clearer picture of the body's blood cells. It can help detect many diseases at an early stage and measure the body's vital parameters. This health checkup is suitable for all age groups and can be taken once every 6 to 12 months or as recommended by your doctor.",
+                    "PackagesInclude": "HbA1C, FBS, Insuline Fasting, Fructosamine",
+                    "SampleType": "Blood, Urine",
+                    "FastingRequired": "10-12 Hrs",
+                    "Info": "Include 38 Test",
+                    "Name": "Diabetes Care",
+                    "TubeType": "Plain, Fluoride, Edta, Urine Container"
+                },
+                "mcLkfj2ss1zCsN37F7Ow": {
+                    "Price": "500",
+                    "Cutprice": "200",
+                    "Description": "xcvxcvx",
+                    "PackagesInclude": "xcv",
+                    "SampleType": "dxcv",
+                    "FastingRequired": "test",
+                    "Info": "xcvx",
+                    "Name": "test",
+                    "TubeType": "xcv"
+                }
+            }
+        },
+        "Full Body": {
+            "packages": {
+                "Bq5YWk1G18RmjBb78Y3t": {
+                    "Price": "2990",
+                    "Cutprice": "1049",
+                    "Description": "The Healthy 2023 Full Body Checkup is best for those who want to keep track of their overall health. This checkup includes necessary tests for Blood Sugar Levels, Cholesterol, Kidney and Liver Function, Thyroid Gland Function, Lipid Profile, Urine Routine and more. It also checks for Sodium, Chloride and Calcium levels in the body. Additionally, its Complete Blood Count tests can help give a clearer picture of the body's blood cells. It can help detect many diseases at an early stage and measure the body's vital parameters. This health checkup is suitable for all age groups and can be taken once every 6 to 12 months or as recommended by your doctor.",
+                    "PackagesInclude": "Chloride(cl), Fasting Blood Sugar (FBS), Average Blood Glucose",
+                    "SampleType": "Blood,Urine",
+                    "FastingRequired": "10-12 Hrs",
+                    "Info": "Include 85 tests",
+                    "Name": "Healthy Full Body",
+                    "TubeType": "Plain, Edta, Fluride, Urine container"
+                },
+                "l8nZ4LrmMiPuGzoWfimX": {
+                    "Price": "775",
+                    "Cutprice": "2050",
+                    "Description": "The Healthy 2023 Full Body Checkup is best for those who want to keep track of their overall health. This checkup includes necessary tests for Blood Sugar Levels, Cholesterol, Kidney and Liver Function, Thyroid Gland Function, Lipid Profile, Urine Routine and more. It also checks for Sodium, Chloride and Calcium levels in the body. Additionally, its Complete Blood Count tests can help give a clearer picture of the body's blood cells. It can help detect many diseases at an early stage and measure the body's vital parameters. This health checkup is suitable for all age groups and can be taken once every 6 to 12 months or as recommended by your doctor.",
+                    "PackagesInclude": "FBS, UTSH, Platelet Count, MCV, RDW SD",
+                    "SampleType": "Blood",
+                    "FastingRequired": "10-12 Hrs",
+                    "Info": "Includes 53 tests",
+                    "Name": "Basic Health Checkup",
+                    "TubeType": "Plain, Edta, Fluoride"
+                }
+            }
+        },
+        "Test Lab data": {
+            "packages": {
+                "8EiNT9QLPc7V9ajCY3MD": {
+                    "Price": "22",
+                    "Cutprice": "222",
+                    "Description": "asdfsafsd",
+                    "PackagesInclude": "asdfasdf",
+                    "SampleType": "dsfsadfs",
+                    "FastingRequired": "xcv",
+                    "Info": "safadfasdf",
+                    "Name": "zxcv",
+                    "TubeType": "sdafasfdsaf"
+                }
+            }
+        }
+    },
+    "medicine top deals": {
+        "Himalaya Purifying Neem Face Wash": {
+            "Side_Effect": "",
+            "Cutprice": "345",
+            "Price": "286.35",
+            "Quantity": "300ml",
+            "Medical_Discription": "Himalaya purifying neem face wash is a revolutionised formula for skincare routine. Himalaya ayurvedic neem face wash is a soap-free formulated face wash that fights against acne and pimples on the face. The Neem face wash is made with neem oil and neem leaves extracts.  Neem oil repairs dry skin, gently smoothens the skin surface and removes redness, itchiness and irritation. Himalaya products have antibacterial and antifungal properties that prevent boils, acne and ulcers. Himalaya purifying neem also consists of turmeric, which is also used to de-tan the skin tone.",
+            "Salts": "sdgsg",
+            "Doses": "",
+            "Precaution_and_warning": "",
+            "Name": "Himalaya 2",
+            "Company": "By Himalaya",
+            "Uses": "You can use Himalaya Purifying Neem Face Wash for normal to oily skin as well as to prevent acne, ulcers and boils."
+        },
+        "rnnRf1kOzn9kpymqDyWL": {
+            "Side_Effect": "The chances of getting side effects with paracetamol are rare if taken in the recommended dose. In rare cases you may experience a skin rash, itching, blisters, allergic reaction and bruising.",
+            "Price": "211.50",
+            "Cutprice": "225.00",
+            "Quantity": "10 TABLET(S) IN STRIP",
+            "Medical_Discription": "Pcm Tablet is a pain-relieving medicine. It contains paracetamol as an active ingredient. It is used for reducing fever and relieving pain including toothache, headache, migraine, muscle ache, period pain, etc. While taking this medicine you should not take other medicines containing paracetamol. Do not take more than the recommended dose and keep a gap of a minimum of 4 hours between two consecutive doses.",
+            "Salts": "sdfdsgsd",
+            "Doses": "Take this medicine as a whole with a glass of water",
+            "Precaution_and_warning": "Be cautious if you are a patient with liver problems, kidney problems, or you drink alcohol too often. This medicine is known to cause serious liver damage in case of overdose. You should not take this medicine too often or for a prolonged duration.",
+            "Name": "Himalaya ",
+            "Company": "By Himalaya",
+            "Uses": "For the treatment of fever and pain including headache, muscle ache, tooth ache, periods pain and pain related to muscle and joints, etc."
+        }
+    },
+    "medicine_cart": {
+        "O0zKGnFjIR0dvYo9IiD6": {
+            "cutprice": "345",
+            "company": "By Himalaya",
+            "quantity": 1,
+            "Side_Effect": "",
+            "Medical_Discription": "Himalaya purifying neem face wash is a revolutionised formula for skincare routine. Himalaya ayurvedic neem face wash is a soap-free formulated face wash that fights against acne and pimples on the face. The Neem face wash is made with neem oil and neem leaves extracts.  Neem oil repairs dry skin, gently smoothens the skin surface and removes redness, itchiness and irritation. Himalaya products have antibacterial and antifungal properties that prevent boils, acne and ulcers. Himalaya purifying neem also consists of turmeric, which is also used to de-tan the skin tone.",
+            "price": "286.35",
+            "Doses": "",
+            "Salts": "sdgsg",
+            "Precaution_and_warning": "",
+            "productname": "Himalaya Purifying Neem Face Wash",
+            "Uses": "You can use Himalaya Purifying Neem Face Wash for normal to oily skin as well as to prevent acne, ulcers and boils.",
+            "imageurl": "https://firebasestorage.googleapis.com/v0/b/medicineapp-4f132.appspot.com/o/Medicine_top_deals%2Fa.jpg?alt=media&token=667a26b7-7955-46e8-a06c-deacdcc9f21d"
+        },
+        "VpocvtziBRr3PpyIYtcZ": {},
+        "VzVpE8tXhgM5qNiSy7hp": {
+            "cartitems": {
+                "euFsh6B13d8JmfOjObKG": {
+                    "cutprice": "345",
+                    "company": "By Himalaya",
+                    "quantity": 1,
+                    "Side_Effect": "",
+                    "Medical_Discription": "Himalaya purifying neem face wash is a revolutionised formula for skincare routine. Himalaya ayurvedic neem face wash is a soap-free formulated face wash that fights against acne and pimples on the face. The Neem face wash is made with neem oil and neem leaves extracts.  Neem oil repairs dry skin, gently smoothens the skin surface and removes redness, itchiness and irritation. Himalaya products have antibacterial and antifungal properties that prevent boils, acne and ulcers. Himalaya purifying neem also consists of turmeric, which is also used to de-tan the skin tone.",
+                    "price": "286.35",
+                    "Doses": "",
+                    "Salts": "sdgsg",
+                    "Precaution_and_warning": "",
+                    "productname": "Himalaya Purifying Neem Face Wash",
+                    "Uses": "You can use Himalaya Purifying Neem Face Wash for normal to oily skin as well as to prevent acne, ulcers and boils.",
+                    "imageurl": "https://firebasestorage.googleapis.com/v0/b/medicineapp-4f132.appspot.com/o/Medicine_top_deals%2Fa.jpg?alt=media&token=667a26b7-7955-46e8-a06c-deacdcc9f21d"
+                }
+            }
+        }
+    },
+    "ngo_data": {
+        "a": {
+            "number": 1234567890,
+            "address": "H.O.:2460/1, SHAMSHER SINGH STREET, NEAR TRIVENI CHOWK , PATIALA-147001-PUNJAB-INDIA",
+            "about": "Legal Awareness & Aid",
+            "email": "allindiaforensic@gmail.com",
+            "name": "All India Forensic Science Association"
+        }
+    },
+    "packages_name": {
+        "0owLeDrda2ddqLHt6PAB": {
+            "Info": "Include 30 Tests",
+            "Price": "499",
+            "Cutprice": "1099",
+            "Name": "Thyroid"
+        },
+        "J0nAU3OOhPQ5MxxQhztj": {
+            "Info": "Measure Vitamin D & B12",
+            "Cutprice": "1999",
+            "Price": "1499",
+            "Name": "Full Body"
+        },
+        "aVAHPnFviTThM67f2sEr": {
+            "Info": "Women care, 20 free test",
+            "Price": "499",
+            "Cutprice": "1099",
+            "Name": "Women Care"
+        },
+        "sfsDr7DVP0lOyF1iHal0": {
+            "Info": "Complete diabetes test",
+            "Price": "499",
+            "Cutprice": "1099",
+            "Name": "Diabetes"
+        }
+    },
+    "phone_verification": {
+        "KnRAiQjatblUROs2vLxP": {
+            "Verified": 1
+        },
+        "Q92ZDomxcsRN7MDbxrDy": {
+            "Name": "0"
+        },
+        "pXjTA07QYMe5gV0aZscbzMvyUpj2": {
+            "Verified": 1
+        }
+    },
+    "popular categories": {
+        "a_medicine": {
+            "Name": "Medicine"
+        },
+        "b_labtest": {
+            "Name": "Lab Test"
+        },
+        "c_docotr": {
+            "Name": "Doctor's Consultation"
+        },
+        "d_rental": {
+            "Name": "Rental"
+        },
+        "e_homecare": {
+            "Name": "Home Care"
+        },
+        "f_surgical": {
+            "Name": "Surgical"
+        },
+        "g_doctorcorner": {
+            "Name": "Doctor's Corner"
+        },
+        "h_pick_drop": {
+            "Name": "Pick/Drop"
+        }
+    },
+    "prescription_orders": {
+        "FbTMmB1GZzagyfD0BLWS9DX4PdB2": {
+            "oders": {
+                "2023-07-27 22:19:06.546136": {
+                    "Coustmer Name": "g",
+                    "Cutprice": "NIL",
+                    "phone": "98776312691",
+                    "Url": "https://firebasestorage.googleapis.com/v0/b/medicineapp-4f132.appspot.com/o/Doctors_Identity%2F20230727_221904FbTMmB1GZzagyfD0BLWS9DX4PdB2?alt=media&token=aa504056-ba03-46e8-95ee-4953daa13f0f",
+                    "address": "gghhhjhhujiik",
+                    "status": "Pending",
+                    "pincode": "147001"
+                },
+                "2025-01-27 09:15:35.744811": {
+                    "Coustmer Name": "martin",
+                    "Cutprice": "NIL",
+                    "phone": "1231231231",
+                    "Url": "https://firebasestorage.googleapis.com/v0/b/medicineapp-4f132.appspot.com/o/Doctors_Identity%2F20250127_091533FbTMmB1GZzagyfD0BLWS9DX4PdB2?alt=media&token=11744fee-9f83-4d8c-99f8-6f76699eaa63",
+                    "address": "myaddressis this",
+                    "status": "Pending",
+                    "pincode": "123123"
+                }
+            }
+        }
+    },
+    "rental details": {
+        "test": {
+            "priceperday": "1",
+            "Use": "test",
+            "Description": "test",
+            "Name": "test",
+            "Company": "test",
+            "application": "test"
+        },
+        "test2": {
+            "priceperday": "120",
+            "Use": "test2",
+            "Description": "tests2",
+            "Name": "test2",
+            "Company": "tets2",
+            "application": "test2"
+        }
+    },
+    "shop by category": {
+        "Accessories": {
+            "Name": "Accessories"
+        },
+        "Ayurvedic": {
+            "Name": "Ayurvedic"
+        },
+        "Beauty": {
+            "Name": "Beauty"
+        },
+        "Fitness": {
+            "Name": "Fitness"
+        },
+        "Home Care": {
+            "Name": "Home Care"
+        },
+        "MotherBaby Care": {
+            "Name": "Mother/Baby Care"
+        },
+        "Nutrition": {
+            "Name": "Nutrition",
+            "items": {
+                "a": {
+                    "Side_Effect": "-",
+                    "Medical_Discription": "",
+                    "Cutprice": " 599",
+                    "Quantity": "1 Litre Bottle",
+                    "Price": "329.45",
+                    "Salts": "dfdasdasda",
+                    "Doses": "Dilute 20-30 ml of EverHerb Diabetic Care Juice in a glass of water and consume it 2 times a day on an empty stomach, once in the morning and again in the evening. Shake the bottle well before use.",
+                    "Precaution_and_warning": "Pregnant and nursing women should not consume this product.",
+                    "Name": "Everherb Diabetic Care Juice",
+                    "Uses": "blood sugar break-down",
+                    "Company": "By Everyherb"
+                }
+            }
+        },
+        "Test Label": {
+            "Name": "Test Label",
+            "items": {
+                "test": {
+                    "Side_Effect": "estt",
+                    "Price": "232",
+                    "Medical_Discription": "estt",
+                    "Quantity": "23",
+                    "Cutprice": "32233",
+                    "Salts": "ests",
+                    "Doses": "23",
+                    "Precaution_and_warning": "test",
+                    "Name": "test",
+                    "Uses": "test",
+                    "Company": "test"
+                },
+                "test22": {
+                    "Side_Effect": "estt22",
+                    "Price": "23222",
+                    "Medical_Discription": "estt22",
+                    "Quantity": "2322",
+                    "Cutprice": "3223322",
+                    "Salts": "ests22",
+                    "Doses": "2322",
+                    "Precaution_and_warning": "test22",
+                    "Name": "test22",
+                    "Uses": "test22",
+                    "Company": "test22"
+                }
+            }
+        }
+    },
+    "shop by concern": {
+        "Cough": {
+            "Name": "Cough",
+            "items": {
+                "bendryl": {
+                    "Side_Effect": "Drowsiness Dizziness Tiredness Nausea Vomiting",
+                    "Cutprice": "129.00",
+                    "Medical_Discription": "Benadryl cough syrup is used for treating coughs and colds. It also provides relief from symptoms like runny nose, sneezing, sore throat and watery eyes. Cough is the body\u2019s natural reflex to expel any foreign matter that is accumulated in the airways. Coughing helps clear out mucous and congestion from your lungs. Cough can be dry and itchy or chesty and phlegmy. Benadryl cough syrup contains a combination of diphenhydramine, ammonium chloride and sodium citrate as active substances. It works by blocking the effects of allergic chemicals and providing relief from allergic symptoms such as a runny nose and watery eyes. This medicine also thins the mucous and makes it easier to cough out. Take this medicine exactly as directed by your doctor. Shake well before use. Use a measuring cup or spoon for the exact quantity. Do not consume directly from the bottle. Benadryl syrup should not be used for children below 4 years of age without medical advice. Do not consume more than the recommended dose and keep a gap of at least 4 hours between two consecutive doses. Do not take this medicine if you are allergic to any of its components. Before starting Benadryl cough syrup, inform the doctor if you are pregnant, planning a pregnancy, or breastfeeding and about your complete medical history. Also, inform the doctor about all other medicines and supplements you take.",
+                    "Quantity": "Bottle Of 150ml",
+                    "Price": "109.65",
+                    "Salts": "sdffsfs",
+                    "Doses": "If you think you have taken too much Benadryl cough syrup, contact your doctor immediately or visit the nearest hospital",
+                    "Precaution_and_warning": "",
+                    "Name": "Benadryl Cough",
+                    "Uses": "Relief from cough and cold, Soothes sore throat",
+                    "Company": "hahaha"
+                }
+            }
+        },
+        "Fever": {
+            "Name": "Fever"
+        },
+        "Pain": {
+            "Name": "Pain"
+        },
+        "test concern": {
+            "Name": "test concern",
+            "items": {
+                "tetes": {
+                    "Side_Effect": "esttes",
+                    "Price": "23",
+                    "Medical_Discription": "setest",
+                    "Quantity": "23",
+                    "Cutprice": "2342",
+                    "Salts": "settes",
+                    "Doses": "23",
+                    "Precaution_and_warning": "test",
+                    "Name": "tetes",
+                    "Uses": "setset",
+                    "Company": "tests"
+                }
+            }
+        }
+    },
+    "surgical_items": {
+        "item1": {
+            "company": " ARMY SURGICAL WORKS",
+            "sterile": "NA",
+            "description": "Specification: \" CUSHING 24 cm / 9 \u00bd inch \" Retractor Size 10 mm",
+            "size": "10mm",
+            "price": "500",
+            "category": "vvxvs",
+            "use": "sdf",
+            "cutprice": "1000",
+            "name": "Army Surgicals CUSHING Retractors"
+        },
+        "test": {
+            "sterile": "test",
+            "description": "test",
+            "company": "test",
+            "size": "tets",
+            "price": "1200",
+            "category": "test",
+            "use": "test",
+            "cutprice": "1000",
+            "name": "test"
+        }
+    },
+    "users": {
+        "kantga10@gmail.com": {
+            "email": "kantga10@gmail.com",
+            "first name": "gaurav",
+            "last name": "arora"
+        },
+        "kaushalmartin@gmail.com": {
+            "email": "kaushalmartin@gmail.com",
+            "first name": "martin",
+            "last name": "kaushal"
+        }
+    },
+    "your_number": {
+        "number": {
+            "number": "78185545545"
+        }
+    }
+}
