@@ -64,3 +64,9 @@ In conjunction with the application, an Admin Panel has been developed to overse
 - Database: Firestore Database
 - Authentication: Firebase Authentication
 - File Storage: Firebase Storage
+
+
+## Database Structure
+- [Firebase Database Structure](firestore_database_storage.json)
+- [Firebase Stroage Structure](firebase_storage_structure.json)
+ 
