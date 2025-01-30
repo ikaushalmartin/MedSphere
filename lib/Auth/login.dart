@@ -37,10 +37,12 @@ class _loginState extends State<login> {
     return StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          final isPhoneVerified = snapshot.data?.providerData.any((userInfo) {
-            return userInfo.providerId == 'phone' &&
-                userInfo.phoneNumber != null;
-          });
+          // final isPhoneVerified = snapshot.data?.providerData.any((userInfo) {
+          //   return userInfo.providerId == 'phone' &&
+          //       userInfo.phoneNumber != null;
+          // });
+          //mobile_verification turned off
+          final  isPhoneVerified=true;
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
               child: LoadingAnimationWidget.waveDots(
@@ -326,6 +328,7 @@ class _loginState extends State<login> {
                 ));
           }
           if (user.emailVerified) {
+
             if (isPhoneVerified!) {
               uid = snapshot.data?.uid ?? uid;
               emailofuser = snapshot.data?.email ?? emailofuser;
