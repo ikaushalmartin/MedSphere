@@ -77,3 +77,7 @@ In conjunction with the application, an Admin Panel has been developed to overse
 - You can directly push that structre using basic python script.
 
 ## Application APK
+- [MedSphere Android Application](MedSphere.apk)
+#### Testing Creds:
+- Email: kaushalmartin@gmail.com
+- Password: 123456
